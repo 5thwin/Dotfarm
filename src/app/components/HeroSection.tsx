@@ -1,4 +1,5 @@
 import { LandingButtonStyle } from '@/app/styles/common/buttonStyle';
+import clsx from 'clsx';
 import Image from 'next/image';
 
 export default function HeroSection() {
@@ -23,9 +24,9 @@ export default function HeroSection() {
       <div className='flex flex-col gap-y-[30px] items-center'>
         <div className='flex flex-col gap-y-4 items-center'>
           <div className='text-2xl text-center'>
-            <p className='font-medium'>어렵고 찾기힘든</p>
-            <p className='font-bold'>농업관련 지원사업 및 정보</p>
-            <p className='font-bold'>한번에 볼 수 없을까?</p>
+            <p className='font-medium'>어렵고 찾기 힘든</p>
+            <p className='font-bold'>농업 관련 지원 사업 및 정보</p>
+            <p className='font-bold'>한 번에 볼 수 없을까?</p>
           </div>
           <p className='text-center text-details'>농부에게 필요한 농업정보,<br />
             지원사업 정보를 알려드립니다  </p>
@@ -37,3 +38,6 @@ export default function HeroSection() {
     </div>
   </section>
 }
+
+// style
+const mainTitleContainer = clsx('text-2xl text-center', 'lg:text-left lg:')

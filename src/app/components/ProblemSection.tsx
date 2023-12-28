@@ -1,5 +1,5 @@
 import RightQuoteMark from '@/assets/icons/RightQuoteMark';
-import LeftQuoteMark from '@/assets/icons/leftQuoteMark';
+import LeftQuoteMark from '@/assets/icons/LeftQuoteMark';
 import Image from 'next/image';
 export default function ProblemSection() {
   return <section className='flex flex-col items-center gap-y-6 my-16'>

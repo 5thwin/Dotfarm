@@ -8,3 +8,5 @@ export const textUnderlineHighlight = clsx(
 	'after:bottom-1 after:left-0 after:-z-[1] ',
 	'after:hover:h-1/3'
 );
+
+export const responsiveInlineBlock = clsx('block lg:inline-block');

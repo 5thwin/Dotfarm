@@ -12,6 +12,8 @@ export function KakaoChatButton({ className, children }: KakaoChatButtonProps) {
   };
 
   return (
-    <button onClick={openKakaoChat} className={className}>{children || '카카오톡 채팅방 입장'}</button>
+    <a href={KAKAO_OPEN_CHAT_LINK} target="_blank" rel="noopener noreferrer" className={className}>
+      {children || '카카오톡 채팅방 입장'}
+    </a>
   );
 }

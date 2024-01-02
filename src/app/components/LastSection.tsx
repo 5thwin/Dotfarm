@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { LandingButtonStyle } from '../styles/common/buttonStyle';
 import clsx from 'clsx';
+import { KakaoChatButton } from './KakaoChatButton';
 
 export default function LastSection() {
   return <section className='relative lg:min-h-[605px] flexCenter pt-24 w-full overflow-hidden' style={{ background: 'linear-gradient(0deg, #C1FFCF 0%, rgba(255, 255, 255, 0.00) 100%)' }}>
@@ -16,9 +17,9 @@ export default function LastSection() {
             형식으로 공유드리겠습니다
           </p>
         </div>
-        <button className={LandingButtonStyle}>
+        <KakaoChatButton className={LandingButtonStyle}>
           <span className='font-bold lg:text-lg'>{'농업 정보 무료 보기 >'}</span>
-        </button>
+        </KakaoChatButton>
       </div>
 
       <div className={imageContainer}>

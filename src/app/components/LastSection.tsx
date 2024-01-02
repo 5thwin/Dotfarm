@@ -18,7 +18,7 @@ export default function LastSection() {
           </p>
         </div>
         <KakaoChatButton className={LandingButtonStyle}>
-          <span className='font-bold lg:text-lg'>{'농업 정보 무료 보기 >'}</span>
+          <span className='font-bold lg:text-lg'>{'오픈 채팅방 이동 >'}</span>
         </KakaoChatButton>
       </div>
 

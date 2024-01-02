@@ -29,7 +29,7 @@ export default function Header() {
       priority
     />
     <KakaoChatButton className={LandingHeaderButtonStyle}>
-      <span>{'농업 정보 무료 보기 >'}</span>
+      <span>{'오픈 채팅방 이동 >'}</span>
     </KakaoChatButton>
   </nav >
 }

@@ -13,7 +13,7 @@ export function KakaoChatButton({ className, children }: KakaoChatButtonProps) {
 
   return (
     <a href={KAKAO_OPEN_CHAT_LINK} target="_blank" rel="noopener noreferrer" className={className}>
-      {children || '카카오톡 채팅방 입장'}
+      {children || '오픈 채팅방 이동'}
     </a>
   );
 }

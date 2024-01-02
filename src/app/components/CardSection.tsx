@@ -1,4 +1,5 @@
 import { responsiveInlineBlock, textUnderlineHighlight } from '@/app/styles/common/textStyle'
+import { DRIVE_NEWSLETTER_LINK, DRIVE_SUPPORT_LINK, DRIVE_VEDIO_LINK } from '@/constants/link'
 import clsx from 'clsx'
 import Image from 'next/image'
 
@@ -31,9 +32,9 @@ export default function CardSection() {
           <p className={cardDescriptionStyle}>
             {cardText.card1.description}
           </p>
-          <button className={cardButtonStyle}>
+          <a href={DRIVE_SUPPORT_LINK} target="_blank" rel="noopener noreferrer" className={cardButtonStyle}>
             {cardText.card1.button}
-          </button>
+          </a>
         </div>
       </div>
       <div id='card_2' className={clsx(cardStyle, 'bg-[#E9FFDC]')}>
@@ -53,9 +54,9 @@ export default function CardSection() {
           <p className={cardDescriptionStyle}>
             {cardText.card2.description}
           </p>
-          <button className={cardButtonStyle}>
+          <a href={DRIVE_NEWSLETTER_LINK} target="_blank" rel="noopener noreferrer" className={cardButtonStyle}>
             {cardText.card2.button}
-          </button>
+          </a>
         </div>
       </div>
       <div id='card_3' className={clsx(cardStyle, 'bg-[#FFEFDC]')}>
@@ -75,9 +76,10 @@ export default function CardSection() {
           <p className={cardDescriptionStyle}>
             {cardText.card3.description}
           </p>
-          <button className={cardButtonStyle}>
+
+          <a href={DRIVE_VEDIO_LINK} target="_blank" rel="noopener noreferrer" className={cardButtonStyle}>
             {cardText.card3.button}
-          </button>
+          </a>
         </div>
       </div>
     </div>

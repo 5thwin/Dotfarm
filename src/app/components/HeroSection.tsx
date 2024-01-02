@@ -30,7 +30,7 @@ export default function HeroSection() {
               지원사업 정보를 알려드립니다  </p>
           </div>
           <KakaoChatButton className={LandingButtonStyle}>
-            <span>{'농업 정보 무료 보기 >'}</span>
+            <span>{'오픈 채팅방 이동 >'}</span>
           </KakaoChatButton>
         </div>
       </div>

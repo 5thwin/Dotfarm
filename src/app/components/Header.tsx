@@ -1,4 +1,4 @@
-import { LandingButtonStyle } from '@/app/styles/common/buttonStyle';
+import { LandingHeaderButtonStyle } from '@/app/styles/common/buttonStyle';
 import clsx from 'clsx';
 import Image from 'next/image';
 
@@ -11,7 +11,7 @@ export default function Header() {
       height={24}
       priority
     />
-    <button className={LandingButtonStyle}>
+    <button className={LandingHeaderButtonStyle}>
       <span>{'농업 정보 무료 보기 >'}</span>
     </button>
   </nav>

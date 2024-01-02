@@ -1,19 +1,19 @@
-import { textUnderlineHighlight } from '@/app/styles/common/textStyle'
+import { responsiveInlineBlock, textUnderlineHighlight } from '@/app/styles/common/textStyle'
 import clsx from 'clsx'
 import Image from 'next/image'
 
 export default function CardSection() {
   return <section className='flex flex-col gap-y-7.5 items-center py-24'>
     <div className='flexCenter gap-y-2 flex-col text-center'>
-      <div className='font-bold text-2xl'>
-        <p>영농생활 필수 정보를</p>
-        <p className={textUnderlineHighlight}>
+      <div className='font-bold text-2xl lg:text-3xl'>
+        <span className={responsiveInlineBlock}>영농생활 필수 정보를</span>{' '}
+        <span className={responsiveInlineBlock}>
           쉽고 빠르게 볼 수 있습니다
-        </p>
+        </span>
       </div>
-      <p className='font-medium text-[#8E8E8E]'>농업 관련 지원사업, 뉴스, 영상레터 콘텐츠 제공</p>
+      <p className='font-medium text-[#8E8E8E] lg:text-xl'>농업 관련 지원사업, 뉴스, 영상레터 콘텐츠 제공</p>
     </div>
-    <div className='flexCenter flex-col gap-y-5'>
+    <div className='flexCenter flex-col lg:flex-row gap-5'>
       <div id='card_1' className={clsx(cardStyle, 'bg-[#DFF7FF]')}>
         <div className='relative'>
           <Image

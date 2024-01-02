@@ -6,4 +6,4 @@ export const DRIVE_NEWSLETTER_LINK =
 	'https://drive.google.com/file/d/1R9V28qXVhr--a2KOFj0CLT-ILwSlllLo/view?usp=sharing';
 
 export const DRIVE_VEDIO_LINK =
-	'https://drive.google.com/file/d/1sgJsMbSv-CYnODOWxr-txFfOagyeK_WD/view?usp=sharing';
+	'https://drive.google.com/file/d/1qtIBD__vS6j9ABiD_2SY5Nt-YRSL0kJt/view?usp=sharing';

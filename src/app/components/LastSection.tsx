@@ -3,8 +3,8 @@ import { LandingButtonStyle } from '../styles/common/buttonStyle';
 import clsx from 'clsx';
 
 export default function LastSection() {
-  return <section className='relative lg:min-h-[705px] flexCenter pt-24 w-full lg:overflow-hidden' style={{ background: 'linear-gradient(0deg, #C1FFCF 0%, rgba(255, 255, 255, 0.00) 100%)' }}>
-    <div className='flex flex-col gap-y-14'>
+  return <section className='relative lg:min-h-[605px] flexCenter pt-24 w-full overflow-hidden' style={{ background: 'linear-gradient(0deg, #C1FFCF 0%, rgba(255, 255, 255, 0.00) 100%)' }}>
+    <div className='flex flex-col gap-y-7 items-center'>
       <div className={contentsWraper}>
         <div className='flex flex-col gap-y-[15px]'>
           <p className={titleStyle}>지금 바로<br />
@@ -33,7 +33,11 @@ export default function LastSection() {
   </section>
 }
 
-const contentsWraper = clsx('flex flex-col items-center gap-y-9', 'lg:items-start', 'lg:relative lg:left-[70%] lg:top-14')
+const contentsWraper = clsx('flex flex-col items-center gap-y-9', 'lg:items-start', 'lg:relative lg:left-[70%]')
 const titleStyle = clsx('text-2xl font-bold text-center', 'lg:text-left lg:text-[45px] lg:leading-normal')
 const subTextStyle = clsx('text-[#6B6B6B] text-center', 'lg:text-left lg:text-2xl')
-const imageContainer = clsx('w-[348px] h-[367px]', 'lg:absolute lg:bottom-0 lg:-translate-x-1/2 lg:translate-y-[10%]', 'lg:w-[454px] lg:h-[510px]')
+const imageContainer = clsx(
+  'w-[348px] h-[367px]',
+  'lg:w-[454px] lg:h-[510px]',
+  'relative bottom-0',
+  'lg:absolute lg:bottom-0 lg:-translate-x-1/2 translate-y-[5%]')

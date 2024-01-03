@@ -18,7 +18,7 @@ export default function CardSection() {
       <div id='card_1' className={clsx(cardStyle, 'bg-[#DFF7FF]')}>
         <div className='relative'>
           <Image
-            src="/landing/card1.png"
+            src="/card1.png"
             alt="지원사업 리스트 제공"
             width={253}
             height={208}
@@ -40,7 +40,7 @@ export default function CardSection() {
       <div id='card_2' className={clsx(cardStyle, 'bg-[#E9FFDC]')}>
         <div className='relative'>
           <Image
-            src="/landing/card2.png"
+            src="/card2.png"
             alt="뉴스레터 제공"
             width={253}
             height={208}
@@ -62,7 +62,7 @@ export default function CardSection() {
       <div id='card_3' className={clsx(cardStyle, 'bg-[#FFEFDC]')}>
         <div className='relative'>
           <Image
-            src="/landing/card3.png"
+            src="/card3.png"
             alt="영상 레터 제공"
             width={253}
             height={208}

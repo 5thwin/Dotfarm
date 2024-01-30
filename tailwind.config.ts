@@ -13,13 +13,16 @@ const config: Config = {
 				20: '20px',
 				30: '30px',
 				40: '40px',
+				50: '50px',
 			},
 			colors: {
+				mainText: '#282828',
 				lightGreen: '#45F697',
 				details: '#6B6B6B',
 				textGreen: '#42C67E',
 				subText: '#7D7B7B',
 				neonGreen: '#45FF9B',
+				lineColor: '#ECECEC',
 			},
 			boxShadow: {
 				main: '0px 0px 10px 0px rgba(0, 0, 0, 0.05)',
@@ -29,7 +32,7 @@ const config: Config = {
 				'gradient-conic':
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			},
-			spacing: { 7.5: '1.875rem' },
+			spacing: { 7.5: '1.875rem', '15px': '15px', '30px': '30px' },
 		},
 	},
 	plugins: [],

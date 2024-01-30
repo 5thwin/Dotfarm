@@ -5,9 +5,8 @@ const APIURL = 'http://localhost:8000/auth/kakao/callback';
 export const getKakaoLogin = async (code: string) => {
 	try {
 		const res = await axios.get<{
-			accessToken: string;
-			refreshToken: string;
 			userInfo: any;
+			isUser: boolean;
 		}>(APIURL, { params: { code } });
 		console.log(res.data);
 		return res.data;

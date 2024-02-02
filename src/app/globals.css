@@ -6,8 +6,8 @@
 	--foreground-rgb: 0, 0, 0;
 	--background-start-rgb: 214, 219, 220;
 	--background-end-rgb: 255, 255, 255;
-	--background: '#FDFCFC';
-	--mainText: '#282828';
+	--background: #fdfcfc;
+	--mainText: #282828;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -19,7 +19,7 @@
 } */
 
 body {
-	color: rgb(var(--mainText));
+	color: var(--mainText);
 	background: var(--background);
 }
 

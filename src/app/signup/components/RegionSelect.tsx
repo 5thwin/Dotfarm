@@ -83,8 +83,3 @@ export default function RegionSelect() {
 		</div>
 	);
 }
-const options: OptionType[] = [
-	{ value: 'chocolate', label: 'Chocolate' },
-	{ value: 'strawberry', label: 'Strawberry' },
-	{ value: 'vanilla', label: 'Vanilla' },
-];

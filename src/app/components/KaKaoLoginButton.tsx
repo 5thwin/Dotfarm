@@ -1,8 +1,6 @@
 'use client';
-import { KAKAO_OPEN_CHAT_LINK } from '@/constants/link';
 import { KAKAO_AUTH_URL } from '@/utils/kakao';
 import Link from 'next/link';
-import Router from 'next/router';
 import { ReactNode } from 'react';
 
 type KakaoChatButtonProps = {

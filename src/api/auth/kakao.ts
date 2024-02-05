@@ -8,7 +8,7 @@ export const getKakaoLogin = async (code: string) => {
 			userInfo: any;
 			isUser: boolean;
 		}>(APIURL, { params: { code } });
-		console.log(res.data);
+		// console.log(res.data);
 		return res.data;
 	} catch (error) {
 		console.error(error);

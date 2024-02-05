@@ -50,7 +50,8 @@ export default function KaKaoLoginPage() {
 
 	return (
 		<div>
-			{authCode}
+			<p>code:</p>
+			<b>{authCode}</b>
 			{/* {loginStatus === 'success' && <p>로그인 성공.</p>}
 			{loginStatus === 'pending' && <p>로그인 중입니다.</p>}
 			{loginStatus === 'failure' && <p>로그인에 실패했습니다.</p>}

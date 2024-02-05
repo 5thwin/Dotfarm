@@ -2,41 +2,43 @@
 
 import { getKakaoLogin } from '@/api/auth/kakao';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 type LoginState = 'pending' | 'failure' | 'success' | 'nonMember';
 export default function KaKaoLoginPage() {
 	const searchParams = useSearchParams();
 	const authCode = searchParams.get('code');
-	const [loginStatus, setLoginStatus] = useState<LoginState>('pending');
+	const [userInfo, setUserInfo] = useState();
+	// const [loginStatus, setLoginStatus] = useState<LoginState>('pending');
 	const router = useRouter();
 
-	// 카카오 로그인 이후, 이 회원이 dotfarm의 유저인지 회원 여부와, dotfarm에서  발급한 토큰 부여
-	// const getAuth = async () => {
-	// 	if (!authCode) {
-	// 		setLoginStatus('failure');
-	// 		return;
-	// 	}
-	// 	try {
-	// 		const data = await getKakaoLogin(authCode);
-	// 		if (data?.isUser) {
-	// 			// 카카오 인증 후 회원임을 판별
+	useEffect(() => {
+		// 카카오 로그인 이후, 이 회원이 dotfarm의 유저인지 회원 여부와, dotfarm에서  발급한 토큰 부여
+		const getAuth = async () => {
+			if (!authCode) {
+				// setLoginStatus('failure');
+				return;
+			}
+			try {
+				const data = await getKakaoLogin(authCode);
+				setUserInfo(data?.userInfo);
+				// setLoginStatus('success');
 
-	// 			console.log(data.userInfo.kakao_account.profile.nickname);
-	// 			setLoginStatus('success');
-	// 		} else {
-	// 			// 카카오 인증 후 비회원임을 판결
-	// 			setLoginStatus('nonMember');
-	// 		}
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 		setLoginStatus('failure');
-	// 	}
-	// };
+				// 		if (data?.isUser) {
+				// 			// 카카오 인증 후 회원임을 판별
 
-	// useEffect(() => {
-	// 	getAuth();
-	// }, []);
-
+				// 			console.log(data.userInfo.kakao_account.profile.nickname);
+				// 			setLoginStatus('success');
+				// 		} else {
+				// 			// 카카오 인증 후 비회원임을 판결
+				// 			setLoginStatus('nonMember');
+				// 		}
+			} catch (error) {
+				console.error(error);
+				// setLoginStatus('failure');
+			}
+		};
+		getAuth();
+	}, []);
 	// // 인증 결과에 따른 분기
 	// useEffect(() => {
 	// 	if (loginStatus === 'success') {
@@ -50,8 +52,7 @@ export default function KaKaoLoginPage() {
 
 	return (
 		<div>
-			<p>code:</p>
-			<b>{authCode}</b>
+			<div>{JSON.stringify(userInfo)}</div>
 			{/* {loginStatus === 'success' && <p>로그인 성공.</p>}
 			{loginStatus === 'pending' && <p>로그인 중입니다.</p>}
 			{loginStatus === 'failure' && <p>로그인에 실패했습니다.</p>}

@@ -21,6 +21,7 @@ export default function KaKaoLoginPage() {
 			}
 			try {
 				const data = await getKakaoLogin(authCode);
+				console.log(data?.userInfo);
 				setUserInfo(data?.userInfo);
 				// setLoginStatus('success');
 

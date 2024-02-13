@@ -18,8 +18,9 @@ const config: Config = {
 			colors: {
 				mainText: '#282828',
 				lightGreen: '#45F697',
+				subGreen: '#EAFFEA',
 				details: '#6B6B6B',
-				textGreen: '#42C67E',
+				mainGreen: '#42C67E',
 				subText: '#7D7B7B',
 				neonGreen: '#45FF9B',
 				lineColor: '#ECECEC',
@@ -32,7 +33,13 @@ const config: Config = {
 				'gradient-conic':
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			},
-			spacing: { 7.5: '1.875rem', '15px': '15px', '30px': '30px' },
+			spacing: {
+				7.5: '1.875rem',
+				'5px': '5px',
+				'15px': '15px',
+				'25px': '25px',
+				'30px': '30px',
+			},
 		},
 	},
 	plugins: [],

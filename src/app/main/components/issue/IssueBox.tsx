@@ -1,5 +1,6 @@
 import { blockStyle } from '@/app/styles/common/blockStyle';
 import clsx from 'clsx';
+import NewsLetterList from './NewsLetterList';
 
 export default function IssueBox() {
 	return (
@@ -18,23 +19,7 @@ export default function IssueBox() {
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-col gap-y-5">
-				{Array.from({ length: 6 }, (_, i) => i).map((i) => (
-					<SampleLetter key={`letter_${i}`} />
-				))}
-			</div>
+			<NewsLetterList />
 		</div>
 	);
 }
-const SampleLetter = () => (
-	<div className="flex gap-x-2.5">
-		<div className={sampleLetterImgStyle}></div>
-		<p>
-			농촌진흥청, 날씨·병해충에 끄떡없는 ‘노지 스마트팜’ 시범 사업 추진 -
-			조선비즈
-		</p>
-	</div>
-);
-
-// style
-const sampleLetterImgStyle = clsx('w-[130px] h-[72px] rounded-10 bg-[#D9D9D9]');

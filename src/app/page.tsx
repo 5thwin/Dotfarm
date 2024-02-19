@@ -1,10 +1,10 @@
-import CardSection from './components/CardSection';
-import FeatureSection from './components/FeatureSection';
-import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import LastSection from './components/LastSection';
-import ProblemSection from './components/ProblemSection';
-import UserNeedsSection from './components/UserNeedsSection';
+import CardSection from './components/landing/CardSection';
+import Header from './components/landing/Header';
+import HeroSection from './components/landing/HeroSection';
+import ProblemSection from './components/landing/ProblemSection';
+import UserNeedsSection from './components/landing/UserNeedsSection';
+import FeatureSection from './components/landing/FeatureSection';
+import LastSection from './components/landing/LastSection';
 
 export default function Home() {
 	return (

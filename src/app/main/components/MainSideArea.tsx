@@ -1,5 +1,5 @@
 import LoginBox from './box/LoginBox';
-import IssueBox from './box/IssueBox';
+import IssueBox from './issue/IssueBox';
 
 export default function MainSideArea() {
 	return (

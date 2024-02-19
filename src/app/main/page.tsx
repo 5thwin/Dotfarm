@@ -1,9 +1,11 @@
 import WeekSupport from './components/WeekSupport';
 import MainSideArea from './components/MainSideArea';
 import OpenChatBanner from './components/OpenChatBanner';
-import CommunitySection from './components/CommunitySection';
+import CommunitySection from './components/commutiny/CommunitySection';
+import withHeader from '../hoc/withHeader';
+import RecentUsedMachinery from './components/commutiny/RecentUsedMachinery';
 
-export default function Page() {
+function Page() {
 	return (
 		<div>
 			<section
@@ -11,7 +13,7 @@ export default function Page() {
 				className="w-screen h-[450px] bg-[#ECFFF0]"
 			></section>
 			<main>
-				<div className="container mx-auto mt-[65px] flex gap-x-30px">
+				<div className="mx-auto mt-[65px] flex gap-x-30px md:px-[72px]">
 					<MainSideArea />
 					<section
 						id="main-section"
@@ -26,3 +28,4 @@ export default function Page() {
 		</div>
 	);
 }
+export default withHeader(Page, true);

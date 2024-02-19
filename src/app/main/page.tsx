@@ -1,6 +1,7 @@
 import WeekSupport from './components/WeekSupport';
 import MainSideArea from './components/MainSideArea';
 import OpenChatBanner from './components/OpenChatBanner';
+import CommunitySection from './components/CommunitySection';
 
 export default function Page() {
 	return (
@@ -18,6 +19,7 @@ export default function Page() {
 					>
 						<WeekSupport />
 						<OpenChatBanner />
+						<CommunitySection />
 					</section>
 				</div>
 			</main>

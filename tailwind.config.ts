@@ -22,6 +22,7 @@ const config: Config = {
 				details: '#6B6B6B',
 				mainGreen: '#42C67E',
 				subText: '#7D7B7B',
+				subGray: '#F1F3F8',
 				neonGreen: '#45FF9B',
 				lineColor: '#ECECEC',
 			},

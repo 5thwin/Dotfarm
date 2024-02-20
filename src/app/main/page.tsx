@@ -4,6 +4,7 @@ import OpenChatBanner from './components/OpenChatBanner';
 import CommunitySection from './components/commutiny/CommunitySection';
 import withHeader from '../hoc/withHeader';
 import RecentUsedMachinery from './components/commutiny/RecentUsedMachinery';
+import QnATab from './components/commutiny/qna/QnATab';
 
 function Page() {
 	return (
@@ -21,7 +22,20 @@ function Page() {
 					>
 						<WeekSupport />
 						<OpenChatBanner />
-						<CommunitySection />
+						<CommunitySection
+							tab1Component={
+								<>
+									{/* @ts-expect-error Server Component */}
+									<RecentUsedMachinery />
+								</>
+							}
+							tab2Component={
+								<>
+									{/* @ts-expect-error Server Component */}
+									<QnATab />
+								</>
+							}
+						/>
 					</section>
 				</div>
 			</main>

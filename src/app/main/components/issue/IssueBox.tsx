@@ -19,6 +19,7 @@ export default function IssueBox() {
 					</div>
 				</div>
 			</div>
+			{/* @ts-expect-error Async Server Component */}
 			<NewsLetterList />
 		</div>
 	);

@@ -6,9 +6,13 @@ import TabSelector from './TabSelector';
 import RecentUsedMachinery from './RecentUsedMachinery';
 
 interface CommunitySectionProps {
-	children: React.ReactNode;
+	tab1Component: React.ReactNode;
+	tab2Component: React.ReactNode;
 }
-export default function CommunitySection() {
+export default function CommunitySection({
+	tab1Component,
+	tab2Component,
+}: CommunitySectionProps) {
 	const { tabType } = useCommunityTabStore();
 	return (
 		<section className={clsx(blockStyle, 'flex flex-col p-25px gap-y-30px')}>
@@ -17,8 +21,8 @@ export default function CommunitySection() {
 				<button className={moreButton}>더보기+</button>
 			</div>
 			<TabSelector />
-			{/* @ts-expect-error Async Server Component */}
-			{tabType === 'USED-MACHINERY' && <RecentUsedMachinery />}
+			{tabType === 'USED-MACHINERY' && tab1Component}
+			{tabType === 'QNA' && tab2Component}
 		</section>
 	);
 }

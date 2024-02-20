@@ -3,7 +3,6 @@ import { UsedMachineryPost } from '@/type/post';
 import { formatPriceToKRW } from '@/utils/price';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useState } from 'react';
 
 async function getData() {
 	try {

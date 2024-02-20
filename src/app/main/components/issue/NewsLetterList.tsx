@@ -36,7 +36,7 @@ const LetterBox = ({ letter }: { letter: NewsLetter }) => (
 					alt="Picture of letter"
 				/>
 				<p>
-					{letter.title} -{letter.news}
+					{letter.title} - {letter.news}
 				</p>
 			</div>
 		</Link>

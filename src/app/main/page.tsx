@@ -1,4 +1,4 @@
-import WeekSupport from './components/WeekSupport';
+import WeekSupport from './components/weekSupport/WeekSupport';
 import MainSideArea from './components/MainSideArea';
 import OpenChatBanner from './components/OpenChatBanner';
 import CommunitySection from './components/commutiny/CommunitySection';

@@ -26,7 +26,7 @@ export default async function NewsLetterList() {
 }
 const LetterBox = ({ letter }: { letter: NewsLetter }) => (
 	<li>
-		<Link href={letter.link}>
+		<Link href={letter.link} target="_blank">
 			<div className="flex gap-x-2.5">
 				<Image
 					className={sampleLetterImgStyle}
@@ -44,4 +44,4 @@ const LetterBox = ({ letter }: { letter: NewsLetter }) => (
 );
 
 // style
-const sampleLetterImgStyle = clsx('w-[130px] h-[72px] rounded-10');
+const sampleLetterImgStyle = clsx('w-[130px] h-[72px] rounded-10 shadow-main');

@@ -5,8 +5,6 @@ import useSupportCalendar from '../hooks/useSupportCalendar';
 import MonthButtons from './MonthButtons';
 import { SupportProgram } from '@/type/support';
 import { compareDates } from '@/utils/date/compare';
-import useSelectedDateStore from '../store/selectedDateStore';
-import SupportListModal from './modal/SupportListModal';
 
 const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
 type SupportCalendarProps = {
@@ -15,7 +13,6 @@ type SupportCalendarProps = {
 const SupportCalendar = ({ programs }: SupportCalendarProps) => {
 	const { currentDate, monthDays, handlePreviousMonth, handleNextMonth } =
 		useSupportCalendar();
-	const { selectedDate } = useSelectedDateStore();
 	return (
 		<div className="flex flex-col gap-y-5">
 			<div id="calendar-header" className="flex justify-between items-center">
@@ -60,7 +57,6 @@ const SupportCalendar = ({ programs }: SupportCalendarProps) => {
 					</>
 				))}
 			</div>
-			{selectedDate && <SupportListModal />}
 		</div>
 	);
 };

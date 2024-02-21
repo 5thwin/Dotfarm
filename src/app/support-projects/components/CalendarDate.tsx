@@ -1,6 +1,8 @@
 import { SupportProgram } from '@/type/support';
 import clsx from 'clsx';
 import useSelectedDateStore from '../store/selectedDateStore';
+import useModalSupportsStore from '../store/modalSupportsStore';
+import SupportListModal from './modal/SupportListModal';
 
 type CalendarDateProps = {
 	currentMonth: number;
@@ -13,11 +15,14 @@ export default function CalendarDate({
 	programs,
 }: CalendarDateProps) {
 	const isToday = day.toDateString() === new Date().toDateString();
-	const { setSelectedDate } = useSelectedDateStore();
+	const { setSelectedDate, selectedDate } = useSelectedDateStore();
+	const { setSupportPrograms } = useModalSupportsStore();
 	return (
 		<div
 			className={getWrapperStyle(currentMonth === day.getMonth(), isToday)}
-			onClick={() => setSelectedDate(day)}
+			onClick={() => {
+				setSelectedDate(day), setSupportPrograms(programs);
+			}}
 		>
 			<span className={getDateStyle(day.getDay())}>{day.getDate()}</span>
 			<ul className={clsx('flex flex-col gap-y-2.5')}>
@@ -32,6 +37,7 @@ export default function CalendarDate({
 					외 {programs.length - 2}건 +
 				</span>
 			)}
+			{selectedDate && selectedDate === day && <SupportListModal />}
 		</div>
 	);
 }

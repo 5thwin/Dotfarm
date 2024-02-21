@@ -21,8 +21,7 @@ const Modal: React.FC<ModalProps> = ({
 	const animate = clsx('animate-modalOpen');
 	const container = cn(
 		'relative',
-		'z-50 bg-[#FCFCFC] p-5 text-black shadow-lg',
-		'rounded-md',
+		'z-50 bg-[#FCFCFC] text-black shadow-main',
 		containerClass,
 		animate
 	);

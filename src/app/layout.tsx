@@ -35,6 +35,7 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<Script src="https://developers.kakao.com/sdk/js/kakao.js"></Script>
 				{children}
+				<div id="modal-root" />
 			</body>
 		</html>
 	);

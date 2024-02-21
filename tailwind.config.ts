@@ -41,6 +41,19 @@ const config: Config = {
 				'25px': '25px',
 				'30px': '30px',
 			},
+			keyframes: {
+				modalOpen: {
+					'0%': {
+						opacity: '0',
+					},
+					'100%': {
+						opacity: '1',
+					},
+				},
+			},
+			animation: {
+				modalOpen: 'modalOpen 200ms ease-in-out',
+			},
 		},
 	},
 	plugins: [],

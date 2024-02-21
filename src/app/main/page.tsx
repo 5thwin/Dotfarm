@@ -2,7 +2,7 @@ import WeekSupport from './components/weekSupport/WeekSupport';
 import MainSideArea from './components/MainSideArea';
 import OpenChatBanner from './components/OpenChatBanner';
 import CommunitySection from './components/commutiny/CommunitySection';
-import withHeader from '../hoc/withHeader';
+import withLayout from '../hoc/withLayout';
 import RecentUsedMachinery from './components/commutiny/RecentUsedMachinery';
 import QnATab from './components/commutiny/qna/QnATab';
 
@@ -42,4 +42,4 @@ function Page() {
 		</div>
 	);
 }
-export default withHeader(Page, true);
+export default withLayout(Page, true);

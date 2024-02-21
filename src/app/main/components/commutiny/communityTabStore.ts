@@ -1,9 +1,9 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 type TabType = 'USED-MACHINERY' | 'QNA';
 
 interface CommunityTab {
-	tabType: 'USED-MACHINERY' | 'QNA';
+	tabType: TabType;
 	setTabType: (_: TabType) => void;
 }
 

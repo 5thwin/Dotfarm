@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import React, { useState, useEffect } from 'react';
 import DotfarmLogo from '../landing/DotfarmLogo';
-import { navLinks } from '@/utils/navigation';
+import { PATH_MAIN, navLinks } from '@/utils/navigation';
 import Link from 'next/link';
 
 const Header: React.FC = () => {
@@ -14,7 +14,7 @@ const Header: React.FC = () => {
 		let ticking = false;
 
 		const updateScroll = () => {
-			setIsScrolled(window.scrollY > 82);
+			setIsScrolled(window.scrollY > 20);
 			ticking = false;
 		};
 
@@ -35,7 +35,9 @@ const Header: React.FC = () => {
 	return (
 		<header className={getHeaderContainer(isScrolled)}>
 			<div className="flex gap-x-[61px]">
-				<DotfarmLogo />
+				<Link href={PATH_MAIN}>
+					<DotfarmLogo />
+				</Link>
 				<ul className="flex gap-x-30px items-center">
 					{navLinks.map((link) => (
 						<li className="font-bold" key={link.path}>
@@ -61,8 +63,9 @@ const getHeaderContainer = (isScrolled: boolean) =>
 		'transition-colors duration-300 ease-in-out',
 		'px-10 py-5',
 		'flex justify-between items-center',
+		'z-10',
 		{
-			'bg-white': isScrolled,
+			'bg-white shadow-main': isScrolled,
 			'bg-transparent': !isScrolled,
 		}
 	);

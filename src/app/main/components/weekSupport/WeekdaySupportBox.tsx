@@ -36,4 +36,4 @@ const getWeekdayBoxStyle = (isToday: boolean) =>
 	clsx('rounded-20 h-[295px] flex-1', 'flex flex-col gap-y-15px p-15px', {
 		'bg-subGreen': isToday,
 	});
-const weekDayBoxHeadStyle = clsx('flex justify-between items-center');
+const weekDayBoxHeadStyle = clsx('flex justify-between items-center ');

@@ -15,7 +15,12 @@ export default function CommunitySection({
 }: CommunitySectionProps) {
 	const { tabType } = useCommunityTabStore();
 	return (
-		<section className={clsx(blockStyle, 'flex flex-col p-25px gap-y-30px')}>
+		<section
+			className={clsx(
+				blockStyle,
+				'flex flex-col p-25px gap-y-15px lg:gap-y-30px'
+			)}
+		>
 			<div className="flex justify-between">
 				<p className="font-bold text-2xl">영농 커뮤니티</p>
 				<button className={moreButton}>더보기+</button>

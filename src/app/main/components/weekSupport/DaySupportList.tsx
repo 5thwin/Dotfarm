@@ -7,11 +7,11 @@ export default function DaySupportList({
 	supportPrograms: SupportProgram[];
 }) {
 	return (
-		<ul className="flex flex-col gap-y-2 list-disc list-inside">
+		<ul className="flex flex-col gap-y-2">
 			{supportPrograms.slice(0, 3).map((program) => (
-				<li className="">
-					<Link href={program.link} target="_blank">
-						{program.programName}
+				<li className="flex">
+					<Link href={program.link} target="_blank" className="">
+						<span className="line-clamp-3">• {program.programName}</span>
 					</Link>
 				</li>
 			))}

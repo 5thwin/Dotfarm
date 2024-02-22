@@ -2,7 +2,7 @@
 import { blockStyle } from '@/app/styles/common/blockStyle';
 import { getWeekOfMonth } from '@/utils/date/week';
 import clsx from 'clsx';
-import WeekDaySupportPrograms from './WeekDaySupportPrograms-desktop';
+import WeekDaySupportPrograms from './WeekDaySupportPrograms';
 import { IcCalendar } from '@/app/components/icons/IcCalendar';
 import Link from 'next/link';
 import { PATH_SUPPROT_PROJECTS } from '@/utils/navigation';
@@ -36,11 +36,8 @@ export default function WeekSupport() {
 					<span className="text-white text-sm  font-bold">달력보기</span>
 				</Link>
 			</div>
-			<Desktop>
-				{/* @ts-expect-error Server Component */}
-				<WeekDaySupportPrograms />
-			</Desktop>
-			<Mobile></Mobile>
+			{/* @ts-expect-error Server Component */}
+			<WeekDaySupportPrograms />
 		</div>
 	);
 }

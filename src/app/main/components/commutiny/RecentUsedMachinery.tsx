@@ -35,6 +35,9 @@ export default async function RecentUsedMachinery() {
 }
 
 // style
-const container = clsx('flex gap-15px  p-15px flex-wrap');
+const container = clsx(
+	'flex gap-15px  p-15px flex-wrap',
+	'flex-col lg:flex-row'
+);
 const itemStyle = clsx('flex flex-col gap-y-2.5');
 const imageStyle = clsx('w-[277px] h-[154px] rounded-10');

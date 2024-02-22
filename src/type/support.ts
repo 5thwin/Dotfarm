@@ -6,7 +6,7 @@ export type SupportProgram = {
 	uploadDate: string;
 	startDate: string;
 	deadline: string;
-	recruitmentStatus: string;
+	recruitmentStatus: '모집중' | '마감' | string;
 	category: string;
 	link: string;
 	content: string;

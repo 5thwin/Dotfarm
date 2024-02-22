@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import React, { useState, useEffect } from 'react';
-import DotfarmLogo from '../landing/DotfarmLogo';
+import DotfarmLogo from '../../landing/DotfarmLogo';
 import { PATH_MAIN, navLinks } from '@/utils/navigation';
 import Link from 'next/link';
 

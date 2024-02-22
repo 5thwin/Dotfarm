@@ -7,7 +7,8 @@ import RecentUsedMachinery from './components/commutiny/RecentUsedMachinery';
 import QnATab from './components/commutiny/qna/QnATab';
 import PcBanner from './components/banner/PcBanner';
 import clsx from 'clsx';
-import { Desktop } from '../components/responsive/ResponsiveUI';
+import { Desktop, Mobile } from '../components/responsive/ResponsiveUI';
+import MainHeaderMobile from '../components/common/header/MainHeader-mobile';
 function Page() {
 	return (
 		<div className="p-15px lg:p-0">
@@ -16,10 +17,13 @@ function Page() {
 			</Desktop>
 			<main>
 				<div className={responsiveMainPage}>
+					<Mobile>
+						<MainHeaderMobile />
+					</Mobile>
 					<MainSideArea />
 					<section
 						id="main-section"
-						className="flex flex-col gap-y-30px flex-1"
+						className="flex flex-col gap-y-5 lg:gap-y-30px flex-1"
 					>
 						<WeekSupport />
 						<OpenChatBanner />
@@ -46,7 +50,7 @@ function Page() {
 export default withLayout(Page, true);
 // style
 const responsiveMainPage = clsx(
-	'mx-auto mt-[65px] flex gap-x-30px',
+	'mx-auto lg:mt-[65px] flex gap-x-30px',
 	'lg:px-5 xl:px-[72px]',
-	'lg:flex-row lg:items-start flex-col '
+	'lg:flex-row lg:items-start flex-col gap-y-5 '
 );

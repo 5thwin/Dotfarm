@@ -2,7 +2,6 @@ import { getWeekDays } from '@/utils/date/week';
 import WeekdaySupportBox from './WeekdaySupportBox';
 import { getSupportPrograms } from '@/api/support/getSupportPrograms';
 import { compareDates } from '@/utils/date/compare';
-import { useState } from 'react';
 
 export default async function WeekDaySupportPrograms() {
 	const weekdays = getWeekDays();

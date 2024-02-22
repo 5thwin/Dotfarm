@@ -1,5 +1,6 @@
 import React, { ComponentType, ReactNode } from 'react';
-import Header from '../components/common/Header';
+import Header from '../components/common/header/Header';
+import { Desktop } from '../components/responsive/ResponsiveUI';
 // import Footer from '../components/common/Footer';
 
 interface LayoutProps {
@@ -14,7 +15,11 @@ const Layout = ({
 	showFooter = true,
 }: LayoutProps) => (
 	<>
-		{showHeader && <Header />}
+		{showHeader && (
+			<Desktop>
+				<Header />
+			</Desktop>
+		)}
 		{children}
 		{/* {showFooter && <Footer />} */}
 	</>

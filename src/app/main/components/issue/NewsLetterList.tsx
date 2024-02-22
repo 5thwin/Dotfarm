@@ -35,7 +35,7 @@ const LetterBox = ({ letter }: { letter: NewsLetter }) => (
 					height={72}
 					alt="Picture of letter"
 				/>
-				<p>
+				<p className="line-clamp-3">
 					{letter.title} - {letter.news}
 				</p>
 			</div>

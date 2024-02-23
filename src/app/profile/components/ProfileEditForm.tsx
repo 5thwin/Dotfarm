@@ -9,6 +9,7 @@ import useProfileStore from '../store/profileStore';
 import ProfileImageSelect from './forms/ProfileImageSelect';
 import RegionsContainer from './forms/RegionsContainer';
 import ProfileMajorCrops from './forms/ProfileMajorCrops';
+import ProfileFarmingExperience from './forms/ProfileFarmingExperience';
 
 type Props = {
 	userMe: UserMe;
@@ -47,7 +48,7 @@ export default function ProfileEditForm({ userMe }: Props) {
 				<label htmlFor="farm-careers" className="font-bold">
 					영농경력
 				</label>
-				<FarmCareersSelect />
+				<ProfileFarmingExperience />
 			</div>
 			<div className="flex flex-col gap-y-5px">
 				<label htmlFor="main-crops" className="font-bold">

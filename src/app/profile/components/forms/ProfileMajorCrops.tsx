@@ -31,6 +31,7 @@ export default function ProfileMajorCrops() {
 				id="major-crops"
 				options={cropList || []}
 				placeholder="지역선택"
+				value={{ value: majorCrops, label: majorCrops }}
 				onChange={(majorCrops) => {
 					majorCrops && setMajorCrops(majorCrops.value);
 				}}

@@ -13,7 +13,7 @@ interface ProfileState {
 	setUserName: (_: string) => void;
 	setRegion: (_: string) => void;
 	setSubRegion: (_: string) => void;
-	setYearOfFarming: (_: string) => void;
+	setFarmingExperience: (_: string) => void;
 	setMajorCrops: (_: string) => void;
 	init: (userMe: UserMe) => void;
 }
@@ -30,7 +30,8 @@ const useProfileStore = create<ProfileState>((set) => ({
 	setUserName: (userName) => set(() => ({ userName })),
 	setRegion: (region) => set(() => ({ region })),
 	setSubRegion: (subRegion) => set(() => ({ subRegion })),
-	setYearOfFarming: (farmingExperience) => set(() => ({ farmingExperience })),
+	setFarmingExperience: (farmingExperience) =>
+		set(() => ({ farmingExperience })),
 	setMajorCrops: (majorCrops) => set(() => ({ majorCrops })),
 	init: (userMe) =>
 		set(() => ({

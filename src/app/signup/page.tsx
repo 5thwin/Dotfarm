@@ -8,7 +8,8 @@ import useSignupFromStore from './store/signupFromStore';
 import Toast from '../components/common/Toast';
 // 회원가입: 회원정보 페이지
 export default function Pages() {
-	const { isValidNickName } = useSignupFromStore();
+	const { isValidNickName, region, updateRegion, updateSubRegion } =
+		useSignupFromStore();
 	const onSubmit = () => {
 		if (!isValidNickName) {
 			Toast.fire(

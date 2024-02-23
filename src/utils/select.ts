@@ -17,7 +17,7 @@ export const signupFormSelectStyles: StylesConfig<OptionType, false> = {
 		borderColor: 'rgb(236 236 236)',
 		borderRadius: 10,
 		height: 45,
-		padding: '0px 12px 0px 20px',
+		padding: '0px 12px 0px 15px',
 	}),
 	singleValue: (provided, state) => ({
 		...provided,

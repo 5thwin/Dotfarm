@@ -1,12 +1,11 @@
 import { OptionType, signupFormSelectStyles } from '@/utils/select';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
-import useSignupFromStore from '../store/signupFromStore';
 import { KoreaRegions } from '@/utils/koreaRegions';
+import useSignupFromStore from '../store/signupFromStore';
 
 export default function RegionSelect() {
-	const { region1, region2, updateRegion1, updateRegion2 } =
-		useSignupFromStore();
+	const { region, updateRegion, updateSubRegion } = useSignupFromStore();
 	const [koreaRegions, setKoreaRegions] = useState<KoreaRegions>();
 	const [provinceOptions, setProvinceOptions] = useState<OptionType[]>();
 	const [cityOptions, setCityOptions] = useState<OptionType[]>();
@@ -46,15 +45,15 @@ export default function RegionSelect() {
 	}, [koreaRegions]);
 	// 두번째 지역선택 options 만들기
 	useEffect(() => {
-		if (!region1 || !koreaRegions) return;
-		const cityRegions = koreaRegions[region1]; //시,군
+		if (!region || !koreaRegions) return;
+		const cityRegions = koreaRegions[region]; //시,군
 		setCityOptions(
 			cityRegions.map((cityName) => ({
 				label: cityName,
 				value: cityName,
 			}))
 		);
-	}, [region1]);
+	}, [region]);
 
 	return (
 		<div className="flex gap-x-2.5 w-full">
@@ -64,22 +63,22 @@ export default function RegionSelect() {
 				options={provinceOptions}
 				onChange={(newValue) => {
 					const newOption = newValue as OptionType;
-					updateRegion1(newOption.value);
-					updateRegion2('');
+					updateRegion(newOption.value);
+					updateSubRegion('');
 				}}
 				placeholder="지역선택"
-			></Select>
+			/>
 			<Select
-				isDisabled={region1 === ''}
+				isDisabled={region === ''}
 				className="flex-1 text-sm"
 				styles={signupFormSelectStyles}
 				placeholder="구/시/군"
 				options={cityOptions}
 				onChange={(newValue) => {
 					const newOption = newValue as OptionType;
-					updateRegion2(newOption.value);
+					updateSubRegion(newOption.value);
 				}}
-			></Select>
+			/>
 		</div>
 	);
 }

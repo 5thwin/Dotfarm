@@ -9,3 +9,8 @@ export const LandingHeaderButtonStyle = clsx(
 	'flexCenter bg-lightGreen rounded-full shadow-main px-5 py-[15px]',
 	'font-bold text-sm'
 );
+
+export const mainGreenRoundedButtonStyle = clsx(
+	'rounded-10 px-15px py-3 bg-mainGreen flexCenter hover:bg-darkGreen',
+	'font-bold text-white'
+);

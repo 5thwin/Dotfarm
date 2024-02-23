@@ -1,8 +1,8 @@
 export type SupportProgram = {
 	programID: number;
 	programName: string;
-	region1: string;
-	region2: string;
+	region: string;
+	subRegion: string;
 	uploadDate: string;
 	startDate: string;
 	deadline: string;

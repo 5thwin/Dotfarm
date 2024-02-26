@@ -5,15 +5,14 @@ import useValidationStore from '../../store/validationStore';
 import CheckDuplicateButton from './CheckDuplicateButton';
 
 export default function ProfileUserName() {
-	const { isValid, setIsValid } = useValidationStore();
+	const { isValid, setIsValid, setShouldCheckDuplicate, shouldCheckDuplicate } =
+		useValidationStore();
 	const { userName, setUserName, originUserName } = useProfileStore();
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newValue = e.target.value;
 		setUserName(newValue);
 		setIsValid(newValue);
-
-		// setIsAvailable(false);
 	};
 
 	return (
@@ -24,6 +23,16 @@ export default function ProfileUserName() {
 					id="profileName"
 					value={userName}
 					onChange={handleInputChange}
+					onBlur={(e) => {
+						const newName = e.target.value;
+						if (newName === originUserName)
+							//기존 이름과 같을 경우 중복체크 필요 없음
+							return setShouldCheckDuplicate(false);
+						else {
+							//중복체크 필요함
+							setShouldCheckDuplicate(true);
+						}
+					}}
 					className={clsx(inputStyle, 'flex-1')}
 				/>
 				<CheckDuplicateButton />
@@ -31,9 +40,9 @@ export default function ProfileUserName() {
 			{isValid === false && (
 				<p className="text-red-500">유효하지 않은 형식입니다.</p>
 			)}
-			{/* {isAvailable === false && (
-				<p className="text-red-500">이미 사용중인 이름입니다.</p>
-			)} */}
+			{shouldCheckDuplicate === true && (
+				<p className="text-red-500">중복 확인을 눌러주세요.</p>
+			)}
 		</div>
 	);
 }

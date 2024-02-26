@@ -1,10 +1,13 @@
+'use server';
+
 import { UserMe } from '@/type/user';
 import customFetch from '../customFetch';
+import { revalidateTag } from 'next/cache';
 
 export async function getUserMe() {
 	try {
 		const res = await customFetch<UserMe>('/profiles/1', {
-			next: { revalidate: 10 },
+			next: { revalidate: 10, tags: ['profile'] },
 		});
 		return res;
 	} catch (e) {}
@@ -13,16 +16,18 @@ export async function getUserMe() {
 // 회원정보 수정 api
 export async function updateUserMe(updateData: UserUpdateData) {
 	try {
+		revalidateTag('profile');
 		const res = await customFetch<UserMe>(`/profiles/1`, {
 			method: 'PATCH',
 			body: JSON.stringify(updateData),
 		});
+
 		return res;
 	} catch (e) {}
 }
 
 // interface
-interface UserUpdateData {
+export interface UserUpdateData {
 	profileImageURL?: string;
 	userName?: string;
 	region?: string;

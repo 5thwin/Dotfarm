@@ -1,13 +1,20 @@
+import { headers } from 'next/headers';
+
 const baseUrl = 'http://localhost:3004';
 
 async function customFetch<T>(
 	endpoint: string,
-	config: RequestInit
+	config: RequestInit = {}
 ): Promise<T> {
 	const url = `${baseUrl}${endpoint}`;
-	// 요청 인터셉터 로직을 여기에 추가
-	const response = await fetch(url, config);
 
+	const headers = new Headers(config.headers || {});
+	headers.set('Content-Type', 'application/json');
+
+	const newConfig = { ...config, headers };
+
+	// 요청 인터셉터 로직을 여기에 추가
+	const response = await fetch(url, newConfig);
 	if (!response.ok) {
 		throw new Error('Network response was not ok');
 	}

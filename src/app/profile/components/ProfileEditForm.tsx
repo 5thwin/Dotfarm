@@ -1,15 +1,13 @@
 'use client';
-
-import FarmCareersSelect from '@/app/signup/components/FarmCareersSelect';
-import { mainGreenRoundedButtonStyle } from '@/app/styles/common/buttonStyle';
 import { UserMe } from '@/type/user';
-import clsx from 'clsx';
 import { useEffect } from 'react';
 import useProfileStore from '../store/profileStore';
 import ProfileImageSelect from './forms/ProfileImageSelect';
 import RegionsContainer from './forms/RegionsContainer';
 import ProfileMajorCrops from './forms/ProfileMajorCrops';
 import ProfileFarmingExperience from './forms/ProfileFarmingExperience';
+import ProfileUpdateButton from './forms/ProfileUpdateButton';
+import ProfileUserName from './forms/ProfileUserName';
 
 type Props = {
 	userMe: UserMe;
@@ -19,7 +17,10 @@ export default function ProfileEditForm({ userMe }: Props) {
 	useEffect(() => init(userMe), []);
 
 	return (
-		<form className="flex flex-col gap-y-5">
+		<form
+			className="flex flex-col gap-y-5"
+			onSubmit={(e) => e.preventDefault()}
+		>
 			<h1 className="text-2xl font-bold">프로필 편집</h1>
 			<div className="flexCenter">
 				<ProfileImageSelect />
@@ -28,17 +29,7 @@ export default function ProfileEditForm({ userMe }: Props) {
 				<label htmlFor="profileName" className="font-bold">
 					프로필명
 				</label>
-				<div className="flex gap-x-5px w-full">
-					<input
-						type="text"
-						id="profileName"
-						value={userName}
-						onChange={(e) => setUserName(e.target.value)}
-						className={clsx(inputStyle, 'flex-1')}
-					/>
-					<button className={mainGreenRoundedButtonStyle}>중복확인</button>
-					{/* 중복 확인 버튼 추가 예정 */}
-				</div>
+				<ProfileUserName />
 			</div>
 			<div className="flex flex-col gap-y-5px">
 				<p className="font-bold">지역선택</p>
@@ -57,18 +48,8 @@ export default function ProfileEditForm({ userMe }: Props) {
 				<ProfileMajorCrops />
 			</div>
 			<div>
-				<button
-					type="submit"
-					className={clsx(mainGreenRoundedButtonStyle, 'w-full')}
-				>
-					적용하기
-				</button>
+				<ProfileUpdateButton />
 			</div>
 		</form>
 	);
 }
-// style
-const inputStyle = clsx(
-	'rounded-10 px-15px py-3 outline-none',
-	'border border-subGray'
-);

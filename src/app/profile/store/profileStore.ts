@@ -16,6 +16,7 @@ interface ProfileState {
 	setFarmingExperience: (_: string) => void;
 	setMajorCrops: (_: string) => void;
 	init: (userMe: UserMe) => void;
+	originUserName: string;
 }
 
 const useProfileStore = create<ProfileState>((set) => ({
@@ -37,10 +38,12 @@ const useProfileStore = create<ProfileState>((set) => ({
 		set(() => ({
 			profileImageURL: userMe.profileImageURL,
 			userName: userMe.userName,
+			originUserName: userMe.userName,
 			region: userMe.region,
 			subRegion: userMe.subRegion,
 			farmingExperience: userMe.farmingExperience,
 			majorCrops: userMe.majorCrops,
 		})),
+	originUserName: '',
 }));
 export default useProfileStore;

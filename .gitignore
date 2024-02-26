@@ -40,3 +40,4 @@ next-env.d.ts
 
 #json server
 data.json
+db.json

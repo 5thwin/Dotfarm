@@ -1,4 +1,5 @@
 export type UserMe = {
+	id: number;
 	profileImageURL: string;
 	userName: string;
 	status: string;

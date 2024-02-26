@@ -10,7 +10,6 @@ export default function RegionsContainer() {
 		const loadKoreaRegions = async () => {
 			try {
 				const response = await fetch('/json/KoreaRegions.json');
-				console.log(response);
 				if (!response.ok) {
 					throw new Error('Failed to load');
 				}

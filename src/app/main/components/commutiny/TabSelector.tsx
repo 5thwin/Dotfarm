@@ -1,3 +1,4 @@
+'use client';
 import clsx from 'clsx';
 import useCommunityTabStore from './communityTabStore';
 
@@ -5,6 +6,12 @@ export default function TabSelector() {
 	const { tabType, setTabType } = useCommunityTabStore();
 	return (
 		<ul className="flex gap-x-10">
+			<button
+				className={getItemStyle(tabType === 'TOTAL')}
+				onClick={() => setTabType('TOTAL')}
+			>
+				전체
+			</button>
 			<button
 				className={getItemStyle(tabType === 'USED-MACHINERY')}
 				onClick={() => setTabType('USED-MACHINERY')}

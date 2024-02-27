@@ -1,19 +1,13 @@
-'use client';
 import { blockStyle } from '@/app/styles/common/blockStyle';
 import clsx from 'clsx';
-import useCommunityTabStore from './communityTabStore';
 import TabSelector from './TabSelector';
-import RecentUsedMachinery from './RecentUsedMachinery';
+import CommunityList from './CommunityList';
 
 interface CommunitySectionProps {
 	tab1Component: React.ReactNode;
 	tab2Component: React.ReactNode;
 }
-export default function CommunitySection({
-	tab1Component,
-	tab2Component,
-}: CommunitySectionProps) {
-	const { tabType } = useCommunityTabStore();
+export default function CommunitySection() {
 	return (
 		<section
 			className={clsx(
@@ -26,8 +20,12 @@ export default function CommunitySection({
 				<button className={moreButton}>더보기+</button>
 			</div>
 			<TabSelector />
-			{tabType === 'USED-MACHINERY' && tab1Component}
-			{tabType === 'QNA' && tab2Component}
+			{/* @ts-expect-error Async Server Component */}
+			<CommunityList />
+			<div className={inputStyle}>
+				<p className="flex-1">한마디 작성해주세요</p>
+				<button className={buttonStyle}>입력하기</button>
+			</div>
 		</section>
 	);
 }
@@ -36,4 +34,13 @@ export default function CommunitySection({
 const moreButton = clsx(
 	'px-15px py-5px bg-subGray rounded-full',
 	'font-bold text-sm'
+);
+const inputStyle = clsx(
+	'flex items-center px-5 py-15px rounded-30 bg-subGray',
+	'text-subText',
+	'cursor-pointer'
+);
+const buttonStyle = clsx(
+	'flexCenter w-[72px] rounded-full justify-between',
+	'text-white bg-mainGreen py-5px'
 );

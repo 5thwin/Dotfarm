@@ -1,8 +1,12 @@
-export type UsedMachineryPost = {
+export type Post = {
 	id: number;
 	title: string;
-	price: number;
-	region: string;
-	yearOfManufacture: number;
+	contents: string;
+	userId: number;
 	imgURL: string;
+	category: string;
+	createdAt: string;
+	updatedAt: string;
+	region1: string;
+	region2: string;
 };

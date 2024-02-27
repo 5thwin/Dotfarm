@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type TabType = 'USED-MACHINERY' | 'QNA';
+type TabType = 'TOTAL' | 'USED-MACHINERY' | 'QNA';
 
 interface CommunityTab {
 	tabType: TabType;
@@ -8,7 +8,7 @@ interface CommunityTab {
 }
 
 const useCommunityTabStore = create<CommunityTab>((set) => ({
-	tabType: 'USED-MACHINERY',
+	tabType: 'TOTAL',
 	setTabType: (newTabType) => set(() => ({ tabType: newTabType })),
 }));
 

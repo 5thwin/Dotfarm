@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 
-const baseUrl = 'http://localhost:3004';
+const baseUrl = process.env.SERVER_API_URL;
 
 async function customFetch<T>(
 	endpoint: string,

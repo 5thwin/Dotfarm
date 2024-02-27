@@ -8,7 +8,7 @@ export default async function ProfileEditBox() {
 	const userme = await getUserMe();
 	return (
 		<div className={responsiveContainer}>
-			<div className="flex flex-col gap-y-5">
+			<div className="flex flex-col gap-y-5 h-full">
 				<div className="flex gap-x-2.5 items-center">
 					<div className="lg:hidden">
 						<MobileBackButton />
@@ -19,7 +19,7 @@ export default async function ProfileEditBox() {
 				{userme ? (
 					<ProfileEditForm userMe={userme} updateProfile={updateUserMe} />
 				) : (
-					<p>회원 정보를 불러올 수 없습니다.</p>
+					<p className="flexCenter py-5">회원 정보를 불러올 수 없습니다.</p>
 				)}
 			</div>
 		</div>

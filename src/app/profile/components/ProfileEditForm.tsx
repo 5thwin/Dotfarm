@@ -9,20 +9,18 @@ import ProfileFarmingExperience from './forms/ProfileFarmingExperience';
 import ProfileUpdateButton from './forms/ProfileUpdateButton';
 import ProfileUserName from './forms/ProfileUserName';
 import { UserUpdateData } from '@/api/user';
+import clsx from 'clsx';
 
 type Props = {
 	userMe: UserMe;
 	updateProfile: (_: UserUpdateData) => void;
 };
 export default function ProfileEditForm({ userMe, updateProfile }: Props) {
-	const { init, userName, setUserName } = useProfileStore();
+	const { init } = useProfileStore();
 	useEffect(() => init(userMe), []);
 
 	return (
-		<form
-			className="flex flex-col gap-y-5"
-			onSubmit={(e) => e.preventDefault()}
-		>
+		<form className={formStyle} onSubmit={(e) => e.preventDefault()}>
 			<div className="flexCenter">
 				<ProfileImageSelect />
 			</div>
@@ -48,9 +46,11 @@ export default function ProfileEditForm({ userMe, updateProfile }: Props) {
 				</label>
 				<ProfileMajorCrops />
 			</div>
-			<div>
+			<div className="">
 				<ProfileUpdateButton updateProfile={updateProfile} />
 			</div>
 		</form>
 	);
 }
+// style
+const formStyle = clsx('flex flex-col gap-y-5', 'flex-1');

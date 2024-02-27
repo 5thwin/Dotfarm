@@ -23,7 +23,6 @@ export default function ProfileEditForm({ userMe, updateProfile }: Props) {
 			className="flex flex-col gap-y-5"
 			onSubmit={(e) => e.preventDefault()}
 		>
-			<h1 className="text-2xl font-bold">프로필 편집</h1>
 			<div className="flexCenter">
 				<ProfileImageSelect />
 			</div>

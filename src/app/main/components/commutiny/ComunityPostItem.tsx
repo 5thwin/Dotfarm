@@ -44,7 +44,8 @@ export default function ComunityPostItem({ post }: Props) {
 // style
 const postContainer = clsx(
 	'flex gap-x-5 px-5 py-15px rounded-10 justify-between cursor-pointer',
-	'hover:bg-subGray'
+	'hover:bg-subGray',
+	'flex-col-reverse lg:flex-row items-center lg:items-start gap-y-2.5'
 );
 const contentsWrapper = clsx('flex flex-col gap-y-2.5 lg:w-[830px]');
 const catagoryTagStyle = clsx('text-subText text-sm');

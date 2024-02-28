@@ -20,7 +20,7 @@ export default function CommunitySection() {
 				<button className={moreButton}>더보기+</button>
 			</div>
 			<TabSelector />
-			{/* @ts-expect-error Async Server Component */}
+
 			<CommunityList />
 			<div className={inputStyle}>
 				<p className="flex-1">한마디 작성해주세요</p>

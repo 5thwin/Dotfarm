@@ -5,7 +5,6 @@ function ProfilePage() {
 	return (
 		<div>
 			<section className="w-screen h-screen flexCenter">
-				{/* @ts-expect-error Server Component */}
 				<ProfileEditBox />
 			</section>
 		</div>

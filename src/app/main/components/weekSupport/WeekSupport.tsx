@@ -36,7 +36,7 @@ export default function WeekSupport() {
 					<span className="text-white text-sm  font-bold">달력보기</span>
 				</Link>
 			</div>
-			{/* @ts-expect-error Server Component */}
+
 			<WeekDaySupportPrograms />
 		</div>
 	);

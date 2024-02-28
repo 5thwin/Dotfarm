@@ -1,6 +1,7 @@
 import React, { ComponentType, ReactNode } from 'react';
 import Header from '../components/common/header/Header';
 import { Desktop } from '../components/responsive/ResponsiveUI';
+import { getDisplayName } from '.';
 // import Footer from '../components/common/Footer';
 
 interface LayoutProps {
@@ -35,14 +36,19 @@ const withLayout = <P extends object>(
 	showHeader: boolean = true,
 	showFooter: boolean = true
 ): React.FC<P & WithLayoutProps> => {
-	return (props: P) => (
+	// 반환되는 컴포넌트
+	const WithLayoutComponent: React.FC<P & WithLayoutProps> = (props: P) => (
 		<Layout showHeader={showHeader} showFooter={showFooter}>
 			<WrappedComponent {...props} />
 		</Layout>
 	);
-};
 
-Layout.displayName = 'Layout';
-withLayout.displayName = 'withLayout';
+	// Display name 설정
+	WithLayoutComponent.displayName = `WithLayout(${getDisplayName(
+		WrappedComponent
+	)})`;
+
+	return WithLayoutComponent;
+};
 
 export default withLayout;

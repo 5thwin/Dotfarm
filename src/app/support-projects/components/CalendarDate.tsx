@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import useSelectedDateStore from '../store/selectedDateStore';
 import useModalSupportsStore from '../store/modalSupportsStore';
 import SupportListModal from './modal/SupportListModal';
+import CalendarDatePrograms from './CalendarDatePrograms';
+import { Desktop } from '@/app/components/responsive/ResponsiveUI';
 
 type CalendarDateProps = {
 	currentMonth: number;
@@ -25,19 +27,18 @@ export default function CalendarDate({
 			}}
 		>
 			<span className={getDateStyle(day.getDay())}>{day.getDate()}</span>
-			<ul className={clsx('flex flex-col gap-y-2.5')}>
-				{programs.slice(0, 2).map((program, index) => (
-					<li key={`program_${day.toDateString()}_${index}`}>
-						<p className="text-sm line-clamp-2">{program.programName}</p>
-					</li>
-				))}
-			</ul>
-			{programs.length > 2 && (
-				<span className="text-mainGreen text-sm font-bold text-center">
-					외 {programs.length - 2}건 +
-				</span>
+			<div className="hidden lg:block">
+				<CalendarDatePrograms programs={programs} />
+			</div>
+			{programs.length > 0 && (
+				<div className="flexCenter lg:hidden">
+					<i className={greenCircle} />
+				</div>
 			)}
-			{selectedDate && selectedDate === day && <SupportListModal />}
+			{/* 데스크탑일 경우에만 Modal 보여짐 */}
+			<Desktop>
+				{selectedDate && selectedDate === day && <SupportListModal />}
+			</Desktop>
 		</div>
 	);
 }
@@ -45,7 +46,8 @@ export default function CalendarDate({
 const getWrapperStyle = (isCurrentMonth: boolean, isToday?: boolean) =>
 	clsx(
 		'cursor-pointer',
-		'flex flex-col gap-y-2.5 p-15px h-[186px] rounded-20',
+		'flex flex-col gap-y-1 lg:gap-y-2.5  lg:h-[186px] rounded-20',
+		'py-2.5 lg:p-15px',
 		{
 			'opacity-30': !isCurrentMonth,
 			'bg-subGreen': isToday,
@@ -53,7 +55,8 @@ const getWrapperStyle = (isCurrentMonth: boolean, isToday?: boolean) =>
 	);
 
 const getDateStyle = (weekDay: number) =>
-	clsx('font-bold', {
+	clsx('font-bold text-center lg:text-left', 'text-sm lg:text-base', {
 		'text-[#FF5D5D]': weekDay === 0,
 		'text-[#4F6BFF]': weekDay === 6,
 	});
+const greenCircle = clsx('w-[5px] h-[5px] rounded-full bg-mainGreen');

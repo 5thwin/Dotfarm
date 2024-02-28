@@ -5,6 +5,8 @@ import useSupportCalendar from '../hooks/useSupportCalendar';
 import MonthButtons from './MonthButtons';
 import { SupportProgram } from '@/type/support';
 import { compareDates } from '@/utils/date/compare';
+import clsx from 'clsx';
+import { filterProgramsByDate } from '@/utils/supportPrograms';
 
 const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
 type SupportCalendarProps = {
@@ -16,9 +18,9 @@ const SupportCalendar = ({ programs }: SupportCalendarProps) => {
 	return (
 		<div className="flex flex-col gap-y-5">
 			<div id="calendar-header" className="flex justify-between items-center">
-				<p className="text-2xl font-bold">{`${currentDate.getFullYear()}년 ${
+				<h2 className={calendarHeaderText}>{`${currentDate.getFullYear()}년 ${
 					currentDate.getMonth() + 1
-				}월`}</p>
+				}월`}</h2>
 				<MonthButtons
 					goToPrev={handlePreviousMonth}
 					goToNext={handleNextMonth}
@@ -40,19 +42,7 @@ const SupportCalendar = ({ programs }: SupportCalendarProps) => {
 							key={index}
 							day={day}
 							currentMonth={currentDate.getMonth()}
-							programs={programs.filter((program) => {
-								return (
-									// 모집 시작일자와 마감일자를 계산하여, 해당 일자에 보여줄 공고들 필터링
-									compareDates(
-										new Date(program.deadline),
-										new Date(day.getFullYear(), day.getMonth(), day.getDate())
-									) >= 0 &&
-									compareDates(
-										new Date(program.startDate),
-										new Date(day.getFullYear(), day.getMonth(), day.getDate())
-									) <= 0
-								);
-							})}
+							programs={filterProgramsByDate(programs, day)}
 						/>
 					</>
 				))}
@@ -62,3 +52,6 @@ const SupportCalendar = ({ programs }: SupportCalendarProps) => {
 };
 
 export default SupportCalendar;
+
+// style
+const calendarHeaderText = clsx('lg:text-2xl font-bold text-lg');

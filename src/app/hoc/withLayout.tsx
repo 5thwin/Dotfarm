@@ -31,19 +31,20 @@ interface WithLayoutProps {
 	showFooter?: boolean;
 }
 
+// Explicitly define the return type as React.FC for clarity
 const withLayout = <P extends object>(
 	WrappedComponent: ComponentType<P>,
 	showHeader: boolean = true,
 	showFooter: boolean = true
-): React.FC<P & WithLayoutProps> => {
-	// 반환되는 컴포넌트
-	const WithLayoutComponent: React.FC<P & WithLayoutProps> = (props: P) => (
+) => {
+	// Define the component with explicit props type
+	const WithLayoutComponent: React.FC<P> = (props: P) => (
 		<Layout showHeader={showHeader} showFooter={showFooter}>
 			<WrappedComponent {...props} />
 		</Layout>
 	);
 
-	// Display name 설정
+	// Set display name for better debugging
 	WithLayoutComponent.displayName = `WithLayout(${getDisplayName(
 		WrappedComponent
 	)})`;

@@ -5,6 +5,7 @@ import useModalSupportsStore from '../store/modalSupportsStore';
 import SupportListModal from './modal/SupportListModal';
 import CalendarDatePrograms from './CalendarDatePrograms';
 import { Desktop } from '@/app/components/responsive/ResponsiveUI';
+import { compareDates } from '@/utils/date/compare';
 
 type CalendarDateProps = {
 	currentMonth: number;
@@ -19,9 +20,16 @@ export default function CalendarDate({
 	const isToday = day.toDateString() === new Date().toDateString();
 	const { setSelectedDate, selectedDate } = useSelectedDateStore();
 	const { setSupportPrograms } = useModalSupportsStore();
+	const isSelected = selectedDate
+		? compareDates(day, selectedDate) === 0
+		: isToday;
 	return (
 		<div
-			className={getWrapperStyle(currentMonth === day.getMonth(), isToday)}
+			className={getWrapperStyle(
+				currentMonth === day.getMonth(),
+				isToday,
+				isSelected
+			)}
 			onClick={() => {
 				setSelectedDate(day), setSupportPrograms(programs);
 			}}
@@ -43,14 +51,19 @@ export default function CalendarDate({
 	);
 }
 // style
-const getWrapperStyle = (isCurrentMonth: boolean, isToday?: boolean) =>
+const getWrapperStyle = (
+	isCurrentMonth: boolean,
+	isToday?: boolean,
+	isSelected?: boolean
+) =>
 	clsx(
 		'cursor-pointer',
 		'flex flex-col gap-y-1 lg:gap-y-2.5  lg:h-[186px] rounded-20',
 		'py-2.5 lg:p-15px',
 		{
 			'opacity-30': !isCurrentMonth,
-			'bg-subGreen': isToday,
+			'lg:bg-subGreen': isToday, //데스크탑 캘린더에서 오늘 날짜를 표시
+			'bg-subGreen lg:bg-transparent': isSelected, //모바일 캘린더에서 선택되었을 때, 표시
 		}
 	);
 

@@ -20,7 +20,7 @@ function SupportProgramItem({ program }: { program: SupportProgram }) {
 	const dDay = calculateDday(program.deadline);
 	return (
 		<li className="flex flex-col gap-y-2.5">
-			<div className="flex gap-x-5px">
+			<div className="flex gap-x-5px flex-wrap gap-y-1">
 				<span
 					className={clsx(defaultSupportTag, {
 						'bg-subGreen': program.recruitmentStatus === '모집중',
@@ -39,10 +39,10 @@ function SupportProgramItem({ program }: { program: SupportProgram }) {
 					~{program.deadline.replaceAll('-', '.')}
 				</span>
 			</div>
-			<Link href={program.link} className="text-xl font-bold hover:underline">
+			<Link href={program.link} className={programNameStyle}>
 				{program.programName}
 			</Link>
-			<p className="text-wrap">{program.content}</p>
+			<p className={contentStyle}>{program.content}</p>
 		</li>
 	);
 }
@@ -52,3 +52,6 @@ const defaultSupportTag = clsx(
 	'bg-subGray',
 	'text-sm font'
 );
+
+const programNameStyle = clsx('lg:text-xl font-bold hover:underline');
+const contentStyle = clsx('text-wrap text-sm lg:text-base');

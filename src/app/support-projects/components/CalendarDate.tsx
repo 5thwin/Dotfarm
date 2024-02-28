@@ -26,8 +26,8 @@ export default function CalendarDate({
 		>
 			<span className={getDateStyle(day.getDay())}>{day.getDate()}</span>
 			<ul className={clsx('flex flex-col gap-y-2.5')}>
-				{programs.slice(0, 2).map((program) => (
-					<li className="">
+				{programs.slice(0, 2).map((program, index) => (
+					<li key={`program_${day.toDateString()}_${index}`}>
 						<p className="text-sm line-clamp-2">{program.programName}</p>
 					</li>
 				))}

@@ -8,8 +8,8 @@ export default function DaySupportList({
 }) {
 	return (
 		<ul className="flex flex-col gap-y-2">
-			{supportPrograms.slice(0, 3).map((program) => (
-				<li className="flex">
+			{supportPrograms.slice(0, 3).map((program, index) => (
+				<li className="flex" key={`support${index}`}>
 					<Link href={program.link} target="_blank" className="">
 						<span className="line-clamp-3">• {program.programName}</span>
 					</Link>

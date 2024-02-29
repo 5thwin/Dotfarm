@@ -14,19 +14,14 @@ export default function ComunityPostItem({ post }: Props) {
 				<p className={catagoryTagStyle}># {post.category}</p>
 				<p className={titleStyle}>{post.title}</p>
 				<p>{post.contents}</p>
-				<div className={userInfoStyle}>
-					<Image
-						className={userProfileImgStyle}
-						width={32}
-						height={32}
-						src={user.profileImageURL}
-						alt="사용자 이미지"
-					/>
-					<p className="font-bold">{user.userName}</p>
-					<p className={userSubInfoStyle}>
-						{`${user.subRegion} | ${user.farmingExperience} | ${user.majorCrops}`}
-					</p>
-				</div>
+				{user && (
+					<div className={userInfoStyle}>
+						<p className="font-bold">{user.userName}</p>
+						<p className={userSubInfoStyle}>
+							{`${user.subRegion} | ${user.farmingExperience} | ${user.majorCrops}`}
+						</p>
+					</div>
+				)}
 			</div>
 			<div>
 				<Image

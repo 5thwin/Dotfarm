@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import DotfarmLogo from '../../landing/DotfarmLogo';
 import { PATH_MAIN, navLinks } from '@/utils/navigation';
 import Link from 'next/link';
+import { IcSetting } from '../../icons/IcSetting';
 
 const Header: React.FC = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -47,7 +48,10 @@ const Header: React.FC = () => {
 				</ul>
 			</div>
 			<div className="flex gap-x-2.5 items-center">
-				<span>홈페이지 등록</span>
+				{/* <button className="flex items-center">
+					<IcSetting />
+					<span>설정</span>
+				</button> */}
 				<button className={loginButtonStyle}>로그인</button>
 			</div>
 		</header>

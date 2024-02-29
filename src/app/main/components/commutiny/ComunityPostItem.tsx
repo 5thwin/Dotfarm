@@ -1,5 +1,4 @@
 import { ExtendedPost } from '@/api/post';
-import { Post } from '@/type/post';
 import clsx from 'clsx';
 import Image from 'next/image';
 

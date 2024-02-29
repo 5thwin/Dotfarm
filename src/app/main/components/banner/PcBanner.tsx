@@ -16,12 +16,12 @@ export default function PcBanner() {
 				objectFit="cover"
 				objectPosition="left"
 			/>
-			<Desktop>
+			<div className="lg:inline-block hidden">
 				<div className="flexCenter absolute z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5">
 					<GoogleSearchBox />
 					<FavoriteSitesBanner />
 				</div>
-			</Desktop>
+			</div>
 		</section>
 	);
 }

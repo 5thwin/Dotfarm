@@ -20,9 +20,9 @@ const MobileBackButton: FC = () => {
 				<path
 					d="M10.5 19L1.5 10L10.5 1"
 					stroke="#282828"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 			</svg>
 		</button>

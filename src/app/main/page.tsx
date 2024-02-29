@@ -5,14 +5,14 @@ import CommunitySection from './components/commutiny/CommunitySection';
 import withLayout from '../hoc/withLayout';
 import PcBanner from './components/banner/PcBanner';
 import clsx from 'clsx';
-import { Desktop, Mobile } from '../components/responsive/ResponsiveUI';
+import { Mobile } from '../components/responsive/ResponsiveUI';
 import MainHeaderMobile from '../components/common/header/MainHeader-mobile';
 function Page() {
 	return (
 		<div className="p-15px lg:p-0">
-			<Desktop>
+			<div className="lg:inline-block hidden">
 				<PcBanner />
-			</Desktop>
+			</div>
 			<main>
 				<div className={responsiveMainPage}>
 					<Mobile>

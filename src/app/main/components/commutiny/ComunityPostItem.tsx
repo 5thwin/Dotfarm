@@ -1,6 +1,7 @@
 import { ExtendedPost } from '@/api/post';
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
 	post: ExtendedPost;
@@ -8,13 +9,20 @@ type Props = {
 export default function ComunityPostItem({ post }: Props) {
 	const { user } = post;
 	return (
-		<li className={postContainer}>
+		<Link className={postContainer} href={`/posts/${post.id}`}>
 			<div className={contentsWrapper}>
 				<p className={catagoryTagStyle}># {post.category}</p>
 				<p className={titleStyle}>{post.title}</p>
 				<p>{post.contents}</p>
 				{user && (
 					<div className={userInfoStyle}>
+						<Image
+							src={user.profileImageURL}
+							alt={`${user.userName}님의 프로필 이미지`}
+							className="rounded-full"
+							width={32}
+							height={32}
+						/>
 						<p className="font-bold">{user.userName}</p>
 						<p className={userSubInfoStyle}>
 							{`${user.subRegion} | ${user.farmingExperience} | ${user.majorCrops}`}
@@ -22,16 +30,15 @@ export default function ComunityPostItem({ post }: Props) {
 					</div>
 				)}
 			</div>
-			<div>
+			<div className="w-[260px] h-[154px] relative">
 				<Image
 					src={post.imgURL}
-					width={260}
-					height={154}
+					fill={true}
 					className="rounded-10 bg-subGray"
 					alt={post.title}
 				/>
 			</div>
-		</li>
+		</Link>
 	);
 }
 

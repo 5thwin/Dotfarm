@@ -8,7 +8,7 @@ export default function KaKaoLoginPage() {
 	const searchParams = useSearchParams();
 	const [userInfo, setUserInfo] = useState();
 	// const [loginStatus, setLoginStatus] = useState<LoginState>('pending');
-	// const router = useRouter();
+	const router = useRouter();
 
 	useEffect(() => {
 		// 카카오 로그인 이후, 이 회원이 dotfarm의 유저인지 회원 여부와, dotfarm에서  발급한 토큰 부여
@@ -21,7 +21,6 @@ export default function KaKaoLoginPage() {
 			}
 			try {
 				const data = await getKakaoLogin(authCode);
-				console.log(data?.userInfo);
 				setUserInfo(data?.userInfo);
 				// setLoginStatus('success');
 
@@ -40,6 +39,8 @@ export default function KaKaoLoginPage() {
 			}
 		};
 		getAuth();
+
+		router.push('/main'); // 개발 시 주석으로
 	}, []);
 	// // 인증 결과에 따른 분기
 	// useEffect(() => {

@@ -12,8 +12,8 @@ export default function PcBanner() {
 			<Image
 				src="/main/mainBanner.svg"
 				alt="메인 배경 이미지"
-				layout="fill"
-				objectFit="cover"
+				fill={true}
+				className="object-cover"
 				objectPosition="left"
 			/>
 			<div className="lg:inline-block hidden">

@@ -88,14 +88,14 @@ const IcCloseCross = () => (
 		<path
 			d="M1 1L26 26"
 			stroke="#7D7B7B"
-			stroke-width="2"
-			stroke-linecap="round"
+			strokeWidth="2"
+			strokeLinecap="round"
 		/>
 		<path
 			d="M26 1L1 26"
 			stroke="#7D7B7B"
-			stroke-width="2"
-			stroke-linecap="round"
+			strokeWidth="2"
+			strokeLinecap="round"
 		/>
 	</svg>
 );

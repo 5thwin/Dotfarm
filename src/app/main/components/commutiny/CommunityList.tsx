@@ -1,9 +1,9 @@
-import { getPosts } from '@/api/post';
+import { getPostsWithAuthor } from '@/api/post';
 import ComunityPostItem from './ComunityPostItem';
 import clsx from 'clsx';
 
 export default async function CommunityList() {
-	const posts = await getPosts();
+	const posts = await getPostsWithAuthor();
 
 	return (
 		<ul className={listContainerStyle}>

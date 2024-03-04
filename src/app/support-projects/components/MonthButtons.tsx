@@ -21,8 +21,8 @@ export default function MonthButtons({
 					<path
 						d="M10 18L1.76978 10.227C1.35194 9.83239 1.35194 9.16761 1.76978 8.77299L10 1"
 						stroke="#7D7B7B"
-						stroke-width="2"
-						stroke-linecap="round"
+						strokeWidth="2"
+						strokeLinecap="round"
 					/>
 				</svg>
 			</button>
@@ -37,8 +37,8 @@ export default function MonthButtons({
 					<path
 						d="M1 1L9.23022 8.77299C9.64806 9.16761 9.64806 9.83239 9.23022 10.227L1 18"
 						stroke="#7D7B7B"
-						stroke-width="2"
-						stroke-linecap="round"
+						strokeWidth="2"
+						strokeLinecap="round"
 					/>
 				</svg>
 			</button>

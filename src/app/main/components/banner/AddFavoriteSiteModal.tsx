@@ -20,10 +20,8 @@ export default function AddFavoriteSiteModal({ onClose }: Props) {
 		// Refs를 사용하여 input 값들에 접근
 		const homepageName = homepageNameRef.current?.value || '';
 		const homepageUrl = ensureDomainFormat(homepageUrlRef.current?.value || '');
-		// console.log(`Homepage Name: ${homepageName}, Homepage URL: ${homepageUrl}`);
 		const domain = getDomain(homepageUrl);
-		console.log(homepageUrl, domain);
-		const faviconUrl = `https://${domain}/favicon.ico`;
+		const faviconUrl = `https://${domain}/favicon.ico`; //입력한 url에서 favicon.ico 경로를 가져옴
 
 		const newSite: FavoriteSite = {
 			icon: faviconUrl,

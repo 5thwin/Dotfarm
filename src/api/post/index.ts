@@ -1,10 +1,5 @@
-import { Post } from '@/type/post';
+import { PostWithUser, Post, FullPost } from '@/type/post';
 import customFetch from '../customFetch';
-import { User } from '@/type/user';
-
-export interface ExtendedPost extends Post {
-	user: User;
-}
 
 export async function getPostsWithAuthor(category?: string) {
 	const params = new URLSearchParams();
@@ -15,7 +10,7 @@ export async function getPostsWithAuthor(category?: string) {
 	const queryString = params.toString(); // 유효한 값들로만 구성된 queryString
 
 	try {
-		const res = await customFetch<ExtendedPost[]>(
+		const res = await customFetch<PostWithUser[]>(
 			`/posts?${queryString}_embed=user`,
 			{
 				method: 'GET',
@@ -50,11 +45,11 @@ export async function getPosts(category?: string) {
 
 export async function getPost(id: number) {
 	try {
-		const res = await customFetch<ExtendedPost[]>(
-			`/posts?id=${id}&_embed=user`,
+		const res = await customFetch<FullPost[]>(
+			`/posts?id=${id}&_embed=user&_embed=comments`,
 			{
 				method: 'GET',
-				next: { revalidate: 10, tags: ['post'] },
+				next: { revalidate: 10, tags: ['posts', `${id}`] },
 			}
 		);
 		return res[0];

@@ -1,13 +1,15 @@
-import { ExtendedPost } from '@/api/post';
 import { blockStyle } from '@/app/styles/common/blockStyle';
+import { FullPost, PostWithUser } from '@/type/post';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+import CommentsArea from './CommentsArea';
 
 type Props = {
-	post: ExtendedPost;
+	post: FullPost;
 };
 export default function PostBox({ post }: Props) {
+	const comments = post.comments;
 	return (
 		<div className={containerStyle}>
 			<Link
@@ -31,6 +33,7 @@ export default function PostBox({ post }: Props) {
 				</div>
 				<article>{post.contents}</article>
 			</div>
+			<CommentsArea postId={post.id} comments={comments} />
 		</div>
 	);
 }

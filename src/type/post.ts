@@ -1,3 +1,6 @@
+import { Comment } from './comment';
+import { User } from './user';
+
 export type Post = {
 	id: number;
 	title: string;
@@ -10,3 +13,15 @@ export type Post = {
 	region1: string;
 	region2: string;
 };
+export interface PostWithUser extends Post {
+	user: User;
+}
+
+export interface PostWithComments extends Post {
+	comments: Comment[];
+}
+
+export interface FullPost extends Post {
+	user: User;
+	comments: Comment[];
+}

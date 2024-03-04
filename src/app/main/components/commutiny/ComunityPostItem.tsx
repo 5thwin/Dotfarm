@@ -1,10 +1,10 @@
-import { ExtendedPost } from '@/api/post';
+import { PostWithUser } from '@/api/post';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = {
-	post: ExtendedPost;
+	post: PostWithUser;
 };
 export default function ComunityPostItem({ post }: Props) {
 	const { user } = post;

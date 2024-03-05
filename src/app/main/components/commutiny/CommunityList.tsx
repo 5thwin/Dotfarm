@@ -1,5 +1,5 @@
 import { getPostsWithAuthor } from '@/api/post';
-import ComunityPostItem from './ComunityPostItem';
+import ComunityPostItem from './CommunityPostItem';
 import clsx from 'clsx';
 
 export default async function CommunityList() {

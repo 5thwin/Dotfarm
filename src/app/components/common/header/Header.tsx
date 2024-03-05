@@ -67,7 +67,7 @@ const getHeaderContainer = (isScrolled: boolean) =>
 		'transition-colors duration-300 ease-in-out',
 		'px-10 py-5',
 		'flex justify-between items-center',
-		'z-10',
+		'z-30',
 		{
 			'bg-white shadow-main': isScrolled,
 			'bg-transparent': !isScrolled,

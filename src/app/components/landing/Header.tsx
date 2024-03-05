@@ -2,7 +2,6 @@
 import { LandingHeaderButtonStyle } from '@/app/styles/common/buttonStyle';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { KakaoChatButton } from './KakaoChatButton';
 import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
 import { KaKaoLoginButton } from './KaKaoLoginButton';

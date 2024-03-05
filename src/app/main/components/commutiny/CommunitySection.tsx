@@ -2,6 +2,7 @@ import { blockStyle } from '@/app/styles/common/blockStyle';
 import clsx from 'clsx';
 import TabSelector from './TabSelector';
 import CommunityList from './CommunityList';
+import Link from 'next/link';
 
 interface CommunitySectionProps {
 	tab1Component: React.ReactNode;
@@ -17,7 +18,9 @@ export default function CommunitySection() {
 		>
 			<div className="flex justify-between">
 				<p className="font-bold text-2xl">영농 커뮤니티</p>
-				<button className={moreButton}>더보기+</button>
+				<Link href={'/posts'} className={moreButton}>
+					더보기+
+				</Link>
 			</div>
 			<TabSelector />
 

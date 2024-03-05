@@ -13,7 +13,7 @@ export default function ComunityPostItem({ post }: Props) {
 			<div className={contentsWrapper}>
 				<p className={catagoryTagStyle}># {post.category}</p>
 				<p className={titleStyle}>{post.title}</p>
-				<p>{post.contents}</p>
+				<p className="line-clamp-1">{post.contents}</p>
 				{user && (
 					<div className={userInfoStyle}>
 						<Image

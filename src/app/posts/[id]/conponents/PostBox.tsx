@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import CommentsArea from './CommentsArea';
+import PostHeader from './header/PostHeader';
 
 type Props = {
 	post: FullPost;
@@ -12,6 +13,7 @@ export default function PostBox({ post }: Props) {
 	const comments = post.comments;
 	return (
 		<div className={containerStyle}>
+			<PostHeader post={post} />
 			<Link
 				href={post.imgURL || ''}
 				target="_blank"

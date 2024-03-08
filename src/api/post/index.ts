@@ -43,7 +43,7 @@ export async function getPosts(category?: string) {
 	}
 }
 
-export async function getPost(id: number) {
+export async function getPost(id: number | string) {
 	try {
 		const res = await customFetch<FullPost[]>(
 			`/posts?id=${id}&_embed=user&_embed=comments`,

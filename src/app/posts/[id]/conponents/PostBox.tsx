@@ -33,7 +33,7 @@ export default function PostBox({ post }: Props) {
 				</div>
 				<article>{post.contents}</article>
 			</div>
-			<CommentsArea postId={post.id} comments={comments} />
+			<CommentsArea postId={Number(post.id)} comments={comments} />
 		</div>
 	);
 }

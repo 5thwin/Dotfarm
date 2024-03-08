@@ -4,6 +4,7 @@ import { PostWithUser } from '@/type/post';
 import PostsPagination from './PostsPagination';
 import clsx from 'clsx';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
+import GoToWriteInput from '@/app/components/link/GoToWriteInput';
 
 type Props = {
 	posts: PostWithUser[];
@@ -18,6 +19,7 @@ export default function PostsWrapper({ posts }: Props) {
 				</div>
 				<h1 className="font-bold text-2xl">영농 커뮤니티</h1>
 			</div>
+			<GoToWriteInput />
 			<PostsList posts={posts} />
 			<div className="flexCenter">
 				<PostsPagination />
@@ -30,7 +32,8 @@ const responsiveWrapper = clsx(
 	blockStyle,
 	'rounded-none lg:rounded-30',
 	'w-screen lg:w-auto',
-	'shadow-none lg:shadow-main'
+	'shadow-none lg:shadow-main',
+	'flex flex-col gap-y-2.5'
 );
 
 const responsiveHeader = clsx('flex gap-x-2.5 items-center');

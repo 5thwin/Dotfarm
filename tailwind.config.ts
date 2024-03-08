@@ -26,6 +26,7 @@ const config: Config = {
 				neonGreen: '#45FF9B',
 				lineColor: '#ECECEC',
 				darkGreen: '#37b771',
+				mainLine: '#DBDCDF',
 			},
 			boxShadow: {
 				main: '0px 0px 10px 0px rgba(0, 0, 0, 0.05)',

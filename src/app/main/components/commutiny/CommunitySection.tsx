@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import TabSelector from './TabSelector';
 import CommunityList from './CommunityList';
 import Link from 'next/link';
+import GoToWriteInput from '@/app/components/link/GoToWriteInput';
 
 interface CommunitySectionProps {
 	tab1Component: React.ReactNode;
@@ -25,10 +26,7 @@ export default function CommunitySection() {
 			<TabSelector />
 
 			<CommunityList />
-			<div className={inputStyle}>
-				<p className="flex-1">한마디 작성해주세요</p>
-				<button className={buttonStyle}>입력하기</button>
-			</div>
+			<GoToWriteInput />
 		</section>
 	);
 }

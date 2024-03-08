@@ -13,10 +13,10 @@ export async function generateStaticParams() {
 
 async function Page({ params }: { params: { id: string } }) {
 	const { id } = params;
-	const post = await getPost(Number(id));
+	const post = await getPost(id);
 	return (
 		<div>
-			<section className="w-screen h-screen flexCenter">
+			<section className="w-screen h-screen flex flex-col items-center lg:pt-[72px]">
 				{post ? <PostBox post={post} /> : <Fallback />}
 			</section>
 		</div>

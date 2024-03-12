@@ -48,6 +48,6 @@ const containerStyle = clsx(
 	'flex flex-col gap-y-30px p-25px',
 	'lg:w-[640px] w-full',
 	'lg:rounded-30 rounded-none',
-	'h-screen lg:h-auto'
+	'min-h-[100vh] h-auto'
 );
 const postWrapper = clsx('flex flex-col gap-y-2.5');

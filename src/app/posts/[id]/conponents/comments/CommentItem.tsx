@@ -34,7 +34,7 @@ export default function CommentItem({ comment, replys }: Props) {
 			</div>
 
 			{replys && (
-				<div className="flex gap-x-2.5 items-start w-full">
+				<div className="flex gap-x-5px items-start w-full">
 					<ReplyIcon />
 					<div className={replysWrapper}>
 						{replys.map((replyComment) => (

@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import GoogleSearchBox from './GoogleSearchBox';
-import FavoriteSitesBanner from './FavoriteSitesBanner';
 import { Desktop } from '@/app/components/responsive/ResponsiveUI';
+import clsx from 'clsx';
+import Watchlist from './Watchlist';
 
 export default function PcBanner() {
 	return (
@@ -17,11 +18,17 @@ export default function PcBanner() {
 				objectPosition="left"
 			/>
 			<div className="lg:inline-block hidden">
-				<div className="flexCenter absolute z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5">
+				<div className={bannerStyle}>
 					<GoogleSearchBox />
-					<FavoriteSitesBanner />
+					<Watchlist />
 				</div>
 			</div>
 		</section>
 	);
 }
+// style
+const bannerStyle = clsx(
+	'flex absolute z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5',
+	'p-5 bg-white bg-opacity-70 rounded-40 backdrop-blur-md',
+	'w-[600px]'
+);

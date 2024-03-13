@@ -9,6 +9,8 @@ export default function Watchlist() {
 				<WatchItem />
 				<WatchItem />
 				<WatchItem />
+				<WatchItem />
+				<WatchItem />
 			</ul>
 		</div>
 	);

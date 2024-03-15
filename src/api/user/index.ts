@@ -29,7 +29,7 @@ export async function updateUserMe(updateData: UserUpdateData) {
 // interface
 export interface UserUpdateData {
 	profileImageURL?: string;
-	userName?: string;
+	nickname?: string;
 	region?: string;
 	subRegion?: string;
 	farmingExperience?: string;
@@ -37,9 +37,9 @@ export interface UserUpdateData {
 }
 
 //회원정보 중복 확인 api
-export async function checkUserNameAvailability(userName: string) {
+export async function checkUserNameAvailability(nickname: string) {
 	try {
-		const res = await customFetch<UserMe[]>(`/profiles?userName=${userName}`);
+		const res = await customFetch<UserMe[]>(`/profiles?nickname=${nickname}`);
 		if (res.length === 0) {
 			return {
 				isDuplicate: false,

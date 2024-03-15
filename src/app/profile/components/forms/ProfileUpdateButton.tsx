@@ -15,7 +15,7 @@ export default function ProfileUpdateButton({ updateProfile }: Props) {
 	const [buttonText, setButtonText] = useState<string>(NORMAL_TEXT);
 	const {
 		profileImageURL,
-		userName,
+		nickname,
 		region,
 		subRegion,
 		farmingExperience,
@@ -25,7 +25,7 @@ export default function ProfileUpdateButton({ updateProfile }: Props) {
 	const handleUpdate = async () => {
 		const updateData = {
 			profileImageURL,
-			userName,
+			nickname,
 			region,
 			subRegion,
 			farmingExperience,

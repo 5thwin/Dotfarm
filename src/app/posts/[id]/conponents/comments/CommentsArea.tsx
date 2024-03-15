@@ -8,12 +8,13 @@ type Props = {
 };
 export default async function CommentsArea({ postId, comments }: Props) {
 	const replyMap = getReplyMap(comments);
+	const isCommentValid = comments && comments.length > 0;
 	return (
-		<div className="flex flex-col gap-y-5">
-			<div className="flex flex-col gap-y-2.5">
-				<p className="text-lg font-bold">댓글</p>
-				<div className="flex flex-col gap-y-5px">
-					{comments.map((comment, index) =>
+		<div className="flex flex-col gap-y-2.5">
+			<p className="text-lg font-bold">댓글</p>
+			<div className="flex flex-col gap-y-5px">
+				{isCommentValid &&
+					comments.map((comment, index) =>
 						comment.parentId ? null : (
 							<CommentItem
 								key={`comment${index}`}
@@ -22,9 +23,7 @@ export default async function CommentsArea({ postId, comments }: Props) {
 							/>
 						)
 					)}
-				</div>
 			</div>
-			<CommentWrite postId={postId} />
 		</div>
 	);
 }

@@ -5,18 +5,18 @@ import { checkUserNameAvailability } from '@/api/user';
 import useValidationStore from '../../store/validationStore';
 
 export default function CheckDuplicateButton() {
-	const { userName, originUserName } = useProfileStore();
+	const { nickname, originUserName } = useProfileStore();
 	const { setShouldCheckDuplicate, isValid } = useValidationStore();
 	const onClick = async () => {
 		if (!isValid) {
 			return callNotValidMessage(); //유효한 닉네임이 아님
 		}
-		if (userName === originUserName) {
+		if (nickname === originUserName) {
 			setShouldCheckDuplicate(false); //기존 닉네임을 그대로 사용하는 경우, 중복체크 필요 없음
 			return callAvaliableMessage();
 		}
 		try {
-			const data = await checkUserNameAvailability(userName);
+			const data = await checkUserNameAvailability(nickname);
 			if (data?.isDuplicate) {
 				setShouldCheckDuplicate(true); //중복된 닉네임인 경우, 다시 중복 체크해야함을 표시
 				return callDuplicateMessage();

@@ -6,10 +6,11 @@ import useCreatePostStore from '../store/createPostStore';
 import { writePost } from '@/api/post/create';
 import Toast from '@/app/components/common/Toast';
 import { useRouter } from 'next/navigation';
+import { getLocalItem } from '@/utils/localstorage';
 
 export default function Form() {
 	const router = useRouter();
-	const { title, setTitle, contents, setContents, category, imageURL } =
+	const { title, setTitle, contents, setContents, category, imageURL, reset } =
 		useCreatePostStore();
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,8 +23,18 @@ export default function Form() {
 
 		if (!category)
 			return Toast.fire('카테고리를 선택해주세요', undefined, 'warning');
-		const res = await writePost(title, contents, category, imageURL);
-		if (res.isSuccess) {
+		const auth = getLocalItem('auth');
+		const accessToken = auth ? JSON.parse(auth).accessToken : null;
+		const res = await writePost(
+			title,
+			contents,
+			category,
+			imageURL,
+			accessToken
+		);
+
+		if (res.id) {
+			reset();
 			router.push(`/posts/${res.id}`);
 		}
 	};

@@ -1,6 +1,4 @@
-import { headers } from 'next/headers';
-
-const baseUrl = process.env.SERVER_API_URL;
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_API_URL;
 
 async function customFetch<T>(
 	endpoint: string,
@@ -8,13 +6,17 @@ async function customFetch<T>(
 ): Promise<T> {
 	const url = `${baseUrl}${endpoint}`;
 
-	const headers = new Headers(config.headers || {});
-	headers.set('Content-Type', 'application/json');
+	// 헤더 초기화
+	const headers = new Headers({
+		'Content-Type': 'application/json', // JSON 형태의 데이터를 전송한다고 명시
+		...config.headers,
+	});
 
 	const newConfig = { ...config, headers };
-
 	// 요청 인터셉터 로직을 여기에 추가
 	const response = await fetch(url, newConfig);
+	console.log(response);
+
 	if (!response.ok) {
 		throw new Error('Network response was not ok');
 	}

@@ -4,7 +4,8 @@ import PostBox from './conponents/PostBox';
 import Fallback from './conponents/Fallback';
 
 export async function generateStaticParams() {
-	const posts = await getPosts();
+	const res = await getPosts();
+	const posts = res?.data;
 	if (!posts) return [];
 	return posts.map((post) => ({
 		id: post.id.toString(),
@@ -16,7 +17,7 @@ async function Page({ params }: { params: { id: string } }) {
 	const post = await getPost(id);
 	return (
 		<div>
-			<section className="w-screen h-screen flex flex-col items-center lg:pt-[72px]">
+			<section className="w-screen h-screen flex flex-col items-center lg:pt-[80px]">
 				{post ? <PostBox post={post} /> : <Fallback />}
 			</section>
 		</div>

@@ -4,7 +4,7 @@ import { create } from 'zustand';
 // 스토어 상태를 위한 인터페이스 정의
 interface ProfileState {
 	profileImageURL: string;
-	userName: string;
+	nickname: string;
 	region: string;
 	subRegion: string;
 	farmingExperience: string;
@@ -21,14 +21,14 @@ interface ProfileState {
 
 const useProfileStore = create<ProfileState>((set) => ({
 	profileImageURL: '',
-	userName: '',
+	nickname: '',
 	region: '',
 	subRegion: '',
 	farmingExperience: '',
 	majorCrops: '',
 	setProfileImageURL: (newImgUrl) =>
 		set(() => ({ profileImageURL: newImgUrl })),
-	setUserName: (userName) => set(() => ({ userName })),
+	setUserName: (nickname) => set(() => ({ nickname })),
 	setRegion: (region) => set(() => ({ region })),
 	setSubRegion: (subRegion) => set(() => ({ subRegion })),
 	setFarmingExperience: (farmingExperience) =>
@@ -37,8 +37,8 @@ const useProfileStore = create<ProfileState>((set) => ({
 	init: (userMe) =>
 		set(() => ({
 			profileImageURL: userMe.profileImageURL,
-			userName: userMe.userName,
-			originUserName: userMe.userName,
+			nickname: userMe.nickname,
+			originUserName: userMe.nickname,
 			region: userMe.region,
 			subRegion: userMe.subRegion,
 			farmingExperience: userMe.farmingExperience,

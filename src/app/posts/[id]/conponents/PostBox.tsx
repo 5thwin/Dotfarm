@@ -7,13 +7,15 @@ import PostHeader from './header/PostHeader';
 import PostAuthor from './PostAuthor';
 import CommentsArea from './comments/CommentsArea';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
+import CommentWrite from './comments/CommentWrite';
 
 type Props = {
 	post: FullPost;
 };
 export default function PostBox({ post }: Props) {
 	const comments = post.comments;
-	const author = post.user;
+	const author = post.author;
+
 	return (
 		<div className={containerStyle}>
 			<div className={'flex gap-x-2.5 items-center lg:hidden'}>
@@ -22,22 +24,27 @@ export default function PostBox({ post }: Props) {
 			</div>
 			<PostHeader post={post} />
 			<div id="post-contents-area" className={postWrapper}>
-				<article>{post.contents}</article>
-				<Link
-					href={post.imgURL || ''}
-					target="_blank"
-					className="w-full lg:w-[590px] h-[250px] sm:h-[330px] rounded-10 relative overflow-hidden"
-				>
-					<Image
-						src={post.imgURL}
-						fill={true}
-						className="object-contain lg:object-fill rounded-10"
-						alt={'농업 커뮤니티 게시글 첨부 이미지'}
-					/>
-				</Link>
+				<article>{post.content}</article>
+				{post.contentImageURL && (
+					<Link
+						href={post.contentImageURL || ''}
+						target="_blank"
+						className="w-full lg:w-[590px] h-[250px] sm:h-[330px] rounded-10 relative overflow-hidden"
+					>
+						<Image
+							src={post.contentImageURL}
+							fill={true}
+							className="object-contain lg:object-fill rounded-10"
+							alt={'농업 커뮤니티 게시글 첨부 이미지'}
+						/>
+					</Link>
+				)}
 			</div>
 			{author && <PostAuthor author={author} />}
-			<CommentsArea postId={Number(post.id)} comments={comments} />
+			{comments && (
+				<CommentsArea postId={Number(post.id)} comments={comments} />
+			)}
+			<CommentWrite postId={Number(post.id)} />
 		</div>
 	);
 }
@@ -48,6 +55,6 @@ const containerStyle = clsx(
 	'flex flex-col gap-y-30px p-25px',
 	'lg:w-[640px] w-full',
 	'lg:rounded-30 rounded-none',
-	'min-h-[100vh] h-auto'
+	'min-h-[100vh] lg:min-h-0 h-auto'
 );
 const postWrapper = clsx('flex flex-col gap-y-2.5');

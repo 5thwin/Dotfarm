@@ -17,7 +17,9 @@ async function Page({ searchParams }: Params) {
 		typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10;
 	const category = searchParams.category;
 	const keyword = searchParams.keyword;
-	const posts = await getPostsWithAuthor();
+	const response = await getPostsWithAuthor();
+	const posts = response?.data;
+
 	if (!posts) return <Fallback />;
 	return (
 		<div>
@@ -25,7 +27,7 @@ async function Page({ searchParams }: Params) {
 				{keyword && (
 					<p className="hidden lg:inline-block font-bold text-xl">{`'${keyword}'로 검색한 결과입니다.`}</p>
 				)}
-				<section className="flex gap-x-25px items-start">
+				<section className="flex gap-x-25px items-start w-full lg:px-20">
 					<div className="hidden lg:inline-block">
 						<FilterBox />
 					</div>

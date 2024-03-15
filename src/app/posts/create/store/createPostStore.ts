@@ -9,7 +9,15 @@ interface CreatPostState {
 	setContents: (_: string) => void;
 	setImageURL: (_?: string) => void;
 	setCategory: (_?: string) => void;
+	reset: () => void;
 }
+
+const initState = {
+	title: '',
+	contents: '',
+	imageURL: undefined,
+	category: undefined,
+};
 
 const useCreatePostStore = create<CreatPostState>((set) => ({
 	title: '',
@@ -20,5 +28,6 @@ const useCreatePostStore = create<CreatPostState>((set) => ({
 	setContents: (contents: string) => set(() => ({ contents })),
 	setImageURL: (imageURL?: string) => set(() => ({ imageURL })),
 	setCategory: (category?: string) => set(() => ({ category })),
+	reset: () => set(() => initState),
 }));
 export default useCreatePostStore;

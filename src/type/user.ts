@@ -1,7 +1,7 @@
 export type UserMe = {
 	id: number;
 	profileImageURL: string;
-	userName: string;
+	nickname: string;
 	status: string;
 	role: string;
 	region: string;
@@ -15,7 +15,7 @@ export type UserMe = {
 export type User = {
 	id: number;
 	kakaoId: number;
-	userName: string;
+	nickname: string;
 	region: string;
 	subRegion: string;
 	profileImageURL: string;

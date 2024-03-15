@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const APIURL = 'http://localhost:8000/auth/kakao/callback';
+const APIURL = 'http://localhost:8080/auth/kakao/callback';
 
 export const getKakaoLogin = async (code: string) => {
 	try {

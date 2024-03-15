@@ -7,7 +7,7 @@ import CheckDuplicateButton from './CheckDuplicateButton';
 export default function ProfileUserName() {
 	const { isValid, setIsValid, setShouldCheckDuplicate, shouldCheckDuplicate } =
 		useValidationStore();
-	const { userName, setUserName, originUserName } = useProfileStore();
+	const { nickname, setUserName, originUserName } = useProfileStore();
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newValue = e.target.value;
@@ -21,7 +21,7 @@ export default function ProfileUserName() {
 				<input
 					type="text"
 					id="profileName"
-					value={userName}
+					value={nickname}
 					onChange={handleInputChange}
 					onBlur={(e) => {
 						const newName = e.target.value;

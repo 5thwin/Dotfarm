@@ -16,10 +16,10 @@ export default function CommentWriter({ user, createAt }: Props) {
 				<Image
 					src={user.profileImageURL}
 					fill
-					alt={`${user.userName} 프로필 이미지`}
+					alt={`${user.nickname} 프로필 이미지`}
 				/>
 			</div>
-			<b>{user.userName}</b>
+			<b>{user.nickname}</b>
 			<div className="flex gap-x-5px items-center text-subText text-sm">
 				<span>{user.subRegion}</span>
 				<i className={devidorStyle} />

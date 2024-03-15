@@ -9,7 +9,7 @@ type Props = { comment: Comment; replys?: Comment[] };
 const EXAMPLE_USER: User = {
 	id: 1,
 	kakaoId: 101,
-	userName: '도농탁',
+	nickname: '도농탁',
 	region: '경기도',
 	subRegion: '고양시',
 	profileImageURL:

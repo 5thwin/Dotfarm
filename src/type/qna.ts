@@ -2,7 +2,7 @@ export type QNAComment = {
 	id: number;
 	parentId: null | number;
 	userId: number;
-	userName: string;
+	nickname: string;
 	content: string;
 	createdAt: string;
 	updatedAt: string;

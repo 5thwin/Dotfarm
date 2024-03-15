@@ -4,9 +4,9 @@ import { User } from './user';
 export type Post = {
 	id: number | string;
 	title: string;
-	contents: string;
+	content: string;
 	userId: number;
-	imgURL: string;
+	contentImageURL: string;
 	category: string;
 	createdAt: string;
 	updatedAt: string;
@@ -14,7 +14,7 @@ export type Post = {
 	region2: string;
 };
 export interface PostWithUser extends Post {
-	user: User;
+	author: User;
 }
 
 export interface PostWithComments extends Post {
@@ -22,6 +22,8 @@ export interface PostWithComments extends Post {
 }
 
 export interface FullPost extends Post {
-	user: User;
+	author: User;
 	comments: Comment[];
 }
+
+// API 응답 타입

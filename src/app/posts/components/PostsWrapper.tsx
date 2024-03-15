@@ -31,7 +31,7 @@ export default function PostsWrapper({ posts }: Props) {
 const responsiveWrapper = clsx(
 	blockStyle,
 	'rounded-none lg:rounded-30',
-	'w-screen lg:w-auto',
+	'w-screen flex-1 2xl:w-[1150px]',
 	'shadow-none lg:shadow-main',
 	'flex flex-col gap-y-2.5'
 );

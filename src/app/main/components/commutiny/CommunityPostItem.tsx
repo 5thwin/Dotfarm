@@ -7,33 +7,33 @@ type Props = {
 	post: PostWithUser;
 };
 export default function ComunityPostItem({ post }: Props) {
-	const { user } = post;
+	const { author } = post;
 	return (
 		<Link className={postContainer} href={`/posts/${post.id}`}>
 			<div className={contentsWrapper}>
 				<p className={catagoryTagStyle}># {post.category}</p>
 				<p className={titleStyle}>{post.title}</p>
-				<p className="line-clamp-1">{post.contents}</p>
-				{user && (
+				<p className="line-clamp-1">{post.content}</p>
+				{author && (
 					<div className={userInfoStyle}>
 						<Image
-							src={user.profileImageURL}
-							alt={`${user.userName}님의 프로필 이미지`}
+							src={author.profileImageURL}
+							alt={`${author.nickname}님의 프로필 이미지`}
 							className="rounded-full"
 							width={32}
 							height={32}
 						/>
-						<p className="font-bold">{user.userName}</p>
+						<p className="font-bold">{author.nickname}</p>
 						<p className={userSubInfoStyle}>
-							{`${user.subRegion} | ${user.farmingExperience} | ${user.majorCrops}`}
+							{`${author.subRegion} | ${author.farmingExperience} | ${author.majorCrops}`}
 						</p>
 					</div>
 				)}
 			</div>
-			{post.imgURL && (
+			{post.contentImageURL && (
 				<div className={imgWrapper}>
 					<Image
-						src={post.imgURL}
+						src={post.contentImageURL}
 						fill={true}
 						className="rounded-10 bg-subGray"
 						alt={post.title}

@@ -15,7 +15,6 @@ async function customFetch<T>(
 	const newConfig = { ...config, headers };
 	// 요청 인터셉터 로직을 여기에 추가
 	const response = await fetch(url, newConfig);
-	console.log(response);
 
 	if (!response.ok) {
 		throw new Error('Network response was not ok');

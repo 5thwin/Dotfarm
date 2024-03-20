@@ -4,12 +4,12 @@ import clsx from 'clsx';
 
 export default async function CommunityList() {
 	const posts = await getPostsWithAuthor();
-	const isPostAvailable = posts && posts.length > 0;
+	const isPostAvailable = posts && posts.data.length > 0;
 
 	return (
 		<ul className={listContainerStyle}>
 			{isPostAvailable &&
-				posts.map((post, index) => (
+				posts.data.map((post, index) => (
 					<ComunityPostItem key={`post${index}`} post={post} />
 				))}
 		</ul>

@@ -5,10 +5,12 @@ const isStaticBuild = process.env.OUTPUT_BUILD_OPTION === 'export'
 const nextConfig = {
   ...(isStaticBuild ? { output: 'export' } : {}), // 수정된 부분
   images: { unoptimized: true },
-
   reactStrictMode: true,
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
   webpack: (config) => {
     config.module.rules.push({

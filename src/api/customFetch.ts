@@ -17,7 +17,7 @@ async function customFetch<T>(
 	const response = await fetch(url, newConfig);
 
 	if (!response.ok) {
-		throw new Error('Network response was not ok');
+		throw new Error(`Network response was not ok`);
 	}
 
 	// 응답 인터셉터 로직을 여기에 추가

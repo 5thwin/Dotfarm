@@ -6,7 +6,6 @@ import WeekDaySupportPrograms from './WeekDaySupportPrograms';
 import { IcCalendar } from '@/app/components/icons/IcCalendar';
 import Link from 'next/link';
 import { PATH_SUPPROT_PROJECTS } from '@/utils/navigation';
-import { Mobile, Desktop } from '@/app/components/responsive/ResponsiveUI';
 
 export default function WeekSupport() {
 	const now = new Date();

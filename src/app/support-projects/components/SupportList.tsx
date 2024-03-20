@@ -38,7 +38,10 @@ function SupportProgramItem({ program }: { program: SupportProgram }) {
 						</span>
 					)}
 					<span className={clsx(defaultSupportTag)}>
-						~{program.deadline.replaceAll('-', '.')}
+						~
+						{new Date(program.deadline)
+							.toLocaleDateString()
+							.replaceAll('-', '.')}
 					</span>
 				</div>
 				<Link href={program.link} className={programNameStyle}>

@@ -1,4 +1,4 @@
-import { getPostsWithAuthor } from '@/api/post';
+import { getPostsWithAuthor } from '@/api/post/get';
 import withLayout from '../hoc/withLayout';
 import PostsWrapper from './components/PostsWrapper';
 import Fallback from './components/Fallback';

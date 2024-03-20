@@ -9,7 +9,10 @@ type Props = {
 export default function ComunityPostItem({ post }: Props) {
 	const { author } = post;
 	return (
-		<Link className={postContainer} href={`/posts/${post.id}`}>
+		<Link
+			className={postContainer}
+			href={{ pathname: '/post', query: { id: post.id } }}
+		>
 			<div className={contentsWrapper}>
 				<p className={catagoryTagStyle}># {post.category}</p>
 				<p className={titleStyle}>{post.title}</p>

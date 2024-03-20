@@ -1,4 +1,4 @@
-import { getPostsWithAuthor } from '@/api/post';
+import { getPostsWithAuthor } from '@/api/post/get';
 import ComunityPostItem from './CommunityPostItem';
 import clsx from 'clsx';
 

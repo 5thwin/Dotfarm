@@ -39,7 +39,7 @@ export default function Form({ postId }: Props) {
 
 		if (res.id) {
 			reset();
-			router.push(`/posts/${res.id}`);
+			router.push(`/post?id=${res.id}`);
 		}
 	};
 	return (

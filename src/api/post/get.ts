@@ -17,7 +17,7 @@ export async function getPostsWithAuthor(category?: string) {
 
 	try {
 		const res = await customFetch<Response & { data: PostWithUser[] }>(
-			`/posts?${queryString}_embed=user`,
+			`/posts?${queryString}`,
 			{
 				method: 'GET',
 				next: { revalidate: 10, tags: ['posts'] },

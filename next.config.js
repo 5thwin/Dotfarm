@@ -12,6 +12,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  distDir: 'build',
+
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -19,6 +21,7 @@ const nextConfig = {
     });
     return config;
   },
+
 };
 
 module.exports = nextConfig;

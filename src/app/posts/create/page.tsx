@@ -5,7 +5,7 @@ import { blockStyle } from '@/app/styles/common/blockStyle';
 import clsx from 'clsx';
 import Form from './components/Form';
 import { useSearchParams } from 'next/navigation';
-import { getPost } from '@/api/post';
+import { getPost } from '@/api/post/get';
 
 function Page() {
 	const searchParams = useSearchParams();

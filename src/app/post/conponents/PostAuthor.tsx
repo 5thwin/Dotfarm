@@ -1,11 +1,11 @@
-'use server';
+// 'use server';
 
 import { User } from '@/type/user';
 import clsx from 'clsx';
 import Image from 'next/image';
 
 type Props = { author: User };
-export default async function PostAuthor({ author }: Props) {
+export default function PostAuthor({ author }: Props) {
 	const profileImage = author.profileImageURL;
 	return (
 		<div className="flex gap-x-2.5 p-15px rounded-10 bg-subGray items-center">

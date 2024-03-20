@@ -1,5 +1,5 @@
 export type SupportProgram = {
-	programID: number;
+	id: number;
 	programName: string;
 	region: string;
 	subRegion: string;

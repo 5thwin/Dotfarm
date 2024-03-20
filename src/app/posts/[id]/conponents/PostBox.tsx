@@ -8,6 +8,7 @@ import PostAuthor from './PostAuthor';
 import CommentsArea from './comments/CommentsArea';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import CommentWrite from './comments/CommentWrite';
+import PostEditButton from './PostEditButton';
 
 type Props = {
 	post: FullPost;
@@ -15,7 +16,7 @@ type Props = {
 export default function PostBox({ post }: Props) {
 	const comments = post.comments;
 	const author = post.author;
-
+	const ableToEdit = true;
 	return (
 		<div className={containerStyle}>
 			<div className={'flex gap-x-2.5 items-center lg:hidden'}>
@@ -40,7 +41,10 @@ export default function PostBox({ post }: Props) {
 					</Link>
 				)}
 			</div>
-			{author && <PostAuthor author={author} />}
+			<div className="flex flex-col gap-y-1">
+				{ableToEdit && <PostEditButton postId={post.id} />}
+				{author && <PostAuthor author={author} />}
+			</div>
 			{comments && (
 				<CommentsArea postId={Number(post.id)} comments={comments} />
 			)}

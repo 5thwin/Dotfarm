@@ -31,7 +31,7 @@ export default function RegionSelect() {
 		};
 
 		loadKoreaRegions();
-	}, []);
+	}, [koreaRegions]);
 	// 첫번째 지역선택 options 만들기
 	useEffect(() => {
 		if (!koreaRegions) return;

@@ -1,6 +1,5 @@
 import { getWeekDays } from '@/utils/date/week';
-import WeekdaySupportBox from './WeekdaySupportBox';
-import { getSupportPrograms } from '@/api/support/getSupportPrograms';
+import { getSupportPrograms } from '@/api/support/get';
 import { compareDates } from '@/utils/date/compare';
 import { SupportProgram } from '@/type/support';
 import WeeksDisplay from './WeekDisplay-desktop';
@@ -9,9 +8,8 @@ import WeekDisplayMobile from './WeekDisplay-mobile';
 
 export default async function WeekDaySupportPrograms() {
 	const weekdays = getWeekDays();
-	const data = await getSupportPrograms();
-	if (!data) return null;
-	const supportPrograms = data.items;
+	const supportPrograms = await getSupportPrograms();
+	if (!supportPrograms) return null;
 	// 각 요일별로 지원 프로그램을 분류하기 위한 Map 객체 초기화
 	const supportProgramsByWeekDay = new Map<number, SupportProgram[]>(
 		weekdays.map((weekDate) => [weekDate.getDay(), []])

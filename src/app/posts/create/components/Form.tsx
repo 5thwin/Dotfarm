@@ -5,10 +5,14 @@ import ImageSelect from './ImageSelect';
 import useCreatePostStore from '../store/createPostStore';
 import { writePost } from '@/api/post/create';
 import Toast from '@/app/components/common/Toast';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { getLocalItem } from '@/utils/localstorage';
+import { useEffect } from 'react';
 
-export default function Form() {
+type Props = {
+	postId: number | string | null;
+};
+export default function Form({ postId }: Props) {
 	const router = useRouter();
 	const { title, setTitle, contents, setContents, category, imageURL, reset } =
 		useCreatePostStore();

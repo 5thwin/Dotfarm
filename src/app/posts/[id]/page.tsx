@@ -2,18 +2,17 @@ import { getPost, getPosts } from '@/api/post';
 import withLayout from '@/app/hoc/withLayout';
 import PostBox from './conponents/PostBox';
 import Fallback from './conponents/Fallback';
+import { Post } from '@/type/post';
 
-export async function generateStaticParams() {
-	const res = await getPosts();
-	const posts = res?.data;
-	if (!posts) return [];
-	return posts.map((post) => ({
-		id: post.id.toString(),
-	}));
-}
+type Params = {
+	id: string;
+};
 
-async function Page({ params }: { params: { id: string } }) {
-	const { id } = params;
+type Props = {
+	params: Params;
+};
+async function Page({ params }: Props) {
+	const id = params.id;
 	const post = await getPost(id);
 	return (
 		<div>
@@ -24,4 +23,13 @@ async function Page({ params }: { params: { id: string } }) {
 	);
 }
 
+export const generateStaticParams = async (): Promise<Params[]> => {
+	const res = await getPosts();
+
+	// console.log(res);
+	const posts = res?.data as Post[];
+	return posts!.map((post) => ({
+		id: post.id.toString(),
+	}));
+};
 export default withLayout(Page, true, false);

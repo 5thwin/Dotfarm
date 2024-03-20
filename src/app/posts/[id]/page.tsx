@@ -1,8 +1,8 @@
-import { getPost, getPosts } from '@/api/post';
+import { getPost, getPosts } from '@/api/post/get';
 import withLayout from '@/app/hoc/withLayout';
-import PostBox from './conponents/PostBox';
-import Fallback from './conponents/Fallback';
 import { Post } from '@/type/post';
+import PostBox from './conponents/PostBox';
+import Fallback from '../components/Fallback';
 
 type Params = {
 	id: string;

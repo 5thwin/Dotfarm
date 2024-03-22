@@ -1,7 +1,7 @@
 'use server';
 import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
-import { Post } from '@/type/post';
+import { headers } from 'next/headers';
 
 type Response = {
 	title: string;
@@ -9,7 +9,23 @@ type Response = {
 	category: string;
 	author: {
 		id: number;
+		nickname: string;
+		profileImageURL: string | null;
+		majorCrops: string | null;
+		region: string | null;
+		subRegion: string | null;
+		farmingExperience: string;
 	};
+	images: [
+		{
+			id: number;
+			updatedAt: string;
+			createdAt: string;
+			order: number;
+			type: number;
+			path: string;
+		}
+	];
 	contentImageURL: null;
 	id: number;
 	updatedAt: string;
@@ -37,16 +53,16 @@ export async function writePost(
 	};
 	try {
 		revalidateTag('posts');
+		const authorization = headers().get('authorization');
 		const res = await customFetch<Response>('/posts', {
 			method: 'POST',
 			body: JSON.stringify(body),
 			headers: {
-				Authorization: `Bearer ${accessToken}`,
+				Authorization: authorization || `Bearer ${accessToken}`,
 			},
 		});
 		return res;
 	} catch (e) {
-		console.log(e);
 		throw e;
 	}
 }

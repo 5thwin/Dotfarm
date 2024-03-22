@@ -1,12 +1,23 @@
 import clsx from 'clsx';
 import useCreatePostStore from '../store/createPostStore';
 import AddIcon from '../../../../../public/icon/addImage.svg';
+import { getLocalItem } from '@/utils/localstorage';
+import { saveTempImage } from '@/api/common/create';
 
 export default function ImageSelect() {
-	const { setImageURL, imageURL } = useCreatePostStore();
-	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files && e.target.files[0]) {
-			setImageURL(URL.createObjectURL(e.target.files[0]));
+	const { imageURL } = useCreatePostStore();
+	const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0]; // 선택한 파일 가져오기
+		if (!file) return;
+
+		const auth = getLocalItem('auth');
+		const accessToken = auth ? JSON.parse(auth).accessToken : null;
+
+		try {
+			const res = await saveTempImage(file, accessToken); // 파일 자체를 전달
+			console.log(res.fileName);
+		} catch (error) {
+			console.error('Error saving temp image:', error);
 		}
 	};
 	return (
@@ -21,7 +32,7 @@ export default function ImageSelect() {
 				{imageURL ? (
 					<img
 						src={imageURL}
-						alt="게시글 이미지 등력"
+						alt="게시글 이미지 등록"
 						className="w-full h-full object-cover"
 					/>
 				) : (

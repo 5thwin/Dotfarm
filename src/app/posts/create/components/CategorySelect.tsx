@@ -4,11 +4,12 @@ import { OptionType } from '@/utils/select';
 import useCreatePostStore from '../store/createPostStore';
 
 export default function CategorySelect() {
-	const { setCategory } = useCreatePostStore();
+	const { category, setCategory } = useCreatePostStore();
 	return (
 		<CustomSelect
 			placeholder="카테고리를 선택해주세요"
 			options={options}
+			value={category ? { label: category, value: category } : undefined}
 			onChange={(newValue) => {
 				setCategory(newValue.value);
 			}}

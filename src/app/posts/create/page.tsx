@@ -11,6 +11,7 @@ function Page() {
 	const searchParams = useSearchParams();
 	const id = searchParams.get('id');
 	const pageTitle = id ? '글 수정하기' : '글 작성하기'; // id 존재 여부에 따라 페이지 제목 결정
+
 	return (
 		<div className="flex flex-col items-center w-screen h-screen">
 			<section className={pageContainer}>

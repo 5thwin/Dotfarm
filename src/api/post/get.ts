@@ -1,3 +1,4 @@
+'use server';
 import { PostWithUser, Post, FullPost } from '@/type/post';
 import customFetch from '../customFetch';
 

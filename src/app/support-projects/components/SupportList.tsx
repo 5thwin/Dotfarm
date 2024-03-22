@@ -65,4 +65,6 @@ const defaultSupportTag = clsx(
 const programNameStyle = clsx('lg:text-xl font-bold hover:underline');
 const contentStyle = clsx('text-wrap text-sm lg:text-base');
 // style
-const buttonStyle = clsx('rounded-full bg-subGray flexCenter size-[37px]');
+const buttonStyle = clsx(
+	'rounded-full bg-subGray flexCenter min-w-[37px] size-[37px]'
+);

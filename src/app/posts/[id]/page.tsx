@@ -23,13 +23,13 @@ async function Page({ params }: Props) {
 	);
 }
 
-export const generateStaticParams = async (): Promise<Params[]> => {
-	const res = await getPosts();
+// export const generateStaticParams = async (): Promise<Params[]> => {
+// 	const res = await getPosts();
 
-	// console.log(res);
-	const posts = res?.data as Post[];
-	return posts!.map((post) => ({
-		id: post.id.toString(),
-	}));
-};
+// 	// console.log(res);
+// 	const posts = res?.data as Post[];
+// 	return posts!.map((post) => ({
+// 		id: post.id.toString(),
+// 	}));
+// };
 export default withLayout(Page, true, false);

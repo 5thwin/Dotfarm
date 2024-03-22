@@ -2,46 +2,16 @@
 import clsx from 'clsx';
 import CategorySelect from './CategorySelect';
 import ImageSelect from './ImageSelect';
-import useCreatePostStore from '../store/createPostStore';
-import { writePost } from '@/api/post/create';
-import Toast from '@/app/components/common/Toast';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { getLocalItem } from '@/utils/localstorage';
-import { useEffect } from 'react';
+
+import useCreatePost from '../hook/useCreatePost';
 
 type Props = {
 	postId: number | string | null;
 };
+
 export default function Form({ postId }: Props) {
-	const router = useRouter();
-	const { title, setTitle, contents, setContents, category, imageURL, reset } =
-		useCreatePostStore();
-
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		if (title.length === 0)
-			return Toast.fire('제목을 입력해주세요.', undefined, 'warning');
-
-		if (contents.length === 0)
-			return Toast.fire('내용을 입력해주세요.', undefined, 'warning');
-
-		if (!category)
-			return Toast.fire('카테고리를 선택해주세요', undefined, 'warning');
-		const auth = getLocalItem('auth');
-		const accessToken = auth ? JSON.parse(auth).accessToken : null;
-		const res = await writePost(
-			title,
-			contents,
-			category,
-			imageURL,
-			accessToken
-		);
-
-		if (res.id) {
-			reset();
-			router.push(`/post?id=${res.id}`);
-		}
-	};
+	const { title, setTitle, contents, setContents, handleSubmit } =
+		useCreatePost(postId || undefined);
 	return (
 		<form className={formStyle} onSubmit={handleSubmit}>
 			<input

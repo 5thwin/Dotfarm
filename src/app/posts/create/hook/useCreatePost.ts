@@ -1,12 +1,12 @@
 import useCreatePostStore from '../store/createPostStore';
 import Toast from '@/app/components/common/Toast';
-import { getLocalItem } from '@/utils/localstorage';
 import { writePost } from '@/api/post/create';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { getPost } from '@/api/post/get';
+import { patchPost } from '@/api/post/update';
+import { useEffect } from 'react';
 
-export default function useCreatePost(postId?: number | string) {
+export default function useCreatePost(postId?: number) {
 	const router = useRouter();
 	const {
 		title,
@@ -25,7 +25,7 @@ export default function useCreatePost(postId?: number | string) {
 		reset();
 
 		// 서버로부터 데이터를 비동기적으로 받아오는 함수
-		async function fetchData(postId: number | string) {
+		async function fetchData(postId: number) {
 			const response = await getPost(postId);
 			if (response) {
 				setTitle(response.title);
@@ -46,23 +46,27 @@ export default function useCreatePost(postId?: number | string) {
 
 		if (!category)
 			return Toast.fire('카테고리를 선택해주세요', undefined, 'warning');
-		const auth = getLocalItem('auth');
-		const accessToken = auth ? JSON.parse(auth).accessToken : null;
 
-		const res = await writePost(
-			title,
-			contents,
-			category,
-			imageURL,
-			accessToken
-		);
+		if (isModifyMode) {
+			//patch 로직
+			const res = await patchPost(postId, title, contents, category);
+			if (res.id) {
+				reset();
+				router.push(`/posts/${res.id}`);
+				return;
+			}
+		} else {
+			//작성 로직
+			const res = await writePost(title, contents, category, imageURL);
 
-		if (res.id) {
-			reset();
-			router.push(`/posts/${res.id}`);
-			return;
+			if (res.id) {
+				reset();
+				router.push(`/posts/${res.id}`);
+				return;
+			}
 		}
 	};
+
 	return {
 		title,
 		setTitle,

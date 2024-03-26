@@ -1,5 +1,5 @@
 'use client';
-import { writeComment } from '@/api/comment';
+import { createComment } from '@/api/post/comments/create';
 import Toast from '@/app/components/common/Toast';
 import clsx from 'clsx';
 import React, { useRef } from 'react';
@@ -11,12 +11,13 @@ export default function CommentWrite({ postId }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const onSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
 		const contents = inputRef.current?.value;
 		if (!contents) {
 			Toast.fire({ title: '내용이 입력되지 않았습니다.', icon: 'warning' });
 			return;
 		}
-		await writeComment(postId, contents);
+		await createComment(postId, contents, 0);
 	};
 	return (
 		<form className={CommentWrapper} onSubmit={onSubmit}>

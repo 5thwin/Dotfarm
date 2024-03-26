@@ -14,7 +14,6 @@ type Props = {
 	post: FullPost;
 };
 export default function PostBox({ post }: Props) {
-	const comments = post.comments;
 	const author = post.author;
 	const ableToEdit = true;
 	return (
@@ -45,10 +44,10 @@ export default function PostBox({ post }: Props) {
 				{ableToEdit && <PostEditButton postId={post.id} />}
 				{author && <PostAuthor author={author} />}
 			</div>
-			{comments && (
-				<CommentsArea postId={Number(post.id)} comments={comments} />
-			)}
-			<CommentWrite postId={Number(post.id)} />
+			<div className="flex flex-col gap-y-2.5">
+				<CommentsArea postId={Number(post.id)} />
+				<CommentWrite postId={Number(post.id)} />
+			</div>
 		</div>
 	);
 }
@@ -59,6 +58,6 @@ const containerStyle = clsx(
 	'flex flex-col gap-y-30px p-25px',
 	'lg:w-[640px] w-full',
 	'lg:rounded-30 rounded-none',
-	'min-h-[100vh] lg:min-h-0 h-auto'
+	'h-screen lg:h-auto'
 );
 const postWrapper = clsx('flex flex-col gap-y-2.5');

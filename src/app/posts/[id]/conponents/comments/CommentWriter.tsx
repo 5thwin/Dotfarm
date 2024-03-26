@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import { User } from '@/type/user';
+import { UserPartial } from '@/type/user';
 import Image from 'next/image';
 import { relativeTime } from '@/utils/date/string';
 
 type Props = {
-	user: User;
+	user: UserPartial;
 	createAt: string;
 };
 export default function CommentWriter({ user, createAt }: Props) {
@@ -14,7 +14,7 @@ export default function CommentWriter({ user, createAt }: Props) {
 		<div className="flex gap-x-2.5 items-center">
 			<div className={imageWrapper}>
 				<Image
-					src={user.profileImageURL}
+					src={user.profileImageURL || '/profile/defaultProfileImg.svg'}
 					fill
 					alt={`${user.nickname} 프로필 이미지`}
 				/>

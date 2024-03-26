@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 type Props = {
-	postId: number | string;
+	postId: number;
 };
 export default function PostEditButton({ postId }: Props) {
 	return (

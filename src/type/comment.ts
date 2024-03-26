@@ -1,9 +1,11 @@
+import { UserPartial } from './user';
+
 export interface Comment {
 	id: number;
-	postId: number;
-	contents: string;
-	userId: number;
+	comment: string;
 	parentId: null | number;
 	createdAt: string;
 	updatedAt: string;
+	likeCount: number;
+	author: UserPartial;
 }

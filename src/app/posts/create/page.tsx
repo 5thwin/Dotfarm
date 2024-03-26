@@ -5,11 +5,11 @@ import { blockStyle } from '@/app/styles/common/blockStyle';
 import clsx from 'clsx';
 import Form from './components/Form';
 import { useSearchParams } from 'next/navigation';
-import { getPost } from '@/api/post/get';
 
 function Page() {
 	const searchParams = useSearchParams();
 	const id = searchParams.get('id');
+	const postId = id ? Number(id) : null;
 	const pageTitle = id ? '글 수정하기' : '글 작성하기'; // id 존재 여부에 따라 페이지 제목 결정
 
 	return (
@@ -19,7 +19,7 @@ function Page() {
 					<MobileBackButton />
 					<h1 className="text-xl font-bold text-center">{pageTitle}</h1>
 				</div>
-				<Form postId={id} />
+				<Form postId={postId} />
 			</section>
 		</div>
 	);

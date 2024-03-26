@@ -6,7 +6,7 @@ import ImageSelect from './ImageSelect';
 import useCreatePost from '../hook/useCreatePost';
 
 type Props = {
-	postId: number | string | null;
+	postId: number | null;
 };
 
 export default function Form({ postId }: Props) {

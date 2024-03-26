@@ -3,23 +3,28 @@ import useCreatePostStore from '../store/createPostStore';
 import AddIcon from '../../../../../public/icon/addImage.svg';
 import { getLocalItem } from '@/utils/localstorage';
 import { saveTempImage } from '@/api/common/create';
+import { useCallback } from 'react';
+import { fileToBase64 } from '@/utils/file';
 
 export default function ImageSelect() {
 	const { imageURL } = useCreatePostStore();
-	const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		const file = e.target.files?.[0]; // 선택한 파일 가져오기
-		if (!file) return;
+	const handleImageChange = useCallback(
+		async (e: React.ChangeEvent<HTMLInputElement>) => {
+			const file = e.target.files?.[0]; // 선택한 파일 가져오기
+			if (!file) return;
+			const imageBase64 = await fileToBase64(file); // 파일을 Base64로 인코딩
 
-		const auth = getLocalItem('auth');
-		const accessToken = auth ? JSON.parse(auth).accessToken : null;
+			const auth = getLocalItem('auth');
+			const accessToken = auth ? JSON.parse(auth).accessToken : null;
 
-		try {
-			const res = await saveTempImage(file, accessToken); // 파일 자체를 전달
-			console.log(res.fileName);
-		} catch (error) {
-			console.error('Error saving temp image:', error);
-		}
-	};
+			try {
+				const res = await saveTempImage(imageBase64, accessToken); // 파일 자체를 전달
+			} catch (error) {
+				console.error('Error saving temp image:', error);
+			}
+		},
+		[]
+	);
 	return (
 		<label htmlFor="post-image" className="cursor-pointer">
 			<input

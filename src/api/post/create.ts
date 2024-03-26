@@ -1,7 +1,7 @@
 'use server';
 import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
-import { headers } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 
 type Response = {
 	title: string;
@@ -36,14 +36,14 @@ export async function writePost(
 	title: string,
 	content: string,
 	category: string,
-	contentImageURL?: string,
-	accessToken?: string
+	contentImageURL?: string
+	// accessToken?: string
 ) {
 	const body = {
 		title,
 		content,
 		category,
-		contentImageURL,
+		images: [],
 		//아래 내용은 로직 변경 필요
 		// userId: 1,
 		// createdAt: '2023-06-02 05:53:13',
@@ -53,12 +53,14 @@ export async function writePost(
 	};
 	try {
 		revalidateTag('posts');
-		const authorization = headers().get('authorization');
+
+		const accessToken = cookies().get('accessToken')?.value;
+
 		const res = await customFetch<Response>('/posts', {
 			method: 'POST',
 			body: JSON.stringify(body),
 			headers: {
-				Authorization: authorization || `Bearer ${accessToken}`,
+				Authorization: `Bearer ${accessToken}`,
 			},
 		});
 		return res;

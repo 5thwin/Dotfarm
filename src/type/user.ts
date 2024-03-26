@@ -28,3 +28,13 @@ export type User = {
 	farmingExperience: string;
 	majorCrops: string;
 };
+
+export type UserPartial = {
+	id: number;
+	nickname: string;
+	profileImageURL: null | string;
+	majorCrops: null | string;
+	region: null | string;
+	subRegion: null | string;
+	farmingExperience: string;
+};

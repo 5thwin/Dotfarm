@@ -64,7 +64,7 @@ export default Header;
 const getHeaderContainer = (isScrolled: boolean) =>
 	clsx(
 		'fixed top-0 left-0 w-full h-20',
-		'transition-colors duration-300 ease-in-out',
+		'transition-colors duration-[30] ease-in-out',
 		'px-10 py-5',
 		'flex justify-between items-center',
 		'z-30',

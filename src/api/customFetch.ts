@@ -1,4 +1,5 @@
-const baseUrl = process.env.NEXT_PUBLIC_SERVER_API_URL;
+import { baseUrl } from '.';
+import { refreshAccessToken } from './auth/token/refreshToken';
 
 async function customFetch<T>(
 	endpoint: string,
@@ -11,11 +12,20 @@ async function customFetch<T>(
 		'Content-Type': 'application/json', // JSON 형태의 데이터를 전송한다고 명시
 		...config.headers,
 	});
-	console.log(url, headers);
 	const newConfig = { ...config, headers };
 	// 요청 인터셉터 로직을 여기에 추가
-	const response = await fetch(url, newConfig);
+	let response = await fetch(url, newConfig);
 
+	if (response.status === 401) {
+		// 액세스 토큰 갱신 시도
+		const newAccessToken = await refreshAccessToken();
+
+		// 헤더에 갱신된 액세스 토큰 추가
+		newConfig.headers.set('Authorization', `Bearer ${newAccessToken}`);
+
+		// 요청을 다시 시도
+		response = await fetch(url, newConfig);
+	}
 	if (!response.ok) {
 		console.error(response);
 		throw new Error(`Error ${response.status} ${response.statusText}`);

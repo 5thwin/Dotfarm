@@ -1,6 +1,5 @@
 import { getPost, getPosts } from '@/api/post/get';
 import withLayout from '@/app/hoc/withLayout';
-import { Post } from '@/type/post';
 import PostBox from './conponents/PostBox';
 import Fallback from '../components/Fallback';
 
@@ -12,14 +11,12 @@ type Props = {
 	params: Params;
 };
 async function Page({ params }: Props) {
-	const id = params.id;
+	const id = Number(params.id);
 	const post = await getPost(id);
 	return (
-		<div>
-			<section className="w-screen h-screen flex flex-col items-center lg:pt-[80px]">
-				{post ? <PostBox post={post} /> : <Fallback />}
-			</section>
-		</div>
+		<section className="w-screen size-full flex flex-col items-center lg:pt-[80px]">
+			{post ? <PostBox post={post} /> : <Fallback />}
+		</section>
 	);
 }
 

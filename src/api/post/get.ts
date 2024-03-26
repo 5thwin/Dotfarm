@@ -53,7 +53,7 @@ export async function getPosts(category?: string) {
 	}
 }
 
-export async function getPost(id: number | string) {
+export async function getPost(id: number) {
 	try {
 		const res = await customFetch<FullPost>(`/posts/${id}`, {
 			method: 'GET',

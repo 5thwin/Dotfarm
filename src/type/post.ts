@@ -2,7 +2,7 @@ import { Comment } from './comment';
 import { User } from './user';
 
 export type Post = {
-	id: number | string;
+	id: number;
 	title: string;
 	content: string;
 	userId: number;

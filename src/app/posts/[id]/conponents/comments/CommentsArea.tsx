@@ -1,12 +1,15 @@
-import { Comment } from '@/type/comment';
+import { getCommentsByPostId } from '@/api/post/comments/get';
 import CommentItem from './CommentItem';
-import CommentWrite from './CommentWrite';
+import { Comment } from '@/type/comment';
 
 type Props = {
 	postId: number;
-	comments: Comment[];
 };
-export default async function CommentsArea({ postId, comments }: Props) {
+export default async function CommentsArea({ postId }: Props) {
+	const res = await getCommentsByPostId(postId);
+	if (!res) return null;
+
+	const comments = res.data;
 	const replyMap = getReplyMap(comments);
 	const isCommentValid = comments && comments.length > 0;
 	return (
@@ -15,13 +18,13 @@ export default async function CommentsArea({ postId, comments }: Props) {
 			<div className="flex flex-col gap-y-5px">
 				{isCommentValid &&
 					comments.map((comment, index) =>
-						comment.parentId ? null : (
+						comment ? (
 							<CommentItem
 								key={`comment${index}`}
 								comment={comment}
 								replys={replyMap.get(comment.id)}
 							/>
-						)
+						) : null
 					)}
 			</div>
 		</div>

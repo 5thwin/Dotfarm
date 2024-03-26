@@ -1,12 +1,25 @@
+'use server';
+
 import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
+import { cookies } from 'next/headers';
+type Response = {
+	id: number;
+	updatedAt: string;
+	createdAt: string;
+	title: string;
+	content: string;
+	likeCount: number;
+	commentCount: number;
+	category: string;
+};
 
 export async function patchPost(
+	id: number,
 	title?: string,
 	content?: string,
 	category?: string,
-	contentImageURL?: string,
-	accessToken?: string
+	contentImageURL?: string
 ) {
 	const body = {
 		title,
@@ -22,7 +35,9 @@ export async function patchPost(
 	};
 	try {
 		revalidateTag('posts');
-		const res = await customFetch<Response>('/posts', {
+		const accessToken = cookies().get('accessToken')?.value;
+
+		const res = await customFetch<Response>(`/posts/${id}`, {
 			method: 'PATCH',
 			body: JSON.stringify(body),
 			headers: {
@@ -31,7 +46,6 @@ export async function patchPost(
 		});
 		return res;
 	} catch (e) {
-		console.log(e);
 		throw e;
 	}
 }

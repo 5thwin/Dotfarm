@@ -57,8 +57,8 @@ export default function useCreatePost(postId?: number) {
 			}
 		} else {
 			//작성 로직
-			const res = await writePost(title, contents, category, imageURL);
 
+			const res = await writePost(title, contents, category, imageURL);
 			if (res.id) {
 				reset();
 				router.push(`/posts/${res.id}`);

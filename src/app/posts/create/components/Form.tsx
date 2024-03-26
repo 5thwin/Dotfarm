@@ -1,7 +1,6 @@
 'use client';
 import clsx from 'clsx';
 import CategorySelect from './CategorySelect';
-import ImageSelect from './ImageSelect';
 
 import useCreatePost from '../hook/useCreatePost';
 
@@ -31,11 +30,6 @@ export default function Form({ postId }: Props) {
 				<label className="font-bold text-lg">카테고리</label>
 				<CategorySelect />
 			</div>
-			<div className="flex flex-col gap-y-5px">
-				<p className="font-bold text-lg">이미지 첨부</p>
-				<ImageSelect />
-			</div>
-
 			<button type="submit" className={getButtonStyle(true)}>
 				적용하기
 			</button>

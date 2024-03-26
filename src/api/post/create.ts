@@ -51,20 +51,17 @@ export async function writePost(
 		// region1: '인천광역시',
 		// region2: '남동구',
 	};
-	try {
-		revalidateTag('posts');
 
-		const accessToken = cookies().get('accessToken')?.value;
+	revalidateTag('posts');
 
-		const res = await customFetch<Response>('/posts', {
-			method: 'POST',
-			body: JSON.stringify(body),
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-		});
-		return res;
-	} catch (e) {
-		throw e;
-	}
+	const accessToken = cookies().get('accessToken')?.value;
+
+	const res = await customFetch<Response>('/posts', {
+		method: 'POST',
+		body: JSON.stringify(body),
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+		},
+	});
+	return res;
 }

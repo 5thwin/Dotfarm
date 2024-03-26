@@ -5,6 +5,9 @@ import { blockStyle } from '@/app/styles/common/blockStyle';
 import clsx from 'clsx';
 import Form from './components/Form';
 import { useSearchParams } from 'next/navigation';
+import AddIcon from '@/../public/icon/addImage.svg';
+import { useState } from 'react';
+import ImagesWrapper from './components/ImagesWrapper';
 
 function Page() {
 	const searchParams = useSearchParams();
@@ -18,6 +21,10 @@ function Page() {
 				<div className="flex gap-x-2.5 items-center">
 					<MobileBackButton />
 					<h1 className="text-xl font-bold text-center">{pageTitle}</h1>
+				</div>
+				<div className="flex flex-col gap-y-5px">
+					<p className="font-bold text-lg">이미지 첨부</p>
+					<ImagesWrapper />
 				</div>
 				<Form postId={postId} />
 			</section>
@@ -34,4 +41,10 @@ const pageContainer = clsx(
 	'shadow-none lg:shadow-main',
 	'flex flex-col gap-y-5',
 	'lg:mt-[72px]'
+);
+
+const modalOpenButton = clsx(
+	'flex flex-col justify-center items-center h-full',
+	'rounded-10 w-[185px] h-[110px]',
+	'bg-subGray border-lineColor border'
 );

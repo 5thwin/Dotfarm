@@ -3,6 +3,11 @@ import customFetch from '@/api/customFetch';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { COOKIE_KEY_ACCESS, COOKIE_KEY_REFRESH } from '..';
+import {
+	removeTokenInCookie,
+	setAccessTokenInCookie,
+	setRefreshTokenInCookie,
+} from './token/utils';
 
 const username = 'hisy2059@naver.com';
 const password = '123123';
@@ -25,17 +30,8 @@ export const login = async () => {
 		const { accessToken, refreshToken } = res;
 		// 쿠키에 accessToken과 refreshToken을 저장합니다.
 		// 쿠키 옵션은 필요에 따라 설정할 수 있습니다.
-		cookies().set(COOKIE_KEY_ACCESS, accessToken, {
-			httpOnly: true,
-			sameSite: 'strict',
-			path: '/',
-		});
-		cookies().set(COOKIE_KEY_REFRESH, refreshToken, {
-			httpOnly: true,
-			sameSite: 'strict',
-			path: '/',
-		});
-
+		setAccessTokenInCookie(accessToken);
+		setRefreshTokenInCookie(refreshToken);
 		return res;
 	} catch (e) {
 		console.error(e);
@@ -43,5 +39,5 @@ export const login = async () => {
 };
 
 export const logout = async () => {
-	cookies().delete('accessToken');
+	removeTokenInCookie();
 };

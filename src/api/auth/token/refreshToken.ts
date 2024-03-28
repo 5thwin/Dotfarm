@@ -1,12 +1,13 @@
 import { baseUrl } from '@/api';
 import HttpError from '@/utils/error/httpError';
 import { cookies } from 'next/headers';
+import { getRefreshTokenFromCookie } from './utils';
 
 //refresh token을 이용하여 새로운 access token을 발급받음
 export async function refreshAccessToken() {
 	// 리프레시 토큰을 사용하여 새 액세스 토큰을 요청하는 로직
 	const refreshUrl = `${baseUrl}/auth/token/access`;
-	const refreshToken = cookies().get('refreshToken')?.value;
+	const refreshToken = getRefreshTokenFromCookie();
 	if (!refreshToken) {
 		alert('다시 로그인해주세요.');
 		return;

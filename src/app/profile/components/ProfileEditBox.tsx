@@ -3,6 +3,7 @@ import ProfileEditForm from './ProfileEditForm';
 import clsx from 'clsx';
 import { getUserMe, updateUserMe } from '@/api/user/get';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
+import LogoutButtonInProfile from './LogoutButtonInProfile';
 
 export default async function ProfileEditBox() {
 	const userme = await getUserMe();
@@ -21,6 +22,9 @@ export default async function ProfileEditBox() {
 				) : (
 					<p className="flexCenter py-5">회원 정보를 불러올 수 없습니다.</p>
 				)}
+			</div>
+			<div className="flex flex-col items-center">
+				<LogoutButtonInProfile />
 			</div>
 		</div>
 	);

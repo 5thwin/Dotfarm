@@ -24,3 +24,6 @@ export const getMe = () => {
 	const storedUser: UserPartial = JSON.parse(meValue);
 	return storedUser;
 };
+export const removeMe = () => {
+	removeLocalItem(LOCAL_KEY_ME);
+};

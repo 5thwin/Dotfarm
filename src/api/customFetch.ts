@@ -1,5 +1,7 @@
+import HttpError from '@/utils/error/httpError';
 import { baseUrl } from '.';
 import { refreshAccessToken } from './auth/token/refreshToken';
+import { setAccessTokenInCookie } from './auth/token/utils';
 
 async function customFetch<T>(
 	endpoint: string,
@@ -23,7 +25,9 @@ async function customFetch<T>(
 	if (response.status === 401) {
 		// 액세스 토큰 갱신 시도
 		const newAccessToken = await refreshAccessToken();
-
+		if (!newAccessToken)
+			throw new HttpError(401, `401: Unable to get a new Access token.`);
+		setAccessTokenInCookie(newAccessToken);
 		// 헤더에 갱신된 액세스 토큰 추가
 		newConfig.headers.set('Authorization', `Bearer ${newAccessToken}`);
 

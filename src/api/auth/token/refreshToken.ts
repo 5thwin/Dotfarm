@@ -1,4 +1,5 @@
 import { baseUrl } from '@/api';
+import HttpError from '@/utils/error/httpError';
 import { cookies } from 'next/headers';
 
 //refresh token을 이용하여 새로운 access token을 발급받음
@@ -18,6 +19,13 @@ export async function refreshAccessToken() {
 		},
 	});
 	const data = await refreshResponse.json();
+	if (refreshResponse.status === 401) {
+		//유효하지 않은 refreshToken
+		throw new HttpError(
+			refreshResponse.status,
+			`${refreshResponse.status} ${refreshResponse.statusText} `
+		);
+	}
 	if (!refreshResponse.ok) {
 		throw new Error(
 			`Unable to refresh access token. ${refreshResponse.status} ${refreshResponse.statusText}`

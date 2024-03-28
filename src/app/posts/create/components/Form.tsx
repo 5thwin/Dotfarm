@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import CategorySelect from './CategorySelect';
 
 import useCreatePost from '../hook/useCreatePost';
+import HttpError from '@/utils/error/httpError';
+import { useEffect } from 'react';
 
 type Props = {
 	postId: number | null;
@@ -11,6 +13,7 @@ type Props = {
 export default function Form({ postId }: Props) {
 	const { title, setTitle, contents, setContents, handleSubmit } =
 		useCreatePost(postId || undefined);
+
 	return (
 		<form className={formStyle} onSubmit={handleSubmit}>
 			<input

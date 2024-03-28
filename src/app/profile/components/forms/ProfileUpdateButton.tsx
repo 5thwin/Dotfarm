@@ -1,7 +1,7 @@
 import { mainGreenRoundedButtonStyle } from '@/app/styles/common/buttonStyle';
 import clsx from 'clsx';
 import useProfileStore from '../../store/profileStore';
-import { UserUpdateData } from '@/api/user';
+import { UserUpdateData } from '@/api/user/get';
 import { useState } from 'react';
 import useValidationStore from '../../store/validationStore';
 import { revalidatePath } from 'next/cache';

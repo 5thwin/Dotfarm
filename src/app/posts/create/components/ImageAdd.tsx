@@ -13,7 +13,6 @@ export default function ImageAdd() {
 		if (!fileList || !fileList[0]) return;
 		addImages(fileList);
 		const formData = new FormData();
-		console.log(fileList[0]);
 		formData.append('image', fileList[0]);
 		try {
 			await saveTempImage(formData);

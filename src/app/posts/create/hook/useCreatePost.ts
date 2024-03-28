@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { getPost } from '@/api/post/get';
 import { patchPost } from '@/api/post/update';
 import { useEffect } from 'react';
+import HttpError from '@/utils/error/httpError';
 
 export default function useCreatePost(postId?: number) {
 	const router = useRouter();
@@ -49,20 +50,31 @@ export default function useCreatePost(postId?: number) {
 
 		if (isModifyMode) {
 			//patch 로직
-			const res = await patchPost(postId, title, contents, category);
-			if (res.id) {
-				reset();
-				router.push(`/posts/${res.id}`);
-				return;
+			try {
+				const res = await patchPost(postId, title, contents, category);
+				if (res.id) {
+					reset();
+					router.push(`/posts/${res.id}`);
+					return;
+				}
+			} catch (error) {
+				if (error instanceof Error && error.message.includes('401')) {
+					router.push('/401');
+				}
 			}
-		} else {
-			//작성 로직
 
+			return;
+		}
+		try {
 			const res = await writePost(title, contents, category, imageURL);
 			if (res.id) {
 				reset();
 				router.push(`/posts/${res.id}`);
 				return;
+			}
+		} catch (error) {
+			if (error instanceof Error && error.message.includes('401')) {
+				router.push('/401');
 			}
 		}
 	};

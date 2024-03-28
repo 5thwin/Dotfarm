@@ -1,7 +1,7 @@
 import { blockStyle } from '@/app/styles/common/blockStyle';
 import ProfileEditForm from './ProfileEditForm';
 import clsx from 'clsx';
-import { getUserMe, updateUserMe } from '@/api/user';
+import { getUserMe, updateUserMe } from '@/api/user/get';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 
 export default async function ProfileEditBox() {

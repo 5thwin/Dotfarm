@@ -1,6 +1,6 @@
 'use server';
 
-import { UserMe } from '@/type/user';
+import { User, UserMe, UserPartial } from '@/type/user';
 import customFetch from '../customFetch';
 import { revalidateTag } from 'next/cache';
 
@@ -8,6 +8,15 @@ export async function getUserMe() {
 	try {
 		const res = await customFetch<UserMe>('/profiles/1', {
 			next: { revalidate: 10, tags: ['profile'] },
+		});
+		return res;
+	} catch (e) {}
+}
+
+export async function getUserById(id: number) {
+	try {
+		const res = await customFetch<UserPartial>(`/users/${id}`, {
+			next: { revalidate: 10, tags: ['user', `${id}`] },
 		});
 		return res;
 	} catch (e) {}

@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import DotfarmLogo from '../../landing/DotfarmLogo';
 import { PATH_MAIN, navLinks } from '@/utils/navigation';
 import Link from 'next/link';
-import { IcSetting } from '../../icons/IcSetting';
 
 const Header: React.FC = () => {
 	const [isScrolled, setIsScrolled] = useState(false);

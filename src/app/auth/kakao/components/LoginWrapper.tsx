@@ -1,11 +1,12 @@
 'use client';
 
-import { getKakaoLogin } from '@/api/auth/kakao';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { setLocalItem } from '@/utils/localstorage';
-import { useEffect, useState } from 'react';
-import { login } from '../test';
-type LoginState = 'pending' | 'failure' | 'success' | 'nonMember';
+import { setMe } from '@/utils/localstorage';
+import { useEffect } from 'react';
+import { login } from '@/api/auth/login';
+import { getUserById } from '@/api/user/get';
+
+import { decodeJWT } from '@/utils/jwt';
 
 export default function LoginWrapper() {
 	const searchParams = useSearchParams();
@@ -37,10 +38,18 @@ export default function LoginWrapper() {
 				// 			setLoginStatus('nonMember');
 				// 		}
 				const res = await login();
-				if (res) {
-					setLocalItem('auth', JSON.stringify(res));
-					router.push('/main'); // 개발 시 주석으로
+				if (!res) {
+					router.push('/401'); // 개발 시 사용자 없음 페이지 (혹은 로그인 할 수 없습니다. 문의해주세요.)
+					return;
 				}
+				// access token에서 user id 가져옴
+				const decoded = decodeJWT(res.accessToken);
+				const userId = decoded.sub;
+				const user = await getUserById(Number(userId)); //실제로는 login의 res에서 id를 반환함
+				if (user) {
+					setMe(user);
+				}
+				router.push('/main');
 			} catch (error) {
 				console.error(error);
 				// setLoginStatus('failure');

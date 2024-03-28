@@ -8,7 +8,7 @@ import ProfileMajorCrops from './forms/ProfileMajorCrops';
 import ProfileFarmingExperience from './forms/ProfileFarmingExperience';
 import ProfileUpdateButton from './forms/ProfileUpdateButton';
 import ProfileUserName from './forms/ProfileUserName';
-import { UserUpdateData } from '@/api/user';
+import { UserUpdateData } from '@/api/user/get';
 import clsx from 'clsx';
 
 type Props = {

@@ -3,7 +3,8 @@ import { refreshAccessToken } from './auth/token/refreshToken';
 
 async function customFetch<T>(
 	endpoint: string,
-	config: RequestInit = {}
+	config: RequestInit = {},
+	isMultipart: boolean = false
 ): Promise<T> {
 	const url = `${baseUrl}${endpoint}`;
 
@@ -12,6 +13,9 @@ async function customFetch<T>(
 		'Content-Type': 'application/json', // JSON 형태의 데이터를 전송한다고 명시
 		...config.headers,
 	});
+	if (isMultipart) {
+		headers.delete('Content-Type');
+	}
 	const newConfig = { ...config, headers };
 	// 요청 인터셉터 로직을 여기에 추가
 	let response = await fetch(url, newConfig);

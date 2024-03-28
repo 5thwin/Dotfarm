@@ -1,7 +1,7 @@
 import { mainGreenRoundedButtonStyle } from '@/app/styles/common/buttonStyle';
 import useProfileStore from '../../store/profileStore';
 import Toast from '@/app/components/common/Toast';
-import { checkUserNameAvailability } from '@/api/user';
+import { checkUserNameAvailability } from '@/api/user/get';
 import useValidationStore from '../../store/validationStore';
 
 export default function CheckDuplicateButton() {

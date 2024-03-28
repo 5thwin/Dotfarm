@@ -1,7 +1,7 @@
 'use server';
 import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
-import { cookies, headers } from 'next/headers';
+import { cookies } from 'next/headers';
 
 type Response = {
 	title: string;

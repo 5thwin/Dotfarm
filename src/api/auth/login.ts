@@ -4,10 +4,12 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { COOKIE_KEY_ACCESS, COOKIE_KEY_REFRESH } from '..';
 import {
+	getAccessTokenFromCookie,
 	removeTokenInCookie,
 	setAccessTokenInCookie,
 	setRefreshTokenInCookie,
 } from './token/utils';
+import { decodeJWT } from '@/utils/jwt';
 
 const username = 'hisy2059@naver.com';
 const password = '123123';
@@ -30,7 +32,10 @@ export const login = async () => {
 		const { accessToken, refreshToken } = res;
 		// 쿠키에 accessToken과 refreshToken을 저장합니다.
 		// 쿠키 옵션은 필요에 따라 설정할 수 있습니다.
+
 		setAccessTokenInCookie(accessToken);
+
+		const getAccess = getAccessTokenFromCookie();
 		setRefreshTokenInCookie(refreshToken);
 		return res;
 	} catch (e) {

@@ -1,7 +1,7 @@
+'use server';
 import { baseUrl } from '@/api';
 import HttpError from '@/utils/error/httpError';
-import { cookies } from 'next/headers';
-import { getRefreshTokenFromCookie } from './utils';
+import { getRefreshTokenFromCookie, setAccessTokenInCookie } from './utils';
 
 //refresh token을 이용하여 새로운 access token을 발급받음
 export async function refreshAccessToken() {
@@ -32,5 +32,8 @@ export async function refreshAccessToken() {
 			`Unable to refresh access token. ${refreshResponse.status} ${refreshResponse.statusText}`
 		);
 	}
-	return data.accessToken as string; // 갱신된 액세스 토큰 반환
+	const newAccessToken = data.accessToken as string;
+	setAccessTokenInCookie(newAccessToken);
+
+	return newAccessToken; // 갱신된 액세스 토큰 반환
 }

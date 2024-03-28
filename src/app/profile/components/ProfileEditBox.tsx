@@ -1,12 +1,18 @@
+'use server';
 import { blockStyle } from '@/app/styles/common/blockStyle';
 import ProfileEditForm from './ProfileEditForm';
 import clsx from 'clsx';
-import { getUserMe, updateUserMe } from '@/api/user/get';
+import { getUserById } from '@/api/user/get';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import LogoutButtonInProfile from './LogoutButtonInProfile';
+import { getUserIdByAccessToken } from '@/api/auth/token/utils';
+import { UserMe } from '@/type/user';
 
-export default async function ProfileEditBox() {
-	const userme = await getUserMe();
+type Props = {
+	userId: number;
+};
+export default async function ProfileEditBox({ userId }: Props) {
+	const userme = await getUserById(Number(userId));
 	return (
 		<div className={responsiveContainer}>
 			<div className="flex flex-col gap-y-5 h-full">
@@ -18,7 +24,7 @@ export default async function ProfileEditBox() {
 				</div>
 
 				{userme ? (
-					<ProfileEditForm userMe={userme} updateProfile={updateUserMe} />
+					<ProfileEditForm userMe={userme as UserMe} />
 				) : (
 					<p className="flexCenter py-5">회원 정보를 불러올 수 없습니다.</p>
 				)}
@@ -35,5 +41,6 @@ const responsiveContainer = clsx(
 	'w-full lg:w-[640px]',
 	'shadow-none lg:shadow-main',
 	'h-full lg:h-auto',
-	'rounded-none lg:rounded-30'
+	'rounded-none lg:rounded-30',
+	'flex flex-col gap-y-15px'
 );

@@ -3,12 +3,12 @@ import { create } from 'zustand';
 
 // 스토어 상태를 위한 인터페이스 정의
 interface ProfileState {
-	profileImageURL: string;
+	profileImageURL: string | null;
 	nickname: string;
-	region: string;
-	subRegion: string;
-	farmingExperience: string;
-	majorCrops: string;
+	region: string | null;
+	subRegion: string | null;
+	farmingExperience: string | null;
+	majorCrops: string | null;
 	setProfileImageURL: (_: string) => void;
 	setUserName: (_: string) => void;
 	setRegion: (_: string) => void;

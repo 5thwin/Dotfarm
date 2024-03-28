@@ -45,7 +45,7 @@ export default function LoginWrapper() {
 				// access token에서 user id 가져옴
 				const decoded = decodeJWT(res.accessToken);
 				const userId = decoded.sub;
-				const user = await getUserById(Number(userId)); //실제로는 login의 res에서 id를 반환함
+				const user = await getUserById(Number(userId));
 				if (user) {
 					setMe(user);
 				}

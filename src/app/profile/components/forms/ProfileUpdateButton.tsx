@@ -1,17 +1,16 @@
 import { mainGreenRoundedButtonStyle } from '@/app/styles/common/buttonStyle';
 import clsx from 'clsx';
 import useProfileStore from '../../store/profileStore';
-import { UserUpdateData } from '@/api/user/get';
 import { useState } from 'react';
 import useValidationStore from '../../store/validationStore';
-import { revalidatePath } from 'next/cache';
+import { updateUserMe } from '@/api/user/update';
 
 const CHECK_USERNAME_MESSAGE = '프로필명을 다시 한번 확인해주세요.';
 const CHECK_DUPLICATION_MESSAGE = '중복확인을 눌러주세요.';
 const NORMAL_TEXT = '적용하기';
 
-type Props = { updateProfile: (_: UserUpdateData) => void };
-export default function ProfileUpdateButton({ updateProfile }: Props) {
+type Props = { userId: number };
+export default function ProfileUpdateButton({ userId }: Props) {
 	const [buttonText, setButtonText] = useState<string>(NORMAL_TEXT);
 	const {
 		profileImageURL,
@@ -39,7 +38,7 @@ export default function ProfileUpdateButton({ updateProfile }: Props) {
 			setButtonText(CHECK_DUPLICATION_MESSAGE);
 			return setTimeout(() => setButtonText(NORMAL_TEXT), 1500);
 		}
-		await updateProfile(updateData);
+		await updateUserMe(updateData, userId);
 	};
 	return (
 		<button

@@ -5,8 +5,7 @@ import { blockStyle } from '@/app/styles/common/blockStyle';
 import clsx from 'clsx';
 import Form from './components/Form';
 import { useSearchParams } from 'next/navigation';
-import AddIcon from '@/../public/icon/addImage.svg';
-import { useState } from 'react';
+
 import ImagesWrapper from './components/ImagesWrapper';
 
 function Page() {

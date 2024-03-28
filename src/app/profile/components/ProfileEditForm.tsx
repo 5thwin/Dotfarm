@@ -8,14 +8,12 @@ import ProfileMajorCrops from './forms/ProfileMajorCrops';
 import ProfileFarmingExperience from './forms/ProfileFarmingExperience';
 import ProfileUpdateButton from './forms/ProfileUpdateButton';
 import ProfileUserName from './forms/ProfileUserName';
-import { UserUpdateData } from '@/api/user/get';
 import clsx from 'clsx';
 
 type Props = {
 	userMe: UserMe;
-	updateProfile: (_: UserUpdateData) => void;
 };
-export default function ProfileEditForm({ userMe, updateProfile }: Props) {
+export default function ProfileEditForm({ userMe }: Props) {
 	const { init } = useProfileStore();
 	useEffect(() => init(userMe), []);
 
@@ -47,7 +45,7 @@ export default function ProfileEditForm({ userMe, updateProfile }: Props) {
 				<ProfileMajorCrops />
 			</div>
 			<div className="">
-				<ProfileUpdateButton updateProfile={updateProfile} />
+				<ProfileUpdateButton userId={userMe.id} />
 			</div>
 		</form>
 	);

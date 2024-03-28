@@ -1,6 +1,7 @@
 'use server';
 
 import { COOKIE_KEY_ACCESS, COOKIE_KEY_REFRESH } from '@/api';
+import { decodeJWT } from '@/utils/jwt';
 import { cookies } from 'next/headers';
 
 export const setAccessTokenInCookie = (accessToken: string) =>
@@ -22,4 +23,10 @@ export const getRefreshTokenFromCookie = () =>
 export const removeTokenInCookie = () => {
 	cookies().delete(COOKIE_KEY_ACCESS);
 	cookies().delete(COOKIE_KEY_REFRESH);
+};
+
+export const getUserIdByAccessToken = () => {
+	const accessToken = getAccessTokenFromCookie();
+
+	return accessToken && decodeJWT(accessToken).sub;
 };

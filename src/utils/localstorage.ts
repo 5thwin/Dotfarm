@@ -1,4 +1,6 @@
 import { UserPartial } from '@/type/user';
+// key
+export const LOCAL_KEY_ME = 'me';
 
 export const setLocalItem = (key: string, value: string): void => {
 	localStorage.setItem(key, value);
@@ -12,6 +14,13 @@ export const removeLocalItem = (key: string): void => {
 };
 
 export const setMe = (user: UserPartial) =>
-	localStorage.setItem('me', JSON.stringify(user));
+	setLocalItem(LOCAL_KEY_ME, JSON.stringify(user));
 
-export const LOCAL_KEY_ME = 'me';
+export const getMe = () => {
+	const meValue = getLocalItem(LOCAL_KEY_ME);
+	if (!meValue) {
+		return null;
+	}
+	const storedUser: UserPartial = JSON.parse(meValue);
+	return storedUser;
+};

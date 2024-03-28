@@ -2,7 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
-import { cookies } from 'next/headers';
+import { getAccessTokenFromCookie } from '../auth/token/utils';
 type Response = {
 	id: number;
 	updatedAt: string;
@@ -35,7 +35,7 @@ export async function patchPost(
 	};
 	try {
 		revalidateTag('posts');
-		const accessToken = cookies().get('accessToken')?.value;
+		const accessToken = getAccessTokenFromCookie();
 
 		const res = await customFetch<Response>(`/posts/${id}`, {
 			method: 'PATCH',

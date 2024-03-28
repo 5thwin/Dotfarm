@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import { getPost } from '@/api/post/get';
 import { patchPost } from '@/api/post/update';
 import { useEffect } from 'react';
-import HttpError from '@/utils/error/httpError';
-
 export default function useCreatePost(postId?: number) {
 	const router = useRouter();
 	const {

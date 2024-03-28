@@ -35,7 +35,7 @@ export async function createComment(
 		parentId,
 	};
 	try {
-		const accessToken = cookies().get('accessToken')?.value;
+		const accessToken = getAccessTokenFromCookie();
 
 		revalidateTag('comments');
 		const res = await customFetch<Response>(`/posts/${postId}/comments`, {

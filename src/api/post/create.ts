@@ -2,6 +2,7 @@
 import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
 import { cookies } from 'next/headers';
+import { getAccessTokenFromCookie } from '../auth/token/utils';
 
 type Response = {
 	title: string;
@@ -54,7 +55,7 @@ export async function writePost(
 
 	revalidateTag('posts');
 
-	const accessToken = cookies().get('accessToken')?.value;
+	const accessToken = getAccessTokenFromCookie();
 
 	const res = await customFetch<Response>('/posts', {
 		method: 'POST',

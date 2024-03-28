@@ -5,10 +5,12 @@ import React, { useState, useEffect } from 'react';
 import DotfarmLogo from '../../landing/DotfarmLogo';
 import { PATH_MAIN, navLinks } from '@/utils/navigation';
 import Link from 'next/link';
+import { getMe } from '@/utils/localstorage';
+import HeaderUserIcon from './HeaderUserIcon';
 
 const Header: React.FC = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
-
+	const me = getMe();
 	useEffect(() => {
 		let lastScrollY = window.scrollY;
 		let ticking = false;
@@ -46,13 +48,11 @@ const Header: React.FC = () => {
 					))}
 				</ul>
 			</div>
-			<div className="flex gap-x-2.5 items-center">
-				{/* <button className="flex items-center">
-					<IcSetting />
-					<span>설정</span>
-				</button> */}
+			{me ? (
+				<HeaderUserIcon me={me} />
+			) : (
 				<button className={loginButtonStyle}>로그인</button>
-			</div>
+			)}
 		</header>
 	);
 };

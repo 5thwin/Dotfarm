@@ -33,13 +33,3 @@ export type UserPartial = Pick<User, 'id' | 'nickname' | 'farmingExperience'> &
 	Partial<
 		Pick<User, 'profileImageURL' | 'majorCrops' | 'region' | 'subRegion'>
 	>;
-
-const sample: UserPartial = {
-	id: 1,
-	nickname: '리오',
-	profileImageURL: null,
-	majorCrops: null,
-	region: null,
-	subRegion: null,
-	farmingExperience: '귀농에 관심있음',
-};

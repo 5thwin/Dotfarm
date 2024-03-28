@@ -1,13 +1,14 @@
 'use server';
 import { cookies } from 'next/headers';
 import customFetch from '../customFetch';
+import { getAccessTokenFromCookie } from '../auth/token/utils';
 
 interface Response {
 	fileName: string;
 }
 
 export async function saveTempImage(formData: FormData) {
-	const accessToken = cookies().get('accessToken')?.value;
+	const accessToken = getAccessTokenFromCookie();
 	// FormData의 key 확인
 	try {
 		const res = await customFetch<Response>(`/common/image`, {

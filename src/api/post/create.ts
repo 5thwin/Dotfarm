@@ -3,20 +3,13 @@ import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
 import { decodeJWT } from '@/utils/jwt';
 import { getAccessTokenFromCookie } from '../auth/token/utils';
+import { UserPartial } from '@/type/user';
 
 type Response = {
 	title: string;
 	content: string;
 	category: string;
-	author: {
-		id: number;
-		nickname: string;
-		profileImageURL: string | null;
-		majorCrops: string | null;
-		region: string | null;
-		subRegion: string | null;
-		farmingExperience: string;
-	};
+	author: UserPartial;
 	images: [
 		{
 			id: number;
@@ -37,20 +30,13 @@ export async function writePost(
 	title: string,
 	content: string,
 	category: string,
-	contentImageURL?: string
-	// accessToken?: string
+	images?: string[]
 ) {
 	const body = {
 		title,
 		content,
 		category,
-		images: [],
-		//아래 내용은 로직 변경 필요
-		// userId: 1,
-		// createdAt: '2023-06-02 05:53:13',
-		// updatedAt: '2024-02-27 05:53:13',
-		// region1: '인천광역시',
-		// region2: '남동구',
+		images: images || [],
 	};
 
 	revalidateTag('posts');

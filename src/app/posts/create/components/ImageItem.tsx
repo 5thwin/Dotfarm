@@ -7,9 +7,10 @@ type Props = {
 	index: number;
 };
 export default function ImageItem({ imageUrl, index }: Props) {
-	const { deleteImage } = useCreateImageStore();
+	const { deleteImage, deleteServerImagePath } = useCreateImageStore();
 	const handleDelete = () => {
 		deleteImage(index);
+		deleteServerImagePath(index);
 	};
 	return (
 		<div className="relative rounded-10 w-[185px] h-[110px]">

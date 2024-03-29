@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { getPost } from '@/api/post/get';
 import { patchPost } from '@/api/post/update';
 import { useEffect } from 'react';
+import useCreateImageStore from '../store/createImageStore';
 export default function useCreatePost(postId?: number) {
 	const router = useRouter();
 	const {
@@ -14,11 +15,9 @@ export default function useCreatePost(postId?: number) {
 		setContents,
 		category,
 		setCategory,
-		imageURL,
-		// setImageURL,
 		reset,
 	} = useCreatePostStore();
-
+	const { serverImagePaths } = useCreateImageStore();
 	const isModifyMode = !!postId; //수정모드 판별,
 	useEffect(() => {
 		reset();
@@ -64,7 +63,7 @@ export default function useCreatePost(postId?: number) {
 			return;
 		}
 		try {
-			const res = await writePost(title, contents, category, imageURL);
+			const res = await writePost(title, contents, category, serverImagePaths);
 			if (res.id) {
 				reset();
 				router.push(`/posts/${res.id}`);
@@ -83,7 +82,6 @@ export default function useCreatePost(postId?: number) {
 		contents,
 		setContents,
 		category,
-		imageURL,
 		reset,
 		handleSubmit,
 	};

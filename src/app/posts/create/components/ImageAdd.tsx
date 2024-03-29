@@ -3,26 +3,43 @@ import AddIcon from '@/../public/icon/addImage.svg';
 import clsx from 'clsx';
 import useCreateImageStore from '../store/createImageStore';
 import { saveTempImage } from '@/api/common/create';
+import Toast from '@/app/components/common/Toast';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function ImageAdd() {
-	const { addImages } = useCreateImageStore();
+	const router = useRouter();
+	const { addImages, addServerImagePath, deleteImage, imageUrls } =
+		useCreateImageStore();
+	const [fileInputKey, setFileInputKey] = useState(0); // input 요소를 새로운 요소로 인식하도록 하여 초기화를 보장
 
 	const handleAddImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (!e.target.files) return;
+		setFileInputKey((previous) => previous + 1);
 		const fileList = e.target.files;
 		if (!fileList || !fileList[0]) return;
-		addImages(fileList);
 		const formData = new FormData();
 		formData.append('image', fileList[0]);
 		try {
-			await saveTempImage(formData);
-		} catch (error) {}
+			const { fileName } = await saveTempImage(formData);
+			Toast.fire({ title: '이미지 업로드', icon: 'success' });
+
+			addImages(fileList);
+			addServerImagePath(fileName);
+		} catch (error) {
+			//이미지 업로드에 실패
+			Toast.fire({ title: '이미지 업로드에 실패하였습니다.', icon: 'error' });
+			if (error instanceof Error && error.message.includes('401')) {
+				router.push('/401');
+			}
+		}
 	};
 
 	return (
-		<form className={formContainer} action={saveTempImage}>
+		<form className={formContainer}>
 			<label htmlFor="file" className="cursor-pointer flexCenter flex-col">
 				<input
+					key={fileInputKey}
 					type="file"
 					id="file"
 					className="hidden"

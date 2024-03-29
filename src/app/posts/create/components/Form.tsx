@@ -1,10 +1,7 @@
 'use client';
 import clsx from 'clsx';
 import CategorySelect from './CategorySelect';
-
 import useCreatePost from '../hook/useCreatePost';
-import HttpError from '@/utils/error/httpError';
-import { useEffect } from 'react';
 
 type Props = {
 	postId: number | null;

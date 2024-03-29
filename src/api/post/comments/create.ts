@@ -1,8 +1,8 @@
 'use server';
 
+import { getAccessTokenFromCookie } from '@/api/auth/token/utils';
 import customFetch from '@/api/customFetch';
 import { revalidateTag } from 'next/cache';
-import { cookies } from 'next/headers';
 
 type Response = {
 	id: number;

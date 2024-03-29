@@ -1,8 +1,6 @@
 'use server';
 import customFetch from '@/api/customFetch';
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
-import { COOKIE_KEY_ACCESS, COOKIE_KEY_REFRESH } from '..';
+
 import {
 	getAccessTokenFromCookie,
 	removeTokenInCookie,

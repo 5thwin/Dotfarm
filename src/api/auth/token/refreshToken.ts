@@ -9,8 +9,7 @@ export async function refreshAccessToken() {
 	const refreshUrl = `${baseUrl}/auth/token/access`;
 	const refreshToken = getRefreshTokenFromCookie();
 	if (!refreshToken) {
-		alert('다시 로그인해주세요.');
-		return;
+		throw new Error(`Unable to access refreshToken`);
 	}
 	const refreshResponse = await fetch(refreshUrl, {
 		method: 'POST',

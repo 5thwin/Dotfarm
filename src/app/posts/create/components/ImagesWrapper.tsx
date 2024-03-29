@@ -8,7 +8,7 @@ export default function ImagesWrapper() {
 	const { imageUrls } = useCreateImageStore();
 	const isMaxImage = imageUrls.length >= 3;
 	return (
-		<div className="flex flex-wrap gap-2.5">
+		<div className="flex flex-wrap gap-2.5 h-[110px]">
 			{imageUrls.map((url, index) => (
 				<ImageItem imageUrl={url} index={index} key={`post-image-${index}}`} />
 			))}

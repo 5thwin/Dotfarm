@@ -1,10 +1,11 @@
-import { PostWithUser } from '@/type/post';
+import { PostPartial } from '@/type/post';
+import { UserPartial } from '@/type/user';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = {
-	post: PostWithUser;
+	post: PostPartial & { author?: UserPartial };
 };
 export default function ComunityPostItem({ post }: Props) {
 	const { author } = post;
@@ -17,7 +18,10 @@ export default function ComunityPostItem({ post }: Props) {
 				{author && (
 					<div className={userInfoStyle}>
 						<Image
-							src={author.profileImageURL}
+							src={
+								author.profileImageURL ||
+								'/public/profile/defaultProfileImg_32x32.svg'
+							}
 							alt={`${author.nickname}님의 프로필 이미지`}
 							className="rounded-full"
 							width={32}
@@ -30,7 +34,7 @@ export default function ComunityPostItem({ post }: Props) {
 					</div>
 				)}
 			</div>
-			{post.contentImageURL && (
+			{/* {post.contentImageURL && (
 				<div className={imgWrapper}>
 					<Image
 						src={post.contentImageURL}
@@ -39,7 +43,7 @@ export default function ComunityPostItem({ post }: Props) {
 						alt={post.title}
 					/>
 				</div>
-			)}
+			)} */}
 		</Link>
 	);
 }

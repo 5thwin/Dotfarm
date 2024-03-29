@@ -1,13 +1,13 @@
 import { blockStyle } from '@/app/styles/common/blockStyle';
 import PostsList from './PostsList';
-import { PostWithUser } from '@/type/post';
 import PostsPagination from './PostsPagination';
 import clsx from 'clsx';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import GoToWriteInput from '@/app/components/link/GoToWriteInput';
+import { PostPartial } from '@/type/post';
 
 type Props = {
-	posts: PostWithUser[];
+	posts: PostPartial[];
 };
 
 export default function PostsWrapper({ posts }: Props) {

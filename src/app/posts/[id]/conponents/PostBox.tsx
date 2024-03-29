@@ -1,5 +1,4 @@
 import { blockStyle } from '@/app/styles/common/blockStyle';
-import { FullPost } from '@/type/post';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,13 +8,15 @@ import CommentsArea from './comments/CommentsArea';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import CommentWrite from './comments/CommentWrite';
 import PostEditButton from './PostEditButton';
+import { Post } from '@/type/post';
 
 type Props = {
-	post: FullPost;
+	post: Post;
 };
 export default function PostBox({ post }: Props) {
-	const author = post.author;
+	const { author, images } = post;
 	const ableToEdit = true;
+	const isExistImage = post.images && post.images[0];
 	return (
 		<div className={containerStyle}>
 			<div className={'flex gap-x-2.5 items-center lg:hidden'}>
@@ -25,20 +26,21 @@ export default function PostBox({ post }: Props) {
 			<PostHeader post={post} />
 			<div id="post-contents-area" className={postWrapper}>
 				<article>{post.content}</article>
-				{post.contentImageURL && (
-					<Link
-						href={post.contentImageURL || ''}
-						target="_blank"
-						className="w-full lg:w-[590px] h-[250px] sm:h-[330px] rounded-10 relative overflow-hidden"
-					>
-						<Image
-							src={post.contentImageURL}
-							fill={true}
-							className="object-contain lg:object-fill rounded-10"
-							alt={'농업 커뮤니티 게시글 첨부 이미지'}
-						/>
-					</Link>
-				)}
+				{isExistImage &&
+					images.map(({ path }) => (
+						<Link
+							href={path || ''}
+							target="_blank"
+							className="w-full lg:w-[590px] h-[250px] sm:h-[330px] rounded-10 relative overflow-hidden"
+						>
+							<Image
+								src={`${path}`}
+								fill={true}
+								className="object-contain lg:object-fill rounded-10"
+								alt={'농업 커뮤니티 게시글 첨부 이미지'}
+							/>
+						</Link>
+					))}
 			</div>
 			<div className="flex flex-col gap-y-1">
 				{ableToEdit && <PostEditButton postId={post.id} />}

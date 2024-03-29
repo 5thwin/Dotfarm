@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import ComunityPostItem from '@/app/main/components/commutiny/CommunityPostItem';
-import { PostWithUser } from '@/type/post';
+import { PostPartial } from '@/type/post';
 
 type Props = {
-	posts: PostWithUser[];
+	posts: PostPartial[];
 };
 
 export default async function PostsList({ posts }: Props) {

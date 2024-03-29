@@ -1,18 +1,18 @@
 // 'use server';
 
-import { User } from '@/type/user';
+import { UserPartial } from '@/type/user';
 import clsx from 'clsx';
 import Image from 'next/image';
 
-type Props = { author: User };
+type Props = { author: UserPartial };
 export default function PostAuthor({ author }: Props) {
-	const profileImage = author.profileImageURL;
+	const { profileImageURL } = author;
 	return (
 		<div className="flex gap-x-2.5 p-15px rounded-10 bg-subGray items-center">
 			<div className={profileImageWrapper}>
-				{profileImage ? (
+				{profileImageURL ? (
 					<Image
-						src={author.profileImageURL}
+						src={profileImageURL}
 						alt="작성자 프로필 이미지"
 						fill
 						placeholder="blur"

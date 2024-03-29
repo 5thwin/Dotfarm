@@ -18,7 +18,7 @@ export default async function CommentsArea({ postId }: Props) {
 			<div className="flex flex-col gap-y-5px">
 				{isCommentValid &&
 					comments.map((comment, index) =>
-						comment ? (
+						comment.parentId === 0 ? (
 							<CommentItem
 								key={`comment${index}`}
 								comment={comment}
@@ -38,7 +38,7 @@ const getReplyMap = (comments: Comment[]) => {
 
 	for (const comment of comments) {
 		// comments를 순회
-		if (comment.parentId) {
+		if (comment.parentId && comment.parentId > 0) {
 			// 부모 댓글이 있는 경우에만 대댓글로 처리
 			// 해당 parentId에 대한 대댓글 배열을 가져옴
 			const targetReplies = replyMap.get(comment.parentId) || [];

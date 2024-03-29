@@ -3,13 +3,14 @@ import { createComment } from '@/api/post/comments/create';
 import Toast from '@/app/components/common/Toast';
 import clsx from 'clsx';
 import React, { useRef } from 'react';
+import useParentComentStore from '../../store/parentCommentStore';
 
 type Props = {
 	postId: number;
 };
 export default function CommentWrite({ postId }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null);
-
+	const { parentComment } = useParentComentStore();
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const contents = inputRef.current?.value;
@@ -20,18 +21,25 @@ export default function CommentWrite({ postId }: Props) {
 		await createComment(postId, contents, 0);
 	};
 	return (
-		<form className={CommentWrapper} onSubmit={onSubmit}>
-			<label htmlFor="comment-input" className="sr-only" />
-			<input
-				ref={inputRef}
-				id="comment-input"
-				className={InputStyle}
-				placeholder="한마디 작성해주세요"
-			/>
-			<button type="submit" className={buttonStyle}>
-				입력하기
-			</button>
-		</form>
+		<div className="flex flex-col gap-y-5px">
+			{parentComment && (
+				<div className={clsx('text-subText font-bold px-5')}>
+					@{parentComment.author.nickname}
+				</div>
+			)}
+			<form className={CommentWrapper} onSubmit={onSubmit}>
+				<label htmlFor="comment-input" className="sr-only" />
+				<input
+					ref={inputRef}
+					id="comment-input"
+					className={InputStyle}
+					placeholder="한마디 작성해주세요"
+				/>
+				<button type="submit" className={buttonStyle}>
+					입력하기
+				</button>
+			</form>
+		</div>
 	);
 }
 

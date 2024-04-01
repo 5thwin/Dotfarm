@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { KaKaoLoginButton } from '../components/landing/KaKaoLoginButton';
+import { KakaoBubble } from '../components/icons/KakaoBubble';
 
 export default function Page401() {
 	return (
@@ -16,11 +17,16 @@ export default function Page401() {
 				<h1 className="text-lg lg:text-[26px] text-mainGreen font-bold">
 					권한이 만료되었어요
 				</h1>
-				<p className="lg:text-base text-sm text-center">
+				<p className="lg:text-base text-sm text-center font-bold">
 					다시 로그인이 필요합니다.
 				</p>
 			</div>
-			<KaKaoLoginButton />
+			<KaKaoLoginButton className="bg-kakaoYellow rounded-xl text-black font-bold flexCenter py-3 px-6">
+				<div className="flex gap-x-1">
+					<KakaoBubble />
+					<span className="text-opacity-85">카카오 로그인</span>
+				</div>
+			</KaKaoLoginButton>
 		</section>
 	);
 }

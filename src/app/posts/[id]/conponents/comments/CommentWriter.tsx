@@ -19,17 +19,19 @@ export default function CommentWriter({ user, createAt }: Props) {
 					alt={`${user.nickname} 프로필 이미지`}
 				/>
 			</div>
-			<b>{user.nickname}</b>
-			<div className="flex gap-x-5px items-center text-subText text-sm">
-				<span>{user.subRegion}</span>
-				<i className={devidorStyle} />
-				<span>{user.farmingExperience}</span>
-				<i className={devidorStyle} />
-				<span>{user.majorCrops}</span>
+			<div className="flex gap-x-2.5 items-center flex-wrap">
+				<b>{user.nickname}</b>
+				<div className="flex gap-x-5px items-center text-subText text-xs sm:text-sm">
+					<span>{user.subRegion}</span>
+					<i className={devidorStyle} />
+					<span>{user.farmingExperience}</span>
+					<i className={devidorStyle} />
+					<span>{user.majorCrops}</span>
+				</div>
+				<span className="text-xs text-subText font-bold">
+					{relativeTime(date)}
+				</span>
 			</div>
-			<span className="text-xs text-subText font-bold">
-				{relativeTime(date)}
-			</span>
 		</div>
 	);
 }

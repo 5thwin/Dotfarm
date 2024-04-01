@@ -3,7 +3,7 @@ import { create } from 'zustand';
 
 interface ParentCommentState {
 	parentComment: Comment | undefined;
-	setParentComment: (_: Comment) => void;
+	setParentComment: (_?: Comment) => void;
 }
 
 const useParentComentStore = create<ParentCommentState>((set) => ({

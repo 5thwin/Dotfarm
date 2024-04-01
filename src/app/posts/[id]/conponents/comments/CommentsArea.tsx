@@ -23,6 +23,7 @@ export default async function CommentsArea({ postId }: Props) {
 								key={`comment${index}`}
 								comment={comment}
 								replys={replyMap.get(comment.id)}
+								postId={postId}
 							/>
 						) : null
 					)}

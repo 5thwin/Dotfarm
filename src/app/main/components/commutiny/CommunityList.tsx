@@ -3,7 +3,7 @@ import ComunityPostItem from './CommunityPostItem';
 import clsx from 'clsx';
 
 export default async function CommunityList() {
-	const posts = await getPostsWithAuthor();
+	const posts = await getPostsWithAuthor({ take: 6 });
 	const isPostAvailable = posts && posts.data.length > 0;
 
 	return (

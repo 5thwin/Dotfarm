@@ -3,14 +3,16 @@ import { createComment } from '@/api/post/comments/create';
 import Toast from '@/app/components/common/Toast';
 import clsx from 'clsx';
 import React, { useRef } from 'react';
-import useParentComentStore from '../../store/parentCommentStore';
+
+import { useRouter } from 'next/navigation';
 
 type Props = {
 	postId: number;
+	parentId?: number;
 };
-export default function CommentWrite({ postId }: Props) {
+export default function CommentWrite({ postId, parentId }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null);
-	const { parentComment } = useParentComentStore();
+	const router = useRouter();
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const contents = inputRef.current?.value;
@@ -18,15 +20,16 @@ export default function CommentWrite({ postId }: Props) {
 			Toast.fire({ title: '내용이 입력되지 않았습니다.', icon: 'warning' });
 			return;
 		}
-		await createComment(postId, contents, 0);
+		try {
+			const res = await createComment(postId, contents, parentId);
+		} catch (error) {
+			if (error instanceof Error && error.message.includes('401')) {
+				router.push('/401');
+			}
+		}
 	};
 	return (
 		<div className="flex flex-col gap-y-5px">
-			{parentComment && (
-				<div className={clsx('text-subText font-bold px-5')}>
-					@{parentComment.author.nickname}
-				</div>
-			)}
 			<form className={CommentWrapper} onSubmit={onSubmit}>
 				<label htmlFor="comment-input" className="sr-only" />
 				<input

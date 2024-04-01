@@ -27,6 +27,7 @@ const config: Config = {
 				lineColor: '#ECECEC',
 				darkGreen: '#37b771',
 				mainLine: '#DBDCDF',
+				kakaoYellow: '#FEE500',
 			},
 			boxShadow: {
 				main: '0px 0px 10px 0px rgba(0, 0, 0, 0.05)',

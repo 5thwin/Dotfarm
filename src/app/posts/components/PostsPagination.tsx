@@ -5,13 +5,13 @@ import { useCallback } from 'react';
 
 const MAX_DISPLAYED_PAGES = 8;
 
-export default function PostsPagination() {
+type Props = { totalPage?: number };
+export default function PostsPagination({ totalPage = 5 }: Props) {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	const page = searchParams.get('page');
 	const currentPage = typeof page === 'string' ? Number(page) : 1;
-	const totalPage = 10; // 이 totalPage는 서버의 응답에서 가져와야 합니다.
 
 	// 페이지 버튼 생성 로직
 	const startPage = Math.max(

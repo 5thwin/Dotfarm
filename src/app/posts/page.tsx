@@ -9,18 +9,15 @@ type Params = {
 		[key: string]: string | string[] | undefined;
 	};
 };
-
 async function Page({ searchParams }: Params) {
 	const page =
 		typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
-	const limit =
-		typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10;
-	const category = searchParams.category;
+	const category =
+		typeof searchParams.category === 'string'
+			? searchParams.category
+			: undefined;
 	const keyword = searchParams.keyword;
-	const response = await getPostsWithAuthor();
-	const posts = response?.data;
 
-	if (!posts) return <Fallback />;
 	return (
 		<div>
 			<div className="flex flex-col items-center lg:mt-24 gap-y-2.5">
@@ -31,7 +28,7 @@ async function Page({ searchParams }: Params) {
 					<div className="hidden lg:inline-block">
 						<FilterBox />
 					</div>
-					<PostsWrapper posts={posts} />
+					<PostsWrapper page={page} category={category} />
 				</section>
 			</div>
 		</div>

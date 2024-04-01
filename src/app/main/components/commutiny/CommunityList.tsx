@@ -3,7 +3,7 @@ import ComunityPostItem from './CommunityPostItem';
 import clsx from 'clsx';
 
 export default async function CommunityList() {
-	const posts = await getPostsWithAuthor({ take: 6 });
+	const posts = await getPostsWithAuthor({ take: 5 });
 	const isPostAvailable = posts && posts.data.length > 0;
 
 	return (
@@ -18,6 +18,6 @@ export default async function CommunityList() {
 // style
 const listContainerStyle = clsx(
 	'flex flex-col gap-y-5',
-	'h-[777px]',
+	'h-[680px]',
 	'overflow-scroll'
 );

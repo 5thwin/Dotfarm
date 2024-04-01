@@ -6,5 +6,5 @@ export const navLinks = [
 	{ name: '홈', path: PATH_MAIN },
 	{ name: '지원사업', path: PATH_SUPPROT_PROJECTS },
 	{ name: '중고 농기계', path: `${PATH_POSTS}?category=중고` },
-	{ name: 'Q&A', path: `${PATH_POSTS}?category=QNA` },
+	{ name: 'QNA', path: `${PATH_POSTS}?category=QNA` },
 ];

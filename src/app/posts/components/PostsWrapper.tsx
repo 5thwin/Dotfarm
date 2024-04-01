@@ -4,13 +4,25 @@ import PostsPagination from './PostsPagination';
 import clsx from 'clsx';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import GoToWriteInput from '@/app/components/link/GoToWriteInput';
-import { PostPartial } from '@/type/post';
+import { getPostsWithAuthor } from '@/api/post/get';
+import Fallback from './Fallback';
 
 type Props = {
-	posts: PostPartial[];
+	page?: number;
+	category?: string;
 };
+const PAGE_TAKE = 10; //한 페이지당 보여줄 아이템 개수
 
-export default function PostsWrapper({ posts }: Props) {
+export default async function PostsWrapper({ page, category }: Props) {
+	const response = await getPostsWithAuthor({
+		page,
+		take: PAGE_TAKE,
+		category,
+	});
+	if (!response) return <Fallback />;
+
+	const posts = response.data;
+	const totalPage = response.total && Math.ceil(response.total / PAGE_TAKE);
 	return (
 		<div className={responsiveWrapper}>
 			<div className={responsiveHeader}>
@@ -22,7 +34,7 @@ export default function PostsWrapper({ posts }: Props) {
 			<GoToWriteInput />
 			<PostsList posts={posts} />
 			<div className="flexCenter">
-				<PostsPagination />
+				<PostsPagination totalPage={totalPage} />
 			</div>
 		</div>
 	);

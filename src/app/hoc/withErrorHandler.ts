@@ -16,9 +16,9 @@ async function handleError(error: any) {
 }
 
 // 고차 함수
-function withAsyncErrorHandler<T extends (...args: any[]) => Promise<any>>(
-	asyncFn: T
-): (...args: Parameters<T>) => Promise<ReturnType<T>> {
+export function withAsyncErrorHandler<
+	T extends (...args: any[]) => Promise<any>
+>(asyncFn: T): (...args: Parameters<T>) => Promise<ReturnType<T>> {
 	return async (...args: Parameters<T>) => {
 		try {
 			return await asyncFn(...args);

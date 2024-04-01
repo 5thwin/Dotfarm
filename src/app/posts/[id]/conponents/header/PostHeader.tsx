@@ -1,9 +1,9 @@
-import { FullPost } from '@/type/post';
 import clsx from 'clsx';
 import ButtonGroups from './ButtonGroups';
+import { Post } from '@/type/post';
 
 type Props = {
-	post: FullPost;
+	post: Post;
 };
 export default function PostHeader({ post }: Props) {
 	const { category, title, createdAt } = post;
@@ -15,7 +15,7 @@ export default function PostHeader({ post }: Props) {
 				<h1 className="text-lg lg:text-xl font-bold">{title}</h1>
 				<span className="text-sm text-subText">{dateString}</span>
 			</div>
-			<ButtonGroups />
+			<ButtonGroups post={post} />
 		</div>
 	);
 }

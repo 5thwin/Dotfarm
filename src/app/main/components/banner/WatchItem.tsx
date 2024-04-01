@@ -1,11 +1,15 @@
 import Link from 'next/link';
-
-export default function WatchItem() {
+type Props = {
+	title: string;
+	link: string;
+	category: string;
+};
+export default function WatchItem({ title, link, category }: Props) {
 	return (
 		<div className="flex gap-x-5px">
-			<span className="w-20 text-sm text-subText"># 지원사업</span>
-			<Link href={'example.com'} className="font-bold text-sm hover:underline">
-				[경남] 2024년 농어촌진흥기금 융자계획 공고
+			<span className="w-20 text-sm text-subText"># {category}</span>
+			<Link href={link} className="font-bold text-sm hover:underline">
+				{title}
 			</Link>
 		</div>
 	);

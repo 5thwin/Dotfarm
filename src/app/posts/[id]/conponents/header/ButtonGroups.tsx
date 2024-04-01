@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import IcLike from '@/../public/icon/like.svg';
 import CopyUrlButton from '@/app/components/button/CopyUrlButton';
+type Props = { post: Post };
 export default function ButtonGroups() {
 	return (
 		<div className="flex gap-x-2.5">

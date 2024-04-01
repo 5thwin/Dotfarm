@@ -1,13 +1,8 @@
 'use server';
 import { Post, PostPartial } from '@/type/post';
 import customFetch from '../customFetch';
+import { PaginateResponse } from '..';
 
-type Response = {
-	cursor: { after: null };
-	count: number;
-	next: null;
-	total?: number; // 요청 필드에 page가 들어가는 경우에 생기는 필드
-};
 type payload = {
 	category?: string;
 	orderCreatedAt?: 'ASC' | 'DESC';
@@ -27,7 +22,7 @@ export async function getPostsWithAuthor(payload?: payload) {
 	const queryString = params.toString(); // 유효한 값들로만 구성된 queryString
 
 	try {
-		const res = await customFetch<Response & { data: PostPartial[] }>(
+		const res = await customFetch<PaginateResponse & { data: PostPartial[] }>(
 			`/posts?${queryString}`,
 			{
 				method: 'GET',
@@ -49,7 +44,7 @@ export async function getPosts(category?: string) {
 	const queryString = params.toString(); // 유효한 값들로만 구성된 queryString
 
 	try {
-		const res = await customFetch<Response & { data: Post[] }>(
+		const res = await customFetch<PaginateResponse & { data: Post[] }>(
 			`/posts?${queryString}`,
 			{
 				method: 'GET',

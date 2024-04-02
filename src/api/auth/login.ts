@@ -7,10 +7,6 @@ import {
 	setAccessTokenInCookie,
 	setRefreshTokenInCookie,
 } from './token/utils';
-import { decodeJWT } from '@/utils/jwt';
-
-const username = 'hisy2059@naver.com';
-const password = '123123';
 
 type LoginResponse = {
 	accessToken: string;
@@ -19,13 +15,9 @@ type LoginResponse = {
 
 export const login = async () => {
 	// Basic 인증을 위한 인코딩된 문자열 생성
-	const encodedCredentials = btoa(`${username}:${password}`);
 	try {
-		const res = await customFetch<LoginResponse>('/auth/login/email', {
-			method: 'POST',
-			headers: {
-				Authorization: `Basic ${encodedCredentials}`,
-			},
+		const res = await customFetch<LoginResponse>('/auth/oauth/login', {
+			method: 'GET',
 		});
 		const { accessToken, refreshToken } = res;
 		// 쿠키에 accessToken과 refreshToken을 저장합니다.

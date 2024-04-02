@@ -37,7 +37,8 @@ async function customFetch<T>(
 
 	if (!response.ok) {
 		console.error(response);
-		throw new Error(`Error ${response.status} ${response.statusText}`);
+		const text = await response.text();
+		throw new Error(`Error ${response.status} ${response.statusText} ${text}`);
 	}
 
 	// 응답 인터셉터 로직을 여기에 추가

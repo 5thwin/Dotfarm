@@ -13,7 +13,9 @@ export default function ButtonGroups({ post, likeCheck }: Props) {
 	const [isChecked, setIsChecked] = useState<boolean>(likeCheck || false);
 	const handleLike = async () => {
 		try {
-			const res = await createMyLikes({ postId: post.id });
+			if (!likeCheck) {
+				const res = await createMyLikes({ postId: post.id });
+			}
 		} catch (error) {
 			if (error instanceof Error) {
 				handleError({ error });

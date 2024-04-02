@@ -3,6 +3,7 @@ import WatchItem from './WatchItem';
 
 export default async function Watchlist() {
 	const res = await getMyLikes();
+	if (!res) return null;
 	const postLikes = res.data;
 	return (
 		<div className="flex flex-col h-[173px] gap-y-2.5">

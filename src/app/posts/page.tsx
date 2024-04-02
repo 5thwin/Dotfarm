@@ -14,7 +14,8 @@ async function Page({ searchParams }: Params) {
 		typeof searchParams.category === 'string'
 			? searchParams.category
 			: undefined;
-	const keyword = searchParams.keyword;
+	const keyword =
+		typeof searchParams.keyword === 'string' ? searchParams.keyword : undefined;
 
 	return (
 		<div>
@@ -26,7 +27,7 @@ async function Page({ searchParams }: Params) {
 					<div className="hidden lg:inline-block">
 						<FilterBox />
 					</div>
-					<PostsWrapper page={page} category={category} />
+					<PostsWrapper page={page} category={category} keyword={keyword} />
 				</section>
 			</div>
 		</div>

@@ -10,14 +10,16 @@ import Fallback from './Fallback';
 type Props = {
 	page?: number;
 	category?: string;
+	keyword?: string;
 };
 const PAGE_TAKE = 10; //한 페이지당 보여줄 아이템 개수
 
-export default async function PostsWrapper({ page, category }: Props) {
+export default async function PostsWrapper({ page, category, keyword }: Props) {
 	const response = await getPostsWithAuthor({
 		page,
 		take: PAGE_TAKE,
 		category,
+		keyword,
 	});
 	if (!response) return <Fallback />;
 

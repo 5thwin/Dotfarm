@@ -6,6 +6,7 @@ import { getPost } from '@/api/post/get';
 import { patchPost } from '@/api/post/update';
 import { useEffect } from 'react';
 import useCreateImageStore from '../store/createImageStore';
+import useHandleError from '@/hooks/useHandleError';
 export default function useCreatePost(postId?: number) {
 	const router = useRouter();
 	const {
@@ -18,6 +19,7 @@ export default function useCreatePost(postId?: number) {
 		reset,
 	} = useCreatePostStore();
 	const { serverImagePaths } = useCreateImageStore();
+	const {handleError} = useHandleError()
 	const isModifyMode = !!postId; //수정모드 판별,
 	useEffect(() => {
 		reset();
@@ -55,8 +57,8 @@ export default function useCreatePost(postId?: number) {
 					return;
 				}
 			} catch (error) {
-				if (error instanceof Error && error.message.includes('401')) {
-					router.push('/401');
+				if (error instanceof Error) {
+					handleError({ error });
 				}
 			}
 
@@ -70,8 +72,8 @@ export default function useCreatePost(postId?: number) {
 				return;
 			}
 		} catch (error) {
-			if (error instanceof Error && error.message.includes('401')) {
-				router.push('/401');
+			if (error instanceof Error) {
+				handleError({ error });
 			}
 		}
 	};

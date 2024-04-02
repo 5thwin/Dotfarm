@@ -19,12 +19,26 @@ export async function getMyLikes(payload?: payload) {
 	}
 	const queryString = params.toString(); // 유효한 값들로만 구성된 queryString
 	const userId = getUserIdByAccessToken();
-
+	if (!userId) return null;
 	const res = await customFetch<PaginateResponse & { data: PostLike[] }>(
 		`/users/${userId}/likes?${queryString}`,
 		{
 			method: 'GET',
 			next: { revalidate: 10, tags: [`post_like`] },
+		}
+	);
+	return res;
+}
+
+export async function getLikesCheck(postId: number) {
+	// /users/:userId/likes/:postId/check
+	const userId = getUserIdByAccessToken();
+
+	const res = await customFetch<{ isLike: boolean }>(
+		`/users/${userId}/likes/${postId}/check`,
+		{
+			method: 'GET',
+			next: { revalidate: 10, tags: [`post_like${postId}`] },
 		}
 	);
 	return res;

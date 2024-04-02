@@ -1,7 +1,6 @@
 'use server';
 import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
-import { decodeJWT } from '@/utils/jwt';
 import { getAccessTokenFromCookie } from '../auth/token/utils';
 import { UserPartial } from '@/type/user';
 

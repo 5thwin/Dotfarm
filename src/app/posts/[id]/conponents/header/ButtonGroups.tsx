@@ -1,12 +1,34 @@
+'use client';
 import clsx from 'clsx';
 import IcLike from '@/../public/icon/like.svg';
 import CopyUrlButton from '@/app/components/button/CopyUrlButton';
-type Props = { post: Post };
-export default function ButtonGroups() {
+import { Post } from '@/type/post';
+import { createMyLikes } from '@/api/user/likes/create';
+import useHandleError from '@/hooks/useHandleError';
+import { useState } from 'react';
+import { colorMainGreen } from '@/constants/color';
+type Props = { post: Post; likeCheck?: boolean };
+export default function ButtonGroups({ post, likeCheck }: Props) {
+	const { handleError } = useHandleError();
+	const [isChecked, setIsChecked] = useState<boolean>(likeCheck || false);
+	const handleLike = async () => {
+		try {
+			const res = await createMyLikes({ postId: post.id });
+		} catch (error) {
+			if (error instanceof Error) {
+				handleError({ error });
+			}
+		}
+	};
 	return (
 		<div className="flex gap-x-2.5">
-			<button className={buttonStyle}>
-				<IcLike width="15" height="13" stroke="#7D7B7B" />
+			<button className={buttonStyle} onClick={handleLike}>
+				<IcLike
+					width="15"
+					height="13"
+					stroke={isChecked ? colorMainGreen : '#7D7B7B'}
+					fill={isChecked ? colorMainGreen : 'none'}
+				/>
 			</button>
 			<CopyUrlButton />
 		</div>

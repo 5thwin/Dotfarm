@@ -3,6 +3,7 @@ import GoogleSearchBox from './GoogleSearchBox';
 import { Desktop } from '@/app/components/responsive/ResponsiveUI';
 import clsx from 'clsx';
 import Watchlist from './Watchlist';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export default function PcBanner() {
 	return (
@@ -20,7 +21,11 @@ export default function PcBanner() {
 			<div className="lg:inline-block hidden">
 				<div className={bannerStyle}>
 					<GoogleSearchBox />
-					<Watchlist />
+					<ErrorBoundary
+						fallback={<div>표시할 데이터가 존재하지 않습니다.</div>}
+					>
+						<Watchlist />
+					</ErrorBoundary>
 				</div>
 			</div>
 		</section>

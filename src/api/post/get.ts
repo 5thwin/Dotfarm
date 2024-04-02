@@ -8,16 +8,18 @@ type payload = {
 	orderCreatedAt?: 'ASC' | 'DESC';
 	page?: number;
 	take?: number;
+	keyword?: string;
 };
 export async function getPostsWithAuthor(payload?: payload) {
 	const params = new URLSearchParams();
 	if (payload) {
-		const { category, orderCreatedAt = 'DESC', take, page } = payload;
+		const { category, orderCreatedAt = 'DESC', take, page, keyword } = payload;
 		// 값이 유효한 경우에만 파라미터를 추가
 		params.append('order__createdAt', orderCreatedAt);
 		if (category) params.append('where__category', category);
 		if (take) params.append('take', take.toString());
 		if (page) params.append('page', page.toString());
+		if (keyword) params.append('where__keyword', keyword);
 	}
 	const queryString = params.toString(); // 유효한 값들로만 구성된 queryString
 

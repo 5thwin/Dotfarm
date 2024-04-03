@@ -24,22 +24,9 @@ export default function LoginWrapper() {
 				return;
 			}
 			try {
-				// const data = await getKakaoLogin(authCode);
-				// setUserInfo(data?.userInfo);
-				// setLoginStatus('success');
-
-				// 		if (data?.isUser) {
-				// 			// 카카오 인증 후 회원임을 판별
-
-				// 			console.log(data.userInfo.kakao_account.profile.nickname);
-				// 			setLoginStatus('success');
-				// 		} else {
-				// 			// 카카오 인증 후 비회원임을 판결
-				// 			setLoginStatus('nonMember');
-				// 		}
-				const res = await login();
+				const res = await login(authCode);
 				if (!res) {
-					router.push('/401'); // 개발 시 사용자 없음 페이지 (혹은 로그인 할 수 없습니다. 문의해주세요.)
+					// router.push('/401'); // 개발 시 사용자 없음 페이지 (혹은 로그인 할 수 없습니다. 문의해주세요.)
 					return;
 				}
 				// access token에서 user id 가져옴

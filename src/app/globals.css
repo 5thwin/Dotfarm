@@ -27,3 +27,7 @@ body {
 .flexCenter {
 	@apply flex justify-center items-center;
 }
+
+input {
+	@apply focus:outline-mainGreen;
+}

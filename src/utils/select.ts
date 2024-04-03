@@ -1,3 +1,4 @@
+import { colorMainGreen } from '@/constants/color';
 import { StylesConfig } from 'react-select';
 
 export type OptionType = {
@@ -10,14 +11,22 @@ export const signupFormSelectStyles: StylesConfig<OptionType, false> = {
 	option: (provided, state) => ({
 		...provided,
 		opacity: 0.8,
+		// backgroundColor: state.isFocused ? colorMainGreen : undefined,
 	}),
-	control: (provided) => ({
+	control: (provided, state) => ({
 		...provided,
 		width: '100%',
-		borderColor: 'rgb(236 236 236)',
+		borderColor: state.isFocused ? colorMainGreen : 'rgb(236 236 236)',
+		outlineColor: state.isFocused ? colorMainGreen : undefined,
+		boxShadow: state.isFocused ? `0 0 0 1px ${colorMainGreen}` : undefined,
 		borderRadius: 10,
 		height: 45,
 		padding: '0px 12px 0px 15px',
+		':hover': {
+			boxShadow: `0 0 0 1px ${colorMainGreen}`,
+			outlineColor: colorMainGreen,
+			borderColor: colorMainGreen,
+		},
 	}),
 	singleValue: (provided, state) => ({
 		...provided,

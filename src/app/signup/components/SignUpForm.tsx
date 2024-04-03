@@ -3,34 +3,24 @@ import RegionSelect from './RegionSelect';
 import MajorCropsSelect from './MajorCropsSelect';
 import FarmCareersSelect from './FarmCareersSelect';
 import NickNameWrapper from './NickNameWrapper';
-import useSignupFromStore from '../store/signupFromStore';
-import Toast from '@/app/components/common/Toast';
 import clsx from 'clsx';
-export default function SignUpForm() {
-	const { isValidNickName, region, updateRegion, updateSubRegion } =
-		useSignupFromStore();
-	const onSubmit = () => {
-		if (!isValidNickName) {
-			Toast.fire(
-				'닉네임을 확인해주세요.',
-				'닉네임을 입력 후 확인 버튼을 눌러주세요.',
-				'warning'
-			);
-		}
-	};
+import useSignUp from '../hook/useSignUp';
+import { UserPartial } from '@/type/user';
+import { KoreaRegions } from '@/utils/koreaRegions';
+type Props = { me?: UserPartial; krRegions: KoreaRegions };
+export default function SignUpForm({ me, krRegions }: Props) {
+	const { handleSubmit } = useSignUp(me);
 	return (
 		<form
 			id="signup-form-body"
 			className="flex flex-col gap-y-10"
-			onSubmit={(e) => {
-				e.preventDefault();
-			}}
+			onSubmit={handleSubmit}
 		>
 			<NickNameWrapper />
 			<div className="flex flex-col gap-y-5">
 				<div id="signup-location" className="flex flex-col gap-y-1 w-[295px]">
 					<p className="font-bold">지역선택</p>
-					<RegionSelect />
+					<RegionSelect koreaRegions={krRegions} />
 				</div>
 				<div
 					id="signup-farming-careers"
@@ -47,13 +37,13 @@ export default function SignUpForm() {
 					<MajorCropsSelect />
 				</div>
 			</div>
-			<button type="submit" className={submitStyle} onClick={onSubmit}>
+			<button type="submit" className={submitStyle}>
 				입력하기
 			</button>
 		</form>
 	);
 }
 const submitStyle = clsx(
-	'w-full py-2.5 px-10 h-[45px] bg-subText',
+	'w-full py-2.5 px-10 h-[45px] bg-mainGreen',
 	'font-bold text-white rounded-10'
 );

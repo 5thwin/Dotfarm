@@ -23,6 +23,7 @@ export default function LoginWrapper() {
 				// setLoginStatus('failure');
 				return;
 			}
+			console.log(authCode);
 			try {
 				const res = await login(authCode);
 				if (!res) {
@@ -33,8 +34,14 @@ export default function LoginWrapper() {
 				const decoded = decodeJWT(res.accessToken);
 				const userId = decoded.sub;
 				const user = await getUserById(Number(userId));
-				if (user) {
-					setMe(user);
+				if (!user) {
+					return;
+				}
+				console.log(user);
+				setMe(user);
+				if (user.status === 'INACTIVE') {
+					router.push('/signup');
+					return;
 				}
 				router.push('/main');
 			} catch (error) {

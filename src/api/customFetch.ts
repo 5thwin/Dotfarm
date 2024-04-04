@@ -1,5 +1,5 @@
 'use server';
-import HttpError from '@/utils/error/httpError';
+import HttpError, { isErrorObject } from '@/utils/error/httpError';
 import { baseUrl } from '.';
 import { refreshAccessToken } from './auth/token/refreshToken';
 
@@ -36,9 +36,15 @@ async function customFetch<T>(
 	}
 
 	if (!response.ok) {
-		console.error(response);
-		const text = await response.text();
-		throw new Error(`Error ${response.status} ${response.statusText} ${text}`);
+		const errorText = await response.text();
+		const errorObject = await JSON.parse(errorText);
+		if (isErrorObject(errorObject)) {
+			throw new Error(JSON.stringify(errorObject));
+		}
+
+		throw new Error(
+			`Error ${response.status} ${response.statusText} ${errorText}`
+		);
 	}
 
 	// 응답 인터셉터 로직을 여기에 추가

@@ -33,18 +33,17 @@ const SupportCalendar = ({ programs }: SupportCalendarProps) => {
 					</div>
 				))}
 				{monthDays.map((day, index) => (
-					<>
+					<React.Fragment key={`support_day${index}`}>
 						{index % 7 === 0 && index !== 0 && (
 							<div className="col-span-7 h-px bg-subGray"></div>
 						)}
 						{/* 주 구분선 */}
 						<CalendarDate
-							key={index}
 							day={day}
 							currentMonth={currentDate.getMonth()}
 							programs={filterProgramsByDate(programs, day)}
 						/>
-					</>
+					</React.Fragment>
 				))}
 			</div>
 		</div>

@@ -52,3 +52,17 @@ export type FarmExperience =
 	| '창농 4~6년차'
 	| '창농 7~9년차'
 	| '창농 10년차 이상';
+
+// 닉네임 유효성 검사 관련 타입
+export type NicknameValidationStatus =
+	| 'duplicate' // 중복됨
+	| 'invalidLength' // 길이가 부적절함
+	| 'invalidChar' // 부적절한 문자 포함
+	| 'valid' // 유효함
+	| 'initial'; // 초기 상태 혹은 검사 전
+
+// 닉네임 검증 상태를 위한 타입
+export type NicknameValidation = {
+	status: NicknameValidationStatus;
+	message: string;
+};

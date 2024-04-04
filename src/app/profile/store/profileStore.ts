@@ -1,4 +1,4 @@
-import { UserMe } from '@/type/user';
+import { UserPartial } from '@/type/user';
 import { create } from 'zustand';
 
 // 스토어 상태를 위한 인터페이스 정의
@@ -15,7 +15,7 @@ interface ProfileState {
 	setSubRegion: (_: string) => void;
 	setFarmingExperience: (_: string) => void;
 	setMajorCrops: (_: string) => void;
-	init: (userMe: UserMe) => void;
+	init: (userMe: UserPartial) => void;
 	originUserName: string;
 }
 

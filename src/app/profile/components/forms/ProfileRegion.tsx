@@ -26,7 +26,7 @@ export default function ProfileRegion({ regions }: { regions: KoreaRegions }) {
 				id="sub-region"
 				options={regionOptions || []}
 				placeholder="지역선택"
-				value={{ label: region, value: region }}
+				value={region ? { label: region, value: region } : undefined}
 				onChange={(newRegion) => {
 					setRegion(newRegion.value);
 					setSubRegion('');

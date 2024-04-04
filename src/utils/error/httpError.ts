@@ -8,3 +8,13 @@ class HttpError extends Error {
 	}
 }
 export default HttpError;
+
+export interface ErrorResponse {
+	message: string;
+	error: string;
+	statusCode: number;
+}
+// ErrorResponse 타입 가드
+export function isErrorObject(obj: any): obj is ErrorResponse {
+	return 'message' in obj && 'error' in obj && 'statusCode' in obj;
+}

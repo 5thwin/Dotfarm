@@ -1,4 +1,4 @@
-import { FarmExperience, UserPartial } from '@/type/user';
+import { FarmExperience, NicknameValidation, UserPartial } from '@/type/user';
 import { containsSpecialCharacters } from '@/utils/string/validate';
 import { create } from 'zustand';
 
@@ -17,19 +17,6 @@ interface SignupFormState {
 	updateFarmingExperience: (farmingExperience: FarmExperience) => void;
 	updateMajorCrops: (majorCrops: string) => void;
 }
-
-type NicknameValidationStatus =
-	| 'duplicate' // 중복됨
-	| 'invalidLength' // 길이가 부적절함
-	| 'invalidChar' // 부적절한 문자 포함
-	| 'valid' // 유효함
-	| 'initial'; // 초기 상태 혹은 검사 전
-
-// 닉네임 검증 상태를 위한 타입
-export type NicknameValidation = {
-	status: NicknameValidationStatus;
-	message: string;
-};
 
 // 스토어 생성
 const useSignupFromStore = create<SignupFormState>((set) => ({

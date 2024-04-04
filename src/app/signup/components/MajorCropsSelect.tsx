@@ -2,8 +2,13 @@ import { OptionType, signupFormSelectStyles } from '@/utils/select';
 import Select, { DropdownIndicatorProps, components } from 'react-select';
 import useSignupFromStore from '../store/signupFromStore';
 
-export default function MajorCropsSelect() {
+type Props = { crops: string[] };
+export default function MajorCropsSelect({ crops }: Props) {
 	const { majorCrops, updateMajorCrops } = useSignupFromStore();
+	const options: OptionType[] = crops.map((crop) => ({
+		label: crop,
+		value: crop,
+	}));
 	return (
 		<Select
 			defaultValue={
@@ -20,11 +25,3 @@ export default function MajorCropsSelect() {
 		/>
 	);
 }
-const options: OptionType[] = [
-	{ label: '없음', value: '없음' },
-	{ label: '상추', value: '상추' },
-	{ label: '토마토', value: '토마토' },
-	{ label: '딸기', value: '딸기' },
-	{ label: '감자', value: '감자' },
-	{ label: '콩', value: '콩' },
-];

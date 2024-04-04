@@ -3,10 +3,12 @@ import clsx from 'clsx';
 import SignUpForm from './components/SignUpForm';
 import { getUserMe } from '@/api/user/get';
 import { loadKoreaRegions } from '@/api/local/region';
+import { loadCrops } from '@/api/local/crops';
 // 회원가입: 회원정보 페이지
 export default async function Pages() {
 	const me = await getUserMe();
 	const krRegions = loadKoreaRegions();
+	const { crops } = loadCrops();
 	return (
 		<div className="container mx-auto h-screen flexCenter flex-col">
 			<div id="signup-form-container" className={signUpContainer}>
@@ -19,7 +21,7 @@ export default async function Pages() {
 						자신의 농업 프로필을 입력해주세요
 					</p>
 				</div>
-				<SignUpForm me={me} krRegions={krRegions} />
+				<SignUpForm me={me} krRegions={krRegions} crops={crops} />
 			</div>
 		</div>
 	);

@@ -16,8 +16,9 @@ import useNicknameFormStore from '../store/nicknameFormStore';
 type Props = {
 	userMe: UserPartial;
 	krRegions: KoreaRegions;
+	crops: string[];
 };
-export default function ProfileEditForm({ userMe, krRegions }: Props) {
+export default function ProfileEditForm({ userMe, krRegions, crops }: Props) {
 	const { init } = useProfileStore();
 	const { init: nickNameInit } = useNicknameFormStore();
 
@@ -50,10 +51,10 @@ export default function ProfileEditForm({ userMe, krRegions }: Props) {
 					<label htmlFor="main-crops" className="font-bold">
 						주요작물
 					</label>
-					<ProfileMajorCrops />
+					<ProfileMajorCrops crops={crops} />
 				</div>
 				<div className="">
-					<ProfileUpdateButton userId={userMe.id} />
+					<ProfileUpdateButton />
 				</div>
 			</form>
 		</div>

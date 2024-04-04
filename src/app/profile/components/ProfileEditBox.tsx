@@ -8,6 +8,7 @@ import LogoutButtonInProfile from './LogoutButtonInProfile';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 import { UserMe } from '@/type/user';
 import { loadKoreaRegions } from '@/api/local/region';
+import { loadCrops } from '@/api/local/crops';
 
 type Props = {
 	userId: number;
@@ -15,6 +16,7 @@ type Props = {
 export default async function ProfileEditBox({ userId }: Props) {
 	const userme = await getUserById(Number(userId));
 	const krRegions = loadKoreaRegions();
+	const { crops } = loadCrops();
 
 	return (
 		<div className={responsiveContainer}>
@@ -27,7 +29,11 @@ export default async function ProfileEditBox({ userId }: Props) {
 				</div>
 
 				{userme ? (
-					<ProfileEditForm userMe={userme as UserMe} krRegions={krRegions} />
+					<ProfileEditForm
+						userMe={userme}
+						krRegions={krRegions}
+						crops={crops}
+					/>
 				) : (
 					<p className="flexCenter py-5">회원 정보를 불러올 수 없습니다.</p>
 				)}

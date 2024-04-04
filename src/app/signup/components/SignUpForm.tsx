@@ -7,8 +7,14 @@ import clsx from 'clsx';
 import useSignUp from '../hook/useSignUp';
 import { UserPartial } from '@/type/user';
 import { KoreaRegions } from '@/utils/koreaRegions';
-type Props = { me?: UserPartial; krRegions: KoreaRegions };
-export default function SignUpForm({ me, krRegions }: Props) {
+
+type Props = {
+	me?: UserPartial;
+	krRegions: KoreaRegions;
+	crops: string[];
+};
+
+export default function SignUpForm({ me, krRegions, crops }: Props) {
 	const { handleSubmit } = useSignUp(me);
 	return (
 		<form
@@ -34,7 +40,7 @@ export default function SignUpForm({ me, krRegions }: Props) {
 					className="flex flex-col gap-y-1 w-[295px]"
 				>
 					<p className="font-bold">주요작물</p>
-					<MajorCropsSelect />
+					<MajorCropsSelect crops={crops} />
 				</div>
 			</div>
 			<button type="submit" className={submitStyle}>

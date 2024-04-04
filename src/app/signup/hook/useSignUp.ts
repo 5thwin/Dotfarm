@@ -4,6 +4,7 @@ import { updateUserMe } from '@/api/user/update';
 import { FarmExperience, UserPartial } from '@/type/user';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { setMe } from '@/utils/localstorage';
 
 export default function useSignUp(me?: UserPartial) {
 	const {
@@ -61,6 +62,7 @@ export default function useSignUp(me?: UserPartial) {
 			});
 			if (res) {
 				console.log(res);
+				setMe(res);
 				router.push('/main');
 			}
 		} catch (e) {

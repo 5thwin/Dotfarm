@@ -1,24 +1,32 @@
-import CreatableSelect from 'react-select/creatable';
 import useProfileStore from '../../store/profileStore';
 import { useEffect, useState } from 'react';
 import { OptionType, signupFormSelectStyles } from '@/utils/select';
+import Select from 'react-select';
+import { FarmExperience, experienceList } from '@/type/user';
 
 export default function ProfileFarmingExperience() {
 	const { farmingExperience, setFarmingExperience } = useProfileStore();
 
 	return (
-		<>
-			<label htmlFor="major-crops" className="sr-only" />
-			<CreatableSelect
-				id="major-crops"
-				options={[]}
-				placeholder="지역선택"
-				value={{ label: farmingExperience, value: farmingExperience }}
-				onChange={(newValue) => {
-					newValue?.value && setFarmingExperience(newValue.value);
-				}}
-				styles={signupFormSelectStyles}
-			/>
-		</>
+		<Select
+			id="farm-careers"
+			styles={signupFormSelectStyles}
+			options={options}
+			placeholder="경력선택"
+			value={
+				farmingExperience
+					? { label: farmingExperience, value: farmingExperience }
+					: undefined
+			}
+			onChange={(newValue) => {
+				const newOptions = newValue as OptionType;
+				setFarmingExperience(newOptions.value as FarmExperience);
+			}}
+		/>
 	);
 }
+
+const options: OptionType[] = experienceList.map((item) => ({
+	label: item,
+	value: item,
+}));

@@ -1,5 +1,8 @@
 import { FarmExperience, NicknameValidation, UserPartial } from '@/type/user';
-import { containsSpecialCharacters } from '@/utils/string/validate';
+import {
+	containsSpecialCharacters,
+	validateNickName,
+} from '@/utils/string/validate';
 import { create } from 'zustand';
 
 // 스토어 상태를 위한 인터페이스 정의
@@ -59,18 +62,3 @@ const useSignupFromStore = create<SignupFormState>((set) => ({
 }));
 
 export default useSignupFromStore;
-
-const validateNickName = (nickname: string): NicknameValidation => {
-	if (nickname.length < 2 || nickname.length > 9) {
-		return {
-			status: 'invalidLength',
-			message: '닉네임은 2자 이상 9자 이하로 설정해 주세요.',
-		};
-	} else if (containsSpecialCharacters(nickname)) {
-		return {
-			status: 'invalidChar',
-			message: '닉네임에는 특수문자를 사용할 수 없습니다. 다시 입력해 주세요.',
-		};
-	}
-	return { status: 'valid', message: '사용 가능한 멋진 닉네임이네요!' };
-};

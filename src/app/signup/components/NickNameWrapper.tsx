@@ -36,5 +36,6 @@ const inputBorder = clsx('rounded-10 border-lineColor border');
 const defaultInputStyle = clsx(
 	'flex h-[45px]',
 	'placeholder:text-sm placeholder:text-subText',
+	'focus:outline-mainGreen',
 	inputBorder
 );

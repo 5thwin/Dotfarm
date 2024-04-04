@@ -11,8 +11,8 @@ export default async function PostHeader({ post }: Props) {
 	const dateString = new Date(createdAt).toLocaleDateString('Kr-kr');
 	const { isLiked } = await getLikesCheck(post.id);
 	return (
-		<div className="flex gap-x-10 items-center w-full justify-between">
-			<div className="flex flex-col gap-y-2.5">
+		<div className="flex gap-2.5 lg:gap-x-10 items-center w-full justify-between flex-wrap">
+			<div className="flex flex-col lg:gap-y-2.5">
 				<span className={categoryText}>#{category}</span>
 				<h1 className="text-lg lg:text-xl font-bold">{title}</h1>
 				<span className="text-sm text-subText">{dateString}</span>

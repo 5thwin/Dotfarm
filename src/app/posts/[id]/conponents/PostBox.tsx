@@ -7,15 +7,16 @@ import PostAuthor from './PostAuthor';
 import CommentsArea from './comments/CommentsArea';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import CommentWrite from './comments/CommentWrite';
-import PostEditButton from './PostEditButton';
 import { Post } from '@/type/post';
+import { ableToEdit } from '@/utils/post/edit';
+import EditButtonGroup from './buttons/EditButtonGroup';
 
 type Props = {
 	post: Post;
 };
-export default function PostBox({ post }: Props) {
+export default async function PostBox({ post }: Props) {
 	const { author, images } = post;
-	const ableToEdit = true;
+	const isAbleToEdit = await ableToEdit(post);
 	const isExistImage = post.images && post.images[0];
 	return (
 		<div className={containerStyle}>
@@ -43,7 +44,7 @@ export default function PostBox({ post }: Props) {
 					))}
 			</div>
 			<div className="flex flex-col gap-y-1">
-				{ableToEdit && <PostEditButton postId={post.id} />}
+				{isAbleToEdit && <EditButtonGroup postId={post.id} />}
 				{author && <PostAuthor author={author} />}
 			</div>
 			<div className="flex flex-col gap-y-2.5">

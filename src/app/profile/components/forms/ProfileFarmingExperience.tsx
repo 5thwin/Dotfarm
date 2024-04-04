@@ -15,7 +15,7 @@ export default function ProfileFarmingExperience() {
 				placeholder="지역선택"
 				value={{ label: farmingExperience, value: farmingExperience }}
 				onChange={(newValue) => {
-					newValue && setFarmingExperience(newValue.value);
+					newValue?.value && setFarmingExperience(newValue.value);
 				}}
 				styles={signupFormSelectStyles}
 			/>

@@ -1,4 +1,4 @@
-import { experienceList } from '@/type/user';
+import { FarmExperience, experienceList } from '@/type/user';
 import { OptionType, signupFormSelectStyles } from '@/utils/select';
 import Select from 'react-select';
 import useSignupFromStore from '../store/signupFromStore';
@@ -19,7 +19,7 @@ export default function FarmCareersSelect() {
 			}
 			onChange={(newValue) => {
 				const newOptions = newValue as OptionType;
-				updateFarmingExperience(newOptions.value);
+				updateFarmingExperience(newOptions.value as FarmExperience);
 			}}
 		></Select>
 	);

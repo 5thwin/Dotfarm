@@ -9,7 +9,7 @@ type Props = {
 export default async function PostHeader({ post }: Props) {
 	const { category, title, createdAt } = post;
 	const dateString = new Date(createdAt).toLocaleDateString('Kr-kr');
-	const { isLike } = await getLikesCheck(post.id);
+	const { isLiked } = await getLikesCheck(post.id);
 	return (
 		<div className="flex gap-x-10 items-center w-full justify-between">
 			<div className="flex flex-col gap-y-2.5">
@@ -17,7 +17,7 @@ export default async function PostHeader({ post }: Props) {
 				<h1 className="text-lg lg:text-xl font-bold">{title}</h1>
 				<span className="text-sm text-subText">{dateString}</span>
 			</div>
-			<ButtonGroups post={post} likeCheck={isLike} />
+			<ButtonGroups post={post} likeCheck={isLiked} />
 		</div>
 	);
 }

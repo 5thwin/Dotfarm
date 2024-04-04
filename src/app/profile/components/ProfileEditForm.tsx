@@ -9,11 +9,13 @@ import ProfileFarmingExperience from './forms/ProfileFarmingExperience';
 import ProfileUpdateButton from './forms/ProfileUpdateButton';
 import ProfileUserName from './forms/ProfileUserName';
 import clsx from 'clsx';
+import { KoreaRegions } from '@/utils/koreaRegions';
 
 type Props = {
 	userMe: UserMe;
+	krRegions: KoreaRegions;
 };
-export default function ProfileEditForm({ userMe }: Props) {
+export default function ProfileEditForm({ userMe, krRegions }: Props) {
 	const { init } = useProfileStore();
 	useEffect(() => init(userMe), []);
 
@@ -30,7 +32,7 @@ export default function ProfileEditForm({ userMe }: Props) {
 			</div>
 			<div className="flex flex-col gap-y-5px">
 				<p className="font-bold">지역선택</p>
-				<RegionsContainer />
+				<RegionsContainer krRegions={krRegions} />
 			</div>
 			<div className="flex flex-col gap-y-5px">
 				<label htmlFor="farm-careers" className="font-bold">

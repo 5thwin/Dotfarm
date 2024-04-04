@@ -33,8 +33,7 @@ export async function getMyLikes(payload?: payload) {
 export async function getLikesCheck(postId: number) {
 	// /users/:userId/likes/:postId/check
 	const userId = getUserIdByAccessToken();
-
-	const res = await customFetch<{ isLike: boolean }>(
+	const res = await customFetch<{ isLiked: boolean }>(
 		`/users/${userId}/likes/${postId}/check`,
 		{
 			method: 'GET',

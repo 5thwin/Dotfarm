@@ -7,14 +7,18 @@ import { createMyLikes } from '@/api/user/likes/create';
 import useHandleError from '@/hooks/useHandleError';
 import { useState } from 'react';
 import { colorMainGreen } from '@/constants/color';
+import { deleteMyLike } from '@/api/user/likes/delete';
 type Props = { post: Post; likeCheck?: boolean };
 export default function ButtonGroups({ post, likeCheck }: Props) {
 	const { handleError } = useHandleError();
 	const [isChecked, setIsChecked] = useState<boolean>(likeCheck || false);
 	const handleLike = async () => {
+		setIsChecked((pre) => !pre);
 		try {
 			if (!likeCheck) {
 				const res = await createMyLikes({ postId: post.id });
+			} else {
+				const res = await deleteMyLike({ postId: post.id });
 			}
 		} catch (error) {
 			if (error instanceof Error) {

@@ -15,6 +15,7 @@ export type UserUpdateData = Partial<
 		| 'subRegion'
 		| 'farmingExperience'
 		| 'majorCrops'
+		| 'status'
 	>
 >;
 

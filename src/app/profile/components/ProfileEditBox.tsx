@@ -7,12 +7,15 @@ import MobileBackButton from '@/app/components/common/MobileBackButton';
 import LogoutButtonInProfile from './LogoutButtonInProfile';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 import { UserMe } from '@/type/user';
+import { loadKoreaRegions } from '@/api/local/region';
 
 type Props = {
 	userId: number;
 };
 export default async function ProfileEditBox({ userId }: Props) {
 	const userme = await getUserById(Number(userId));
+	const krRegions = loadKoreaRegions();
+
 	return (
 		<div className={responsiveContainer}>
 			<div className="flex flex-col gap-y-5 h-full">
@@ -24,7 +27,7 @@ export default async function ProfileEditBox({ userId }: Props) {
 				</div>
 
 				{userme ? (
-					<ProfileEditForm userMe={userme as UserMe} />
+					<ProfileEditForm userMe={userme as UserMe} krRegions={krRegions} />
 				) : (
 					<p className="flexCenter py-5">회원 정보를 불러올 수 없습니다.</p>
 				)}

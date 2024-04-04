@@ -23,7 +23,8 @@ export default function MajorCropsSelect() {
 const options: OptionType[] = [
 	{ label: '없음', value: '없음' },
 	{ label: '상추', value: '상추' },
-	{ label: '토마토', value: '토미토' },
+	{ label: '토마토', value: '토마토' },
 	{ label: '딸기', value: '딸기' },
 	{ label: '감자', value: '감자' },
+	{ label: '콩', value: '콩' },
 ];

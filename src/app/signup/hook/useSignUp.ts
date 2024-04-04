@@ -57,13 +57,18 @@ export default function useSignUp(me?: UserPartial) {
 				subRegion,
 				farmingExperience,
 				majorCrops,
+				status: 'ACTIVE',
 			});
 			if (res) {
 				console.log(res);
 				router.push('/main');
 			}
 		} catch (e) {
-			alert('에러가 발생했습니다.');
+			Toast.fire({
+				title: '에러가 발생했습니다.',
+				text: '관리자에게 문의해주세요',
+				icon: 'error',
+			});
 		}
 	};
 	return { handleSubmit };

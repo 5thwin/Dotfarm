@@ -3,12 +3,10 @@ import withLayout from '../hoc/withLayout';
 import ProfileEditBox from './components/ProfileEditBox';
 
 function ProfilePage() {
-	const userId = getUserIdByAccessToken();
-
 	return (
 		<div>
 			<section className="w-screen h-screen flexCenter">
-				<ProfileEditBox userId={Number(userId)} />
+				<ProfileEditBox />
 			</section>
 		</div>
 	);

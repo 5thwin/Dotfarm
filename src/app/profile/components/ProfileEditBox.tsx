@@ -2,19 +2,15 @@
 import { blockStyle } from '@/app/styles/common/blockStyle';
 import ProfileEditForm from './ProfileEditForm';
 import clsx from 'clsx';
-import { getUserById } from '@/api/user/get';
+import { getUserById, getUserMe } from '@/api/user/get';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import LogoutButtonInProfile from './LogoutButtonInProfile';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
-import { UserMe } from '@/type/user';
 import { loadKoreaRegions } from '@/api/local/region';
 import { loadCrops } from '@/api/local/crops';
 
-type Props = {
-	userId: number;
-};
-export default async function ProfileEditBox({ userId }: Props) {
-	const userme = await getUserById(Number(userId));
+export default async function ProfileEditBox() {
+	const userme = await getUserMe();
 	const krRegions = loadKoreaRegions();
 	const { crops } = loadCrops();
 

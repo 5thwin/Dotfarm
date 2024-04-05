@@ -6,12 +6,12 @@ type Props = {
 	me: UserPartial;
 };
 export default function HeaderUserIcon({ me }: Props) {
-	const { profileImageURL, nickname } = me;
+	const { profileImage, nickname } = me;
 	return (
 		<Link className="px-15px gap-x-2.5 flex items-center" href={'/profile'}>
-			<div className="rounded-full relative size-8">
-				{profileImageURL ? (
-					<Image src="profileImageURL" alt="사용자 이미지" fill />
+			<div className="rounded-full relative size-8 overflow-hidden">
+				{profileImage && profileImage.path ? (
+					<Image src={profileImage.path} alt="사용자 이미지" fill />
 				) : (
 					<Image
 						src="/profile/defaultProfileImg_32x32.svg"

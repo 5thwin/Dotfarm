@@ -1,16 +1,4 @@
-export type UserMe = {
-	id: number;
-	profileImageURL: string | null;
-	nickname: string;
-	status: 'INACTIVE' | 'ACTIVE';
-	role: string;
-	region: string | null;
-	subRegion: string | null;
-	farmingExperience: FarmExperience;
-	majorCrops: string | null;
-	createdAt: string;
-	updatedAt: string;
-};
+import { ImageType } from './image';
 
 export type User = {
 	id: number;
@@ -18,7 +6,7 @@ export type User = {
 	nickname: string;
 	region: string | null;
 	subRegion: string | null;
-	profileImageURL: string | null;
+	profileImage: ImageType | null;
 	role: string;
 	status: 'INACTIVE' | 'ACTIVE';
 	accessToken: string;
@@ -33,7 +21,7 @@ export type UserPartial = Pick<User, 'id' | 'nickname' | 'farmingExperience'> &
 	Partial<
 		Pick<
 			User,
-			'profileImageURL' | 'majorCrops' | 'region' | 'subRegion' | 'status'
+			'profileImage' | 'majorCrops' | 'region' | 'subRegion' | 'status'
 		>
 	>;
 

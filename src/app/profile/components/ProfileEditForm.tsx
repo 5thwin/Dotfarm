@@ -1,5 +1,5 @@
 'use client';
-import { UserMe, UserPartial } from '@/type/user';
+import { UserPartial } from '@/type/user';
 import { useEffect } from 'react';
 import useProfileStore from '../store/profileStore';
 import ProfileImageSelect from './forms/ProfileImageSelect';

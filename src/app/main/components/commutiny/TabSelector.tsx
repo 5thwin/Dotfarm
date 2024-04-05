@@ -4,7 +4,6 @@ import Link from 'next/link';
 type Props = { category?: string };
 const MAIN_URL = '/main';
 export default function TabSelector({ category }: Props) {
-	console.log(category);
 	return (
 		<ul className="flex gap-x-10">
 			<Link

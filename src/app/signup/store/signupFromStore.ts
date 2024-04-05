@@ -19,6 +19,7 @@ interface SignupFormState {
 	updateSubRegion: (subRegion: string) => void;
 	updateFarmingExperience: (farmingExperience: FarmExperience) => void;
 	updateMajorCrops: (majorCrops: string) => void;
+	updateNicknameValidation: (_: NicknameValidation) => void;
 }
 
 // 스토어 생성
@@ -30,6 +31,8 @@ const useSignupFromStore = create<SignupFormState>((set) => ({
 	farmingExperience: '귀농에 관심있음',
 	majorCrops: '',
 	nicknameValidation: { status: 'initial', message: '' },
+	updateNicknameValidation: (vicknameValidation) =>
+		set(() => ({ nicknameValidation: vicknameValidation })),
 	updateUser: (user) =>
 		set((prev) => {
 			const { nickname, region, subRegion, farmingExperience, majorCrops } =

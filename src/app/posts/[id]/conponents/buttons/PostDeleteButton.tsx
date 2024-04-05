@@ -32,7 +32,6 @@ export default function PostDeleteButton({ postId }: Props) {
 					router.push('/main');
 				} catch (error) {
 					if (error instanceof Error) {
-						console.log(error);
 						handleError({ error });
 					}
 				}

@@ -13,6 +13,7 @@ export async function getUserById(id: number) {
 
 export async function getUserMe() {
 	const myId = getUserIdByAccessToken();
+	if (!myId) return undefined;
 	try {
 		const res = await customFetch<UserPartial>(`/users/${myId}`, {
 			next: { revalidate: 10, tags: [`user${myId}`] },

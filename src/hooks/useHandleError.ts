@@ -1,7 +1,8 @@
 //이벤트 핸들러 혹은 비동기 요청에서 에러가 발생했을 경우
 import { useRouter } from 'next/navigation';
 import Toast from '@/app/components/common/Toast';
-import { isErrorObject } from '@/utils/error/httpError';
+import { ErrorResponse, isErrorObject } from '@/utils/error/httpError';
+import safeJsonParse from '@/utils/safeJsonParse';
 
 interface ErrorHandlerProps {
 	error: Error;
@@ -10,12 +11,12 @@ const useHandleError = () => {
 	const router = useRouter();
 
 	const handleError = ({ error }: ErrorHandlerProps) => {
-		const errorObject = JSON.parse(error.message);
+		const { data: errorObject } = safeJsonParse<ErrorResponse>(error.message);
+		console.log(errorObject);
 		if (error.message.includes('401')) {
 			router.push('/401');
 			return;
 		}
-		console.log(errorObject);
 		if (isErrorObject(errorObject)) {
 			Toast.fire({
 				title: errorObject.message,

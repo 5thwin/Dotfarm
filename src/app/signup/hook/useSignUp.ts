@@ -5,6 +5,9 @@ import { FarmExperience, UserPartial } from '@/type/user';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { setMe } from '@/utils/localstorage';
+import useHandleError from '@/hooks/useHandleError';
+import { isErrorObject } from '@/utils/error/httpError';
+import { DUPLICATE_ERROR_MESSAGE } from '@/app/profile/components/forms/nicknameForm/NicknameForm';
 
 export default function useSignUp(me?: UserPartial) {
 	const {
@@ -15,12 +18,14 @@ export default function useSignUp(me?: UserPartial) {
 		farmingExperience,
 		majorCrops,
 		updateUser,
+		updateNicknameValidation,
 	} = useSignupFromStore();
 
 	useEffect(() => {
 		me && updateUser(me);
-	}, [me]);
+	}, []);
 	const router = useRouter();
+	const { handleError } = useHandleError();
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (nicknameValidation.status !== 'valid') {
@@ -61,16 +66,22 @@ export default function useSignUp(me?: UserPartial) {
 				status: 'ACTIVE',
 			});
 			if (res) {
-				console.log(res);
-				setMe(res);
+				setMe(res); //로컬스토리지에 변경된 나의 정보 저장
 				router.push('/main');
 			}
-		} catch (e) {
-			Toast.fire({
-				title: '에러가 발생했습니다.',
-				text: '관리자에게 문의해주세요',
-				icon: 'error',
-			});
+		} catch (error) {
+			if (error instanceof Error) {
+				const errorObject = JSON.parse(error.message);
+				if (isErrorObject(errorObject)) {
+					if (errorObject.message === DUPLICATE_ERROR_MESSAGE) {
+						updateNicknameValidation({
+							status: 'duplicate',
+							message: DUPLICATE_ERROR_MESSAGE,
+						});
+					}
+				}
+				handleError({ error });
+			}
 		}
 	};
 	return { handleSubmit };

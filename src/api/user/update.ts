@@ -21,6 +21,7 @@ export type UserUpdateData = Partial<
 
 export async function updateUserMe(updateData: UserUpdateData) {
 	const userId = getUserIdByAccessToken();
+	if (!userId) return;
 	revalidateTag(`user${userId}`);
 	const res = await customFetch<UserPartial>(`/users/${userId}`, {
 		method: 'PATCH',

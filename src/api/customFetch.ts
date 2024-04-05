@@ -1,7 +1,11 @@
 'use server';
-import HttpError, { isErrorObject } from '@/utils/error/httpError';
+import HttpError, {
+	ErrorResponse,
+	isErrorObject,
+} from '@/utils/error/httpError';
 import { baseUrl } from '.';
 import { refreshAccessToken } from './auth/token/refreshToken';
+import safeJsonParse from '@/utils/safeJsonParse';
 
 async function customFetch<T>(
 	endpoint: string,
@@ -37,7 +41,7 @@ async function customFetch<T>(
 
 	if (!response.ok) {
 		const errorText = await response.text();
-		const errorObject = await JSON.parse(errorText);
+		const { data: errorObject } = safeJsonParse<ErrorResponse>(errorText);
 		if (isErrorObject(errorObject)) {
 			throw new Error(JSON.stringify(errorObject));
 		}

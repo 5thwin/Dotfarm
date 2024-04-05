@@ -25,6 +25,7 @@ type Response = {
 export async function createMyLikes(payload: Payload) {
 	const { postId } = payload;
 	const userId = getUserIdByAccessToken();
+	if (!userId) return;
 	revalidateTag('post_like');
 	revalidateTag(`post_like${postId}`);
 

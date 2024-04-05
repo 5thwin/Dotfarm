@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import React, { useRef } from 'react';
 
 import { useRouter } from 'next/navigation';
+import useHandleError from '@/hooks/useHandleError';
 
 type Props = {
 	postId: number;
@@ -13,6 +14,7 @@ type Props = {
 export default function CommentWrite({ postId, parentId }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const router = useRouter();
+	const { handleError } = useHandleError();
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const contents = inputRef.current?.value;
@@ -23,10 +25,11 @@ export default function CommentWrite({ postId, parentId }: Props) {
 		try {
 			const res = await createComment(postId, contents, parentId);
 		} catch (error) {
-			if (error instanceof Error && error.message.includes('401')) {
-				router.push('/401');
+			if (error instanceof Error) {
+				handleError({ error });
 			}
 		}
+		inputRef.current.value = '';
 	};
 	return (
 		<div className="flex flex-col gap-y-5px">

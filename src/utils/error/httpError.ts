@@ -16,5 +16,6 @@ export interface ErrorResponse {
 }
 // ErrorResponse 타입 가드
 export function isErrorObject(obj: any): obj is ErrorResponse {
+	if (!obj) return false;
 	return 'message' in obj && 'error' in obj && 'statusCode' in obj;
 }

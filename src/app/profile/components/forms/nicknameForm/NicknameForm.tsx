@@ -3,11 +3,12 @@ import ProfileUserName from './ProfileUserName';
 import useNicknameFormStore from '@/app/profile/store/nicknameFormStore';
 import { updateUserMe } from '@/api/user/update';
 import useHandleError from '@/hooks/useHandleError';
-import { isErrorObject } from '@/utils/error/httpError';
+import { ErrorResponse, isErrorObject } from '@/utils/error/httpError';
 import { getMe, setMe } from '@/utils/localstorage';
+import safeJsonParse from '@/utils/safeJsonParse';
 
-const DUPLICATE_ERROR_MESSAGE = '이미 존재하는 닉네임 입니다.';
-const DUPLICATE_DISCRIPTION = '이미 누군가가 사용하고 있네요!';
+export const DUPLICATE_ERROR_MESSAGE = '이미 존재하는 닉네임 입니다.';
+export const DUPLICATE_DISCRIPTION = '이미 누군가가 사용하고 있네요!';
 export default function NicknameForm() {
 	const { nickname, nicknameValidation, setNicknameValidation } =
 		useNicknameFormStore();
@@ -30,7 +31,9 @@ export default function NicknameForm() {
 			me && setMe({ ...me, nickname });
 		} catch (error) {
 			if (error instanceof Error) {
-				const errorObject = JSON.parse(error.message);
+				const { data: errorObject } = safeJsonParse<ErrorResponse>(
+					error.message
+				);
 				if (isErrorObject(errorObject)) {
 					if (errorObject.message === DUPLICATE_ERROR_MESSAGE) {
 						setNicknameValidation({

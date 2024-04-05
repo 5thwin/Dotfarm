@@ -23,7 +23,6 @@ export default function LoginWrapper() {
 				// setLoginStatus('failure');
 				return;
 			}
-			console.log(authCode);
 			try {
 				const res = await login(authCode);
 				if (!res) {
@@ -37,7 +36,6 @@ export default function LoginWrapper() {
 				if (!user) {
 					return;
 				}
-				console.log(user);
 				setMe(user);
 				if (user.status === 'INACTIVE') {
 					router.push('/signup');

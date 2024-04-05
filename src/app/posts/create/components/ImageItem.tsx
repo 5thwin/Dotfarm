@@ -22,4 +22,8 @@ export default function ImageItem({ imageUrl, index }: Props) {
 	);
 }
 // style
-const deleteStyle = clsx('text-subText', 'absolute right-1 bottom-1');
+const deleteStyle = clsx(
+	'text-subText',
+	'absolute right-1 bottom-1 bg-subGray rounded-full px-1 ',
+	'hover:bg-gray-200'
+);

@@ -9,7 +9,6 @@ import { getUserIdByAccessToken } from '../auth/token/utils';
 export type UserUpdateData = Partial<
 	Pick<
 		User,
-		| 'profileImageURL'
 		| 'nickname'
 		| 'region'
 		| 'subRegion'
@@ -17,7 +16,7 @@ export type UserUpdateData = Partial<
 		| 'majorCrops'
 		| 'status'
 	>
->;
+> & { image?: string };
 
 export async function updateUserMe(updateData: UserUpdateData) {
 	const userId = getUserIdByAccessToken();

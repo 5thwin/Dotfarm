@@ -11,6 +11,7 @@ export const LandingHeaderButtonStyle = clsx(
 );
 
 export const mainGreenRoundedButtonStyle = clsx(
-	'rounded-10 px-15px py-3 bg-mainGreen flexCenter hover:bg-darkGreen',
+	'flex justify-center items-center',
+	'rounded-10 px-15px py-3 bg-mainGreen hover:bg-darkGreen',
 	'font-bold text-white'
 );

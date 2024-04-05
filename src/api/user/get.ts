@@ -18,7 +18,6 @@ export async function getUserMe() {
 		const res = await customFetch<UserPartial>(`/users/${myId}`, {
 			next: { revalidate: 10, tags: [`user${myId}`] },
 		});
-		console.log(res);
 		return res;
 	} catch (error) {
 		return undefined;

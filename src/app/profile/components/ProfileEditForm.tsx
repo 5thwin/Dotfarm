@@ -2,7 +2,7 @@
 import { UserPartial } from '@/type/user';
 import { useEffect } from 'react';
 import useProfileStore from '../store/profileStore';
-import ProfileImageSelect from './forms/ProfileImageSelect';
+import ProfileImage from './forms/profileImage/ProfileImage';
 import RegionsContainer from './forms/RegionsContainer';
 import ProfileMajorCrops from './forms/ProfileMajorCrops';
 import ProfileFarmingExperience from './forms/ProfileFarmingExperience';
@@ -30,7 +30,7 @@ export default function ProfileEditForm({ userMe, krRegions, crops }: Props) {
 	return (
 		<div className={containerStyle}>
 			<div className="flexCenter">
-				<ProfileImageSelect />
+				<ProfileImage image={userMe.profileImage} />
 			</div>
 			<NicknameForm />
 			<form

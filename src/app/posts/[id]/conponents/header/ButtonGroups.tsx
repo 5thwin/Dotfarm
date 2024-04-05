@@ -21,7 +21,6 @@ export default function ButtonGroups({ post, likeCheck }: Props) {
 				const res = await deleteMyLike({ postId: post.id });
 			}
 		} catch (error) {
-			console.log(error);
 			if (error instanceof Error) {
 				handleError({ error });
 			}

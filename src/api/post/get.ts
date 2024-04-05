@@ -69,6 +69,6 @@ export async function getPost(id: number) {
 		return res;
 	} catch (e) {
 		// 오류 처리
-		console.error(e);
+		console.error('getPost', e);
 	}
 }

@@ -7,13 +7,14 @@ import { login } from '@/api/auth/login';
 import { getUserById } from '@/api/user/get';
 
 import { decodeJWT } from '@/utils/jwt';
+import useHandleError from '@/hooks/useHandleError';
 
 export default function LoginWrapper() {
 	const searchParams = useSearchParams();
 	// const [userInfo, setUserInfo] = useState();
 	// const [loginStatus, setLoginStatus] = useState<LoginState>('pending');
 	const router = useRouter();
-
+	const { handleError } = useHandleError();
 	useEffect(() => {
 		// 카카오 로그인 이후, 이 회원이 dotfarm의 유저인지 회원 여부와, dotfarm에서  발급한 토큰 부여
 		const getAuth = async () => {
@@ -44,7 +45,9 @@ export default function LoginWrapper() {
 				router.push('/main');
 			} catch (error) {
 				console.error(error);
-				// setLoginStatus('failure');
+				if (error instanceof Error) {
+					handleError({ error });
+				}
 			}
 		};
 		getAuth();

@@ -7,7 +7,16 @@ import PcBanner from './components/banner/PcBanner';
 import clsx from 'clsx';
 import { Mobile } from '../components/responsive/ResponsiveUI';
 import MainHeaderMobile from '../components/common/header/MainHeader-mobile';
-function Page() {
+type Params = {
+	searchParams: {
+		[key: string]: string | string[] | undefined;
+	};
+};
+function Page({ searchParams }: Params) {
+	const category =
+		typeof searchParams.category === 'string'
+			? searchParams.category
+			: undefined;
 	return (
 		<div className="p-15px lg:p-0">
 			<div className="lg:inline-block hidden">
@@ -25,7 +34,7 @@ function Page() {
 					>
 						<WeekSupport />
 						<OpenChatBanner />
-						<CommunitySection />
+						<CommunitySection category={category} />
 					</section>
 				</div>
 			</main>

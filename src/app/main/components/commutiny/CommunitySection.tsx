@@ -5,11 +5,8 @@ import CommunityList from './CommunityList';
 import Link from 'next/link';
 import GoToWriteInput from '@/app/components/link/GoToWriteInput';
 
-interface CommunitySectionProps {
-	tab1Component: React.ReactNode;
-	tab2Component: React.ReactNode;
-}
-export default function CommunitySection() {
+type Props = { category?: string };
+export default function CommunitySection({ category }: Props) {
 	return (
 		<section
 			className={clsx(
@@ -23,9 +20,9 @@ export default function CommunitySection() {
 					더보기+
 				</Link>
 			</div>
-			<TabSelector />
+			<TabSelector category={category} />
 
-			<CommunityList />
+			<CommunityList category={category} />
 			<GoToWriteInput />
 		</section>
 	);
@@ -35,13 +32,4 @@ export default function CommunitySection() {
 const moreButton = clsx(
 	'px-15px py-5px bg-subGray rounded-full',
 	'font-bold text-sm'
-);
-const inputStyle = clsx(
-	'flex items-center px-5 py-15px rounded-30 bg-subGray',
-	'text-subText',
-	'cursor-pointer'
-);
-const buttonStyle = clsx(
-	'flexCenter w-[72px] rounded-full justify-between',
-	'text-white bg-mainGreen py-5px'
 );

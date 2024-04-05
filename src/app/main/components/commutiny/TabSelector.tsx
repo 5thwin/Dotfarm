@@ -1,29 +1,36 @@
-'use client';
 import clsx from 'clsx';
-import useCommunityTabStore from './communityTabStore';
+import Link from 'next/link';
 
-export default function TabSelector() {
-	const { tabType, setTabType } = useCommunityTabStore();
+type Props = { category?: string };
+const MAIN_URL = '/main';
+export default function TabSelector({ category }: Props) {
+	console.log(category);
 	return (
 		<ul className="flex gap-x-10">
-			<button
-				className={getItemStyle(tabType === 'TOTAL')}
-				onClick={() => setTabType('TOTAL')}
+			<Link
+				className={getItemStyle(!category)}
+				href={`${MAIN_URL}`}
+				replace
+				scroll={false}
 			>
 				전체
-			</button>
-			<button
-				className={getItemStyle(tabType === 'USED-MACHINERY')}
-				onClick={() => setTabType('USED-MACHINERY')}
+			</Link>
+			<Link
+				className={getItemStyle(category === '중고')}
+				replace
+				scroll={false}
+				href={`${MAIN_URL}?category=중고`}
 			>
 				중고 농기계
-			</button>
-			<button
-				className={getItemStyle(tabType === 'QNA')}
-				onClick={() => setTabType('QNA')}
+			</Link>
+			<Link
+				className={getItemStyle(category === 'QNA')}
+				replace
+				scroll={false}
+				href={`${MAIN_URL}?category=QNA`}
 			>
 				QNA
-			</button>
+			</Link>
 		</ul>
 	);
 }

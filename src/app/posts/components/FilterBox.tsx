@@ -34,6 +34,7 @@ export default function FilterBox() {
 						<IcSearch />
 						<input
 							placeholder="검색하기"
+							className="focus:outline-none"
 							value={keyword}
 							onChange={(e) => setKeyword(e.target.value)}
 						/>

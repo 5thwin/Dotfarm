@@ -5,6 +5,7 @@ import {
 	getUserIdByAccessToken,
 } from '@/api/auth/token/utils';
 import customFetch from '@/api/customFetch';
+import HttpError, { ErrorResponse } from '@/utils/error/httpError';
 import { revalidateTag } from 'next/cache';
 
 type Payload = {
@@ -25,7 +26,14 @@ type Response = {
 export async function createMyLikes(payload: Payload) {
 	const { postId } = payload;
 	const userId = getUserIdByAccessToken();
-	if (!userId) return;
+	if (!userId) {
+		const unauthorizedError: ErrorResponse = {
+			message: '로그인이 필요합니다.',
+			statusCode: 401,
+			error: 'Unauthorized',
+		};
+		throw new Error(JSON.stringify(unauthorizedError));
+	}
 	revalidateTag('post_like');
 	revalidateTag(`post_like${postId}`);
 

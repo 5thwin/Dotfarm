@@ -7,7 +7,8 @@ import { patchPost } from '@/api/post/update';
 import { useEffect } from 'react';
 import useCreateImageStore from '../store/createImageStore';
 import useHandleError from '@/hooks/useHandleError';
-export default function useCreatePost(postId?: number) {
+import { Post } from '@/type/post';
+export default function useCreatePost(post?: Post) {
 	const router = useRouter();
 	const {
 		title,
@@ -18,23 +19,21 @@ export default function useCreatePost(postId?: number) {
 		setCategory,
 		reset,
 	} = useCreatePostStore();
-	const { serverImagePaths } = useCreateImageStore();
-	const {handleError} = useHandleError()
-	const isModifyMode = !!postId; //수정모드 판별,
+	const {
+		serverImagePaths,
+		reset: imageReset,
+		setImageUrls,
+	} = useCreateImageStore();
+	const { handleError } = useHandleError();
+	const isModifyMode = !!post; //수정모드 판별,
 	useEffect(() => {
 		reset();
-
-		// 서버로부터 데이터를 비동기적으로 받아오는 함수
-		async function fetchData(postId: number) {
-			const response = await getPost(postId);
-			if (response) {
-				setTitle(response.title);
-				setContents(response.content);
-				setCategory(response.category);
-				// setImageURL(response.contentImageURL);
-			}
+		if (isModifyMode) {
+			setTitle(post.title);
+			setContents(post.content);
+			setCategory(post.category);
+			setImageUrls(post.images.map((image) => image.path));
 		}
-		postId && fetchData(postId);
 	}, []);
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -50,9 +49,10 @@ export default function useCreatePost(postId?: number) {
 		if (isModifyMode) {
 			//patch 로직
 			try {
-				const res = await patchPost(postId, title, contents, category);
+				const res = await patchPost(post.id, title, contents, category);
 				if (res.id) {
 					reset();
+					imageReset();
 					router.push(`/posts/${res.id}`);
 					return;
 				}
@@ -68,6 +68,7 @@ export default function useCreatePost(postId?: number) {
 			const res = await writePost(title, contents, category, serverImagePaths);
 			if (res.id) {
 				reset();
+				imageReset();
 				router.push(`/posts/${res.id}`);
 				return;
 			}

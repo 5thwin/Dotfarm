@@ -1,19 +1,22 @@
-'use client';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import withLayout from '@/app/hoc/withLayout';
 import { blockStyle } from '@/app/styles/common/blockStyle';
 import clsx from 'clsx';
 import Form from './components/Form';
 import { useSearchParams } from 'next/navigation';
-
 import ImagesWrapper from './components/ImagesWrapper';
+import { getPost } from '@/api/post/get';
+type Params = {
+	searchParams: {
+		[key: string]: string | string[] | undefined;
+	};
+};
 
-function Page() {
-	const searchParams = useSearchParams();
-	const id = searchParams.get('id');
-	const postId = id ? Number(id) : null;
-	const pageTitle = id ? '글 수정하기' : '글 작성하기'; // id 존재 여부에 따라 페이지 제목 결정
-
+async function Page({ searchParams }: Params) {
+	const postId =
+		typeof searchParams.id === 'string' ? Number(searchParams.id) : null;
+	const pageTitle = postId ? '글 수정하기' : '글 작성하기'; // id 존재 여부에 따라 페이지 제목 결정
+	const post = postId ? await getPost(postId) : undefined;
 	return (
 		<div className="flex flex-col items-center w-screen h-screen">
 			<section className={pageContainer}>
@@ -25,7 +28,7 @@ function Page() {
 					<p className="font-bold text-lg">이미지 첨부</p>
 					<ImagesWrapper />
 				</div>
-				<Form postId={postId} />
+				<Form post={post} />
 			</section>
 		</div>
 	);

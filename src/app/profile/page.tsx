@@ -1,4 +1,3 @@
-import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 import withLayout from '../hoc/withLayout';
 import ProfileEditBox from './components/ProfileEditBox';
 

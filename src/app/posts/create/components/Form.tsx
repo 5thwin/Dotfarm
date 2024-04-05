@@ -2,14 +2,15 @@
 import clsx from 'clsx';
 import CategorySelect from './CategorySelect';
 import useCreatePost from '../hook/useCreatePost';
+import { Post } from '@/type/post';
 
 type Props = {
-	postId: number | null;
+	post?: Post;
 };
 
-export default function Form({ postId }: Props) {
+export default function Form({ post }: Props) {
 	const { title, setTitle, contents, setContents, handleSubmit } =
-		useCreatePost(postId || undefined);
+		useCreatePost(post);
 
 	return (
 		<form className={formStyle} onSubmit={handleSubmit}>

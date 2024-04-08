@@ -15,43 +15,43 @@ export default function LoginWrapper() {
 	// const [loginStatus, setLoginStatus] = useState<LoginState>('pending');
 	const router = useRouter();
 	const { handleError } = useHandleError();
-	useEffect(() => {
-		// 카카오 로그인 이후, 이 회원이 dotfarm의 유저인지 회원 여부와, dotfarm에서  발급한 토큰 부여
-		const getAuth = async () => {
-			const authCode = searchParams.get('code');
+	// useEffect(() => {
+	// 	// 카카오 로그인 이후, 이 회원이 dotfarm의 유저인지 회원 여부와, dotfarm에서  발급한 토큰 부여
+	// 	const getAuth = async () => {
+	// 		const authCode = searchParams.get('code');
 
-			if (!authCode) {
-				// setLoginStatus('failure');
-				return;
-			}
-			try {
-				const res = await login(authCode);
-				if (!res) {
-					// router.push('/401'); // 개발 시 사용자 없음 페이지 (혹은 로그인 할 수 없습니다. 문의해주세요.)
-					return;
-				}
-				// access token에서 user id 가져옴
-				const decoded = decodeJWT(res.accessToken);
-				const userId = decoded.sub;
-				const user = await getUserById(Number(userId));
-				if (!user) {
-					return;
-				}
-				setMe(user);
-				if (user.status === 'INACTIVE') {
-					router.push('/signup');
-					return;
-				}
-				router.push('/main');
-			} catch (error) {
-				console.error(error);
-				if (error instanceof Error) {
-					handleError({ error });
-				}
-			}
-		};
-		getAuth();
-	}, []);
+	// 		if (!authCode) {
+	// 			// setLoginStatus('failure');
+	// 			return;
+	// 		}
+	// 		try {
+	// 			const res = await login(authCode);
+	// 			if (!res) {
+	// 				// router.push('/401'); // 개발 시 사용자 없음 페이지 (혹은 로그인 할 수 없습니다. 문의해주세요.)
+	// 				return;
+	// 			}
+	// 			// access token에서 user id 가져옴
+	// 			const decoded = decodeJWT(res.accessToken);
+	// 			const userId = decoded.sub;
+	// 			const user = await getUserById(Number(userId));
+	// 			if (!user) {
+	// 				return;
+	// 			}
+	// 			setMe(user);
+	// 			if (user.status === 'INACTIVE') {
+	// 				router.push('/signup');
+	// 				return;
+	// 			}
+	// 			router.push('/main');
+	// 		} catch (error) {
+	// 			console.error(error);
+	// 			if (error instanceof Error) {
+	// 				handleError({ error });
+	// 			}
+	// 		}
+	// 	};
+	// 	getAuth();
+	// }, []);
 	// // 인증 결과에 따른 분기
 	// useEffect(() => {
 	// 	if (loginStatus === 'success') {
@@ -63,5 +63,33 @@ export default function LoginWrapper() {
 	// 	}
 	// }, [loginStatus]);
 
-	return <div></div>;
+	return (
+		<div className="flex justify-center items-center h-screen bg-gray-100">
+			<div className="p-8 bg-white shadow-md rounded-lg">
+				<div className="flex items-center justify-center mb-6">
+					<div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
+						<svg
+							className="w-8 h-8 text-white"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16m-7 6h7"
+							></path>
+						</svg>
+					</div>
+				</div>
+				<p className="text-lg text-gray-700 text-center mb-4">
+					로그인 중입니다...
+				</p>
+				<div className="flex justify-center">
+					<div className="w-6 h-6 border-t-2 border-b-2 border-green-500 rounded-full animate-spin"></div>
+				</div>
+			</div>
+		</div>
+	);
 }

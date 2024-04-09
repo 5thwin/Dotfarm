@@ -19,8 +19,8 @@ export default function ComunityPostItem({ post }: Props) {
 					<div className={userInfoStyle}>
 						<Image
 							src={
-								author.profileImageURL ||
-								'/public/profile/defaultProfileImg_32x32.svg'
+								author.profileImage?.path ||
+								'/public/profile/defaultProfileImg.svg'
 							}
 							alt={`${author.nickname}님의 프로필 이미지`}
 							className="rounded-full"

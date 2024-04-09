@@ -2,7 +2,7 @@ import React, { ComponentType, ReactNode } from 'react';
 import Header from '../components/common/header/Header';
 import { Desktop } from '../components/responsive/ResponsiveUI';
 import { getDisplayName } from '.';
-// import Footer from '../components/common/Footer';
+import Footer from '../components/common/footer/Footer';
 
 interface LayoutProps {
 	children: ReactNode;
@@ -22,7 +22,7 @@ const Layout = ({
 			</Desktop>
 		)}
 		{children}
-		{/* {showFooter && <Footer />} */}
+		{showFooter && <Footer />}
 	</>
 );
 

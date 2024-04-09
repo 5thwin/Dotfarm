@@ -2,15 +2,14 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import IcSearch from '@/../public/icon/search.svg';
-const GoogleSearchBox = () => {
+import { useRouter } from 'next/navigation';
+const MainSearchBar = () => {
 	const [query, setQuery] = useState('');
+	const router = useRouter();
 
 	const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault(); // 폼 제출 기본 동작 방지
-		window.open(
-			`https://www.google.com/search?q=${encodeURIComponent(query)}`,
-			'_blank'
-		);
+		router.push(`/posts?keyword=${encodeURIComponent(query)}`);
 	};
 
 	return (
@@ -30,7 +29,7 @@ const GoogleSearchBox = () => {
 	);
 };
 
-export default GoogleSearchBox;
+export default MainSearchBar;
 // style
 const searchBoxStyle = clsx(
 	'w-full',

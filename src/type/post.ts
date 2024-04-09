@@ -1,5 +1,4 @@
-import { Comment } from './comment';
-import { Image } from './image';
+import { ImageType } from './image';
 import { UserPartial } from './user';
 
 export type Post = {
@@ -12,7 +11,7 @@ export type Post = {
 	commentCount: number;
 	category: string;
 	author: UserPartial;
-	images: Image[];
+	images: ImageType[];
 };
 
 export type PostPartial = Pick<

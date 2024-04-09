@@ -18,7 +18,7 @@ function Page({ searchParams }: Params) {
 			? searchParams.category
 			: undefined;
 	return (
-		<div className="p-15px lg:p-0">
+		<div className="p-15px lg:p-0 lg:pb-30px">
 			<div className="lg:inline-block hidden">
 				<PcBanner />
 			</div>

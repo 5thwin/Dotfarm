@@ -51,8 +51,6 @@ export default function ProfileImageEditForm(props: Props) {
 		};
 		try {
 			const res = await updateUserMe(updateImage);
-
-			console.log(res);
 			if (res) {
 				setMe(res);
 				const updatedImageURL = res.profileImage?.path;

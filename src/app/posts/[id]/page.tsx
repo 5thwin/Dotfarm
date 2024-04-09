@@ -14,7 +14,7 @@ async function Page({ params }: Props) {
 	const id = Number(params.id);
 	const post = await getPost(id);
 	return (
-		<section className="w-screen size-full flex flex-col items-center lg:pt-[80px]">
+		<section className="w-screen size-full flex flex-col items-center lg:py-[80px]">
 			{post ? <PostBox post={post} /> : <Fallback />}
 		</section>
 	);
@@ -23,7 +23,6 @@ async function Page({ params }: Props) {
 // export const generateStaticParams = async (): Promise<Params[]> => {
 // 	const res = await getPosts();
 
-// 	// console.log(res);
 // 	const posts = res?.data as Post[];
 // 	return posts!.map((post) => ({
 // 		id: post.id.toString(),

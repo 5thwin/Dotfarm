@@ -19,7 +19,7 @@ export async function getPostsWithAuthor(payload?: payload) {
 		if (category) params.append('where__category', category);
 		if (take) params.append('take', take.toString());
 		if (page) params.append('page', page.toString());
-		if (keyword) params.append('where__keyword', keyword);
+		if (keyword) params.append('where__content__i_like', keyword);
 	}
 	const queryString = params.toString(); // 유효한 값들로만 구성된 queryString
 

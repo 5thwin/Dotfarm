@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import GoogleSearchBox from './GoogleSearchBox';
+import MainSearchBar from './MainSearchBar';
 import { Desktop } from '@/app/components/responsive/ResponsiveUI';
 import clsx from 'clsx';
 import Watchlist from './Watchlist';
@@ -20,7 +20,7 @@ export default function PcBanner() {
 			/>
 			<div className="lg:inline-block hidden">
 				<div className={bannerStyle}>
-					<GoogleSearchBox />
+					<MainSearchBar />
 					<ErrorBoundary
 						fallback={<div>표시할 데이터가 존재하지 않습니다.</div>}
 					>

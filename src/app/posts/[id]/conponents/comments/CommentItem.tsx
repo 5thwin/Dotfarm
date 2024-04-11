@@ -2,7 +2,6 @@ import { Comment } from '@/type/comment';
 import clsx from 'clsx';
 import CommentWriter from './CommentWriter';
 import ReplyButton from './ReplyButton';
-import ReplyWrite from './ReplyWrite';
 
 type Props = { comment: Comment; replys?: Comment[]; postId: number };
 
@@ -19,7 +18,6 @@ export default function CommentItem({ comment, replys, postId }: Props) {
 				</div>
 				{isParent && <ReplyButton comment={comment} />}
 			</div>
-			<ReplyWrite commentId={comment.id} postId={postId} />
 			{replys && (
 				<div className="flex items-start">
 					<div className="lg:pl-5 pt-5px">

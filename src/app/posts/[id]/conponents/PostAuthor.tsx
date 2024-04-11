@@ -6,13 +6,13 @@ import Image from 'next/image';
 
 type Props = { author: UserPartial };
 export default function PostAuthor({ author }: Props) {
-	const { profileImageURL } = author;
+	const { profileImage } = author;
 	return (
 		<div className="flex gap-x-2.5 p-15px rounded-10 bg-subGray items-center">
 			<div className={profileImageWrapper}>
-				{profileImageURL ? (
+				{profileImage?.path ? (
 					<Image
-						src={profileImageURL}
+						src={profileImage?.path}
 						alt="작성자 프로필 이미지"
 						fill
 						placeholder="blur"

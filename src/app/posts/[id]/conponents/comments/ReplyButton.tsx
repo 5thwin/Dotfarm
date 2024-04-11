@@ -1,14 +1,14 @@
 'use client';
 
 import clsx from 'clsx';
-import useParentComentStore from '../../store/parentCommentStore';
+import useParentCommentStore from '../../store/parentCommentStore';
 import { Comment } from '@/type/comment';
 
 type Props = {
 	comment: Comment;
 };
 export default function ReplyButton({ comment }: Props) {
-	const { setParentComment, parentComment } = useParentComentStore();
+	const { setParentComment, parentComment } = useParentCommentStore();
 	return (
 		<button
 			onClick={() => {

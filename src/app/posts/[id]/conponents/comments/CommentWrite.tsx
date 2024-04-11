@@ -6,12 +6,14 @@ import React, { useRef } from 'react';
 
 import { useRouter } from 'next/navigation';
 import useHandleError from '@/hooks/useHandleError';
+import useParentCommentStore from '../../store/parentCommentStore';
 
 type Props = {
 	postId: number;
-	parentId?: number;
 };
-export default function CommentWrite({ postId, parentId }: Props) {
+export default function CommentWrite({ postId }: Props) {
+	const { parentComment, setParentComment } = useParentCommentStore();
+	const parentId = parentComment?.id; //부모댓글의 아이디
 	const inputRef = useRef<HTMLInputElement>(null);
 	const router = useRouter();
 	const { handleError } = useHandleError();
@@ -31,10 +33,18 @@ export default function CommentWrite({ postId, parentId }: Props) {
 		}
 		inputRef.current.value = '';
 	};
+	const handleEraseReply = () => setParentComment();
 	return (
 		<div className="flex flex-col gap-y-5px">
 			<form className={CommentWrapper} onSubmit={onSubmit}>
 				<label htmlFor="comment-input" className="sr-only" />
+				{parentComment && (
+					<button onClick={handleEraseReply}>
+						<span className="text-mainGreen">
+							@{parentComment.author.nickname}
+						</span>
+					</button>
+				)}
 				<input
 					ref={inputRef}
 					id="comment-input"
@@ -50,7 +60,9 @@ export default function CommentWrite({ postId, parentId }: Props) {
 }
 
 // style
-const CommentWrapper = clsx('bg-subGray rounded-full flex px-5 py-[15px]');
+const CommentWrapper = clsx(
+	'bg-subGray rounded-full flex px-5 py-[15px] gap-x-5px items-center'
+);
 const InputStyle = clsx('bg-transparent flex-1 outline-none');
 const buttonStyle = clsx(
 	'flexCenter whitespace-nowrap py-5px w-[72px]',

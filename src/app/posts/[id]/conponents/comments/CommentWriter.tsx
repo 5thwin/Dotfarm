@@ -14,7 +14,7 @@ export default function CommentWriter({ user, createAt }: Props) {
 		<div className="flex gap-x-2.5 items-center">
 			<div className={imageWrapper}>
 				<Image
-					src={user.profileImageURL || '/profile/defaultProfileImg.svg'}
+					src={user.profileImage?.path || '/profile/defaultProfileImg.svg'}
 					fill
 					alt={`${user.nickname} 프로필 이미지`}
 				/>

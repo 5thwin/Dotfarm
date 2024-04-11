@@ -17,6 +17,6 @@ const inputStyle = clsx(
 );
 
 const buttonStyle = clsx(
-	'flexCenter w-[72px] rounded-full justify-between',
+	'flexCenter w-[72px] rounded-full',
 	'text-white bg-mainGreen py-5px'
 );

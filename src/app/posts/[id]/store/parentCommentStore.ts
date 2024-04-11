@@ -6,8 +6,8 @@ interface ParentCommentState {
 	setParentComment: (_?: Comment) => void;
 }
 
-const useParentComentStore = create<ParentCommentState>((set) => ({
+const useParentCommentStore = create<ParentCommentState>((set) => ({
 	parentComment: undefined,
 	setParentComment: (parent) => set(() => ({ parentComment: parent })),
 }));
-export default useParentComentStore;
+export default useParentCommentStore;

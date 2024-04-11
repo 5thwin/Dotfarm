@@ -20,7 +20,7 @@ export default withLayout(SupportPage, true);
 
 // style
 const responsivePageContainer = clsx(
-	'mx-auto lg:my-[127px] lg:px-[161px] flex flex-col gap-y-5',
+	'mx-auto lg:my-[127px] xl:px-[161px] flex flex-col gap-y-5',
 	'p-5 lg:py-0'
 );
 const headTextStyle = clsx('lg:text-3xl text-xl font-bold');

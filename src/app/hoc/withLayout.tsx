@@ -13,7 +13,7 @@ interface LayoutProps {
 const Layout = ({
 	children,
 	showHeader = true,
-	showFooter = true,
+	showFooter = false,
 }: LayoutProps) => (
 	<>
 		{showHeader && (
@@ -26,16 +26,11 @@ const Layout = ({
 	</>
 );
 
-interface WithLayoutProps {
-	showHeader?: boolean;
-	showFooter?: boolean;
-}
-
 // Explicitly define the return type as React.FC for clarity
 const withLayout = <P extends object>(
 	WrappedComponent: ComponentType<P>,
 	showHeader: boolean = true,
-	showFooter: boolean = true
+	showFooter: boolean = false
 ) => {
 	// Define the component with explicit props type
 	const WithLayoutComponent: React.FC<P> = (props: P) => (

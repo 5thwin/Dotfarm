@@ -45,7 +45,9 @@ export default function CalendarDate({
 			)}
 			{/* 데스크탑일 경우에만 Modal 보여짐 */}
 			<Desktop>
-				{selectedDate && selectedDate === day && <SupportListModal />}
+				{selectedDate && selectedDate === day && programs.length > 0 && (
+					<SupportListModal />
+				)}
 			</Desktop>
 		</div>
 	);
@@ -63,7 +65,7 @@ const getWrapperStyle = (
 		{
 			'opacity-30': !isCurrentMonth,
 			'lg:bg-subGreen': isToday, //데스크탑 캘린더에서 오늘 날짜를 표시
-			'bg-subGreen lg:bg-transparent': isSelected, //모바일 캘린더에서 선택되었을 때, 표시
+			// 'bg-subGreen': isSelected, //모바일 캘린더에서 선택되었을 때, 표시
 		}
 	);
 

@@ -20,7 +20,9 @@ export default function DateProgramsWrapper({ programs }: Props) {
 			<div className="flex flex-col gap-y-25px">
 				<div className="flex gap-x-2.5 items-center">
 					<h3 className="text-lg font-bold">지원사업 & 교육 일정</h3>
-					<span className="text-mainGreen font-bold">{programs.length}건</span>
+					<span className="text-mainGreen font-bold">
+						{supportPrograms.length}건
+					</span>
 				</div>
 				<SupportList supportPrograms={supportPrograms} />
 			</div>

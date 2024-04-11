@@ -23,6 +23,10 @@ export default function CalendarDate({
 	const isSelected = selectedDate
 		? compareDates(day, selectedDate) === 0
 		: isToday;
+	const todayStartList = programs.filter(
+		(program) =>
+			new Date(program.startDate).toDateString() == day.toDateString()
+	);
 	return (
 		<div
 			className={getWrapperStyle(
@@ -36,7 +40,7 @@ export default function CalendarDate({
 		>
 			<span className={getDateStyle(day.getDay())}>{day.getDate()}</span>
 			<div className="hidden lg:block">
-				<CalendarDatePrograms programs={programs} />
+				<CalendarDatePrograms programs={todayStartList} />
 			</div>
 			{programs.length > 0 && (
 				<div className="flexCenter lg:hidden">

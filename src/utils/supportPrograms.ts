@@ -1,5 +1,6 @@
 import { SupportProgram } from '@/type/support';
-import { compareDates } from './date/compare';
+import { calculateDday, compareDates } from './date/compare';
+import exp from 'constants';
 
 /**
  * 특정 날짜에 표시되어야 하는 지원사업 프로그램 목록을 필터링합니다.
@@ -15,10 +16,16 @@ export const filterProgramsByDate = (
 	targetDate: Date
 ) =>
 	supportsPrograms.filter((program) => {
+		const deadlineDate = new Date(program.deadline);
+		const startDate = new Date(program.startDate);
 		return (
 			// 모집 마감일자가 대상 날짜 이후이고, 모집 시작일자가 대상 날짜 이전 또는 같은 날짜인 프로그램을 필터링
 			compareDates(
-				new Date(program.deadline),
+				new Date(
+					deadlineDate.getFullYear(),
+					deadlineDate.getMonth(),
+					deadlineDate.getDate()
+				),
 				new Date(
 					targetDate.getFullYear(),
 					targetDate.getMonth(),
@@ -26,7 +33,11 @@ export const filterProgramsByDate = (
 				)
 			) >= 0 &&
 			compareDates(
-				new Date(program.startDate),
+				new Date(
+					startDate.getFullYear(),
+					startDate.getMonth(),
+					startDate.getDate()
+				),
 				new Date(
 					targetDate.getFullYear(),
 					targetDate.getMonth(),
@@ -35,3 +46,20 @@ export const filterProgramsByDate = (
 			) <= 0
 		);
 	});
+
+/**
+ * 지원사업 프로그램 상태를 분류합니다..
+ * 마감일과 모집상태를 기준으로 판별합니다..
+ *
+ * @param supportsPrograms - 지원사업 프로그램 목록
+ * @returns
+ */
+export const getRecruitmentStatus = (program: SupportProgram) => {
+	const deadline = program.deadline;
+	const dDay = calculateDday(deadline);
+	if (dDay < 0 || program.recruitmentStatus === '마감') return 'IS_CLOSED';
+
+	if (dDay > 365 || program.recruitmentStatus === '상시공고')
+		return 'IS_ALWAYS';
+	return 'IS_RECRUITING';
+};

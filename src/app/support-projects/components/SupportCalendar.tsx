@@ -15,6 +15,7 @@ type SupportCalendarProps = {
 const SupportCalendar = ({ programs }: SupportCalendarProps) => {
 	const { currentDate, monthDays, handlePreviousMonth, handleNextMonth } =
 		useSupportCalendar();
+
 	return (
 		<div className="flex flex-col gap-y-5">
 			<div id="calendar-header" className="flex justify-between items-center">

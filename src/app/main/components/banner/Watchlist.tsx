@@ -8,7 +8,7 @@ export default async function Watchlist() {
 	if (!likeResponse || !interestResponse) return null;
 	const postLikes = likeResponse.data;
 	const interests = interestResponse.data;
-	if (postLikes.length === 0) return null;
+	if (postLikes.length === 0 && interests.length === 0) return null;
 	return (
 		<div className="flex flex-col max-h-[173px] gap-y-2.5">
 			<p className="font-bold text-lg">관심목록</p>

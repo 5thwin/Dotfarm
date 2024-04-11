@@ -6,10 +6,11 @@ import safeJsonParse from '@/utils/safeJsonParse';
 
 interface ErrorHandlerProps {
 	error: Error;
+	defaultHandler?: () => void;
 }
 const useHandleError = () => {
 	const router = useRouter();
-	const handleError = ({ error }: ErrorHandlerProps) => {
+	const handleError = ({ error, defaultHandler }: ErrorHandlerProps) => {
 		const { data: errorObject } = safeJsonParse<ErrorResponse>(error.message);
 		if (error.message.includes('401')) {
 			router.push('/401');
@@ -23,11 +24,15 @@ const useHandleError = () => {
 			return;
 		}
 		// 기본 에러 처리
-		Toast.fire(
-			'알 수 없는 오류가 발생했습니다.',
-			'잠시 후 다시 시도해주세요.',
-			'error'
-		);
+		if (defaultHandler) {
+			defaultHandler();
+		} else {
+			Toast.fire(
+				'알 수 없는 오류가 발생했습니다.',
+				'잠시 후 다시 시도해주세요.',
+				'error'
+			);
+		}
 	};
 	return { handleError };
 };

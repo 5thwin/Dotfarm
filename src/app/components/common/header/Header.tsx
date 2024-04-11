@@ -2,8 +2,6 @@ import React from 'react';
 import DotfarmLogo from '../../landing/DotfarmLogo';
 import { PATH_MAIN, navLinks } from '@/utils/navigation';
 import Link from 'next/link';
-import { getMe } from '@/utils/localstorage';
-import HeaderUserIcon from './HeaderUserIcon';
 import HeaderContainer from './HeaderContainer';
 import HeaderUserArea from './HeaderUserArea';
 

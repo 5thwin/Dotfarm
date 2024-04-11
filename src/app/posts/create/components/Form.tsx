@@ -47,4 +47,4 @@ const getButtonStyle = (isAvailable: boolean) =>
 	});
 //
 
-//'일반', '중고', '구인', 'QNA'
+//'일반', '중고', '구인/구직', '질문하기'

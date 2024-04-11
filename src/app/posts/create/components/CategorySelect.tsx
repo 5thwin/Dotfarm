@@ -27,11 +27,11 @@ const options: OptionType[] = [
 		value: '중고',
 	},
 	{
-		label: '구인',
-		value: '구인',
+		label: '구인/구직',
+		value: '구인/구직',
 	},
 	{
-		label: 'QNA',
-		value: 'QNA',
+		label: '질문하기',
+		value: '질문하기',
 	},
 ];

@@ -6,6 +6,7 @@ import UserNeedsSection from './components/landing/UserNeedsSection';
 import FeatureSection from './components/landing/FeatureSection';
 import LastSection from './components/landing/LastSection';
 import { Metadata } from 'next';
+import { CLIENT_ID, REDIRECT_URI } from '@/utils/kakao';
 
 export const metadata: Metadata = {
 	title: '농업 정보 플랫폼 닷팜',
@@ -30,6 +31,9 @@ export const metadata: Metadata = {
 export default function Home() {
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between">
+			<p>
+				{CLIENT_ID} {REDIRECT_URI}
+			</p>
 			<Header />
 			<HeroSection />
 			<ProblemSection />

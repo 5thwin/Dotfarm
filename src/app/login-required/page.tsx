@@ -4,7 +4,7 @@ import { KaKaoLoginButton } from '../components/landing/KaKaoLoginButton';
 import { KakaoBubble } from '../components/icons/KakaoBubble';
 import withLayout from '../hoc/withLayout';
 
-function Page401() {
+function Page() {
 	return (
 		<section className="flexCenter w-screen h-screen flex-col gap-y-5">
 			<div className="flex flex-col gap-y-15px items-center">
@@ -15,10 +15,10 @@ function Page401() {
 					height={123}
 				/>
 				<h1 className="text-lg lg:text-[26px] text-mainGreen font-bold">
-					권한이 만료되었어요
+					닷팜 회원이 되어주세요.
 				</h1>
 				<p className="lg:text-base text-sm text-center font-bold">
-					다시 로그인이 필요합니다.
+					로그인이 필요한 페이지입니다.
 				</p>
 			</div>
 			<KaKaoLoginButton className="bg-kakaoYellow rounded-xl text-black font-bold flexCenter py-3 px-6">
@@ -30,8 +30,8 @@ function Page401() {
 		</section>
 	);
 }
-export default withLayout(Page401, true, false, true);
 
+export default withLayout(Page, true, false, true);
 // style
 const goToMainStyle = clsx(
 	'flexCenter gap-x-5px text-white bg-mainGreen rounded-10 w-[250px] h-[50px] font-bold'

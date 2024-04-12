@@ -1,5 +1,5 @@
 'use client';
-import { getMe, setMe } from '@/utils/localstorage';
+import { getMe } from '@/utils/localstorage';
 import HeaderUserIcon from './HeaderUserIcon';
 import clsx from 'clsx';
 import { KaKaoLoginButton } from '../../landing/KaKaoLoginButton';
@@ -10,7 +10,7 @@ export default function HeaderUserArea() {
 	const [me, setMe] = useState<UserPartial | null>(null);
 	useEffect(() => {
 		setMe(getMe());
-	});
+	}, []);
 	return me ? (
 		<HeaderUserIcon me={me} />
 	) : (

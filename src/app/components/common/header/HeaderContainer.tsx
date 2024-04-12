@@ -7,7 +7,9 @@ export default function HeaderContainer({
 	children,
 	showOnMobile = false,
 }: Props) {
-	const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 20);
+	const [isScrolled, setIsScrolled] = useState(
+		() => typeof window !== 'undefined' && window.scrollY > 20
+	);
 
 	useEffect(() => {
 		const updateScroll = () => {

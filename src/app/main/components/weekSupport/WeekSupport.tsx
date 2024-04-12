@@ -37,7 +37,6 @@ export default function WeekSupport() {
 					</span>
 				</Link>
 			</div>
-
 			<WeekDaySupportPrograms />
 		</div>
 	);

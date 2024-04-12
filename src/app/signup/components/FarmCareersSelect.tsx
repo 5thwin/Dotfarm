@@ -12,6 +12,7 @@ export default function FarmCareersSelect() {
 			styles={signupFormSelectStyles}
 			placeholder="경력선택"
 			options={options}
+			className="text-sm"
 			value={
 				farmingExperience
 					? { label: farmingExperience, value: farmingExperience }

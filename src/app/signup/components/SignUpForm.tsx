@@ -44,7 +44,7 @@ export default function SignUpForm({ me, krRegions, crops }: Props) {
 				</div>
 			</div>
 			<button type="submit" className={submitStyle}>
-				입력하기
+				가입하기
 			</button>
 		</form>
 	);

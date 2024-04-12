@@ -29,5 +29,6 @@ export default async function Pages() {
 
 //style
 const signUpContainer = clsx(
-	'p-30px flex flex-col items-center gap-y-10 rounded-50 shadow-main'
+	'lg:p-30px flex flex-col items-center gap-y-10 lg:rounded-50 lg:shadow-main',
+	'w-screen h-screen justify-center lg:w-auto lg:h-auto'
 );

@@ -11,6 +11,7 @@ export default function MajorCropsSelect({ crops }: Props) {
 	}));
 	return (
 		<Select
+			className="text-sm"
 			defaultValue={
 				majorCrops ? { label: majorCrops, value: majorCrops } : undefined
 			}

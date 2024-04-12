@@ -16,6 +16,10 @@ const useHandleError = () => {
 			router.push('/401');
 			return;
 		}
+		if (error.message.includes('ACTIVE 권한')) {
+			router.push('/signup');
+			return;
+		}
 		if (isErrorObject(errorObject)) {
 			Toast.fire({
 				title: errorObject.message,

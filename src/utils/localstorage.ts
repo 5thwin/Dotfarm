@@ -1,3 +1,4 @@
+'use client';
 import { UserPartial } from '@/type/user';
 // key
 export const LOCAL_KEY_ME = 'me';

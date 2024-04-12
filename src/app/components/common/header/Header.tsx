@@ -23,7 +23,7 @@ const Header: React.FC<Props> = ({ showOnMobile = false }) => {
 					))}
 				</ul>
 			</div>
-			<HeaderUserArea />
+			{/* <HeaderUserArea /> */}
 		</HeaderContainer>
 	);
 };

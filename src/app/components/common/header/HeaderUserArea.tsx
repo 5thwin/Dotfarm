@@ -2,13 +2,14 @@
 import { getMe } from '@/utils/localstorage';
 import HeaderUserIcon from './HeaderUserIcon';
 import clsx from 'clsx';
+import { KaKaoLoginButton } from '../../landing/KaKaoLoginButton';
 
 export default function HeaderUserArea() {
 	const me = getMe();
 	return me ? (
 		<HeaderUserIcon me={me} />
 	) : (
-		<button className={loginButtonStyle}>로그인</button>
+		<KaKaoLoginButton className={loginButtonStyle}>로그인</KaKaoLoginButton>
 	);
 }
 

@@ -1,5 +1,7 @@
 import { KakaoBubble } from '@/app/components/icons/KakaoBubble';
+import { KAKAO_OPEN_CHAT_LINK } from '@/constants/link';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 // 오픈채팅방으로 가는 배너
 export default function OpenChatBanner() {
@@ -15,10 +17,14 @@ export default function OpenChatBanner() {
 						모든 소식을 전해드립니다
 					</b>
 				</p>
-				<button className={openchatButtonStyle}>
+				<Link
+					href={KAKAO_OPEN_CHAT_LINK}
+					className={openchatButtonStyle}
+					target="_blank"
+				>
 					<KakaoBubble width={17} height={17} />
 					<p>{`닷팜 단톡 가기 >`} </p>
-				</button>
+				</Link>
 			</div>
 		</div>
 	);

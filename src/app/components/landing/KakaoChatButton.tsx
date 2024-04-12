@@ -1,5 +1,6 @@
 'use client';
 import { KAKAO_OPEN_CHAT_LINK } from '@/constants/link';
+import Link from 'next/link';
 import { ReactNode } from 'react';
 
 type KakaoChatButtonProps = {
@@ -12,13 +13,13 @@ export function KakaoChatButton({ className, children }: KakaoChatButtonProps) {
 	};
 
 	return (
-		<a
+		<Link
 			href={KAKAO_OPEN_CHAT_LINK}
 			target="_blank"
 			rel="noopener noreferrer"
 			className={className}
 		>
 			{children || '오픈 채팅방 이동'}
-		</a>
+		</Link>
 	);
 }

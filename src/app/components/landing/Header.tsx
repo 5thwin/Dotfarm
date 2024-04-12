@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
 import { KaKaoLoginButton } from './KaKaoLoginButton';
+import Link from 'next/link';
 export default function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);
 
@@ -34,9 +35,9 @@ export default function Header() {
 				height={24}
 				priority
 			/>
-			<KaKaoLoginButton className={LandingHeaderButtonStyle}>
-				<span>{'카카오 로그인'}</span>
-			</KaKaoLoginButton>
+			<Link href={'/main'} className={LandingHeaderButtonStyle}>
+				<span>{'농업정보 무료보기'}</span>
+			</Link>
 		</nav>
 	);
 }

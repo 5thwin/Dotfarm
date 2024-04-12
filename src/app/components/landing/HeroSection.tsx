@@ -4,6 +4,7 @@ import Image from 'next/image';
 import DotfarmLogo from './DotfarmLogo';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { KakaoChatButton } from './KakaoChatButton';
+import Link from 'next/link';
 
 export default function HeroSection() {
 	return (
@@ -39,9 +40,9 @@ export default function HeroSection() {
 								지원사업 정보를 알려드립니다{' '}
 							</p>
 						</div>
-						<KakaoChatButton className={LandingButtonStyle}>
-							<span>{'오픈 채팅방 이동 >'}</span>
-						</KakaoChatButton>
+						<Link href={'/main'} className={LandingButtonStyle}>
+							<span>{'농업정보 무료보기 >'}</span>
+						</Link>
 					</div>
 				</div>
 			</div>

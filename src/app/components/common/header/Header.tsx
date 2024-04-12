@@ -5,14 +5,17 @@ import Link from 'next/link';
 import HeaderContainer from './HeaderContainer';
 import HeaderUserArea from './HeaderUserArea';
 
-const Header: React.FC = () => {
+type Props = {
+	showOnMobile?: boolean;
+};
+const Header: React.FC<Props> = ({ showOnMobile = false }) => {
 	return (
-		<HeaderContainer>
+		<HeaderContainer showOnMobile={showOnMobile}>
 			<div className="flex gap-x-[61px]">
 				<Link href={PATH_MAIN}>
 					<DotfarmLogo />
 				</Link>
-				<ul className="flex gap-x-30px items-center">
+				<ul className="lg:flex gap-x-30px items-center hidden">
 					{navLinks.map((link) => (
 						<li className="font-bold" key={link.path}>
 							<Link href={link.path}>{link.name}</Link>

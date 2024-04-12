@@ -4,12 +4,10 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { SupportProgram } from '@/type/support';
 import { useState } from 'react';
-import { colorMainGreen } from '@/constants/color';
 import { createMyInterest } from '@/api/user/interest/create';
 import { deleteMyInterest } from '@/api/user/interest/delete';
 import Toast from '@/app/components/common/Toast';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
-import HttpError from '@/utils/error/httpError';
 import useHandleError from '@/hooks/useHandleError';
 
 export default function SupportProgramItem({
@@ -47,7 +45,11 @@ export default function SupportProgramItem({
 	})();
 	return (
 		<li className="flex justify-between items-center gap-x-10">
-			<div className="flex flex-col gap-y-2.5 whitespace-pre-wrap">
+			<div
+				className={clsx('flex flex-col gap-y-2.5 whitespace-pre-wrap', {
+					'opacity-30': recruitmentStatus === 'IS_CLOSED',
+				})}
+			>
 				<div className="flex gap-x-5px flex-wrap gap-y-1">
 					<span
 						className={clsx(defaultSupportTag, {

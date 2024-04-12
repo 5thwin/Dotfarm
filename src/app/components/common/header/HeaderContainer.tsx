@@ -2,8 +2,11 @@
 import clsx from 'clsx';
 import { ReactNode, useEffect, useState, useCallback } from 'react';
 
-type Props = { children: ReactNode };
-export default function HeaderContainer({ children }: Props) {
+type Props = { children: ReactNode; showOnMobile?: boolean };
+export default function HeaderContainer({
+	children,
+	showOnMobile = false,
+}: Props) {
 	const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 20);
 
 	useEffect(() => {
@@ -25,12 +28,13 @@ export default function HeaderContainer({ children }: Props) {
 			clsx(
 				'fixed top-0 left-0 w-full h-20',
 				'transition-colors duration-[30] ease-in-out',
-				'px-10 py-5',
+				'px-2.5 lg:px-10 py-5',
 				'flex justify-between items-center',
 				'z-30',
 				{
 					'bg-white shadow-main': isScrolled,
 					'bg-transparent': !isScrolled,
+					'hidden lg:flex': !showOnMobile,
 				}
 			),
 		[]

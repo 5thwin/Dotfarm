@@ -5,7 +5,7 @@ type Props = { category?: string };
 const MAIN_URL = '/main';
 export default function TabSelector({ category }: Props) {
 	return (
-		<ul className="flex gap-x-10">
+		<ul className="flex gap-x-2.5 lg:gap-x-10 flex-wrap">
 			<Link
 				className={getItemStyle(!category)}
 				href={`${MAIN_URL}`}
@@ -51,7 +51,12 @@ export default function TabSelector({ category }: Props) {
 }
 
 const getItemStyle = (isSelected: boolean) =>
-	clsx('flexCenter font-bold border-b-4 p-2.5 pb-[6px]', {
-		'border-b-mainGreen': isSelected,
-		'border-b-transparent': !isSelected,
-	});
+	clsx(
+		'flexCenter font-bold border-b-4 lg:pb-[6px]',
+		'lg:p-2.5 p-1',
+		'text-sm lg:text-base',
+		{
+			'border-b-mainGreen': isSelected,
+			'border-b-transparent': !isSelected,
+		}
+	);

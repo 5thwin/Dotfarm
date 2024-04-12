@@ -3,7 +3,7 @@ import { blockStyle } from '@/app/styles/common/blockStyle';
 import { getWeekOfMonth } from '@/utils/date/week';
 import clsx from 'clsx';
 import WeekDaySupportPrograms from './WeekDaySupportPrograms';
-import { IcCalendar } from '@/app/components/icons/IcCalendar';
+import IcCalendar from '@/../public/icon/calender.svg';
 import Link from 'next/link';
 import { PATH_SUPPROT_PROJECTS } from '@/utils/navigation';
 
@@ -31,8 +31,10 @@ export default function WeekSupport() {
 					className="px-2.5 py-5px flex rounded-full items-center bg-mainGreen font-bold gap-x-1"
 					href={PATH_SUPPROT_PROJECTS}
 				>
-					<IcCalendar />
-					<span className="text-white text-sm  font-bold">달력보기</span>
+					<IcCalendar width="24" height="25" fill="white" />
+					<span className="text-white  text-xs lg:text-sm  font-bold">
+						달력보기
+					</span>
 				</Link>
 			</div>
 

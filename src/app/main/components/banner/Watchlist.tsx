@@ -10,7 +10,7 @@ export default async function Watchlist() {
 	const interests = interestResponse.data;
 	if (postLikes.length === 0 && interests.length === 0) return null;
 	return (
-		<div className="flex flex-col max-h-[173px] gap-y-2.5">
+		<div className="hidden xl:flex flex-col max-h-[100px] 2xl:max-h-[173px] gap-y-2.5 ">
 			<p className="font-bold text-lg">관심목록</p>
 			<ul className="flex flex-col flex-1 overflow-scroll gap-y-[18px]">
 				{interests.map(({ support, id }) => (

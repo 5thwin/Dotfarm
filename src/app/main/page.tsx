@@ -5,8 +5,7 @@ import CommunitySection from './components/commutiny/CommunitySection';
 import withLayout from '../hoc/withLayout';
 import PcBanner from './components/banner/PcBanner';
 import clsx from 'clsx';
-import { Mobile } from '../components/responsive/ResponsiveUI';
-import MainHeaderMobile from '../components/common/header/MainHeader-mobile';
+import MobileBanner from './components/banner/MobileBanner';
 type Params = {
 	searchParams: {
 		[key: string]: string | string[] | undefined;
@@ -18,15 +17,15 @@ function Page({ searchParams }: Params) {
 			? searchParams.category
 			: undefined;
 	return (
-		<div className="p-15px lg:p-0 pb-14 lg:pb-20">
+		<div className="p-15px lg:p-0 pt-20 pb-14 lg:pb-20">
 			<div className="lg:inline-block hidden">
 				<PcBanner />
 			</div>
+			<div className="lg:hidden inline-block pb-4">
+				<MobileBanner />
+			</div>
 			<main>
 				<div className={responsiveMainPage}>
-					<Mobile>
-						<MainHeaderMobile />
-					</Mobile>
 					<MainSideArea />
 					<section
 						id="main-section"
@@ -41,7 +40,7 @@ function Page({ searchParams }: Params) {
 		</div>
 	);
 }
-export default withLayout(Page, true, true);
+export default withLayout(Page, true, true, true);
 // style
 const responsiveMainPage = clsx(
 	'mx-auto lg:mt-[65px] flex gap-x-30px',

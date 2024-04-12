@@ -2,6 +2,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import { KakaoChatButton } from './KakaoChatButton';
 import { LandingButtonStyle } from '@/app/styles/common/buttonStyle';
+import Link from 'next/link';
 
 export default function LastSection() {
 	return (
@@ -28,9 +29,9 @@ export default function LastSection() {
 							형식으로 공유드리겠습니다
 						</p>
 					</div>
-					<KakaoChatButton className={LandingButtonStyle}>
-						<span className="font-bold lg:text-lg">{'오픈 채팅방 이동 >'}</span>
-					</KakaoChatButton>
+					<Link href={'/main'} className={LandingButtonStyle}>
+						<span className="font-bold lg:text-lg">{'농업정보 무료보기>'}</span>
+					</Link>
 				</div>
 
 				<div className={imageContainer}>

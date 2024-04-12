@@ -13,6 +13,7 @@ export default async function CalendarWrapper() {
 			<section className={clsx(blockStyle, 'flex flex-col gap-y-2.5')}>
 				{supports && <SupportCalendar programs={supports} />}
 			</section>
+			{/* 모바일에서는 하단에 지원사업 목록이 보여짐  */}
 			<div className="lg:hidden">
 				{supports && <DateProgramsWrapper programs={supports} />}
 			</div>

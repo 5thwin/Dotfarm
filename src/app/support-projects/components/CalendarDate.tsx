@@ -6,6 +6,7 @@ import SupportListModal from './modal/SupportListModal';
 import CalendarDatePrograms from './CalendarDatePrograms';
 import { Desktop } from '@/app/components/responsive/ResponsiveUI';
 import { compareDates } from '@/utils/date/compare';
+import { getRecruitmentStatus } from '@/utils/supportPrograms';
 
 type CalendarDateProps = {
 	currentMonth: number;
@@ -27,6 +28,10 @@ export default function CalendarDate({
 		(program) =>
 			new Date(program.startDate).toDateString() == day.toDateString()
 	);
+	// 오늘 날짜의 지원사업 중에서 마감되지 않은 공고가 하나라도 있는지 판별
+	const isExistRecruitingProgram = programs
+		.map((program) => getRecruitmentStatus(program) !== 'IS_CLOSED')
+		.reduce((pre, cur) => pre || cur, false);
 	return (
 		<div
 			className={getWrapperStyle(
@@ -43,8 +48,13 @@ export default function CalendarDate({
 				<CalendarDatePrograms programs={todayStartList} />
 			</div>
 			{programs.length > 0 && (
+				// 모바일에서는 점(.)d으로 표시
 				<div className="flexCenter lg:hidden">
-					<i className={greenCircle} />
+					{isExistRecruitingProgram ? (
+						<i className={greenCircle} />
+					) : (
+						<i className={grayCircle} />
+					)}
 				</div>
 			)}
 			{/* 데스크탑일 경우에만 Modal 보여짐 */}
@@ -79,3 +89,4 @@ const getDateStyle = (weekDay: number) =>
 		'text-[#4F6BFF]': weekDay === 6,
 	});
 const greenCircle = clsx('w-[5px] h-[5px] rounded-full bg-mainGreen');
+const grayCircle = clsx('w-[5px] h-[5px] rounded-full bg-subGray');

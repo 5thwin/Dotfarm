@@ -54,7 +54,9 @@ export const filterProgramsByDate = (
  * @param supportsPrograms - 지원사업 프로그램 목록
  * @returns
  */
-export const getRecruitmentStatus = (program: SupportProgram) => {
+export const getRecruitmentStatus = (
+	program: SupportProgram
+): 'IS_RECRUITING' | 'IS_ALWAYS' | 'IS_CLOSED' => {
 	const deadline = program.deadline;
 	const dDay = calculateDday(deadline);
 	if (dDay < 0 || program.recruitmentStatus === '마감') return 'IS_CLOSED';
@@ -63,3 +65,19 @@ export const getRecruitmentStatus = (program: SupportProgram) => {
 		return 'IS_ALWAYS';
 	return 'IS_RECRUITING';
 };
+
+// 배열을 주어진 우선순위에 따라 정렬
+export function sortPrograms(programs: SupportProgram[]): SupportProgram[] {
+	// 각 상태에 우선순위를 매김
+	const statusPriority: Record<string, number> = {
+		IS_RECRUITING: 1,
+		IS_ALWAYS: 2,
+		IS_CLOSED: 3,
+	};
+
+	return programs.sort((a, b) => {
+		const statusA = getRecruitmentStatus(a);
+		const statusB = getRecruitmentStatus(b);
+		return statusPriority[statusA] - statusPriority[statusB];
+	});
+}

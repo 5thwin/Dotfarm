@@ -39,14 +39,8 @@ export default withLayout(Page, false, false);
 const pageContainer = clsx(
 	blockStyle,
 	'rounded-none lg:rounded-30',
-	'w-screen lg:w-auto',
+	'w-screen lg:w-auto h-screen lg:h-auto ',
 	'shadow-none lg:shadow-main',
 	'flex flex-col gap-y-5',
 	'lg:mt-[72px]'
-);
-
-const modalOpenButton = clsx(
-	'flex flex-col justify-center items-center h-full',
-	'rounded-10 w-[185px] h-[110px]',
-	'bg-subGray border-lineColor border'
 );

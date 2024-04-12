@@ -18,6 +18,7 @@ function Page({ searchParams }: Params) {
 			: undefined;
 	return (
 		<div className="p-15px lg:p-0 pt-20 pb-14 lg:pb-20">
+			<p>env: {process.env.NEXT_PUBLIC_SERVER_API_URL}</p>
 			<div className="lg:inline-block hidden">
 				<PcBanner />
 			</div>

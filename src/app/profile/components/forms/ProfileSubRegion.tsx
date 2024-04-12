@@ -30,15 +30,15 @@ export default function ProfileSubRegion({
 			<label htmlFor="sub-region" className="sr-only" />
 			<Select
 				id="sub-region"
+				styles={signupFormSelectStyles}
 				isDisabled={region === ''}
 				options={subRegionOptions || []}
 				placeholder="구/시/군"
 				value={{
-					label: subRegion === '' ? '지역을 선택해주세요' : subRegion,
-					value: subRegion,
+					label: subRegion === '' ? '지역을 선택해주세요' : subRegion || '',
+					value: subRegion || '',
 				}}
 				className="flex-1 text-sm"
-				styles={signupFormSelectStyles}
 				onChange={(newRegion) => {
 					const newOption = newRegion as OptionType;
 					setSubRegion(newOption.value);

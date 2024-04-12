@@ -15,6 +15,14 @@ export default function TabSelector({ category }: Props) {
 				전체
 			</Link>
 			<Link
+				className={getItemStyle(category === '일반')}
+				replace
+				scroll={false}
+				href={`${MAIN_URL}?category=일반`}
+			>
+				일반
+			</Link>
+			<Link
 				className={getItemStyle(category === '중고')}
 				replace
 				scroll={false}
@@ -23,12 +31,20 @@ export default function TabSelector({ category }: Props) {
 				중고 농기계
 			</Link>
 			<Link
-				className={getItemStyle(category === 'QNA')}
+				className={getItemStyle(category === '구인/구직')}
 				replace
 				scroll={false}
-				href={`${MAIN_URL}?category=QNA`}
+				href={`${MAIN_URL}?category=구인/구직`}
 			>
-				QNA
+				구인/구직
+			</Link>
+			<Link
+				className={getItemStyle(category === '질문하기')}
+				replace
+				scroll={false}
+				href={`${MAIN_URL}?category=질문하기`}
+			>
+				질문하기
 			</Link>
 		</ul>
 	);

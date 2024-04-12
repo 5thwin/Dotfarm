@@ -1,5 +1,4 @@
 import { KoreaRegions } from '@/utils/koreaRegions';
-import { useEffect, useState } from 'react';
 import ProfileRegion from './ProfileRegion';
 import ProfileSubRegion from './ProfileSubRegion';
 

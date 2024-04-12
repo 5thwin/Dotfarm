@@ -1,6 +1,7 @@
 // middleware.ts
 import { NextResponse, NextRequest } from 'next/server';
 import { COOKIE_KEY_ACCESS } from './api';
+import { getUserMe } from './api/user/get';
 
 export function middleware(request: NextRequest) {
 	const accessCookie = request.cookies.get(COOKIE_KEY_ACCESS);

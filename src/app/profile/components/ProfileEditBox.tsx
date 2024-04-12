@@ -8,12 +8,13 @@ import LogoutButtonInProfile from './LogoutButtonInProfile';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 import { loadKoreaRegions } from '@/api/local/region';
 import { loadCrops } from '@/api/local/crops';
+import NotSignUp from '@/app/auth/kakao/components/fallbackComponents/NotSignUp';
 
 export default async function ProfileEditBox() {
 	const userme = await getUserMe();
 	const krRegions = loadKoreaRegions();
 	const { crops } = loadCrops();
-
+	if (userme?.status === 'INACTIVE') return <NotSignUp />;
 	return (
 		<div className={responsiveContainer}>
 			<div className="flex flex-col gap-y-5 h-full">

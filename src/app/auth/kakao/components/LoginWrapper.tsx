@@ -26,7 +26,7 @@ export default function LoginWrapper() {
 			}
 			try {
 				const res = await login(authCode);
-				console.log(res);
+				console.log(authCode, res);
 				if (!res) {
 					// router.push('/401'); // 개발 시 사용자 없음 페이지 (혹은 로그인 할 수 없습니다. 문의해주세요.)
 					return;

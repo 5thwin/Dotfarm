@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { KaKaoLoginButton } from '../components/landing/KaKaoLoginButton';
 import { useRouter } from 'next/navigation';

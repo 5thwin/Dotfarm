@@ -1,3 +1,4 @@
+import LogoutButton from '@/app/components/button/LogoutButton';
 import Link from 'next/link';
 import React from 'react';
 
@@ -14,10 +15,13 @@ export default function NotSignUp() {
 				</p>
 				<Link
 					href={'/signup'}
-					className="bg-mainGreen hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out w-full inline-block text-center"
+					className="bg-mainGreen hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out w-full inline-block text-center mb-2"
 				>
 					회원 가입 하러 가기
 				</Link>
+				<LogoutButton className="text-warnRed text-center w-full">
+					로그아웃
+				</LogoutButton>
 			</div>
 		</div>
 	);

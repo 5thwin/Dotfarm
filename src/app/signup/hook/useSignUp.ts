@@ -71,6 +71,7 @@ export default function useSignUp(me?: UserPartial) {
 			}
 		} catch (error) {
 			if (error instanceof Error) {
+				console.log(error);
 				const errorObject = JSON.parse(error.message);
 				if (isErrorObject(errorObject)) {
 					if (errorObject.message === DUPLICATE_ERROR_MESSAGE) {

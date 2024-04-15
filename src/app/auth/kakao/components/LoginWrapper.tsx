@@ -25,12 +25,8 @@ export default function LoginWrapper() {
 				return;
 			}
 			try {
+				console.log(authCode);
 				const res = await login(authCode);
-				console.log(authCode, res);
-				if (!res) {
-					// router.push('/401'); // 개발 시 사용자 없음 페이지 (혹은 로그인 할 수 없습니다. 문의해주세요.)
-					return;
-				}
 				// access token에서 user id 가져옴
 				const decoded = decodeJWT(res.accessToken);
 				const userId = decoded.sub;
@@ -40,14 +36,17 @@ export default function LoginWrapper() {
 				}
 				setMe(user);
 				if (user.status === 'INACTIVE') {
-					router.push('/signup');
+					router.replace('/signup');
 					return;
 				}
-				router.push('/main');
+				router.replace('/main');
 			} catch (error) {
 				console.error(error);
 				if (error instanceof Error) {
-					handleError({ error });
+					handleError({
+						error,
+						defaultHandler: () => router.replace('/login-error'),
+					});
 				}
 			}
 		};

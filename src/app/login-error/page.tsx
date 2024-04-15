@@ -1,6 +1,6 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { KaKaoLoginButton } from '../components/landing/KaKaoLoginButton';
+import { useRouter } from 'next/navigation';
 
 const LoginErrorPage: React.FC = () => {
 	const router = useRouter();

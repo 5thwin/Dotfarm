@@ -10,12 +10,14 @@ import CommentWrite from './comments/CommentWrite';
 import { Post } from '@/type/post';
 import { ableToEdit } from '@/utils/post/edit';
 import EditButtonGroup from './buttons/EditButtonGroup';
+import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 
 type Props = {
 	post: Post;
 };
 export default async function PostBox({ post }: Props) {
 	const { author, images } = post;
+	const userId = getUserIdByAccessToken();
 	const isAbleToEdit = await ableToEdit(post);
 	const isExistImage = post.images && post.images[0];
 	return (
@@ -49,7 +51,7 @@ export default async function PostBox({ post }: Props) {
 			</div>
 			<div className="flex flex-col gap-y-2.5">
 				<CommentsArea postId={Number(post.id)} />
-				<CommentWrite postId={Number(post.id)} />
+				<CommentWrite postId={Number(post.id)} isLogined={!!userId} />
 			</div>
 		</div>
 	);

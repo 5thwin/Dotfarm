@@ -10,15 +10,16 @@ import useParentCommentStore from '../../store/parentCommentStore';
 
 type Props = {
 	postId: number;
+	isLogined?: boolean;
 };
-export default function CommentWrite({ postId }: Props) {
+export default function CommentWrite({ postId, isLogined = true }: Props) {
 	const { parentComment, setParentComment } = useParentCommentStore();
 	const parentId = parentComment?.id; //부모댓글의 아이디
 	const inputRef = useRef<HTMLInputElement>(null);
-	const router = useRouter();
 	const { handleError } = useHandleError();
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		console.error(e);
 		const contents = inputRef.current?.value;
 		if (!contents) {
 			Toast.fire({ title: '내용이 입력되지 않았습니다.', icon: 'warning' });
@@ -49,7 +50,10 @@ export default function CommentWrite({ postId }: Props) {
 					ref={inputRef}
 					id="comment-input"
 					className={InputStyle}
-					placeholder="한마디 작성해주세요"
+					placeholder={
+						isLogined ? '한마디 작성해주세요' : '로그인이 필요합니다.'
+					}
+					disabled={!isLogined}
 				/>
 				<button type="submit" className={buttonStyle}>
 					입력하기

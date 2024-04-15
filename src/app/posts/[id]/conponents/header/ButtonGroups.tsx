@@ -8,8 +8,14 @@ import useHandleError from '@/hooks/useHandleError';
 import { useState } from 'react';
 import { colorMainGreen } from '@/constants/color';
 import { deleteMyLike } from '@/api/user/likes/delete';
-type Props = { post: Post; likeCheck?: boolean };
-export default function ButtonGroups({ post, likeCheck }: Props) {
+
+type Props = { post: Post; likeCheck?: boolean; isLogin?: boolean };
+
+export default function ButtonGroups({
+	post,
+	likeCheck,
+	isLogin = true,
+}: Props) {
 	const { handleError } = useHandleError();
 	const [isChecked, setIsChecked] = useState<boolean>(likeCheck || false);
 	const handleLike = async () => {
@@ -28,7 +34,7 @@ export default function ButtonGroups({ post, likeCheck }: Props) {
 	};
 	return (
 		<div className="flex gap-x-2.5">
-			<button className={buttonStyle} onClick={handleLike}>
+			<button className={buttonStyle} onClick={handleLike} disabled={!isLogin}>
 				<IcLike
 					width="15"
 					height="13"

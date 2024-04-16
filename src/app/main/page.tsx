@@ -6,7 +6,6 @@ import withLayout from '../hoc/withLayout';
 import PcBanner from './components/banner/PcBanner';
 import clsx from 'clsx';
 import MobileBanner from './components/banner/MobileBanner';
-import { KAKAO_AUTH_URL } from '@/utils/kakao';
 type Params = {
 	searchParams: {
 		[key: string]: string | string[] | undefined;
@@ -19,7 +18,6 @@ function Page({ searchParams }: Params) {
 			: undefined;
 	return (
 		<div className="p-15px lg:p-0 pt-20 pb-14 lg:pb-20">
-			<p>{KAKAO_AUTH_URL}</p>
 			<div className="lg:inline-block hidden">
 				<PcBanner />
 			</div>

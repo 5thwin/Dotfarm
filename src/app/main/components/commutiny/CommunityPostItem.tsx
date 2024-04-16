@@ -3,35 +3,21 @@ import { UserPartial } from '@/type/user';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+import CommunityPostItemAuthor from './CommunityPostItemAuthor';
 
 type Props = {
 	post: PostPartial & { author?: UserPartial };
 };
 export default function ComunityPostItem({ post }: Props) {
 	const { author } = post;
+
 	return (
 		<Link className={postContainer} href={`/posts/${post.id}`}>
 			<div className={contentsWrapper}>
 				<p className={catagoryTagStyle}># {post.category}</p>
 				<p className={titleStyle}>{post.title}</p>
 				<p className="line-clamp-1">{post.content}</p>
-				{author && (
-					<div className={userInfoStyle}>
-						<Image
-							src={
-								author.profileImage?.path || '/profile/defaultProfileImg.svg'
-							}
-							alt={`${author.nickname}님의 프로필 이미지`}
-							className="rounded-full"
-							width={32}
-							height={32}
-						/>
-						<p className="font-bold">{author.nickname}</p>
-						<p className={userSubInfoStyle}>
-							{`${author.subRegion} | ${author.farmingExperience} | ${author.majorCrops}`}
-						</p>
-					</div>
-				)}
+				{author && <CommunityPostItemAuthor author={author} />}
 			</div>
 			{/* {post.contentImageURL && (
 				<div className={imgWrapper}>
@@ -56,7 +42,5 @@ const postContainer = clsx(
 const contentsWrapper = clsx('flex flex-col gap-y-2.5 2xl::w-[830px]');
 const catagoryTagStyle = clsx('text-subText text-sm');
 const titleStyle = clsx('text-lg font-bold');
-const userInfoStyle = clsx('flex gap-x-2.5 items-center');
-const userProfileImgStyle = clsx('rounded-full bg-green-200');
-const userSubInfoStyle = clsx('text-sm text-subText');
+
 const imgWrapper = clsx('w-full h-[256px] lg:w-[260px] lg:h-[154px] relative');

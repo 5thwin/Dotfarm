@@ -53,7 +53,7 @@ export default function useCreatePost(post?: Post) {
 				if (res.id) {
 					reset();
 					imageReset();
-					router.push(`/posts/${res.id}`);
+					router.replace(`/posts/${res.id}`);
 					return;
 				}
 			} catch (error) {

@@ -2,9 +2,8 @@
 import { createComment } from '@/api/post/comments/create';
 import Toast from '@/app/components/common/Toast';
 import clsx from 'clsx';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-import { useRouter } from 'next/navigation';
 import useHandleError from '@/hooks/useHandleError';
 import useParentCommentStore from '../../store/parentCommentStore';
 
@@ -14,6 +13,9 @@ type Props = {
 };
 export default function CommentWrite({ postId, isLogined = true }: Props) {
 	const { parentComment, setParentComment } = useParentCommentStore();
+	useEffect(() => {
+		setParentComment();
+	}, []);
 	const parentId = parentComment?.id; //부모댓글의 아이디
 	const inputRef = useRef<HTMLInputElement>(null);
 	const { handleError } = useHandleError();

@@ -31,7 +31,7 @@ export default function PostsPagination({ totalPage = 5 }: Props) {
 	);
 	// 페이지 이동 함수
 	const goToPage = (page: number) => {
-		router.push(pathname + '?' + createQueryString('page', page.toString()));
+		router.replace(pathname + '?' + createQueryString('page', page.toString()));
 	};
 	return (
 		<ul className="flex flex-wrap justify-center space-x-2">

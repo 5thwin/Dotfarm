@@ -1,11 +1,11 @@
+import CardSection from './components/landing/CardSection';
+import Header from './components/landing/Header';
+import HeroSection from './components/landing/HeroSection';
+import ProblemSection from './components/landing/ProblemSection';
+import UserNeedsSection from './components/landing/UserNeedsSection';
+import FeatureSection from './components/landing/FeatureSection';
+import LastSection from './components/landing/LastSection';
 import { Metadata } from 'next';
-import CardSection from './components/CardSection';
-import FeatureSection from './components/FeatureSection';
-import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import LastSection from './components/LastSection';
-import ProblemSection from './components/ProblemSection';
-import UserNeedsSection from './components/UserNeedsSection';
 
 export const metadata: Metadata = {
 	title: '농업 정보 플랫폼 닷팜',

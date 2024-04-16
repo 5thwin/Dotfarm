@@ -40,8 +40,7 @@ export default function PostAuthor({ author }: Props) {
 			</div>
 		</div>
 	);
-}g
-
+};
 // style
 const profileImageWrapper = clsx(
 	'rounded-full w-[45px] h-[45px] relative overflow-hidden'

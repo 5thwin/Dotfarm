@@ -25,20 +25,20 @@ export default function LoginWrapper() {
 				return;
 			}
 			try {
-				// const res = await login(authCode);
-				// // access token에서 user id 가져옴
-				// const decoded = decodeJWT(res.accessToken);
-				// const userId = decoded.sub;
-				// const user = await getUserById(Number(userId));
-				// if (!user) {
-				// 	return;
-				// }
-				// setMe(user);
-				// if (user.status === 'INACTIVE') {
-				// 	router.replace('/signup');
-				// 	return;
-				// }
-				// router.replace('/main');
+				const res = await login(authCode);
+				// access token에서 user id 가져옴
+				const decoded = decodeJWT(res.accessToken);
+				const userId = decoded.sub;
+				const user = await getUserById(Number(userId));
+				if (!user) {
+					return;
+				}
+				setMe(user);
+				if (user.status === 'INACTIVE') {
+					router.replace('/signup');
+					return;
+				}
+				router.replace('/main');
 			} catch (error) {
 				console.error(error);
 				if (error instanceof Error) {

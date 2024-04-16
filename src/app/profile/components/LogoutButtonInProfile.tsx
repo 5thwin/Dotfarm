@@ -12,7 +12,10 @@ export default function LogoutButtonInProfile() {
 		router.push('/main');
 	};
 	return (
-		<button className="text-subText" onClick={handleLogout}>
+		<button
+			className="text-subText lg:text-base text-sm"
+			onClick={handleLogout}
+		>
 			로그아웃
 		</button>
 	);

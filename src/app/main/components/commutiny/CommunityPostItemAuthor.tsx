@@ -19,14 +19,16 @@ export default function CommunityPostItemAuthor({ author }: Props) {
 				height={32}
 				blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII="
 			/>
-			<p className="font-bold">{author.nickname}</p>
-			<p className={userSubInfoStyle}>
-				{region && <span>{region}</span>}
-				{region && farmingExperience && renderDivider(true)}
-				{farmingExperience && <span>{farmingExperience}</span>}
-				{farmingExperience && majorCrops && renderDivider(true)}
-				{majorCrops && <span>{majorCrops}</span>}{' '}
-			</p>
+			<div className={'flex gap-x-2.5 sm:items-center sm:flex-row flex-col'}>
+				<p className="font-bold sm:text-base text-sm">{author.nickname}</p>
+				<p className={userSubInfoStyle}>
+					{region && <span>{region}</span>}
+					{region && farmingExperience && renderDivider(true)}
+					{farmingExperience && <span>{farmingExperience}</span>}
+					{farmingExperience && majorCrops && renderDivider(true)}
+					{majorCrops && <span>{majorCrops}</span>}{' '}
+				</p>
+			</div>
 		</div>
 	);
 }
@@ -36,5 +38,5 @@ const devidorStyle = clsx('w-0 h-2.5 border border-subText');
 
 const userProfileImgStyle = clsx('rounded-full bg-green-200');
 const userSubInfoStyle = clsx(
-	'text-sm text-subText flex gap-x-5px items-center'
+	'text-xs sm:text-sm text-subText flex gap-x-5px items-center flex-wrap'
 );

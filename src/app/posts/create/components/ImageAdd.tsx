@@ -47,7 +47,9 @@ export default function ImageAdd() {
 				/>
 				{/* Placeholder or default profile icon */}
 				<AddIcon width="28" height="23" fill="#7D7B7B" />
-				<span className="text-gray-400 font-bold">이미지 추가+</span>
+				<span className="text-gray-400 font-bold text-sm lg:text-base">
+					이미지 추가+
+				</span>
 			</label>
 		</form>
 	);
@@ -55,6 +57,6 @@ export default function ImageAdd() {
 
 const formContainer = clsx(
 	'flex flex-col justify-center items-center h-full',
-	'rounded-10 w-[185px] h-[110px]',
+	'rounded-10 w-[110px] lg:w-[185px] h-full',
 	'bg-subGray border-lineColor border'
 );

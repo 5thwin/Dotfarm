@@ -35,23 +35,25 @@ export default function ProfileEditForm({ userMe, krRegions, crops }: Props) {
 			<NicknameForm />
 			<form
 				onSubmit={(e) => e.preventDefault()}
-				className="flex flex-col gap-y-5"
+				className="flex flex-col gap-y-5 lg:h-auto h-full justify-between lg:justify-normal"
 			>
 				<div className="flex flex-col gap-y-5px">
-					<p className="font-bold">지역선택</p>
-					<RegionsContainer krRegions={krRegions} />
-				</div>
-				<div className="flex flex-col gap-y-5px">
-					<label htmlFor="farm-careers" className="font-bold">
-						영농경력
-					</label>
-					<ProfileFarmingExperience />
-				</div>
-				<div className="flex flex-col gap-y-5px">
-					<label htmlFor="main-crops" className="font-bold">
-						주요작물
-					</label>
-					<ProfileMajorCrops crops={crops} />
+					<div className="flex flex-col gap-y-5px">
+						<p className="font-bold">지역선택</p>
+						<RegionsContainer krRegions={krRegions} />
+					</div>
+					<div className="flex flex-col gap-y-5px">
+						<label htmlFor="farm-careers" className="font-bold">
+							영농경력
+						</label>
+						<ProfileFarmingExperience />
+					</div>
+					<div className="flex flex-col gap-y-5px">
+						<label htmlFor="main-crops" className="font-bold">
+							주요작물
+						</label>
+						<ProfileMajorCrops crops={crops} />
+					</div>
 				</div>
 				<div className="">
 					<ProfileUpdateButton />
@@ -61,4 +63,4 @@ export default function ProfileEditForm({ userMe, krRegions, crops }: Props) {
 	);
 }
 // style
-const containerStyle = clsx('flex flex-col gap-y-5', 'flex-1');
+const containerStyle = clsx('flex flex-col gap-y-5 relative', 'flex-1');

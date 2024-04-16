@@ -28,7 +28,7 @@ export default function WeekSupport() {
 					<span className={supportTextStyle}>지원사업</span>
 				</p>
 				<Link
-					className="px-2.5 py-5px flex rounded-full items-center bg-mainGreen font-bold gap-x-1"
+					className="px-2.5 sm:py-5px flex rounded-full items-center bg-mainGreen font-bold gap-x-1"
 					href={PATH_SUPPROT_PROJECTS}
 				>
 					<IcCalendar width="24" height="25" fill="white" />

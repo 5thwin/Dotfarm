@@ -52,6 +52,7 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 					ref={inputRef}
 					id="comment-input"
 					className={InputStyle}
+					autoComplete="off"
 					placeholder={
 						isLogined ? '한마디 작성해주세요' : '로그인이 필요합니다.'
 					}
@@ -67,7 +68,7 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 
 // style
 const CommentWrapper = clsx(
-	'bg-subGray rounded-full flex px-5 py-[15px] gap-x-5px items-center'
+	'bg-subGray rounded-full flex px-2.5 sm:px-5 py-[15px] gap-x-5px items-center'
 );
 const InputStyle = clsx('bg-transparent flex-1 outline-none');
 const buttonStyle = clsx(

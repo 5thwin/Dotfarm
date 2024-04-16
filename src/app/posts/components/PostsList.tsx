@@ -17,4 +17,4 @@ export default async function PostsList({ posts }: Props) {
 }
 
 // sty;le
-const container = clsx('flex flex-col');
+const container = clsx('flex flex-col overflow-scroll gap-y-5px lg:gap-y-0');

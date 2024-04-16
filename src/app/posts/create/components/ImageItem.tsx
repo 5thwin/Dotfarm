@@ -13,7 +13,7 @@ export default function ImageItem({ imageUrl, index }: Props) {
 		deleteServerImagePath(index);
 	};
 	return (
-		<div className="relative rounded-10 w-[185px] h-[110px]">
+		<div className="relative rounded-10 w-[110px] lg:w-[185px] h-full overflow-hidden">
 			<Image alt="게시글 이미지" fill src={imageUrl}></Image>
 			<button className={deleteStyle} onClick={handleDelete}>
 				제거
@@ -24,6 +24,6 @@ export default function ImageItem({ imageUrl, index }: Props) {
 // style
 const deleteStyle = clsx(
 	'text-subText',
-	'absolute right-1 bottom-1 bg-subGray rounded-full px-1 ',
+	'absolute right-1 bottom-1 bg-subGray rounded-full px-1',
 	'hover:bg-gray-200'
 );

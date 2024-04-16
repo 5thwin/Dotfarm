@@ -18,7 +18,7 @@ async function Page({ searchParams }: Params) {
 		typeof searchParams.keyword === 'string' ? searchParams.keyword : undefined;
 
 	return (
-		<div>
+		<div className="lg:pb-20">
 			<div className="flex flex-col items-center lg:mt-24 gap-y-2.5">
 				{keyword && (
 					<p className="hidden lg:inline-block font-bold text-xl">{`'${keyword}'로 검색한 결과입니다.`}</p>

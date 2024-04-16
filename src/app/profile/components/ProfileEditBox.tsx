@@ -19,13 +19,15 @@ export default async function ProfileEditBox() {
 	return (
 		<div className={responsiveContainer}>
 			<div className="flex flex-col gap-y-5 h-full">
-				<div className="flex gap-x-2.5 items-center">
-					<div className="lg:hidden">
-						<MobileBackButton />
+				<div className="flex items-center w-full justify-between pt-4 lg:pt-0">
+					<div className="flex  items-center">
+						<div className="lg:hidden">
+							<MobileBackButton />
+						</div>
+						<h1 className="text-xl lg:text-2xl  font-bold">프로필 편집</h1>
 					</div>
-					<h1 className="text-2xl font-bold">프로필 편집</h1>
+					<LogoutButtonInProfile />
 				</div>
-
 				{userme ? (
 					<ProfileEditForm
 						userMe={userme}
@@ -35,9 +37,6 @@ export default async function ProfileEditBox() {
 				) : (
 					<MemberInfoFallback />
 				)}
-			</div>
-			<div className="flex flex-col items-center">
-				<LogoutButtonInProfile />
 			</div>
 		</div>
 	);

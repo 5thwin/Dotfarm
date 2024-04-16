@@ -13,7 +13,7 @@ export default function GoToWriteInput() {
 }
 
 const inputStyle = clsx(
-	'flex items-center px-5 py-15px rounded-30 bg-subGray hover:bg-slate-200',
+	'flex items-center p-2.5 sm:px-5 sm:py-15px rounded-30 bg-subGray hover:bg-slate-200',
 	'text-subText',
 	'cursor-pointer'
 );

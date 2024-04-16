@@ -12,9 +12,12 @@ export default function NicknameChangeButton() {
 		<button
 			type="submit"
 			disabled={nickname === originNickname}
-			className={clsx(mainGreenRoundedButtonStyle, 'disabled:bg-subText')}
+			className={clsx(
+				mainGreenRoundedButtonStyle,
+				'disabled:bg-subText whitespace-nowrap flex-0 text-sm lg:text-base'
+			)}
 		>
-			변경하기
+			변경
 		</button>
 	);
 }

@@ -45,7 +45,7 @@ export default function SupportProgramItem({
 		return '모집중';
 	})();
 	return (
-		<li className="flex justify-between items-center gap-x-10">
+		<li className="flex justify-between items-center gap-x-2.5 lg:gap-x-10">
 			<div
 				className={clsx('flex flex-col gap-y-2.5 whitespace-pre-wrap', {
 					'opacity-30': recruitmentStatus === 'IS_CLOSED',

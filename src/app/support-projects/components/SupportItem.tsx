@@ -9,13 +9,14 @@ import { deleteMyInterest } from '@/api/user/interest/delete';
 import Toast from '@/app/components/common/Toast';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
 import useHandleError from '@/hooks/useHandleError';
+import { getMe } from '@/utils/localstorage';
 
 export default function SupportProgramItem({
 	program,
 }: {
 	program: SupportProgram;
 }) {
-	const dDay = calculateDday(program.deadline);
+	const me = getMe();
 	const { handleError } = useHandleError();
 	const [isInterested, setIsInterested] = useState<boolean>(false);
 	const handleInterest = async () => {
@@ -80,14 +81,19 @@ export default function SupportProgramItem({
 				</Link>
 				<p className={contentStyle}>{program.content}</p>
 			</div>
-			<button className={getButtonStyle(isInterested)} onClick={handleInterest}>
-				<IcLike
-					width="15"
-					height="13"
-					stroke={isInterested ? 'white' : '#7D7B7B'}
-					fill={isInterested ? 'white' : 'none'}
-				/>
-			</button>
+			{me && (
+				<button
+					className={getButtonStyle(isInterested)}
+					onClick={handleInterest}
+				>
+					<IcLike
+						width="15"
+						height="13"
+						stroke={isInterested ? 'white' : '#7D7B7B'}
+						fill={isInterested ? 'white' : 'none'}
+					/>
+				</button>
+			)}
 		</li>
 	);
 }

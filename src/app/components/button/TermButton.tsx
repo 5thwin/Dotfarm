@@ -7,7 +7,11 @@ type Props = {
 };
 export default function TermButton({ text, className }: Props) {
 	return (
-		<Link href="/term" className={className || defaultButtonStyle}>
+		<Link
+			href="/term"
+			className={className || defaultButtonStyle}
+			target="_blank"
+		>
 			{text || '이용약관'}
 		</Link>
 	);

@@ -6,7 +6,6 @@ import { Post } from '@/type/post';
 import { createMyLikes } from '@/api/user/likes/create';
 import useHandleError from '@/hooks/useHandleError';
 import { useState } from 'react';
-import { colorMainGreen } from '@/constants/color';
 import { deleteMyLike } from '@/api/user/likes/delete';
 
 type Props = { post: Post; likeCheck?: boolean; isLogin?: boolean };
@@ -34,12 +33,16 @@ export default function ButtonGroups({
 	};
 	return (
 		<div className="flex gap-x-2.5">
-			<button className={buttonStyle} onClick={handleLike} disabled={!isLogin}>
+			<button
+				className={getButtonStyle(isChecked)}
+				onClick={handleLike}
+				disabled={!isLogin}
+			>
 				<IcLike
 					width="15"
 					height="13"
-					stroke={isChecked ? colorMainGreen : '#7D7B7B'}
-					fill={isChecked ? colorMainGreen : 'none'}
+					stroke={isChecked ? 'white' : '#7D7B7B'}
+					fill={isChecked ? 'white' : 'none'}
 				/>
 			</button>
 			<CopyUrlButton />
@@ -47,7 +50,8 @@ export default function ButtonGroups({
 	);
 }
 
-// style
-const buttonStyle = clsx(
-	'rounded-full bg-subGray flexCenter size-[37px] hover:bg-gray-200'
-);
+const getButtonStyle = (isInterested: boolean) =>
+	clsx('rounded-full flexCenter min-w-[37px] size-[37px]', {
+		'bg-mainGreen': isInterested,
+		'bg-subGray': !isInterested,
+	});

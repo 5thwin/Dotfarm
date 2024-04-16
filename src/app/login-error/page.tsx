@@ -22,7 +22,7 @@ const LoginErrorPage: React.FC = () => {
 				</KaKaoLoginButton>
 				<Link
 					href={'/main'}
-					className="mt-4 bg-mainGreen hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+					className="mt-4 text-mainGreen hover:text-green-600 font-bold px-4  transition duration-150 ease-in-out"
 				>
 					메인으로 돌아가기
 				</Link>

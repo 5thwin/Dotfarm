@@ -9,6 +9,7 @@ import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 import { loadKoreaRegions } from '@/api/local/region';
 import { loadCrops } from '@/api/local/crops';
 import NotSignUp from '@/app/auth/kakao/components/fallbackComponents/NotSignUp';
+import MemberInfoFallback from './MemberInfoFallback';
 
 export default async function ProfileEditBox() {
 	const userme = await getUserMe();
@@ -32,7 +33,7 @@ export default async function ProfileEditBox() {
 						crops={crops}
 					/>
 				) : (
-					<p className="flexCenter py-5">회원 정보를 불러올 수 없습니다.</p>
+					<MemberInfoFallback />
 				)}
 			</div>
 			<div className="flex flex-col items-center">

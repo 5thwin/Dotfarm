@@ -15,8 +15,11 @@ export default async function CommunityList({ category }: Props) {
 					<ComunityPostItem key={`post${index}`} post={post} />
 				))
 			) : (
-				<div className="flexCenter py-5">
-					<p className="text-subText">게시물이 존재하지 않습니다.</p>
+				<div className="flex items-center justify-center py-5">
+					<p className="text-gray-600 font-medium text-center">
+						아직 공유된 게시물이 없어요.<br/> 첫 게시글을 작성하고 커뮤니티를
+						시작해보세요!
+					</p>
 				</div>
 			)}
 		</ul>

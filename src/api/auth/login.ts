@@ -4,6 +4,7 @@ import customFetch from '@/api/customFetch';
 import {
 	removeTokenInCookie,
 	setAccessTokenInCookie,
+	setCookies,
 	setRefreshTokenInCookie,
 } from './token/utils';
 
@@ -25,8 +26,7 @@ export const login = async (code: string) => {
 	);
 	const { accessToken, refreshToken } = res;
 	// 쿠키에 accessToken과 refreshToken을 저장합니다.
-	await setAccessTokenInCookie(accessToken);
-	await setRefreshTokenInCookie(refreshToken);
+	await setCookies(accessToken, refreshToken);
 	return res;
 };
 

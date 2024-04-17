@@ -26,6 +26,7 @@ export default function LoginWrapper() {
 			}
 			try {
 				const res = await login(authCode);
+				console.log(res);
 				// access token에서 user id 가져옴
 				const decoded = decodeJWT(res.accessToken);
 				const userId = decoded.sub;

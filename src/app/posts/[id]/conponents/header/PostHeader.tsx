@@ -8,7 +8,7 @@ type Props = {
 };
 export default async function PostHeader({ post }: Props) {
 	const { category, title, createdAt } = post;
-	const dateString = new Date(createdAt).toLocaleDateString('Kr-kr');
+	const dateString = new Date(createdAt).toLocaleDateString('ko-Kr');
 	const { isLiked } = await getLikesCheck(post.id);
 	return (
 		<div className="flex gap-2.5 lg:gap-x-10 items-center w-full justify-between flex-wrap">

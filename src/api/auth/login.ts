@@ -25,8 +25,8 @@ export const login = async (code: string) => {
 	);
 	const { accessToken, refreshToken } = res;
 	// 쿠키에 accessToken과 refreshToken을 저장합니다.
-	setRefreshTokenInCookie(refreshToken);
-	setAccessTokenInCookie(accessToken);
+	await setAccessTokenInCookie(accessToken);
+	await setRefreshTokenInCookie(refreshToken);
 	return res;
 };
 

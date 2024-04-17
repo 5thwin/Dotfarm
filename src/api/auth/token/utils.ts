@@ -4,13 +4,13 @@ import { COOKIE_KEY_ACCESS, COOKIE_KEY_REFRESH } from '@/api';
 import { decodeJWT } from '@/utils/jwt';
 import { cookies } from 'next/headers';
 
-export const setAccessTokenInCookie = (accessToken: string) =>
+export const setAccessTokenInCookie = async (accessToken: string) =>
 	cookies().set(COOKIE_KEY_ACCESS, accessToken, {
 		httpOnly: true,
 		sameSite: 'strict',
 		path: '/',
 	});
-export const setRefreshTokenInCookie = (refreshToken: string) =>
+export const setRefreshTokenInCookie = async (refreshToken: string) =>
 	cookies().set(COOKIE_KEY_REFRESH, refreshToken, {
 		httpOnly: true,
 		sameSite: 'strict',

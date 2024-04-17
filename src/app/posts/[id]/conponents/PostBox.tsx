@@ -36,7 +36,7 @@ export default async function PostBox({ post }: Props) {
 								src={`${path}`}
 								fill={true}
 								className="object-contain lg:object-fill rounded-10"
-								alt={'농업 커뮤니티 게시글 첨부 이미지'}
+								alt={'이 게시글에 첨부된 이미지입니다.'}
 							/>
 						</div>
 					))}
@@ -59,6 +59,6 @@ const containerStyle = clsx(
 	'flex flex-col gap-y-30px p-25px',
 	'lg:w-[640px] w-full',
 	'lg:rounded-30 rounded-none',
-	'min-h-screen lg:min-h-auto'
+	'min-h-screen lg:min-h-[0px]'
 );
 const postWrapper = clsx('flex flex-col gap-y-2.5');

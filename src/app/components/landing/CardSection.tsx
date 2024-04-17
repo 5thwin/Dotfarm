@@ -29,7 +29,7 @@ export default function CardSection() {
 					<div className="relative">
 						<Image
 							src="/card1.png"
-							alt="지원사업 리스트 제공"
+							alt="금주의 지원사업을 목록으로 제공합니다."
 							width={253}
 							height={208}
 						/>
@@ -58,7 +58,7 @@ export default function CardSection() {
 					<div className="relative">
 						<Image
 							src="/card2.png"
-							alt="뉴스레터 제공"
+							alt="금주의 농업관련 뉴스레터를 목록으로 제공합니다."
 							width={253}
 							height={208}
 						/>
@@ -87,7 +87,7 @@ export default function CardSection() {
 					<div className="relative">
 						<Image
 							src="/card3.png"
-							alt="영상 레터 제공"
+							alt="금주의 농업관련 영상을 목록으로 제공합니다"
 							width={253}
 							height={208}
 						/>

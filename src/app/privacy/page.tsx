@@ -114,6 +114,7 @@ export default function Page() {
 			{/* 개인정보 보호책임자 */}
 			<section className="mb-8">
 				<h2 className="text-2xl font-semibold mb-2">9. 개인정보 보호책임자</h2>
+				<p>- 책임자: 김경섭</p>
 				<p>- 연락처: 010-2319-9530</p>
 				<p>- 이메일: info@vandalsoft.com</p>
 				{/* 개인정보 침해 신고 및 상담 기관 정보 추가 */}

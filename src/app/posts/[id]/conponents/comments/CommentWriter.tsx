@@ -17,7 +17,7 @@ export default function CommentWriter({ user, createAt }: Props) {
 				<Image
 					src={user.profileImage?.path || '/profile/defaultProfileImg.svg'}
 					fill
-					alt={`${user.nickname} 프로필 이미지`}
+					alt={`댓글 작성자 ${user.nickname}님의 프로필 이미지`}
 				/>
 			</div>
 			<div className="flex gap-x-2.5 items-center flex-wrap">

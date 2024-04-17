@@ -19,7 +19,7 @@ export default function PostAuthor({ author }: Props) {
 				{profileImage?.path ? (
 					<Image
 						src={profileImage?.path}
-						alt="작성자 프로필 이미지"
+						alt="이 게시글의 작성자가 설정해놓은 프로필 이미지입니다."
 						fill
 						placeholder="blur"
 						blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII="

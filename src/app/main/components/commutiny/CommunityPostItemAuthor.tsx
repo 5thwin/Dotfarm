@@ -1,4 +1,5 @@
 import { UserPartial } from '@/type/user';
+import { getUserRegionString } from '@/utils/koreaRegions';
 import clsx from 'clsx';
 import Image from 'next/image';
 
@@ -8,7 +9,7 @@ export default function CommunityPostItemAuthor({ author }: Props) {
 	// 구분점(i 태그)를 삽입할 조건을 체크하는 함수
 	const renderDivider = (condition: boolean) =>
 		condition ? <i className={devidorStyle} /> : null;
-
+	const regionString = getUserRegionString(author);
 	return (
 		<div className={userInfoStyle}>
 			<Image
@@ -22,8 +23,8 @@ export default function CommunityPostItemAuthor({ author }: Props) {
 			<div className={'flex gap-x-2.5 sm:items-center sm:flex-row flex-col'}>
 				<p className="font-bold sm:text-base text-sm">{author.nickname}</p>
 				<p className={userSubInfoStyle}>
-					{region && <span>{region}</span>}
-					{region && farmingExperience && renderDivider(true)}
+					{regionString && <span>{regionString}</span>}
+					{regionString && farmingExperience && renderDivider(true)}
 					{farmingExperience && <span>{farmingExperience}</span>}
 					{farmingExperience && majorCrops && renderDivider(true)}
 					{majorCrops && <span>{majorCrops}</span>}{' '}

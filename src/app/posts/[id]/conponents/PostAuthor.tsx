@@ -1,6 +1,7 @@
 // 'use server';
 
 import { UserPartial } from '@/type/user';
+import { getUserRegionString } from '@/utils/koreaRegions';
 import clsx from 'clsx';
 import Image from 'next/image';
 
@@ -11,7 +12,7 @@ export default function PostAuthor({ author }: Props) {
 	// 구분점(i 태그)를 삽입할 조건을 체크하는 함수
 	const renderDivider = (condition: boolean) =>
 		condition ? <i className={devidorStyle} /> : null;
-
+	const regionString = getUserRegionString(author);
 	return (
 		<div className="flex gap-x-2.5 p-15px rounded-10 bg-subGray items-center">
 			<div className={profileImageWrapper}>
@@ -31,8 +32,8 @@ export default function PostAuthor({ author }: Props) {
 				<p className="font-bold "> {author.nickname}</p>
 				<div className="flex gap-x-5px items-center text-subText text-sm">
 					{/* 조건부 렌더링을 사용하여 각 정보가 null이 아닐 때만 표시 */}
-					{region && <span>{region}</span>}
-					{region && farmingExperience && renderDivider(true)}
+					{regionString && <span>{regionString}</span>}
+					{regionString && farmingExperience && renderDivider(true)}
 					{farmingExperience && <span>{farmingExperience}</span>}
 					{farmingExperience && majorCrops && renderDivider(true)}
 					{majorCrops && <span>{majorCrops}</span>}

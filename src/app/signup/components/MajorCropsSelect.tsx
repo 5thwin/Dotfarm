@@ -1,6 +1,6 @@
 import { OptionType, signupFormSelectStyles } from '@/utils/select';
-import Select, { DropdownIndicatorProps, components } from 'react-select';
 import useSignupFromStore from '../store/signupFromStore';
+import CreatableSelect from 'react-select/creatable';
 
 type Props = { crops: string[] };
 export default function MajorCropsSelect({ crops }: Props) {
@@ -10,7 +10,7 @@ export default function MajorCropsSelect({ crops }: Props) {
 		value: crop,
 	}));
 	return (
-		<Select
+		<CreatableSelect
 			className="text-sm"
 			defaultValue={
 				majorCrops ? { label: majorCrops, value: majorCrops } : undefined

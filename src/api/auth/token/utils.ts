@@ -18,12 +18,12 @@ export const setRefreshTokenInCookie = async (refreshToken: string) =>
 	});
 export const setCookies = async (accessToken: string, refreshToken: string) => {
 	const cookieSetter = cookies();
-	cookieSetter.set(COOKIE_KEY_ACCESS, accessToken, {
+	cookieSetter.set(COOKIE_KEY_REFRESH, refreshToken, {
 		httpOnly: true,
 		sameSite: 'strict',
 		path: '/',
 	});
-	cookieSetter.set(COOKIE_KEY_REFRESH, refreshToken, {
+	cookieSetter.set(COOKIE_KEY_ACCESS, accessToken, {
 		httpOnly: true,
 		sameSite: 'strict',
 		path: '/',

@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { UserPartial } from '@/type/user';
 import Image from 'next/image';
 import { relativeTime } from '@/utils/date/string';
+import { getUserRegionString } from '@/utils/koreaRegions';
 
 type Props = {
 	user: UserPartial;
@@ -22,7 +23,7 @@ export default function CommentWriter({ user, createAt }: Props) {
 			<div className="flex gap-x-2.5 items-center flex-wrap">
 				<b>{user.nickname}</b>
 				<div className="flex gap-x-5px items-center text-subText text-xs sm:text-sm">
-					<span>{user.subRegion}</span>
+					<span>{getUserRegionString(user)}</span>
 					<i className={devidorStyle} />
 					<span>{user.farmingExperience}</span>
 					<i className={devidorStyle} />

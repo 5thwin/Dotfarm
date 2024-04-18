@@ -6,6 +6,7 @@ import { User, UserPartial } from '@/type/user';
 import { getUserIdByAccessToken } from '../auth/token/utils';
 import safeJsonParse from '@/utils/safeJsonParse';
 import { ErrorResponse } from '@/utils/error/httpError';
+import { handleApiError } from '../handleApiError';
 
 // interface
 export type UserUpdateData = Partial<
@@ -31,11 +32,6 @@ export async function updateUserMe(updateData: UserUpdateData) {
 		});
 		return res;
 	} catch (error) {
-		if (error instanceof Error) {
-			const { data: errorObject } = safeJsonParse<ErrorResponse>(error.message);
-			if (errorObject) {
-				return errorObject;
-			}
-		}
+		return handleApiError(error);
 	}
 }

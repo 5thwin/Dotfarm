@@ -3,6 +3,7 @@
 import { deletePost } from '@/api/post/delete';
 import Toast from '@/app/components/common/Toast';
 import useHandleError from '@/hooks/useHandleError';
+import { isErrorObject } from '@/utils/error/httpError';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
@@ -29,6 +30,9 @@ export default function PostDeleteButton({ postId }: Props) {
 			if (result.isConfirmed) {
 				try {
 					const res = await deletePost({ postId });
+					if (isErrorObject(res)) {
+						throw Error(JSON.stringify(res));
+					}
 					router.push('/main');
 				} catch (error) {
 					if (error instanceof Error) {

@@ -10,6 +10,7 @@ import Toast from '@/app/components/common/Toast';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
 import useHandleError from '@/hooks/useHandleError';
 import { getMe } from '@/utils/localstorage';
+import { isErrorObject } from '@/utils/error/httpError';
 
 export default function SupportProgramItem({
 	program,
@@ -24,8 +25,16 @@ export default function SupportProgramItem({
 		setIsInterested((pre) => !pre);
 		try {
 			if (!previosIsInterested) {
-				await createMyInterest({ supportId: program.id });
-			} else await deleteMyInterest({ supportId: program.id });
+				const res = await createMyInterest({ supportId: program.id });
+				if (isErrorObject(res)) {
+					throw new Error(JSON.stringify(res));
+				}
+			} else {
+				const res = await deleteMyInterest({ supportId: program.id });
+				if (isErrorObject(res)) {
+					throw new Error(JSON.stringify(res));
+				}
+			}
 		} catch (error) {
 			if (error instanceof Error) {
 				const defaultHandler = () =>

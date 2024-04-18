@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import useCreateImageStore from '../store/createImageStore';
 import useHandleError from '@/hooks/useHandleError';
 import { Post } from '@/type/post';
+import { isErrorObject } from '@/utils/error/httpError';
 export default function useCreatePost(post?: Post) {
 	const router = useRouter();
 	const {
@@ -50,6 +51,9 @@ export default function useCreatePost(post?: Post) {
 			//patch 로직
 			try {
 				const res = await patchPost(post.id, title, contents, category);
+				if (isErrorObject(res)) {
+					throw Error(JSON.stringify(res));
+				}
 				if (res.id) {
 					reset();
 					imageReset();
@@ -66,6 +70,9 @@ export default function useCreatePost(post?: Post) {
 		}
 		try {
 			const res = await writePost(title, contents, category, serverImagePaths);
+			if (isErrorObject(res)) {
+				throw Error(JSON.stringify(res));
+			}
 			if (res.id) {
 				reset();
 				imageReset();

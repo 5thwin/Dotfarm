@@ -3,6 +3,7 @@
 import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
 import { getAccessTokenFromCookie } from '../auth/token/utils';
+import { handleApiError } from '../handleApiError';
 type Response = {
 	id: number;
 	updatedAt: string;
@@ -46,6 +47,6 @@ export async function patchPost(
 		});
 		return res;
 	} catch (e) {
-		throw e;
+		return handleApiError(e);
 	}
 }

@@ -9,6 +9,6 @@ export function getFullImagePath(imagePath: string): string {
 		return imagePath;
 	} else {
 		// 상대 경로라면, IMAGE_BASE_URL을 앞에 붙임
-		return `${IMAGE_BASE_URL}/${imagePath}`;
+		return `${IMAGE_BASE_URL}${imagePath}`;
 	}
 }

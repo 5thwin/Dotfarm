@@ -4,9 +4,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { setMe } from '@/utils/localstorage';
 import { useEffect } from 'react';
 import { login } from '@/api/auth/login';
-import { getUserById } from '@/api/user/get';
+import { getUserMe } from '@/api/user/get';
 
-import { decodeJWT } from '@/utils/jwt';
 import useHandleError from '@/hooks/useHandleError';
 
 export default function LoginWrapper() {
@@ -26,11 +25,9 @@ export default function LoginWrapper() {
 			}
 			try {
 				const res = await login(authCode);
-				console.log(res);
 				// access token에서 user id 가져옴
-				const decoded = decodeJWT(res.accessToken);
-				const userId = decoded.sub;
-				const user = await getUserById(Number(userId));
+
+				const user = await getUserMe();
 				if (!user) {
 					return;
 				}

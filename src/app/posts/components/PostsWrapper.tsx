@@ -21,7 +21,7 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 		category,
 		keyword,
 	});
-	if (!response) return <Fallback />;
+	if (!response) return <div className={responsiveWrapper}><Fallback /></div>;
 
 	const posts = response.data;
 	const totalPage = response.total && Math.ceil(response.total / PAGE_TAKE);

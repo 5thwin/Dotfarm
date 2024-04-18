@@ -11,6 +11,7 @@ interface ErrorHandlerProps {
 const useHandleError = () => {
 	const router = useRouter();
 	const handleError = ({ error, defaultHandler }: ErrorHandlerProps) => {
+		console.log(error);
 		const { data: errorObject } = safeJsonParse<ErrorResponse>(error.message);
 		if (error.message.includes('401')) {
 			router.push('/401');

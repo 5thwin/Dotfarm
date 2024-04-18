@@ -36,7 +36,7 @@ export default async function PostBox({ post }: Props) {
 							<Image
 								src={`${getFullImagePath(path)}`}
 								fill={true}
-								className="object-contain lg:object-fill rounded-10"
+								className="object-contain rounded-10"
 								alt={'이 게시글에 첨부된 이미지입니다.'}
 							/>
 						</div>

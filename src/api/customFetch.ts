@@ -44,10 +44,10 @@ async function customFetch<T>(
 
 	if (!response.ok) {
 		const errorText = await response.text();
-		// const { data: errorObject } = safeJsonParse<ErrorResponse>(errorText);
-		// if (isErrorObject(errorObject)) {
-		// 	throw new Error(JSON.stringify(errorObject));
-		// }
+		const { data: errorObject } = safeJsonParse<ErrorResponse>(errorText);
+		if (isErrorObject(errorObject)) {
+			throw new Error(JSON.stringify(errorObject));
+		}
 
 		throw new Error(
 			`Error ${response.status} ${response.statusText} ${errorText}`

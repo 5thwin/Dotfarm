@@ -65,6 +65,9 @@ export default function useSignUp(me?: UserPartial) {
 				majorCrops,
 				status: 'ACTIVE',
 			});
+			if (isErrorObject(res)) {
+				throw new Error(JSON.stringify(res));
+			}
 			if (res) {
 				setMe(res); //로컬스토리지에 변경된 나의 정보 저장
 				router.push('/main');

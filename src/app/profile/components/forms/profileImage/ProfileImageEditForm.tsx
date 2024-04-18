@@ -5,6 +5,7 @@ import Toast from '@/app/components/common/Toast';
 import useProfileImageStore from '@/app/profile/store/profileImageStore';
 import { mainGreenRoundedButtonStyle } from '@/app/styles/common/buttonStyle';
 import useHandleError from '@/hooks/useHandleError';
+import { isErrorObject } from '@/utils/error/httpError';
 import { getFullImagePath } from '@/utils/image';
 import { setMe } from '@/utils/localstorage';
 import clsx from 'clsx';
@@ -52,6 +53,9 @@ export default function ProfileImageEditForm(props: Props) {
 		};
 		try {
 			const res = await updateUserMe(updateImage);
+			if (isErrorObject(res)) {
+				throw new Error(JSON.stringify(res));
+			}
 			if (res) {
 				setMe(res);
 				const updatedImageURL = res.profileImage?.path;

@@ -1,4 +1,5 @@
 import { UserPartial } from '@/type/user';
+import { getFullImagePath } from '@/utils/image';
 import { getUserRegionString } from '@/utils/koreaRegions';
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -12,14 +13,19 @@ export default function CommunityPostItemAuthor({ author }: Props) {
 	const regionString = getUserRegionString(author);
 	return (
 		<div className={userInfoStyle}>
-			<Image
-				src={author.profileImage?.path || '/profile/defaultProfileImg.svg'}
-				alt={`${author.nickname}님의 프로필 이미지`}
-				className="rounded-full"
-				width={32}
-				height={32}
-				blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII="
-			/>
+			<div className={profileImageWrapper}>
+				<Image
+					src={
+						author.profileImage?.path
+							? getFullImagePath(author.profileImage.path)
+							: '/profile/defaultProfileImg.svg'
+					}
+					alt={`${author.nickname}님의 프로필 이미지`}
+					className="rounded-full"
+					fill
+					blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII="
+				/>
+			</div>
 			<div className={'flex gap-x-2.5 sm:items-center sm:flex-row flex-col'}>
 				<p className="font-bold sm:text-base text-sm">{author.nickname}</p>
 				<p className={userSubInfoStyle}>
@@ -37,7 +43,10 @@ export default function CommunityPostItemAuthor({ author }: Props) {
 const userInfoStyle = clsx('flex gap-x-2.5 items-center');
 const devidorStyle = clsx('w-0 h-2.5 border border-subText');
 
-const userProfileImgStyle = clsx('rounded-full bg-green-200');
 const userSubInfoStyle = clsx(
 	'text-xs sm:text-sm text-subText flex gap-x-5px items-center flex-wrap'
+);
+// style
+const profileImageWrapper = clsx(
+	'rounded-full w-[32px] h-[32px] relative overflow-hidden'
 );

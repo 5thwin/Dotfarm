@@ -1,4 +1,5 @@
 import { UserPartial } from '@/type/user';
+import { getFullImagePath } from '@/utils/image';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,11 +12,15 @@ export default function HeaderUserIcon({ me }: Props) {
 		<Link className="px-15px gap-x-2.5 flex items-center" href={'/profile'}>
 			<div className="rounded-full relative size-8 overflow-hidden">
 				{profileImage && profileImage.path ? (
-					<Image src={profileImage.path} alt="사용자 이미지" fill />
+					<Image
+						src={getFullImagePath(profileImage.path)}
+						alt="사용자 이미지"
+						fill
+					/>
 				) : (
 					<Image
 						src="/profile/defaultProfileImg_32x32.svg"
-						alt="사용자 기본 이미지"
+						alt="기본 사용자 프로필로 사용되는 농부"
 						className="rounded-full"
 						fill
 					/>

@@ -5,6 +5,7 @@ import Toast from '@/app/components/common/Toast';
 import useProfileImageStore from '@/app/profile/store/profileImageStore';
 import { mainGreenRoundedButtonStyle } from '@/app/styles/common/buttonStyle';
 import useHandleError from '@/hooks/useHandleError';
+import { getFullImagePath } from '@/utils/image';
 import { setMe } from '@/utils/localstorage';
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -81,7 +82,7 @@ export default function ProfileImageEditForm(props: Props) {
 				{profileImageURL && (
 					<div className="w-48 h-48 relative">
 						<Image
-							src={profileImageURL}
+							src={getFullImagePath(profileImageURL)}
 							alt="Profile Image"
 							className="w-full h-full object-cover"
 							fill

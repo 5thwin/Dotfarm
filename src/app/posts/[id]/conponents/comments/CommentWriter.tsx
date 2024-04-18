@@ -3,6 +3,7 @@ import { UserPartial } from '@/type/user';
 import Image from 'next/image';
 import { relativeTime } from '@/utils/date/string';
 import { getUserRegionString } from '@/utils/koreaRegions';
+import { getFullImagePath } from '@/utils/image';
 
 type Props = {
 	user: UserPartial;
@@ -15,7 +16,11 @@ export default function CommentWriter({ user, createAt }: Props) {
 		<div className="flex gap-x-2.5 items-center">
 			<div className={imageWrapper}>
 				<Image
-					src={user.profileImage?.path || '/profile/defaultProfileImg.svg'}
+					src={
+						user.profileImage?.path
+							? getFullImagePath(user.profileImage?.path)
+							: '/profile/defaultProfileImg.svg'
+					}
 					fill
 					alt={`댓글 작성자 ${user.nickname}님의 프로필 이미지`}
 				/>

@@ -3,6 +3,7 @@ import ProfileImageEditModal from './ProfileImageEditModal';
 import Image from 'next/image';
 import useProfileImageStore from '@/app/profile/store/profileImageStore';
 import { ImageType } from '@/type/image';
+import { getFullImagePath } from '@/utils/image';
 
 type Props = {
 	image?: ImageType | null;
@@ -27,7 +28,7 @@ export default function ProfileImage({ image }: Props) {
 		>
 			{originProfileImageURL ? (
 				<Image
-					src={originProfileImageURL}
+					src={getFullImagePath(originProfileImageURL)}
 					alt="Profile Image"
 					className="w-full h-full object-cover"
 					fill

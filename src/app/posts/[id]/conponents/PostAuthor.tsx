@@ -1,6 +1,7 @@
 // 'use server';
 
 import { UserPartial } from '@/type/user';
+import { getFullImagePath } from '@/utils/image';
 import { getUserRegionString } from '@/utils/koreaRegions';
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -18,7 +19,7 @@ export default function PostAuthor({ author }: Props) {
 			<div className={profileImageWrapper}>
 				{profileImage?.path ? (
 					<Image
-						src={profileImage?.path}
+						src={getFullImagePath(profileImage.path)}
 						alt="이 게시글의 작성자가 설정해놓은 프로필 이미지입니다."
 						fill
 						placeholder="blur"

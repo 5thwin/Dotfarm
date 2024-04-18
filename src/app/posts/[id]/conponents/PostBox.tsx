@@ -11,6 +11,7 @@ import { Post } from '@/type/post';
 import { ableToEdit } from '@/utils/post/edit';
 import EditButtonGroup from './buttons/EditButtonGroup';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
+import { getFullImagePath } from '@/utils/image';
 
 type Props = {
 	post: Post;
@@ -33,7 +34,7 @@ export default async function PostBox({ post }: Props) {
 					images.map(({ path }) => (
 						<div className="w-full lg:w-[590px] h-[250px] sm:h-[330px] rounded-10 relative overflow-hidden">
 							<Image
-								src={`${path}`}
+								src={`${getFullImagePath(path)}`}
 								fill={true}
 								className="object-contain lg:object-fill rounded-10"
 								alt={'이 게시글에 첨부된 이미지입니다.'}

@@ -33,7 +33,11 @@ export default function ProfileImageEditForm(props: Props) {
 		const formData = new FormData();
 		formData.append('image', fileList[0]);
 		try {
-			const { fileName } = await saveTempImage(formData);
+			const res = await saveTempImage(formData);
+			if (isErrorObject(res)) {
+				throw new Error(JSON.stringify(res));
+			}
+			const { fileName } = res;
 			setProfileImageURL(URL.createObjectURL(fileList[0]));
 			setNewImageURL(fileName);
 		} catch (error) {

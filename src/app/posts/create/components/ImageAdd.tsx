@@ -28,7 +28,6 @@ export default function ImageAdd() {
 				throw new Error(JSON.stringify(res));
 			}
 			const { fileName } = res;
-			Toast.fire({ title: '이미지 업로드', icon: 'success' });
 			updateImageState(newImageStates[0].url, 'Complete');
 			addServerImagePath(fileName);
 		} catch (error) {

@@ -1,22 +1,19 @@
 'use client';
 
-import { deletePost } from '@/api/post/delete';
-import Toast from '@/app/components/common/Toast';
+import { deleteComment } from '@/api/post/comments/delete';
 import { colorWarnRed } from '@/constants/color';
 import useHandleError from '@/hooks/useHandleError';
 import { isErrorObject } from '@/utils/error/httpError';
 import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 
-type Props = { postId: number };
-export default function PostDeleteButton({ postId }: Props) {
+type Props = { postId: number; commentId: number };
+
+export default function CommentDeleteButton({ postId, commentId }: Props) {
 	const { handleError } = useHandleError();
-	const router = useRouter();
-	const handleClick = async () => {
+	const handleDelete = async () => {
 		Swal.fire({
-			title: '정말로 삭제하실껀가요?',
-			text: '게시글을 삭제하면 되돌릴 수 없습니다.',
+			title: '댓글을 삭제할까요?',
 			confirmButtonText: '네 삭제합니다.',
 			showCancelButton: true,
 			cancelButtonText: '아니요',
@@ -30,11 +27,10 @@ export default function PostDeleteButton({ postId }: Props) {
 		}).then(async (result) => {
 			if (result.isConfirmed) {
 				try {
-					const res = await deletePost({ postId });
+					const res = await deleteComment(postId, commentId);
 					if (isErrorObject(res)) {
 						throw Error(JSON.stringify(res));
 					}
-					router.push('/main');
 				} catch (error) {
 					if (error instanceof Error) {
 						handleError({ error });
@@ -45,10 +41,10 @@ export default function PostDeleteButton({ postId }: Props) {
 	};
 	return (
 		<button
-			className="text-sm text-subText hover:text-warnRed"
-			onClick={handleClick}
+			onClick={handleDelete}
+			className={clsx('text-xs font-bold text-subText hover:text-warnRed')}
 		>
-			삭제하기
+			삭제
 		</button>
 	);
 }

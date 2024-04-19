@@ -19,7 +19,7 @@ export default function Error({
 	}, [error]);
 
 	return (
-		<div className="flex flex-col items-center justify-center min-h-[80vh] p-4">
+		<div className="flex flex-col items-center justify-center h-screen p-4">
 			<Image
 				src={'/notFound/notFound.svg'}
 				alt="Not Found"
@@ -36,7 +36,7 @@ export default function Error({
 			<Link
 				href={'/main'}
 				replace
-				className={clsx(mainGreenRoundedButtonStyle, 'mt-2')}
+				className={clsx(mainGreenRoundedButtonStyle, 'my-2')}
 			>
 				메인으로 돌아가기
 			</Link>

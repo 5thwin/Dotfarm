@@ -13,7 +13,7 @@ export default function CommentItem({ comment, replys, postId }: Props) {
 		<div className={container}>
 			<div className="flex sm:justify-between flex-col sm:flex-row items-start sm:items-center gap-5px group hover:bg-subGray rounded-10 px-2.5 lg:px-15px py-2.5 ">
 				<div className="flex flex-col gap-y-5px items-start">
-					<CommentWriter user={author} createAt={createdAt} />
+					<CommentWriter postId={postId} comment={comment} />
 					<p>{comment.comment}</p>
 				</div>
 				{isParent && <ReplyButton comment={comment} />}

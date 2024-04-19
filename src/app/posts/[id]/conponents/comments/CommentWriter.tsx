@@ -35,7 +35,7 @@ export default function CommentWriter({ postId, comment }: Props) {
 				<span className="text-xs text-subText font-bold">
 					{relativeTime(date)}
 				</span>
-				{myId && user.id && (
+				{myId === user.id && (
 					<CommentDeleteButton postId={postId} commentId={comment.id} />
 				)}
 			</div>

@@ -22,6 +22,7 @@ const Fallback: React.FC = () => {
 			</p>
 			<Link
 				href={'/main'}
+				replace
 				className={clsx(mainGreenRoundedButtonStyle, 'mt-2')}
 			>
 				메인으로 돌아가기

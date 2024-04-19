@@ -52,6 +52,6 @@ export async function createMyInterest(payload: Payload) {
 		);
 		return res;
 	} catch (error) {
-		handleApiError(error);
+		return handleApiError(error);
 	}
 }

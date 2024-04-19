@@ -6,6 +6,7 @@ import { saveTempImage } from '@/api/common/create';
 import Toast from '@/app/components/common/Toast';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { isErrorObject } from '@/utils/error/httpError';
 
 export default function ImageAdd() {
 	const router = useRouter();
@@ -21,7 +22,11 @@ export default function ImageAdd() {
 		const formData = new FormData();
 		formData.append('image', fileList[0]);
 		try {
-			const { fileName } = await saveTempImage(formData);
+			const res = await saveTempImage(formData);
+			if (isErrorObject(res)) {
+				throw new Error(JSON.stringify(res));
+			}
+			const { fileName } = res;
 			Toast.fire({ title: '이미지 업로드', icon: 'success' });
 
 			addImages(fileList);

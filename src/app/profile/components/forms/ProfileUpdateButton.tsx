@@ -5,6 +5,7 @@ import { updateUserMe } from '@/api/user/update';
 import { FarmExperience } from '@/type/user';
 import useHandleError from '@/hooks/useHandleError';
 import Toast from '@/app/components/common/Toast';
+import { isErrorObject } from '@/utils/error/httpError';
 
 export default function ProfileUpdateButton() {
 	const { region, subRegion, farmingExperience, majorCrops } =
@@ -18,7 +19,10 @@ export default function ProfileUpdateButton() {
 			majorCrops,
 		};
 		try {
-			await updateUserMe(updateData);
+			const res = await updateUserMe(updateData);
+			if (isErrorObject(res)) {
+				throw new Error(JSON.stringify(res));
+			}
 			Toast.fire({ title: '회원 정보가 변경되었습니다.', icon: 'success' });
 		} catch (error) {
 			if (error instanceof Error) {

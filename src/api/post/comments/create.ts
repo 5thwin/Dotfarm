@@ -2,6 +2,7 @@
 
 import { getAccessTokenFromCookie } from '@/api/auth/token/utils';
 import customFetch from '@/api/customFetch';
+import { handleApiError } from '@/api/handleApiError';
 import { revalidateTag } from 'next/cache';
 
 type Response = {
@@ -45,7 +46,7 @@ export async function createComment(
 			},
 		});
 		return res;
-	} catch (e) {
-		throw e;
+	} catch (error) {
+		return handleApiError(error);
 	}
 }

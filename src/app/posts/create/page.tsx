@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import Form from './components/Form';
 import ImagesWrapper from './components/ImagesWrapper';
 import { getPost } from '@/api/post/get';
+import Fallback from '../components/Fallback';
 
 type Params = {
 	searchParams: {
@@ -17,6 +18,7 @@ async function Page({ searchParams }: Params) {
 		typeof searchParams.id === 'string' ? Number(searchParams.id) : null;
 	const pageTitle = postId ? '글 수정하기' : '글 작성하기'; // id 존재 여부에 따라 페이지 제목 결정
 	const post = postId ? await getPost(postId) : undefined;
+	if (postId && !post) return <Fallback />;
 	return (
 		<div className="flex flex-col items-center w-screen h-screen">
 			<section className={pageContainer}>

@@ -7,6 +7,7 @@ import { createMyLikes } from '@/api/user/likes/create';
 import useHandleError from '@/hooks/useHandleError';
 import { useState } from 'react';
 import { deleteMyLike } from '@/api/user/likes/delete';
+import { isErrorObject } from '@/utils/error/httpError';
 
 type Props = { post: Post; likeCheck?: boolean; isLogin?: boolean };
 
@@ -20,11 +21,11 @@ export default function ButtonGroups({
 	const handleLike = async () => {
 		setIsChecked((pre) => !pre);
 		try {
-			if (!likeCheck) {
-				const res = await createMyLikes({ postId: post.id });
-			} else {
-				const res = await deleteMyLike({ postId: post.id });
-			}
+			const res = !likeCheck
+				? await createMyLikes({ postId: post.id })
+				: await deleteMyLike({ postId: post.id });
+
+			if (isErrorObject(res)) throw new Error(JSON.stringify(res));
 		} catch (error) {
 			if (error instanceof Error) {
 				handleError({ error });

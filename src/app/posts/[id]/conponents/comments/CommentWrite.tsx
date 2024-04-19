@@ -6,6 +6,7 @@ import React, { useEffect, useRef } from 'react';
 
 import useHandleError from '@/hooks/useHandleError';
 import useParentCommentStore from '../../store/parentCommentStore';
+import { isErrorObject } from '@/utils/error/httpError';
 
 type Props = {
 	postId: number;
@@ -29,6 +30,9 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 		}
 		try {
 			const res = await createComment(postId, contents, parentId);
+			if (isErrorObject(res)) {
+				throw new Error(JSON.stringify(res));
+			}
 		} catch (error) {
 			if (error instanceof Error) {
 				handleError({ error });

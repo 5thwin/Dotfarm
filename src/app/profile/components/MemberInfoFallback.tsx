@@ -19,7 +19,7 @@ const MemberInfoFallback: React.FC = () => {
 				사용자 정보를 불러올 수 없어요.
 				<br /> 문제가 지속되면 고객 지원팀에 연락 부탁드립니다.
 			</p>
-			<Link href={'/main'} className={mainGreenRoundedButtonStyle}>
+			<Link href={'/main'} className={mainGreenRoundedButtonStyle} replace>
 				<span>메인으로</span>
 			</Link>
 		</div>

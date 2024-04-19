@@ -21,7 +21,7 @@ export default function ComunityPostItem({ post }: Props) {
 				{commentCount > 0 && (
 					<div className="flex py-5px gap-x-2.5 text-mainGreen items-center">
 						<IcChat width="13" height="13" fill={colorMainGreen} />
-						<span className="font-bold text-sm">답글 {commentCount}개</span>
+						<span className="font-bold text-sm">댓글 {commentCount}개</span>
 					</div>
 				)}
 				{author && <CommunityPostItemAuthor author={author} />}

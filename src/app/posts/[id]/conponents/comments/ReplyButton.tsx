@@ -20,7 +20,7 @@ export default function ReplyButton({ comment }: Props) {
 			}}
 			className={buttonStyle}
 		>
-			{parentComment?.id === comment.id ? '취소' : '답글달기'}
+			{parentComment?.id === comment.id ? '취소' : '댓글달기'}
 		</button>
 	);
 }

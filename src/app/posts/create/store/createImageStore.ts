@@ -1,15 +1,19 @@
+import { ImageState } from '@/type/image';
 import { create } from 'zustand';
 
-interface createImageState {
-	imageUrls: string[];
-	serverImagePaths: string[]; //이미지 업로드로 인해 반환되는 값을 저장
-	setImageUrls: (_: string[]) => void;
-	addImages: (_: FileList) => void;
+interface CreateImageState {
+	imageUrls: ImageState[];
+	serverImagePaths: string[];
+	addImages: (fileList: FileList) => ImageState[];
 	deleteImage: (index?: number) => void;
+	updateImageState: (
+		url: string,
+		newState: 'Pending' | 'Complete' | 'Failed'
+	) => void;
+	addServerImagePath: (path: string) => void;
+	deleteServerImagePath: (index: number) => void;
+	setImageUrls: (_: ImageState[]) => void;
 	setServerImagePaths: (_: string[]) => void;
-	addServerImagePath: (_: string) => void;
-	deleteServerImagePath: (_: number) => void;
-
 	reset: () => void;
 }
 
@@ -19,35 +23,37 @@ const initState = {
 	serverImagePaths: [],
 };
 
-const useCreateImageStore = create<createImageState>((set) => ({
+const useCreateImageStore = create<CreateImageState>((set) => ({
 	imageUrls: [],
 	serverImagePaths: [],
-	setImageUrls: (urls) => set(() => ({ imageUrls: urls })),
-
-	addImages: (fileList) =>
-		set((state) => {
-			const urls = Array.from(fileList, (file) => URL.createObjectURL(file));
-			return {
-				imageUrls: [...state.imageUrls, ...urls].slice(0, 3),
-			};
-		}),
-	deleteImage: (index) => {
-		set((state) => {
-			if (typeof index === 'undefined') {
-				return { imageUrls: [...state.imageUrls].slice(0, -1) };
-			}
-			const updatedUrls = [...state.imageUrls];
-
-			// Remove the image file and URL at the specified index
-			updatedUrls.splice(index, 1);
-
-			return {
-				imageUrls: updatedUrls,
-			};
-		});
+	addImages: (fileList) => {
+		const newImageUrls = Array.from(
+			fileList,
+			(file): ImageState => ({
+				url: URL.createObjectURL(file),
+				state: 'Pending',
+			})
+		);
+		set((state) => ({
+			imageUrls: [...state.imageUrls, ...newImageUrls].slice(0, 3), // Limit to 3 images,
+		}));
+		return newImageUrls;
 	},
-	setServerImagePaths: (imagePaths) =>
-		set(() => ({ serverImagePaths: imagePaths })),
+
+	deleteImage: (index) =>
+		set((state) => ({
+			imageUrls:
+				index !== undefined
+					? state.imageUrls.filter((_, i) => i !== index)
+					: state.imageUrls.slice(0, -1),
+		})),
+
+	updateImageState: (url, newState) =>
+		set((state) => ({
+			imageUrls: state.imageUrls.map((image) =>
+				image.url === url ? { ...image, state: newState } : image
+			),
+		})),
 	addServerImagePath: (newImagePath) =>
 		set((state) => ({
 			serverImagePaths: [...state.serverImagePaths, newImagePath].slice(0, 3),
@@ -61,6 +67,10 @@ const useCreateImageStore = create<createImageState>((set) => ({
 			};
 		});
 	},
+	setImageUrls: (imageStates) => set(() => ({ imageUrls: imageStates })),
+	setServerImagePaths: (imagePaths) =>
+		set(() => ({ serverImagePaths: imagePaths })),
+
 	reset: () => set(() => initState),
 }));
 export default useCreateImageStore;

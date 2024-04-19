@@ -24,6 +24,7 @@ export default function useCreatePost(post?: Post) {
 		serverImagePaths,
 		reset: imageReset,
 		setImageUrls,
+		setServerImagePaths,
 	} = useCreateImageStore();
 	const { handleError } = useHandleError();
 	const isModifyMode = !!post; //수정모드 판별,
@@ -33,7 +34,12 @@ export default function useCreatePost(post?: Post) {
 			setTitle(post.title);
 			setContents(post.content);
 			setCategory(post.category);
-			setImageUrls(post.images.map((image) => image.path));
+			setImageUrls(
+				post.images.map((image) => ({ url: image.path, state: 'Complete' }))
+			);
+			setServerImagePaths(
+				post.images.map((image) => image.path.split('/').pop() || image.path)
+			);
 		}
 	}, []);
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -50,7 +56,14 @@ export default function useCreatePost(post?: Post) {
 		if (isModifyMode) {
 			//patch 로직
 			try {
-				const res = await patchPost(post.id, title, contents, category);
+				console.log(serverImagePaths);
+				const res = await patchPost(
+					post.id,
+					title,
+					contents,
+					category,
+					serverImagePaths
+				);
 				if (isErrorObject(res)) {
 					throw Error(JSON.stringify(res));
 				}

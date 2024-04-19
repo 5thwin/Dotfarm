@@ -20,6 +20,6 @@ export async function deletePost({ postId }: Payload) {
 		});
 		return res;
 	} catch (error) {
-		handleApiError(error);
+		return handleApiError(error);
 	}
 }

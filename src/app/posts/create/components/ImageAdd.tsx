@@ -10,7 +10,7 @@ import { isErrorObject } from '@/utils/error/httpError';
 
 export default function ImageAdd() {
 	const router = useRouter();
-	const { addImages, addServerImagePath, deleteImage, imageUrls } =
+	const { addImages, addServerImagePath, deleteImage, updateImageState } =
 		useCreateImageStore();
 	const [fileInputKey, setFileInputKey] = useState(0); // input 요소를 새로운 요소로 인식하도록 하여 초기화를 보장
 
@@ -22,17 +22,18 @@ export default function ImageAdd() {
 		const formData = new FormData();
 		formData.append('image', fileList[0]);
 		try {
+			const newImageStates = addImages(fileList);
 			const res = await saveTempImage(formData);
 			if (isErrorObject(res)) {
 				throw new Error(JSON.stringify(res));
 			}
 			const { fileName } = res;
 			Toast.fire({ title: '이미지 업로드', icon: 'success' });
-
-			addImages(fileList);
+			updateImageState(newImageStates[0].url, 'Complete');
 			addServerImagePath(fileName);
 		} catch (error) {
 			//이미지 업로드에 실패
+			deleteImage();
 			Toast.fire({ title: '이미지 업로드에 실패하였습니다.', icon: 'error' });
 			if (error instanceof Error && error.message.includes('401')) {
 				router.push('/401');

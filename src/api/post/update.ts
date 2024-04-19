@@ -20,13 +20,13 @@ export async function patchPost(
 	title?: string,
 	content?: string,
 	category?: string,
-	contentImageURL?: string
+	images?: string[]
 ) {
 	const body = {
 		title,
 		content,
 		category,
-		contentImageURL,
+		images,
 		//아래 내용은 로직 변경 필요
 		// userId: 1,
 		// createdAt: '2023-06-02 05:53:13',

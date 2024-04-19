@@ -10,6 +10,8 @@ export async function deleteComment(postId: number, commentId: number) {
 		const accessToken = getAccessTokenFromCookie();
 
 		revalidateTag(`comments${postId}`);
+		revalidateTag('posts');
+
 		const res = await customFetch(`/posts/${postId}/comments/${commentId}`, {
 			method: 'DELETE',
 			headers: {

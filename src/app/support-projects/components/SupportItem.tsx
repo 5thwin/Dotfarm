@@ -11,6 +11,7 @@ import { getRecruitmentStatus } from '@/utils/supportPrograms';
 import useHandleError from '@/hooks/useHandleError';
 import { getMe } from '@/utils/localstorage';
 import { isErrorObject } from '@/utils/error/httpError';
+import { format } from 'date-fns';
 
 export default function SupportProgramItem({
 	program,
@@ -79,10 +80,7 @@ export default function SupportProgramItem({
 					)}
 					{recruitmentStatus !== 'IS_ALWAYS' && (
 						<span className={clsx(defaultSupportTag)}>
-							~
-							{`${deadLineDate.getFullYear() % 100}.${
-								deadLineDate.getMonth() + 1
-							}.${deadLineDate.getDate()}`}
+							~{format(deadLineDate, 'yyyy-mm-dd')};
 						</span>
 					)}
 				</div>

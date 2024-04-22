@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import ButtonGroups from './ButtonGroups';
 import { Post } from '@/type/post';
 import { getLikesCheck } from '@/api/user/likes/get';
+import { padStart } from 'lodash';
+import { format } from 'date-fns';
 
 type Props = {
 	post: Post;
@@ -9,9 +11,7 @@ type Props = {
 export default async function PostHeader({ post }: Props) {
 	const { category, title, createdAt } = post;
 	const createDate = new Date(createdAt);
-	const dateString = `${createDate.getFullYear()}.${
-		createDate.getMonth() + 1
-	}.${createDate.getDate()}`;
+	const dateString = format(createDate, 'yyyy-mm-dd');
 	const { isLiked } = await getLikesCheck(post.id);
 	return (
 		<div className="flex gap-2.5 lg:gap-x-10 items-center w-full justify-between flex-wrap">

@@ -24,6 +24,7 @@ const LetterBox = ({ letter }: { letter: News }) => (
 						fill
 						src={getFullImagePath(letter.imgURL)}
 						alt="Picture of letter"
+						objectFit="cover"
 					/>
 				</div>
 				<p className="line-clamp-3">

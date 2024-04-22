@@ -76,7 +76,7 @@ export default function SupportProgramItem({
 							D-{calculateDday(program.deadline)}
 						</span>
 					)}
-					{recruitmentStatus === 'IS_ALWAYS' && (
+					{recruitmentStatus !== 'IS_ALWAYS' && (
 						<span className={clsx(defaultSupportTag)}>
 							~
 							{new Date(program.deadline)

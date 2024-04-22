@@ -19,7 +19,7 @@ export const filterProgramsByDate = (
 		const deadlineDate = new Date(program.deadline);
 		const startDate = new Date(program.startDate);
 		return (
-			// 모집 마감일자가 대상 날짜 이후이고, 모집 시작일자가 대상 날짜 이전 또는 같은 날짜인 프로그램을 필터링
+			// 모집 마감일자가 대상 날짜 이후 혹은 같은 날짜이고, 모집 시작일자가 대상 날짜 이전 또는 같은 날짜인 프로그램을 필터링
 			compareDates(
 				new Date(
 					deadlineDate.getFullYear(),

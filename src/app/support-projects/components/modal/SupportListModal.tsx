@@ -14,15 +14,13 @@ export default function SupportListModal() {
 	return (
 		<Modal
 			onClose={onClose}
-			containerClass={clsx(
-				'max-w-[640px]',
-				'p-[25px] rounded-30',
-				'max-h-[90vh]'
-			)}
+			containerClass={clsx('max-w-[640px]', 'p-[25px] rounded-30')}
 		>
 			<div className="flex gap-y-25px flex-col">
 				<h2 className="text-2xl font-bold">지원사업 & 교육 일정</h2>
-				{supportPrograms && <SupportList supportPrograms={supportPrograms} />}
+				<div className="overflow-scroll max-h-[75vh]">
+					{supportPrograms && <SupportList supportPrograms={supportPrograms} />}
+				</div>
 			</div>
 		</Modal>
 	);

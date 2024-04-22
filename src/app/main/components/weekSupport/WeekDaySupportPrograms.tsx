@@ -1,15 +1,24 @@
 import { getWeekDays } from '@/utils/date/week';
-import { getSupportPrograms } from '@/api/support/get';
+import { getSupportPrograms, getSupportsInRange } from '@/api/support/get';
 import { compareDates } from '@/utils/date/compare';
 import { SupportProgram } from '@/type/support';
 import WeeksDisplay from './WeekDisplay-desktop';
 import { Desktop, Mobile } from '@/app/components/responsive/ResponsiveUI';
 import WeekDisplayMobile from './WeekDisplay-mobile';
+import { format } from 'date-fns';
 
 export default async function WeekDaySupportPrograms() {
 	const weekdays = getWeekDays();
-	const supportPrograms = await getSupportPrograms();
-	if (!supportPrograms) return null;
+	const supportPrograms = await getSupportsInRange(
+		format(weekdays[0], 'yyyy-mm-dd'),
+		format(weekdays[weekdays.length - 1], 'yyyy-mm-dd')
+	);
+	if (!supportPrograms)
+		return (
+			<p className="flexCenter text-center text-subText">
+				이번 주에는 모집 중인 지원사업이 없습니다.
+			</p>
+		);
 	// 각 요일별로 지원 프로그램을 분류하기 위한 Map 객체 초기화
 	const supportProgramsByWeekDay = new Map<number, SupportProgram[]>(
 		weekdays.map((weekDate) => [weekDate.getDay(), []])

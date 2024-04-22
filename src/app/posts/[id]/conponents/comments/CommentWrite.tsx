@@ -46,7 +46,7 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 			<form className={CommentWrapper} onSubmit={onSubmit}>
 				<label htmlFor="comment-input" className="sr-only" />
 				{parentComment && (
-					<button onClick={handleEraseReply}>
+					<button onClick={handleEraseReply} type="button">
 						<span className="text-mainGreen">
 							@{parentComment.author.nickname}
 						</span>

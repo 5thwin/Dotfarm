@@ -80,7 +80,7 @@ export default function SupportProgramItem({
 						<span className={clsx(defaultSupportTag)}>
 							~
 							{new Date(program.deadline)
-								.toLocaleDateString()
+								.toLocaleDateString('ko-Kr')
 								.replaceAll('-', '.')}
 						</span>
 					)}

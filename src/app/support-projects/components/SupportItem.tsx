@@ -53,6 +53,7 @@ export default function SupportProgramItem({
 		if (recruitmentStatus === 'IS_CLOSED') return '마감';
 		return '모집중';
 	})();
+	const deadLineDate = new Date(program.deadline);
 	return (
 		<li className="flex justify-between items-center gap-x-2.5 lg:gap-x-10">
 			<div
@@ -79,9 +80,9 @@ export default function SupportProgramItem({
 					{recruitmentStatus !== 'IS_ALWAYS' && (
 						<span className={clsx(defaultSupportTag)}>
 							~
-							{new Date(program.deadline)
-								.toLocaleDateString('ko-Kr')
-								.replaceAll('-', '.')}
+							{`${deadLineDate.getFullYear() % 100}.${
+								deadLineDate.getMonth() + 1
+							}.${deadLineDate.getDate()}`}
 						</span>
 					)}
 				</div>

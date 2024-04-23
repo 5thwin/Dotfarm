@@ -10,8 +10,8 @@ import { format } from 'date-fns';
 export default async function WeekDaySupportPrograms() {
 	const weekdays = getWeekDays();
 	const supportPrograms = await getSupportsInRange(
-		format(weekdays[0], 'yyyy-mm-dd'),
-		format(weekdays[weekdays.length - 1], 'yyyy-mm-dd')
+		format(weekdays[0], 'yyyy-MM-dd'),
+		format(weekdays[weekdays.length - 1], 'yyyy-MM-dd')
 	);
 	if (!supportPrograms)
 		return (

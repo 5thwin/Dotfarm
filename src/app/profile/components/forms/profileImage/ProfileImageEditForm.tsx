@@ -6,6 +6,8 @@ import { getFullImagePath } from '@/utils/image';
 import clsx from 'clsx';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import LoadingSpinner from '@/../public/loading-spinner.svg';
+import { colorMainGreen } from '@/constants/color';
 
 type Props = {
 	onClose: () => void;
@@ -19,6 +21,8 @@ export default function ProfileImageEditForm(props: Props) {
 		profileImageURL,
 		handleSubmit,
 		newImageURL,
+		isUploading,
+		isConverting,
 	} = useProfileImage({
 		onClose,
 	});
@@ -31,15 +35,21 @@ export default function ProfileImageEditForm(props: Props) {
 					id="profileImage"
 					className="hidden"
 					onChange={handleAddImage}
+					disabled={isConverting || isUploading}
 				/>
-				{profileImageURL && (
+
+				{isUploading || isConverting ? (
+					<Uploading />
+				) : (
 					<div className="w-48 h-48 relative">
-						<Image
-							src={getFullImagePath(profileImageURL)}
-							alt="Profile Image"
-							className="w-full h-full object-cover"
-							fill
-						/>
+						{profileImageURL && (
+							<Image
+								src={getFullImagePath(profileImageURL)}
+								alt="Profile Image"
+								className="w-full h-full object-cover"
+								fill
+							/>
+						)}
 						<span className="py-5px px-2.5 absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-subGray text-sm">
 							변경하기
 						</span>
@@ -55,5 +65,13 @@ export default function ProfileImageEditForm(props: Props) {
 				변경
 			</button>
 		</form>
+	);
+}
+
+function Uploading() {
+	return (
+		<div className="flexCenter w-48 h-48">
+			<LoadingSpinner width="60" height="60" stroke={colorMainGreen} />
+		</div>
 	);
 }

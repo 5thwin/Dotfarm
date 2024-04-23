@@ -14,6 +14,7 @@ export default function useProfileImage({ onClose }: { onClose: () => void }) {
 	const [fileInputKey, setFileInputKey] = useState(0); // input 요소를 새로운 요소로 인식하도록 하여 초기화를 보장
 	const [newImageURL, setNewImageURL] = useState<string>();
 	const [isConverting, setIsConverting] = useState<boolean>(false);
+	const [isUploading, setIsUploading] = useState<boolean>(false);
 	const { handleError } = useHandleError();
 	// 프로필 이미지 변경 핸들러
 	//이미지 선택 시, 서버에 임시로 이미지가 저장됨
@@ -23,21 +24,25 @@ export default function useProfileImage({ onClose }: { onClose: () => void }) {
 		const fileList = e.target.files;
 		if (!fileList || !fileList[0]) return;
 		let file = fileList[0];
+
 		if (file.type === 'image/heic' || file.type === 'image/HEIC') {
 			try {
 				setIsConverting(true);
 				const convertedJpgFile = await convertHeicToJpeg(file);
+				setIsConverting(false);
+
 				if (convertedJpgFile) file = convertedJpgFile;
 			} catch (error) {
 				Toast.fire({ title: '이미지를 변환할 수 없습니다.', icon: 'error' });
+				setIsConverting(false);
 				return;
 			}
-			setIsConverting(false);
 		}
 
 		const formData = new FormData();
 		formData.append('image', file);
 		try {
+			setIsUploading(true);
 			const res = await saveTempImage(formData);
 			if (isErrorObject(res)) {
 				throw new Error(JSON.stringify(res));
@@ -53,6 +58,7 @@ export default function useProfileImage({ onClose }: { onClose: () => void }) {
 			}
 			Toast.fire({ title: '이미지 업로드에 실패하였습니다.', icon: 'error' });
 		}
+		setIsUploading(false);
 	};
 	//서버에 저장된 임시 이미지를 실제로 프로필에 반영
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -89,5 +95,6 @@ export default function useProfileImage({ onClose }: { onClose: () => void }) {
 		profileImageURL,
 		newImageURL,
 		isConverting,
+		isUploading,
 	};
 }

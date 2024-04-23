@@ -9,7 +9,7 @@ type Props = {
 export default function ProfileImageEditModal(props: Props) {
 	const { onClose } = props;
 	return (
-		<Modal onClose={onClose}>
+		<Modal onClose={onClose} closeButton={false}>
 			<ProfileImageEditForm onClose={onClose} />
 		</Modal>
 	);

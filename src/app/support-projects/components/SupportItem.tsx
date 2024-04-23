@@ -80,7 +80,7 @@ export default function SupportProgramItem({
 					)}
 					{recruitmentStatus !== 'IS_ALWAYS' && (
 						<span className={clsx(defaultSupportTag)}>
-							~{format(deadLineDate, 'yyyy-mm-dd')};
+							~{format(deadLineDate, 'yyyy.MM.dd')}
 						</span>
 					)}
 				</div>

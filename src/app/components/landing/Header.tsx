@@ -35,7 +35,7 @@ export default function Header() {
 				height={24}
 				priority
 			/>
-			<Link href={'/main'} className={LandingHeaderButtonStyle}>
+			<Link href={'/main'} className={LandingHeaderButtonStyle} prefetch>
 				<span>{'농업정보 무료보기'}</span>
 			</Link>
 		</nav>

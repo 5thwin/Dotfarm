@@ -12,6 +12,7 @@ import { ableToEdit } from '@/utils/post/edit';
 import EditButtonGroup from './buttons/EditButtonGroup';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 import { getFullImagePath } from '@/utils/image';
+import { displayPost } from '@/utils/string';
 
 type Props = {
 	post: Post;
@@ -29,7 +30,7 @@ export default async function PostBox({ post }: Props) {
 			</div>
 			<PostHeader post={post} />
 			<div id="post-contents-area" className={postWrapper}>
-				<article>{post.content}</article>
+				<article className="whitespace-pre-wrap">{post.content}</article>
 				{isExistImage &&
 					images.map(({ path }) => (
 						<div className="w-full lg:w-[590px] h-[250px] sm:h-[330px] rounded-10 relative overflow-hidden">

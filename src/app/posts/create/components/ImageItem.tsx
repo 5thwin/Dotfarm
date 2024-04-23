@@ -20,7 +20,12 @@ export default function ImageItem({ urlState, index }: Props) {
 			{state === 'Pending' && (
 				<div className="absolute bg-black z-10 opacity-30 inset-0"></div>
 			)}
-			<Image alt="게시글 이미지" fill src={getFullImagePath(url)}></Image>
+			<Image
+				alt="게시글 이미지"
+				fill
+				src={getFullImagePath(url)}
+				objectFit="contain"
+			></Image>
 			<button className={deleteStyle} onClick={handleDelete}>
 				제거
 			</button>

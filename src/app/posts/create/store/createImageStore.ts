@@ -4,7 +4,7 @@ import { create } from 'zustand';
 interface CreateImageState {
 	imageUrls: ImageState[];
 	serverImagePaths: string[];
-	addImages: (fileList: FileList) => ImageState[];
+	addImage: (file: File) => ImageState;
 	deleteImage: (index?: number) => void;
 	updateImageState: (
 		url: string,
@@ -26,18 +26,16 @@ const initState = {
 const useCreateImageStore = create<CreateImageState>((set) => ({
 	imageUrls: [],
 	serverImagePaths: [],
-	addImages: (fileList) => {
-		const newImageUrls = Array.from(
-			fileList,
-			(file): ImageState => ({
-				url: URL.createObjectURL(file),
-				state: 'Pending',
-			})
-		);
+	addImage: (file) => {
+		const newImageUrl: ImageState = {
+			url: URL.createObjectURL(file),
+			state: 'Pending',
+		};
+
 		set((state) => ({
-			imageUrls: [...state.imageUrls, ...newImageUrls].slice(0, 3), // Limit to 3 images,
+			imageUrls: [...state.imageUrls, newImageUrl].slice(0, 3), // Limit to 3 images,
 		}));
-		return newImageUrls;
+		return newImageUrl;
 	},
 
 	deleteImage: (index) =>

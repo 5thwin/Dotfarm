@@ -9,11 +9,8 @@ type Props = {
 	image?: ImageType | null;
 };
 export default function ProfileImage({ image }: Props) {
-	const {
-		setOriginProfileImageURL,
-		setProfileImageURL,
-		originProfileImageURL,
-	} = useProfileImageStore();
+	const { setOriginProfileImageURL, setProfileImageURL } =
+		useProfileImageStore();
 	useEffect(() => {
 		image && setProfileImageURL(image.path);
 		image && setOriginProfileImageURL(image.path);

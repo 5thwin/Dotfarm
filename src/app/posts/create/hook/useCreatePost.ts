@@ -56,7 +56,6 @@ export default function useCreatePost(post?: Post) {
 		if (isModifyMode) {
 			//patch 로직
 			try {
-				console.log(serverImagePaths);
 				const res = await patchPost(
 					post.id,
 					title,

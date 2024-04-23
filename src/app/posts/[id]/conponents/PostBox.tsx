@@ -1,7 +1,6 @@
 import { blockStyle } from '@/app/styles/common/blockStyle';
 import clsx from 'clsx';
 import Image from 'next/image';
-import Link from 'next/link';
 import PostHeader from './header/PostHeader';
 import PostAuthor from './PostAuthor';
 import CommentsArea from './comments/CommentsArea';
@@ -12,7 +11,6 @@ import { ableToEdit } from '@/utils/post/edit';
 import EditButtonGroup from './buttons/EditButtonGroup';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 import { getFullImagePath } from '@/utils/image';
-import { displayPost } from '@/utils/string';
 
 type Props = {
 	post: Post;

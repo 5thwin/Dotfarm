@@ -1,5 +1,5 @@
 import { getWeekDays } from '@/utils/date/week';
-import { getSupportPrograms, getSupportsInRange } from '@/api/support/get';
+import { getSupportsInRange } from '@/api/support/get';
 import { compareDates } from '@/utils/date/compare';
 import { SupportProgram } from '@/type/support';
 import WeeksDisplay from './WeekDisplay-desktop';

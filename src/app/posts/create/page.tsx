@@ -16,6 +16,7 @@ type Params = {
 async function Page({ searchParams }: Params) {
 	const postId =
 		typeof searchParams.id === 'string' ? Number(searchParams.id) : null;
+	const isModifyMode = !!postId;
 	const pageTitle = postId ? '글 수정하기' : '글 작성하기'; // id 존재 여부에 따라 페이지 제목 결정
 	const post = postId ? await getPost(postId) : undefined;
 	if (postId && !post) return <Fallback />;

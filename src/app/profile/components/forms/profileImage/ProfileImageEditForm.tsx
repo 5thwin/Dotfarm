@@ -1,14 +1,8 @@
 'use client';
-import { saveTempImage } from '@/api/common/create';
-import { UserUpdateData, updateUserMe } from '@/api/user/update';
-import Toast from '@/app/components/common/Toast';
+
 import useProfileImage from '@/app/profile/hook/useProfileImage';
-import useProfileImageStore from '@/app/profile/store/profileImageStore';
 import { mainGreenRoundedButtonStyle } from '@/app/styles/common/buttonStyle';
-import useHandleError from '@/hooks/useHandleError';
-import { isErrorObject } from '@/utils/error/httpError';
-import { convertHeicToJpeg, getFullImagePath } from '@/utils/image';
-import { setMe } from '@/utils/localstorage';
+import { getFullImagePath } from '@/utils/image';
 import clsx from 'clsx';
 import Image from 'next/image';
 import React, { useState } from 'react';

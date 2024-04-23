@@ -4,6 +4,7 @@ import TabSelector from './TabSelector';
 import CommunityList from './CommunityList';
 import Link from 'next/link';
 import GoToWriteInput from '@/app/components/link/GoToWriteInput';
+import { Suspense } from 'react';
 
 type Props = { category?: string };
 export default function CommunitySection({ category }: Props) {
@@ -21,8 +22,9 @@ export default function CommunitySection({ category }: Props) {
 				</Link>
 			</div>
 			<TabSelector category={category} />
-
-			<CommunityList category={category} />
+			<Suspense key={category}>
+				<CommunityList category={category} />
+			</Suspense>
 			<GoToWriteInput />
 		</section>
 	);

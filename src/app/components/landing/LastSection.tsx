@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import clsx from 'clsx';
-import { KakaoChatButton } from './KakaoChatButton';
 import { LandingButtonStyle } from '@/app/styles/common/buttonStyle';
 import Link from 'next/link';
 

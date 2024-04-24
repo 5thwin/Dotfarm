@@ -1,5 +1,5 @@
 import { SupportProgram } from '@/type/support';
-import SupportProgramItem from './SupportItem';
+import SupportProgramItem from './SupportProgramItem';
 import { sortPrograms } from '@/utils/supportPrograms';
 
 type Props = {

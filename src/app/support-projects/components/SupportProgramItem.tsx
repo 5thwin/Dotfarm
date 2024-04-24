@@ -1,17 +1,12 @@
 import { calculateDday } from '@/utils/date/compare';
-import IcLike from '@/../public/icon/like.svg';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { SupportProgram } from '@/type/support';
-import { useState } from 'react';
-import { createMyInterest } from '@/api/user/interest/create';
-import { deleteMyInterest } from '@/api/user/interest/delete';
-import Toast from '@/app/components/common/Toast';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
-import useHandleError from '@/hooks/useHandleError';
 import { getMe } from '@/utils/localstorage';
-import { isErrorObject } from '@/utils/error/httpError';
 import { format } from 'date-fns';
+import InterestButton from './InterestButton';
+import { getMyInterests } from '@/api/user/interest/get';
 
 export default function SupportProgramItem({
 	program,
@@ -19,37 +14,12 @@ export default function SupportProgramItem({
 	program: SupportProgram;
 }) {
 	const me = getMe();
-	const { handleError } = useHandleError();
-	const [isInterested, setIsInterested] = useState<boolean>(
-		program.isInterested || false
-	);
-	const handleInterest = async () => {
-		const previosIsInterested = isInterested;
-		setIsInterested((pre) => !pre);
-		try {
-			if (!previosIsInterested) {
-				const res = await createMyInterest({ supportId: program.id });
-				if (isErrorObject(res)) {
-					throw new Error(JSON.stringify(res));
-				}
-			} else {
-				const res = await deleteMyInterest({ supportId: program.id });
-				if (isErrorObject(res)) {
-					throw new Error(JSON.stringify(res));
-				}
-			}
-		} catch (error) {
-			if (error instanceof Error) {
-				const defaultHandler = () =>
-					Toast.fire({
-						title: '관심 지원사업에 등록하지 못했습니다',
-						text: '잠시 후 다시 시도해주세요',
-						icon: 'error',
-					});
-				handleError({ error, defaultHandler });
-			}
-		}
-	};
+
+	// const interestResponse = await getMyInterests();
+	// const interestedSupportIds = interestResponse
+	// 	? interestResponse.data.map((interest) => interest.support.id)
+	// 	: null;
+	// program.isInterested = interestedSupportIds?.includes(program.id);
 	const recruitmentStatus = getRecruitmentStatus(program);
 	const recruitmentStatusString = (() => {
 		if (recruitmentStatus === 'IS_ALWAYS') return '상시 모집';
@@ -91,19 +61,7 @@ export default function SupportProgramItem({
 				</Link>
 				<p className={contentStyle}>{program.content}</p>
 			</div>
-			{me && (
-				<button
-					className={getButtonStyle(isInterested)}
-					onClick={handleInterest}
-				>
-					<IcLike
-						width="15"
-						height="13"
-						stroke={isInterested ? 'white' : '#7D7B7B'}
-						fill={isInterested ? 'white' : 'none'}
-					/>
-				</button>
-			)}
+			{me && <InterestButton program={program} />}
 		</li>
 	);
 }
@@ -117,9 +75,3 @@ const defaultSupportTag = clsx(
 
 const programNameStyle = clsx('lg:text-xl font-bold hover:underline');
 const contentStyle = clsx('text-wrap text-sm lg:text-base');
-// style
-const getButtonStyle = (isInterested: boolean) =>
-	clsx('rounded-full flexCenter min-w-[37px] size-[37px]', {
-		'bg-mainGreen': isInterested,
-		'bg-subGray': !isInterested,
-	});

@@ -65,7 +65,8 @@ export const getRecruitmentStatus = (
 	return 'IS_RECRUITING';
 };
 
-// 배열을 주어진 우선순위에 따라 정렬
+// 배열을 주어진 우선순위와 마감일 따라 정렬
+
 export function sortPrograms(programs: SupportProgram[]): SupportProgram[] {
 	// 각 상태에 우선순위를 매김
 	const statusPriority: Record<string, number> = {
@@ -77,6 +78,17 @@ export function sortPrograms(programs: SupportProgram[]): SupportProgram[] {
 	return programs.sort((a, b) => {
 		const statusA = getRecruitmentStatus(a);
 		const statusB = getRecruitmentStatus(b);
-		return statusPriority[statusA] - statusPriority[statusB];
+		const statusComparison = statusPriority[statusA] - statusPriority[statusB];
+
+		// 상태 우선순위가 같다면 마감일자로 정렬
+		if (statusComparison === 0) {
+			// 마감일자가 정의되지 않은 경우 끝으로 보내기 (예: 'IS_ALWAYS' 등)
+			if (!a.deadline) return 1;
+			if (!b.deadline) return -1;
+
+			return new Date(a.deadline).getTime() - new Date(b.deadline).getTime();
+		}
+
+		return statusComparison;
 	});
 }

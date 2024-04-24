@@ -1,11 +1,11 @@
-import withLayout from '../hoc/withLayout';
-import MyPageBox from './components/MyPageBox';
+import withLayout from '../../hoc/withLayout';
+import ProfileEditBox from './components/ProfileEditBox';
 
 function ProfilePage() {
 	return (
 		<div>
 			<section className="w-screen h-screen flexCenter">
-				<MyPageBox />
+				<ProfileEditBox />
 			</section>
 		</div>
 	);

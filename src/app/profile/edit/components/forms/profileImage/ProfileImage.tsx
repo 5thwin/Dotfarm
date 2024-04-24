@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ProfileImageEditModal from './ProfileImageEditModal';
 import Image from 'next/image';
-import useProfileImageStore from '@/app/profile/store/profileImageStore';
+import useProfileImageStore from '@/app/profile/edit/store/profileImageStore';
 import { ImageType } from '@/type/image';
 import { getFullImagePath } from '@/utils/image';
 

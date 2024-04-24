@@ -3,7 +3,7 @@ import useProfileStore from '../../../store/profileStore';
 import Toast from '@/app/components/common/Toast';
 import useValidationStore from '../../../store/validationStore';
 import clsx from 'clsx';
-import useNicknameFormStore from '@/app/profile/store/nicknameFormStore';
+import useNicknameFormStore from '@/app/profile/edit/store/nicknameFormStore';
 
 export default function NicknameChangeButton() {
 	const { nickname, originNickname, nicknameValidation } =

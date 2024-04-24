@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CustomSelect } from '../../../components/common/CustomSelect';
+import { CustomSelect } from '../../../../components/common/CustomSelect';
 import useProfileStore from '../../store/profileStore';
 import { KoreaRegions } from '@/utils/koreaRegions';
 import { OptionType, signupFormSelectStyles } from '@/utils/select';

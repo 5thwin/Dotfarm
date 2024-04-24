@@ -20,7 +20,10 @@ export default function SupportProgramItem({
 }) {
 	const me = getMe();
 	const { handleError } = useHandleError();
-	const [isInterested, setIsInterested] = useState<boolean>(false);
+	console.log(program);
+	const [isInterested, setIsInterested] = useState<boolean>(
+		program.isInterested || false
+	);
 	const handleInterest = async () => {
 		const previosIsInterested = isInterested;
 		setIsInterested((pre) => !pre);

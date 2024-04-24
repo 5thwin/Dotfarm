@@ -6,6 +6,7 @@ import WeeksDisplay from './WeekDisplay-desktop';
 import { Desktop, Mobile } from '@/app/components/responsive/ResponsiveUI';
 import WeekDisplayMobile from './WeekDisplay-mobile';
 import { format } from 'date-fns';
+import { getMyInterests } from '@/api/user/interest/get';
 
 export default async function WeekDaySupportPrograms() {
 	const weekdays = getWeekDays();
@@ -13,19 +14,26 @@ export default async function WeekDaySupportPrograms() {
 		format(weekdays[0], 'yyyy-MM-dd'),
 		format(weekdays[weekdays.length - 1], 'yyyy-MM-dd')
 	);
+	const interestResponse = await getMyInterests();
+	const interestedSupportIds =
+		interestResponse?.data.map((interest) => interest.support.id) || [];
 	if (!supportPrograms)
 		return (
 			<p className="flexCenter text-center text-subText">
 				이번 주에는 모집 중인 지원사업이 없습니다.
 			</p>
 		);
+	const supportProgramsWithInterest = supportPrograms.map((support) => ({
+		...support,
+		isInterested: interestedSupportIds.includes(support.id),
+	}));
 	// 각 요일별로 지원 프로그램을 분류하기 위한 Map 객체 초기화
 	const supportProgramsByWeekDay = new Map<number, SupportProgram[]>(
 		weekdays.map((weekDate) => [weekDate.getDay(), []])
 	);
 
 	// 지원 프로그램 데이터를 한 번만 순회하며 각 요일에 맞는 프로그램 분류
-	supportPrograms.forEach((program) => {
+	supportProgramsWithInterest.forEach((program) => {
 		weekdays.forEach((weekDate) => {
 			const programDeadline = new Date(program.deadline);
 			const weekDateWithoutTime = new Date(

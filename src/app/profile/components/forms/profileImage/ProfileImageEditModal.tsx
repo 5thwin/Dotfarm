@@ -1,6 +1,5 @@
 'use client';
 import Modal from '@/app/components/common/Modal';
-import useProfileStore from '@/app/profile/store/profileStore';
 import ProfileImageEditForm from './ProfileImageEditForm';
 
 type Props = {

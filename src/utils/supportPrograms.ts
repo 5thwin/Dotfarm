@@ -1,6 +1,5 @@
 import { SupportProgram } from '@/type/support';
 import { calculateDday, compareDates } from './date/compare';
-import exp from 'constants';
 
 /**
  * 특정 날짜에 표시되어야 하는 지원사업 프로그램 목록을 필터링합니다.

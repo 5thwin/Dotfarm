@@ -4,7 +4,6 @@ import SupportCalendar from './SupportCalendar';
 import { getSupportPrograms } from '@/api/support/get';
 import DateProgramsWrapper from './DateProgramsWrapper-mobile';
 import { getMyInterests } from '@/api/user/interest/get';
-import { SupportProgram } from '@/type/support';
 
 export default async function CalendarWrapper() {
 	//이번달 + 지난달의 마지막 6일 + 다음달의 처음 6일 정도를 포함시켜야한다.

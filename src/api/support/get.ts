@@ -1,4 +1,4 @@
-import { PaginatedSupportPrograms, SupportProgram } from '@/type/support';
+import { SupportProgram } from '@/type/support';
 import customFetch from '../customFetch';
 
 export async function getSupportPrograms() {

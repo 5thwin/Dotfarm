@@ -5,7 +5,7 @@ import { mainGreenRoundedButtonStyle } from '@/app/styles/common/buttonStyle';
 import { getFullImagePath } from '@/utils/image';
 import clsx from 'clsx';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import LoadingSpinner from '@/../public/loading-spinner.svg';
 import { colorMainGreen } from '@/constants/color';
 

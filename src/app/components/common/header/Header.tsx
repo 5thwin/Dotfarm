@@ -18,7 +18,9 @@ const Header: React.FC<Props> = ({ showOnMobile = false }) => {
 				<ul className="lg:flex gap-x-30px items-center hidden">
 					{navLinks.map((link) => (
 						<li className="font-bold" key={link.path}>
-							<Link href={link.path}>{link.name}</Link>
+							<Link href={link.path} prefetch>
+								{link.name}
+							</Link>
 						</li>
 					))}
 				</ul>

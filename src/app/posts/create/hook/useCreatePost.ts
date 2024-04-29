@@ -29,7 +29,6 @@ export default function useCreatePost(post?: Post) {
 	const { handleError } = useHandleError();
 	const isModifyMode = !!post; //수정모드 판별,
 	useEffect(() => {
-		reset();
 		if (isModifyMode) {
 			setTitle(post.title);
 			setContents(post.content);
@@ -44,6 +43,8 @@ export default function useCreatePost(post?: Post) {
 	}, []);
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		console.log(category);
+
 		if (title.length === 0)
 			return Toast.fire('제목을 입력해주세요.', undefined, 'warning');
 

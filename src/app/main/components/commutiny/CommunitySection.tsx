@@ -25,7 +25,7 @@ export default function CommunitySection({ category }: Props) {
 			<Suspense key={category}>
 				<CommunityList category={category} />
 			</Suspense>
-			<GoToWriteInput />
+			<GoToWriteInput category={category} />
 		</section>
 	);
 }

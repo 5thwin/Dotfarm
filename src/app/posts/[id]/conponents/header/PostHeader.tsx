@@ -18,7 +18,7 @@ export default async function PostHeader({ post }: Props) {
 	return (
 		<div className="flex gap-2.5 lg:gap-x-10 items-center w-full justify-between flex-wrap">
 			<div className="flex flex-col gap-y-2.5 w-full">
-				<div className="flex justify-between items-center ">
+				<div className="flex justify-between items-center">
 					<span className={categoryText}>#{category}</span>
 					<ButtonGroups
 						post={post}

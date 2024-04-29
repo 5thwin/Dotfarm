@@ -8,7 +8,6 @@ import MobileBackButton from '@/app/components/common/MobileBackButton';
 import CommentWrite from './comments/CommentWrite';
 import { Post } from '@/type/post';
 import { ableToEdit } from '@/utils/post/edit';
-import EditButtonGroup from './buttons/EditButtonGroup';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 import { getFullImagePath } from '@/utils/image';
 
@@ -44,7 +43,6 @@ export default async function PostBox({ post }: Props) {
 					))}
 			</div>
 			<div className="flex flex-col gap-y-1">
-				{isAbleToEdit && <EditButtonGroup postId={post.id} />}
 				{author && <PostAuthor author={author} />}
 			</div>
 			<div className="flex flex-col gap-y-2.5">

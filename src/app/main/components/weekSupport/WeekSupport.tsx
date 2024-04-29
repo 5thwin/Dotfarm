@@ -13,7 +13,8 @@ export default function WeekSupport() {
 				blockStyle,
 				'p-5 lg:p-25px',
 				'flex flex-col',
-				'gap-y-15px lg:gap-y-5 '
+				'gap-y-15px lg:gap-y-5',
+				'lg:min-h-[430px]'
 			)}
 		>
 			<div className="flex justify-between">

@@ -45,9 +45,9 @@ export default async function WeekDaySupportPrograms() {
 	const isEmpty = Array.from(supportProgramsByWeekDay.values()).every(
 		(programs) => programs.length === 0
 	);
-	// if (isEmpty) {
-	// 	return <NoneWeeklySupportFallback />;
-	// }
+	if (isEmpty) {
+		return <NoneWeeklySupportFallback />;
+	}
 	return (
 		<>
 			<Desktop>
@@ -68,7 +68,7 @@ export default async function WeekDaySupportPrograms() {
 
 function NoneWeeklySupportFallback() {
 	return (
-		<p className="flexCenter text-center text-subText">
+		<p className="flexCenter text-center text-subText flex-1">
 			이번 주에는 모집 중인 지원사업이 없습니다.
 		</p>
 	);

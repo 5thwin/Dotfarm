@@ -27,7 +27,7 @@ export default function CalendarDateProgramItem({ program }: Props) {
 				)}
 			</div>
 			<p
-				className={clsx('text-sm line-clamp-2', {
+				className={clsx('text-sm line-clamp-2 hover:line-clamp-none', {
 					'text-lineColor': recruitmentStatus === 'IS_CLOSED',
 				})}
 			>

@@ -11,7 +11,7 @@ export default function DaySupportList({
 			{supportPrograms.slice(0, 3).map((program, index) => (
 				<li className="flex" key={`support${index}`}>
 					<Link href={program.link} target="_blank" className="">
-						<span className="line-clamp-3 hover:underline">
+						<span className="line-clamp-2 hover:underline hover:line-clamp-none">
 							• {program.programName}
 						</span>
 					</Link>

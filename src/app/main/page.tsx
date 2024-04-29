@@ -17,7 +17,7 @@ function Page({ searchParams }: Params) {
 			? searchParams.category
 			: undefined;
 	return (
-		<div className="p-15px lg:p-0 pt-20 pb-14 lg:pb-20">
+		<div className="p-15px pt-20 pb-14 lg:pb-20 lg:px-5 xl:px-[72px]">
 			<div className="lg:inline-block hidden">
 				<PcBanner />
 			</div>
@@ -44,6 +44,5 @@ export default withLayout(Page, true, true, true);
 // style
 const responsiveMainPage = clsx(
 	'mx-auto lg:mt-[65px] flex gap-x-30px',
-	'lg:px-5 xl:px-[72px]',
 	'lg:flex-row lg:items-start flex-col gap-y-5 '
 );

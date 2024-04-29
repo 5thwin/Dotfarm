@@ -49,7 +49,7 @@ const postContainer = clsx(
 	'flex-col-reverse lg:flex-row items-start gap-y-2.5'
 );
 const contentsWrapper = clsx(
-	'flex flex-col gap-y-5px sm:gap-y-2.5 2xl:w-[830px]'
+	'flex flex-col gap-y-5px sm:gap-y-2.5 lg:w-[830px]'
 );
 const catagoryTagStyle = clsx('text-subText text-xs sm:text-sm');
 const titleStyle = clsx('sm:text-lg font-bold line-clamp-1');

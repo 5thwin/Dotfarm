@@ -20,7 +20,7 @@ export default function PostMeatballButton({ postId }: Props) {
 				<IcMeatball width="13" height="3" fill={colorSubText} />
 			</button>
 			{isVisible && (
-				<div className="absolute left-0 mt-2 w-[110px] h-[74px] bg-white shadow-md rounded-md flex flex-col">
+				<div className="absolute right-0 mt-2 w-[110px] h-[74px] bg-white shadow-md rounded-md flex flex-col">
 					<PostEditButton postId={postId} />
 					<PostDeleteButton postId={postId} />
 				</div>

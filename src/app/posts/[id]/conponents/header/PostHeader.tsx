@@ -18,13 +18,14 @@ export default async function PostHeader({ post }: Props) {
 	return (
 		<div className="flex gap-2.5 lg:gap-x-10 items-center w-full justify-between flex-wrap">
 			<div className="flex flex-col gap-y-2.5">
-				<ButtonGroups
-					post={post}
-					likeCheck={isLiked}
-					isAbleToEdit={isAbleToEdit}
-				/>
-
-				<span className={categoryText}>#{category}</span>
+				<div className="flex justify-between items-center">
+					<span className={categoryText}>#{category}</span>
+					<ButtonGroups
+						post={post}
+						likeCheck={isLiked}
+						isAbleToEdit={isAbleToEdit}
+					/>
+				</div>
 				<h1 className="text-lg lg:text-xl font-bold">{title}</h1>
 				<span className="text-sm text-subText">{dateString}</span>
 			</div>

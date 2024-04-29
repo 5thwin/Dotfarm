@@ -28,7 +28,9 @@ export default async function PostBox({ post }: Props) {
 			</div>
 			<PostHeader post={post} />
 			<div id="post-contents-area" className={postWrapper}>
-				<article className="whitespace-pre-wrap">{post.content}</article>
+				<article className="whitespace-pre-wrap break-words">
+					{post.content}
+				</article>
 				{isExistImage &&
 					images.map(({ path }) => (
 						<div className="w-full lg:w-[590px] h-[250px] sm:h-[330px] rounded-10 relative overflow-hidden">

@@ -43,7 +43,6 @@ export default function useCreatePost(post?: Post) {
 	}, []);
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log(category);
 
 		if (title.length === 0)
 			return Toast.fire('제목을 입력해주세요.', undefined, 'warning');

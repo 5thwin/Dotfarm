@@ -8,13 +8,20 @@ import useHandleError from '@/hooks/useHandleError';
 import { useState } from 'react';
 import { deleteMyLike } from '@/api/user/likes/delete';
 import { isErrorObject } from '@/utils/error/httpError';
+import PostMeatballButton from '../buttons/PostMeatballButton';
 
-type Props = { post: Post; likeCheck?: boolean; isLogin?: boolean };
+type Props = {
+	post: Post;
+	likeCheck?: boolean;
+	isLogin?: boolean;
+	isAbleToEdit?: boolean;
+};
 
 export default function ButtonGroups({
 	post,
 	likeCheck,
 	isLogin = true,
+	isAbleToEdit = false,
 }: Props) {
 	const { handleError } = useHandleError();
 	const [isChecked, setIsChecked] = useState<boolean>(likeCheck || false);
@@ -47,6 +54,7 @@ export default function ButtonGroups({
 				/>
 			</button>
 			<CopyUrlButton />
+			{isAbleToEdit && <PostMeatballButton postId={post.id} />}
 		</div>
 	);
 }

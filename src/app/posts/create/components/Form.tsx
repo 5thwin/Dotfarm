@@ -3,13 +3,15 @@ import clsx from 'clsx';
 import CategorySelect from './CategorySelect';
 import useCreatePost from '../hook/useCreatePost';
 import { Post } from '@/type/post';
+import { useEffect } from 'react';
 
 type Props = {
 	post?: Post;
+	defaultCategory?: string;
 };
 
-export default function Form({ post }: Props) {
-	const { title, setTitle, contents, setContents, handleSubmit } =
+export default function Form({ post, defaultCategory }: Props) {
+	const { title, setTitle, contents, setContents, handleSubmit, reset } =
 		useCreatePost(post);
 
 	return (
@@ -29,7 +31,7 @@ export default function Form({ post }: Props) {
 			/>
 			<div className="flex flex-col gap-y-5px">
 				<label className="font-bold text-lg">카테고리</label>
-				<CategorySelect />
+				<CategorySelect defaultCategory={defaultCategory} />
 			</div>
 			<button type="submit" className={getButtonStyle(true)}>
 				적용하기

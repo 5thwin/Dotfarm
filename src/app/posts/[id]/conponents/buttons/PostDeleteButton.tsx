@@ -45,10 +45,10 @@ export default function PostDeleteButton({ postId }: Props) {
 	};
 	return (
 		<button
-			className="text-sm text-subText hover:text-warnRed"
+			className="flex-1 hover:bg-gray-100 text-left px-4 py-2 text-sm font-medium text-gray-700"
 			onClick={handleClick}
 		>
-			삭제하기
+			삭제
 		</button>
 	);
 }

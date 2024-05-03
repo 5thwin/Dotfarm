@@ -21,7 +21,12 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 		category,
 		keyword,
 	});
-	if (!response) return <div className={responsiveWrapper}><Fallback /></div>;
+	if (!response)
+		return (
+			<div className={responsiveWrapper}>
+				<Fallback />
+			</div>
+		);
 
 	const posts = response.data;
 	const totalPage = response.total && Math.ceil(response.total / PAGE_TAKE);
@@ -34,7 +39,7 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 				<h1 className="font-bold text-2xl">영농 커뮤니티</h1>
 			</div>
 			<div className={'px-2.5 order-last lg:p-0 lg:order-none'}>
-				<GoToWriteInput />
+				<GoToWriteInput category={category} />
 			</div>
 			<PostsList posts={posts} />
 			<div className="flexCenter">

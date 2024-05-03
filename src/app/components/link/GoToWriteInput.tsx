@@ -1,9 +1,14 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import IcPaperPlane from '@/../public/icon/paperPlane.svg';
-export default function GoToWriteInput() {
+type Props = { category?: string };
+export default function GoToWriteInput({ category }: Props) {
+	const path = category
+		? `/posts/create?category=${category}`
+		: '/posts/create';
+
 	return (
-		<Link href={`/posts/create`} className={inputStyle}>
+		<Link href={path} className={inputStyle}>
 			<p className="flex-1">한마디 작성해주세요</p>
 			<button className={buttonStyle}>
 				<IcPaperPlane width="18" height="18" fill="white" />

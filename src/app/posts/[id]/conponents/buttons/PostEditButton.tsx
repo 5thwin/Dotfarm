@@ -5,10 +5,11 @@ type Props = {
 };
 export default function PostEditButton({ postId }: Props) {
 	return (
-		<div className=" text-sm text-subText">
-			<Link className="hover:text-gray-700" href={`/posts/create?id=${postId}`}>
-				수정하기
-			</Link>
-		</div>
+		<Link
+			className="flex-1 hover:bg-gray-100 text-left px-4 py-2 text-sm font-medium text-gray-700"
+			href={`/posts/create?id=${postId}`}
+		>
+			수정
+		</Link>
 	);
 }

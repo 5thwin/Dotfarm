@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 export default function PcBanner() {
 	return (
-		<section id="main-thumb" className="flexCenter">
+		<section id="main-thumb" className="flexCenter flex-1">
 			<div className={bannerImageStyle}>
 				<Image
 					src="/main/mainBanner.svg"
@@ -21,6 +21,7 @@ export default function PcBanner() {
 
 const bannerImageStyle = clsx(
 	'relative overflow-hidden',
-	'lg:w-[1218px] lg:h-[392px] lg:rounded-30',
-	'w-[360px] h-[150px rounded-20'
+	'lg:w-full 2xl:w-[1218px] lg:h-[392px] lg:rounded-30',
+	'w-[360px] h-[150px] rounded-20',
+	'shadow-main'
 );

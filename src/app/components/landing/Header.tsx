@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
-import { KaKaoLoginButton } from './KaKaoLoginButton';
 import Link from 'next/link';
 export default function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);

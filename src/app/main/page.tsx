@@ -18,7 +18,7 @@ function Page({ searchParams }: Params) {
 			? searchParams.category
 			: undefined;
 	return (
-		<div className="p-15px pt-20 lg:pt-36 pb-14 lg:pb-20 lg:px-5 xl:px-[72px]">
+		<div className="p-15px pt-24 lg:pt-36 pb-14 lg:pb-20 lg:px-5 xl:px-[72px]">
 			<div className="hidden lg:flex gap-x-30px">
 				<PcBanner />
 				<WatchListBox />

@@ -1,6 +1,8 @@
 'use client';
+import useMobileSearchStore from '@/app/support-projects/store/mobileSearchStore';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
+import HeaderSearchArea from './HeaderSearchArea-mobile';
 
 type Props = { children: ReactNode; showOnMobile?: boolean };
 export default function HeaderContainer({
@@ -9,7 +11,6 @@ export default function HeaderContainer({
 }: Props) {
 	const headerContainer = clsx(
 		'fixed top-0 left-0 w-full h-20',
-		'transition-colors duration-[30] ease-in-out',
 		'px-2.5 lg:px-10 py-5',
 		'flex justify-between items-center',
 		'z-30',
@@ -19,5 +20,11 @@ export default function HeaderContainer({
 		}
 	);
 
-	return <header className={headerContainer}>{children}</header>;
+	const { isShow } = useMobileSearchStore();
+	return (
+		<header className={headerContainer}>
+			{children}
+			{isShow && <HeaderSearchArea />}
+		</header>
+	);
 }

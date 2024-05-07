@@ -4,6 +4,8 @@ import { PATH_MAIN, navLinks } from '@/utils/navigation';
 import Link from 'next/link';
 import HeaderContainer from './HeaderContainer';
 import HeaderUserArea from './HeaderUserArea';
+import HeaderSearchBar from './HeaderSearchBar';
+import HeaderSearchButton from './HeaderSearchButton-mobile';
 
 type Props = {
 	showOnMobile?: boolean;
@@ -25,7 +27,15 @@ const Header: React.FC<Props> = ({ showOnMobile = false }) => {
 					))}
 				</ul>
 			</div>
-			<HeaderUserArea />
+			<div className="flex gap-x-2.5 lg:gap-x-5 items-center">
+				<div className="hidden lg:inline-block">
+					<HeaderSearchBar />
+				</div>
+				<div className="lg:hidden">
+					<HeaderSearchButton />
+				</div>
+				<HeaderUserArea />
+			</div>
 		</HeaderContainer>
 	);
 };

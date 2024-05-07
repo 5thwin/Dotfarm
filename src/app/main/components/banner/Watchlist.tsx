@@ -2,6 +2,13 @@ import { getMyInterests } from '@/api/user/interest/get';
 import { getMyLikes } from '@/api/user/likes/get';
 import WatchItem from './WatchItem';
 
+type MyWatchList = {
+	category: string;
+	title: string;
+	link: string;
+	createAt: string;
+};
+
 export default async function WatchList() {
 	const interestRes = await getMyInterests();
 	const likeRes = await getMyLikes();
@@ -37,10 +44,3 @@ export default async function WatchList() {
 		</ul>
 	);
 }
-
-type MyWatchList = {
-	category: string;
-	title: string;
-	link: string;
-	createAt: string;
-};

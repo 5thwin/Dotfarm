@@ -2,7 +2,6 @@ import CustomImage from '@/app/components/common/CustomImage';
 import { News } from '@/type/issue';
 import { getFullImagePath } from '@/utils/image';
 import clsx from 'clsx';
-import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = { letters: News[] };

@@ -36,11 +36,14 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 				<div className="lg:hidden">
 					<MobileBackButton />
 				</div>
-				<h1 className="font-bold text-2xl">영농 커뮤니티</h1>
+				<h1 className="font-bold text-xl lg:text-2xl">영농 커뮤니티</h1>
 			</div>
 			<div className={'px-2.5 order-last lg:p-0 lg:order-none'}>
 				<GoToWriteInput category={category} />
 			</div>
+			{keyword && (
+				<p className="font-bold text-xl px-2.5">{`'${keyword}'로 검색한 결과입니다.`}</p>
+			)}
 			<PostsList posts={posts} />
 			<div className="flexCenter">
 				<PostsPagination totalPage={totalPage} />

@@ -20,9 +20,7 @@ async function Page({ searchParams }: Params) {
 	return (
 		<div className="lg:pb-20">
 			<div className="flex flex-col items-center lg:mt-24 gap-y-2.5">
-				{keyword && (
-					<p className="hidden lg:inline-block font-bold text-xl">{`'${keyword}'로 검색한 결과입니다.`}</p>
-				)}
+
 				<section className="flex gap-x-25px items-start w-full lg:px-20">
 					<div className="hidden lg:inline-block">
 						<FilterBox />

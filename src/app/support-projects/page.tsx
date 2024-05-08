@@ -2,6 +2,11 @@ import clsx from 'clsx';
 import withLayout from '../hoc/withLayout';
 import CalendarWrapper from './components/CalendarWrapper';
 import MobileBackButton from '../components/common/MobileBackButton';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: '지원사업 및 교육',
+};
 
 function SupportPage() {
 	return (

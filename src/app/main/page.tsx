@@ -7,6 +7,11 @@ import PcBanner from './components/banner/PcBanner';
 import clsx from 'clsx';
 import MobileBanner from './components/banner/MobileBanner';
 import WatchListBox from './components/banner/WatchListBox';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: '메인',
+};
 type Params = {
 	searchParams: {
 		[key: string]: string | string[] | undefined;

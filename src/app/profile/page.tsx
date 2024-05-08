@@ -1,6 +1,10 @@
+import { Metadata } from 'next';
 import withLayout from '../hoc/withLayout';
 import ProfileEditBox from './components/ProfileEditBox';
 
+export const metadata: Metadata = {
+	title: '프로필',
+};
 function ProfilePage() {
 	return (
 		<div>

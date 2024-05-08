@@ -17,7 +17,10 @@ export default function CommunitySection({ category }: Props) {
 		>
 			<div className="flex justify-between">
 				<p className="font-bold text-xl lg:text-2xl">영농 커뮤니티</p>
-				<Link href={'/posts'} className={moreButton}>
+				<Link
+					href={`/posts${category ? `?category=${category}` : ''}`}
+					className={moreButton}
+				>
 					더보기+
 				</Link>
 			</div>
@@ -25,7 +28,7 @@ export default function CommunitySection({ category }: Props) {
 			<Suspense key={category}>
 				<CommunityList category={category} />
 			</Suspense>
-			<GoToWriteInput category={category} />
+			{/* <GoToWriteInput category={category} /> */}
 		</section>
 	);
 }

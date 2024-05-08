@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 		title: '농업 정보 플랫폼 닷팜',
 		description:
 			'한 곳에서 모든 농업 관련 지원 사업 및 정보를 쉽게 찾아보세요. 농부에게 필요한 최신 농업 정보와 지원 사업을 알려드립니다.',
-		images: '/opengraphImage.svg',
+		images: '/opengraphImage.png',
 	},
 	icons: {
 		icon: '/favicon.ico',

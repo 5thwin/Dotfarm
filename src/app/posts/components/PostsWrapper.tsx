@@ -33,9 +33,6 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 	return (
 		<div className={responsiveWrapper}>
 			<div className={responsiveHeader}>
-				<div className="lg:hidden">
-					<MobileBackButton />
-				</div>
 				<h1 className="font-bold text-xl lg:text-2xl">영농 커뮤니티</h1>
 			</div>
 			<div className={'px-2.5 order-last lg:p-0 lg:order-none'}>
@@ -59,11 +56,11 @@ const responsiveWrapper = clsx(
 	'w-screen flex-1 2xl:w-[1150px]',
 	'shadow-none lg:shadow-main',
 	'flex flex-col gap-y-2.5',
-	'lg:h-auto h-screen'
+	'lg:h-auto'
 );
 
 const responsiveHeader = clsx(
-	'flex gap-x-2.5 items-center',
-	'lg:border-none border-b',
-	'py-2.5'
+	'lg:flex gap-x-2.5 items-center',
+	'py-2.5',
+	'hidden'
 );

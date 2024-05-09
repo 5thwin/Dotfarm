@@ -17,7 +17,7 @@ export default function ComunityPostItem({ post }: Props) {
 			<div className={contentsWrapper}>
 				<p className={catagoryTagStyle}># {post.category}</p>
 				<p className={titleStyle}>{post.title}</p>
-				<p className="line-clamp-1 sm:text-base text-sm overflow-clip">
+				<p className="line-clamp-1 sm:text-base text-sm overflow-clip break-all">
 					{post.content}
 				</p>
 				{commentCount > 0 && (

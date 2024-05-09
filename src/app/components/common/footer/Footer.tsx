@@ -7,7 +7,7 @@ import clsx from 'clsx';
 
 export default function Footer() {
 	return (
-		<footer className="w-screen h-[280px] md:h-[190px] bg-white relative border-t border-subGray whitespace-nowrap">
+		<footer className="w-screen h-[280px] md:h-[190px] bg-white border-t border-subGray whitespace-nowrap absolute bottom-0">
 			<div className={contentsWrapperStyle}>
 				<div className="flex lg:gap-x-[60px] gap-x-5 md:flex-row flex-col">
 					<div className="flex flex-col gap-y-30px ">
@@ -18,7 +18,7 @@ export default function Footer() {
 							<p className="text-sm lg:text-lg font-semibold">
 								제휴 및 광고 문의
 							</p>
-							<p className="text-xs lg:text-sm">info@vandalsoft.com</p>
+							<p className="text-xs lg:text-sm">dotfarm@vandalsoft.com</p>
 						</div>
 					</div>
 					<div className="flex flex-col gap-y-2.5">
@@ -26,7 +26,7 @@ export default function Footer() {
 							<p>(주)반달소프트</p>
 							<p>대표 : 이봉학 ㅣ 사업자등록번호 : 745-88-01527 </p>
 							<p>본사 : 경기도 성남시 분당구 판교로289번길 20, 2동 5층</p>
-							<p>이메일 : info@vandalsoft.com </p>
+							<p>이메일 : dotfarm@vandalsoft.com </p>
 						</div>
 						<p className="text-xs lg:text-sm">
 							Copyright (주)반달소프트 All rights reserved

@@ -7,7 +7,7 @@ import clsx from 'clsx';
 
 export default function Footer() {
 	return (
-		<footer className="w-screen h-[280px] md:h-[190px] bg-white border-t border-subGray whitespace-nowrap absolute bottom-0">
+		<footer className="w-screen h-[280px] md:h-[190px] bg-white border-t border-subGray whitespace-nowrap relative">
 			<div className={contentsWrapperStyle}>
 				<div className="flex lg:gap-x-[60px] gap-x-5 md:flex-row flex-col">
 					<div className="flex flex-col gap-y-30px ">

@@ -27,7 +27,7 @@ export default async function PostHeader({ post }: Props) {
 					/>
 				</div>
 				<h1 className="text-lg lg:text-xl font-bold">{title}</h1>
-				<span className="text-sm text-subText">{dateString}</span>
+				{/* <span className="text-sm text-subText">{dateString}</span> */}
 			</div>
 		</div>
 	);

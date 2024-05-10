@@ -6,6 +6,7 @@ import MobileBackButton from '@/app/components/common/MobileBackButton';
 import GoToWriteInput from '@/app/components/link/GoToWriteInput';
 import { getPostsWithAuthor } from '@/api/post/get';
 import Fallback from './Fallback';
+import { getCategoryTitle } from '@/constants/category';
 
 type Props = {
 	page?: number;
@@ -33,7 +34,9 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 	return (
 		<div className={responsiveWrapper}>
 			<div className={responsiveHeader}>
-				<h1 className="font-bold text-xl lg:text-2xl">영농 커뮤니티</h1>
+				<h1 className="font-bold text-xl lg:text-2xl">
+					{getCategoryTitle(category)}
+				</h1>
 			</div>
 			<div className={'px-2.5 order-last lg:p-0 lg:order-none'}>
 				<GoToWriteInput category={category} />

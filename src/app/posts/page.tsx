@@ -3,6 +3,7 @@ import PostsWrapper from './components/PostsWrapper';
 import FilterBox from './components/FilterBox';
 import clsx from 'clsx';
 import MobileBackButton from '../components/common/MobileBackButton';
+import { getCategoryTitle } from '@/constants/category';
 
 type Params = {
 	searchParams: {
@@ -21,7 +22,7 @@ async function Page({ searchParams }: Params) {
 
 	return (
 		<div className="py-2.5 lg:pb-20 bg-white lg:bg-inherit">
-			<CommunityMobileHeader />
+			<CommunityMobileHeader category={category} />
 			<div className="flex flex-col items-center lg:mt-24 gap-y-2.5">
 				<section className="flex gap-x-25px items-start w-full lg:px-20">
 					<div className="hidden lg:inline-block">
@@ -34,11 +35,11 @@ async function Page({ searchParams }: Params) {
 	);
 }
 
-const CommunityMobileHeader = () => {
+const CommunityMobileHeader = ({ category }: { category?: string }) => {
 	return (
 		<header className={clsx('lg:hidden flex items-center')}>
 			<MobileBackButton />
-			<h1 className="font-bold text-xl">영농 커뮤니티</h1>
+			<h1 className="font-bold text-xl">{getCategoryTitle(category)}</h1>
 		</header>
 	);
 };

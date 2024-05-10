@@ -15,9 +15,12 @@ export default async function WeekDaySupportPrograms() {
 		format(weekdays[weekdays.length - 1], 'yyyy-MM-dd')
 	);
 	const interestResponse = await getMyInterests();
-	const interestedSupportIds =
-		interestResponse?.data.map((interest) => interest.support.id) || [];
-	if (!supportPrograms) return <NoneWeeklySupportFallback />;
+	const interestedSupportIds = interestResponse
+		? interestResponse.data.map((interest) => interest.support.id)
+		: [];
+
+	if (!supportPrograms || supportPrograms.length === 0)
+		return <NoneWeeklySupportFallback />;
 	const supportProgramsWithInterest = supportPrograms.map((support) => ({
 		...support,
 		isInterested: interestedSupportIds.includes(support.id),

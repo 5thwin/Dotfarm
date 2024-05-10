@@ -1,6 +1,7 @@
 import { SupportProgram } from '@/type/support';
 import { calculateDday } from '@/utils/date/compare';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
+import { Tooltip } from 'react-tooltip';
 import clsx from 'clsx';
 
 type Props = { program: SupportProgram };
@@ -26,8 +27,11 @@ export default function CalendarDateProgramItem({ program }: Props) {
 					</span>
 				)}
 			</div>
+			<Tooltip id="my-tooltip" />
 			<p
-				className={clsx('text-sm line-clamp-2 hover:line-clamp-none', {
+				data-tooltip-id="my-tooltip"
+				data-tooltip-content={program.programName}
+				className={clsx('text-sm line-clamp-2', {
 					'text-lineColor': recruitmentStatus === 'IS_CLOSED',
 				})}
 			>

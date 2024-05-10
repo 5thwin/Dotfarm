@@ -8,7 +8,7 @@ export const setLocalItem = (key: string, value: string): void => {
 };
 
 export const getLocalItem = (key: string): string | null =>
-	localStorage.getItem(key);
+	typeof window !== 'undefined' ? localStorage.getItem(key) : null;
 
 export const removeLocalItem = (key: string): void => {
 	localStorage.removeItem(key);

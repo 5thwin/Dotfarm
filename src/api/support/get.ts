@@ -30,12 +30,16 @@ export async function getSupportsInRange(
 
 		// 완전한 URL을 사용하여 HTTP 요청을 보냅니다.
 		const res = await customFetch<SupportProgram[]>(url, {
-			next: { revalidate: 10 },
+			next: {
+				revalidate: 10,
+				tags: [`supports${rangeStartDate}-${rangeEndDate}`],
+			},
 		});
 
 		return res;
 	} catch (e) {
 		// 오류 처리
+		return undefined;
 	}
 }
 

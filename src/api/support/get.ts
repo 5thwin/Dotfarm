@@ -36,6 +36,7 @@ export async function getSupportsInRange(
 		return res;
 	} catch (e) {
 		// 오류 처리
+		return undefined;
 	}
 }
 

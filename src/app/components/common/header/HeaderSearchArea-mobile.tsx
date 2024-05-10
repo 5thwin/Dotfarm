@@ -8,7 +8,7 @@ export default function HeaderSearchArea() {
 
 	const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault(); // 폼 제출 기본 동작 방지
-		router.push(`/posts?keyword=${encodeURIComponent(query)}`);
+		router.push(`/search?keyword=${encodeURIComponent(query)}`);
 		setIsShow(false);
 	};
 

@@ -5,8 +5,11 @@ import { useCallback } from 'react';
 
 const MAX_DISPLAYED_PAGES = 8;
 
-type Props = { totalPage?: number };
-export default function PostsPagination({ totalPage = 5 }: Props) {
+type Props = { totalPage?: number; pageParamsString?: string };
+export default function PostsPagination({
+	totalPage = 5,
+	pageParamsString = 'page',
+}: Props) {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -31,7 +34,9 @@ export default function PostsPagination({ totalPage = 5 }: Props) {
 	);
 	// 페이지 이동 함수
 	const goToPage = (page: number) => {
-		router.replace(pathname + '?' + createQueryString('page', page.toString()));
+		router.replace(
+			pathname + '?' + createQueryString(pageParamsString, page.toString())
+		);
 	};
 	return (
 		<ul className="flex flex-wrap justify-center space-x-2">

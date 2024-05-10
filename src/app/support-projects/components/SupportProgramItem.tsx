@@ -1,3 +1,4 @@
+'use client';
 import { calculateDday } from '@/utils/date/compare';
 import clsx from 'clsx';
 import Link from 'next/link';

@@ -40,7 +40,7 @@ function Page({ searchParams }: Params) {
 					>
 						<WeekSupport />
 						<OpenChatBanner />
-						{/* <CommunitySection category={category} /> */}
+						<CommunitySection category={category} />
 					</section>
 				</div>
 			</main>

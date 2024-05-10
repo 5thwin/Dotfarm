@@ -7,9 +7,9 @@ import CommentsArea from './comments/CommentsArea';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import CommentWrite from './comments/CommentWrite';
 import { Post } from '@/type/post';
-import { ableToEdit } from '@/utils/post/edit';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
 import { getFullImagePath } from '@/utils/image';
+import Link from 'next/link';
 
 type Props = {
 	post: Post;
@@ -17,7 +17,6 @@ type Props = {
 export default async function PostBox({ post }: Props) {
 	const { author, images } = post;
 	const userId = getUserIdByAccessToken();
-	const isAbleToEdit = await ableToEdit(post);
 	const isExistImage = post.images && post.images[0];
 	return (
 		<div className={containerStyle}>
@@ -27,20 +26,26 @@ export default async function PostBox({ post }: Props) {
 			</div>
 			<PostHeader post={post} />
 			<div id="post-contents-area" className={postWrapper}>
+				{isExistImage &&
+					images.map(({ path }, index) => (
+						<Link
+							key={`post_image${index}`}
+							href={getFullImagePath(path)}
+							target="_blank"
+						>
+							<div className="w-full lg:w-[590px] h-[250px] sm:h-[330px] rounded-10 relative overflow-hidden">
+								<Image
+									src={`${getFullImagePath(path)}`}
+									fill={true}
+									className="object-contain rounded-10"
+									alt={'이 게시글에 첨부된 이미지입니다.'}
+								/>
+							</div>
+						</Link>
+					))}
 				<article className="whitespace-pre-wrap break-words">
 					{post.content}
 				</article>
-				{isExistImage &&
-					images.map(({ path }) => (
-						<div className="w-full lg:w-[590px] h-[250px] sm:h-[330px] rounded-10 relative overflow-hidden">
-							<Image
-								src={`${getFullImagePath(path)}`}
-								fill={true}
-								className="object-contain rounded-10"
-								alt={'이 게시글에 첨부된 이미지입니다.'}
-							/>
-						</div>
-					))}
 			</div>
 			<div className="flex flex-col gap-y-1">
 				{author && <PostAuthor author={author} />}

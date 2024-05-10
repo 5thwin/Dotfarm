@@ -5,6 +5,7 @@ import {
 	getUserIdByAccessToken,
 } from '@/api/auth/token/utils';
 import customFetch from '@/api/customFetch';
+import { handleApiError } from '@/api/handleApiError';
 import { revalidateTag } from 'next/cache';
 
 type Payload = {
@@ -18,11 +19,15 @@ export async function deleteMyLike(payload: Payload) {
 	revalidateTag(`post_like${postId}`);
 	const accessToken = getAccessTokenFromCookie();
 
-	const res = await customFetch<boolean>(`/users/${userId}/likes/${postId}`, {
-		method: 'DELETE',
-		headers: {
-			Authorization: `Bearer ${accessToken}`,
-		},
-	});
-	return res;
+	try {
+		const res = await customFetch<boolean>(`/users/${userId}/likes/${postId}`, {
+			method: 'DELETE',
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+		return res;
+	} catch (error) {
+		return handleApiError(error);
+	}
 }

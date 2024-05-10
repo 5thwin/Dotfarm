@@ -6,3 +6,7 @@ export type ImageType = {
 	type: number;
 	path: string;
 };
+export type ImageState = {
+	url: string;
+	state: 'Pending' | 'Complete' | 'Failed';
+};

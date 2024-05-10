@@ -1,3 +1,8 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: '이용약관',
+};
 export default function Page() {
 	return (
 		<div className="container mx-auto px-4 py-8">
@@ -273,8 +278,7 @@ export default function Page() {
 						<li>서비스 운영을 고의로 방해한 경우</li>
 						<li>허위로 가입 신청을 한 경우</li>
 						<li>같은 사용자가 다른 ID로 이중 등록을 한 경우</li>
-						<li>공공질서 및 미풍양속에 저해되는 내용을 유포시킨 경우</li>
-						<li>타인의 명예를 손상시키거나 불이익을 주는 행위를 한 경우</li>
+						<li>공공질서 및 미풍양속에 저해되는 내용을 유포시킨 경우</li>③{' '}
 						<li>
 							서비스의 안정적 운영을 방해할 목적으로 다량의 정보를 전송하거나
 							광고성 정보를 전송하는 경우

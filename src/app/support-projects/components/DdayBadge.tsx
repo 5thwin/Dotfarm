@@ -1,4 +1,3 @@
-import { SupportProgram } from '@/type/support';
 import { calculateDday } from '@/utils/date/compare';
 
 type Props = { deadline: string };

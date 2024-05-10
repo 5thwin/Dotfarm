@@ -13,6 +13,6 @@ export default async function HeaderUserArea() {
 }
 
 const loginButtonStyle = clsx(
-	'rounded-full px-15px py-2.5',
+	'rounded-full px-15px py-2.5 whitespace-nowrap',
 	'text-bold text-white bg-mainGreen hover:bg-darkGreen'
 );

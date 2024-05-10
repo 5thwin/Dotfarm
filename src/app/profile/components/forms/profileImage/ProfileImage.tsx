@@ -9,12 +9,8 @@ type Props = {
 	image?: ImageType | null;
 };
 export default function ProfileImage({ image }: Props) {
-	const {
-		profileImageURL,
-		setOriginProfileImageURL,
-		setProfileImageURL,
-		originProfileImageURL,
-	} = useProfileImageStore();
+	const { setOriginProfileImageURL, setProfileImageURL } =
+		useProfileImageStore();
 	useEffect(() => {
 		image && setProfileImageURL(image.path);
 		image && setOriginProfileImageURL(image.path);
@@ -26,9 +22,9 @@ export default function ProfileImage({ image }: Props) {
 			className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 cursor-pointer relative"
 			onClick={() => setModalOpen(true)}
 		>
-			{originProfileImageURL ? (
+			{image ? (
 				<Image
-					src={getFullImagePath(originProfileImageURL)}
+					src={getFullImagePath(image.path)}
 					alt="Profile Image"
 					className="w-full h-full object-cover"
 					fill

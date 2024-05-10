@@ -50,3 +50,21 @@ export function getWeekdayText(date: Date): string {
 			return '-';
 	}
 }
+
+/**
+ * Generate an array of Date objects starting from today and extending for a number of days specified.
+ * @param {number} days - The number of days to generate dates for, starting from today.
+ * @returns {Date[]} An array of Date objects.
+ */
+export function getDatesFromToday(days: number) {
+	const dates = [];
+	const currentDate = new Date(); // 현재 날짜와 시간을 가져옵니다.
+
+	for (let i = 0; i <= days; i++) {
+		const newDate = new Date(currentDate); // 현재 날짜의 새로운 인스턴스를 생성합니다.
+		newDate.setDate(currentDate.getDate() + i); // 현재 날짜에 i일을 더합니다.
+		dates.push(newDate); // 생성된 날짜를 배열에 추가합니다.
+	}
+
+	return dates; // 날짜 배열을 반환합니다.
+}

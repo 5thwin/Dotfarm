@@ -1,13 +1,14 @@
 import { getCommentsByPostId } from '@/api/post/comments/get';
 import CommentItem from './CommentItem';
 import { Comment } from '@/type/comment';
+import { isErrorObject } from '@/utils/error/httpError';
 
 type Props = {
 	postId: number;
 };
 export default async function CommentsArea({ postId }: Props) {
 	const res = await getCommentsByPostId(postId);
-	if (!res) return null;
+	if (!res || isErrorObject(res)) return null;
 
 	const comments = res.data;
 	const replyMap = getReplyMap(comments);

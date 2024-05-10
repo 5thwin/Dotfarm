@@ -4,14 +4,18 @@ import Image from 'next/image';
 import { relativeTime } from '@/utils/date/string';
 import { getUserRegionString } from '@/utils/koreaRegions';
 import { getFullImagePath } from '@/utils/image';
+import { getUserIdByAccessToken } from '@/api/auth/token/utils';
+import CommentDeleteButton from './CommentDeleteButton';
+import { Comment } from '@/type/comment';
 
 type Props = {
-	user: UserPartial;
-	createAt: string;
+	postId: number;
+	comment: Comment;
 };
-export default function CommentWriter({ user, createAt }: Props) {
-	const date = new Date(createAt);
-
+export default function CommentWriter({ postId, comment }: Props) {
+	const user = comment.author;
+	const date = new Date(comment.createdAt);
+	const myId = Number(getUserIdByAccessToken() || -1);
 	return (
 		<div className="flex gap-x-2.5 items-center">
 			<div className={imageWrapper}>
@@ -27,16 +31,13 @@ export default function CommentWriter({ user, createAt }: Props) {
 			</div>
 			<div className="flex gap-x-2.5 items-center flex-wrap">
 				<b>{user.nickname}</b>
-				<div className="flex gap-x-5px items-center text-subText text-xs sm:text-sm">
-					<span>{getUserRegionString(user)}</span>
-					<i className={devidorStyle} />
-					<span>{user.farmingExperience}</span>
-					<i className={devidorStyle} />
-					<span>{user.majorCrops}</span>
-				</div>
+
 				<span className="text-xs text-subText font-bold">
 					{relativeTime(date)}
 				</span>
+				{myId === user.id && (
+					<CommentDeleteButton postId={postId} commentId={comment.id} />
+				)}
 			</div>
 		</div>
 	);

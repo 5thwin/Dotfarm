@@ -25,6 +25,9 @@ export default function NicknameForm() {
 		}
 		try {
 			const res = await updateUserMe({ nickname });
+			if (isErrorObject(res)) {
+				throw new Error(JSON.stringify(res));
+			}
 			Toast.fire({ title: '닉네임을 변경했습니다.', icon: 'success' });
 			// 로컬스토리지 정보 업데이트
 			const me = getMe();

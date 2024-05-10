@@ -6,6 +6,7 @@ import React, { useEffect, useRef } from 'react';
 
 import useHandleError from '@/hooks/useHandleError';
 import useParentCommentStore from '../../store/parentCommentStore';
+import { isErrorObject } from '@/utils/error/httpError';
 
 type Props = {
 	postId: number;
@@ -29,6 +30,9 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 		}
 		try {
 			const res = await createComment(postId, contents, parentId);
+			if (isErrorObject(res)) {
+				throw new Error(JSON.stringify(res));
+			}
 		} catch (error) {
 			if (error instanceof Error) {
 				handleError({ error });
@@ -42,7 +46,7 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 			<form className={CommentWrapper} onSubmit={onSubmit}>
 				<label htmlFor="comment-input" className="sr-only" />
 				{parentComment && (
-					<button onClick={handleEraseReply}>
+					<button onClick={handleEraseReply} type="button">
 						<span className="text-mainGreen">
 							@{parentComment.author.nickname}
 						</span>

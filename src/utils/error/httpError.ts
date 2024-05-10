@@ -16,6 +16,9 @@ export interface ErrorResponse {
 }
 // ErrorResponse 타입 가드
 export function isErrorObject(obj: any): obj is ErrorResponse {
-	if (!obj) return false;
-	return 'message' in obj && 'error' in obj && 'statusCode' in obj;
+	// obj가 null 또는 undefined가 아니고, 타입이 'object'이며, Array가 아닌 경우에만 검사를 진행
+	if (obj && typeof obj === 'object' && !Array.isArray(obj)) {
+		return 'message' in obj && 'error' in obj && 'statusCode' in obj;
+	}
+	return false;
 }

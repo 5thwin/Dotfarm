@@ -3,6 +3,7 @@ import { revalidateTag } from 'next/cache';
 import customFetch from '../customFetch';
 import { getAccessTokenFromCookie } from '../auth/token/utils';
 import { UserPartial } from '@/type/user';
+import { handleApiError } from '../handleApiError';
 
 type Response = {
 	title: string;
@@ -41,12 +42,16 @@ export async function writePost(
 	revalidateTag('posts');
 
 	const accessToken = getAccessTokenFromCookie();
-	const res = await customFetch<Response>('/posts', {
-		method: 'POST',
-		body: JSON.stringify(body),
-		headers: {
-			Authorization: `Bearer ${accessToken}`,
-		},
-	});
-	return res;
+	try {
+		const res = await customFetch<Response>('/posts', {
+			method: 'POST',
+			body: JSON.stringify(body),
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+		return res;
+	} catch (error) {
+		return handleApiError(error);
+	}
 }

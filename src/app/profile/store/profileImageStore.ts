@@ -1,4 +1,3 @@
-import { getMe } from '@/utils/localstorage';
 import { create } from 'zustand';
 
 interface ProfileImageState {

@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import useCreateImageStore from '../store/createImageStore';
 import useHandleError from '@/hooks/useHandleError';
 import { Post } from '@/type/post';
+import { isErrorObject } from '@/utils/error/httpError';
 export default function useCreatePost(post?: Post) {
 	const router = useRouter();
 	const {
@@ -23,20 +24,26 @@ export default function useCreatePost(post?: Post) {
 		serverImagePaths,
 		reset: imageReset,
 		setImageUrls,
+		setServerImagePaths,
 	} = useCreateImageStore();
 	const { handleError } = useHandleError();
 	const isModifyMode = !!post; //수정모드 판별,
 	useEffect(() => {
-		reset();
 		if (isModifyMode) {
 			setTitle(post.title);
 			setContents(post.content);
 			setCategory(post.category);
-			setImageUrls(post.images.map((image) => image.path));
+			setImageUrls(
+				post.images.map((image) => ({ url: image.path, state: 'Complete' }))
+			);
+			setServerImagePaths(
+				post.images.map((image) => image.path.split('/').pop() || image.path)
+			);
 		}
 	}, []);
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
 		if (title.length === 0)
 			return Toast.fire('제목을 입력해주세요.', undefined, 'warning');
 
@@ -49,7 +56,16 @@ export default function useCreatePost(post?: Post) {
 		if (isModifyMode) {
 			//patch 로직
 			try {
-				const res = await patchPost(post.id, title, contents, category);
+				const res = await patchPost(
+					post.id,
+					title,
+					contents,
+					category,
+					serverImagePaths
+				);
+				if (isErrorObject(res)) {
+					throw Error(JSON.stringify(res));
+				}
 				if (res.id) {
 					reset();
 					imageReset();
@@ -66,6 +82,9 @@ export default function useCreatePost(post?: Post) {
 		}
 		try {
 			const res = await writePost(title, contents, category, serverImagePaths);
+			if (isErrorObject(res)) {
+				throw Error(JSON.stringify(res));
+			}
 			if (res.id) {
 				reset();
 				imageReset();

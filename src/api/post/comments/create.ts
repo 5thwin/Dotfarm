@@ -2,6 +2,7 @@
 
 import { getAccessTokenFromCookie } from '@/api/auth/token/utils';
 import customFetch from '@/api/customFetch';
+import { handleApiError } from '@/api/handleApiError';
 import { revalidateTag } from 'next/cache';
 
 type Response = {
@@ -36,7 +37,8 @@ export async function createComment(
 	};
 	try {
 		const accessToken = getAccessTokenFromCookie();
-		revalidateTag('comments');
+		revalidateTag(`comments${postId}`);
+		revalidateTag('posts');
 		const res = await customFetch<Response>(`/posts/${postId}/comments`, {
 			method: 'POST',
 			body: JSON.stringify(body),
@@ -45,7 +47,7 @@ export async function createComment(
 			},
 		});
 		return res;
-	} catch (e) {
-		throw e;
+	} catch (error) {
+		return handleApiError(error);
 	}
 }

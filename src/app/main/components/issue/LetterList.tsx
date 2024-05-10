@@ -1,7 +1,7 @@
+import CustomImage from '@/app/components/common/CustomImage';
 import { News } from '@/type/issue';
 import { getFullImagePath } from '@/utils/image';
 import clsx from 'clsx';
-import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = { letters: News[] };
@@ -20,10 +20,12 @@ const LetterBox = ({ letter }: { letter: News }) => (
 		<Link href={letter.link} target="_blank">
 			<div className="flex gap-x-2.5 items-center">
 				<div className="min-w-[100px] h-[54px] md:min-w-[130px] md:h-[72px] relative rounded-10 overflow-hidden shadow-main">
-					<Image
+					<CustomImage
+						className="object-cover"
 						fill
 						src={getFullImagePath(letter.imgURL)}
 						alt="Picture of letter"
+						errorImagePath="/error/letter-error.jpg"
 					/>
 				</div>
 				<p className="line-clamp-3">

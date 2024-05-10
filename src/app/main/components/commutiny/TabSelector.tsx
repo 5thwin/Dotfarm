@@ -11,6 +11,7 @@ export default function TabSelector({ category }: Props) {
 				href={`${MAIN_URL}`}
 				replace
 				scroll={false}
+				prefetch
 			>
 				전체
 			</Link>
@@ -19,6 +20,7 @@ export default function TabSelector({ category }: Props) {
 				replace
 				scroll={false}
 				href={`${MAIN_URL}?category=일반`}
+				prefetch
 			>
 				일반
 			</Link>
@@ -27,6 +29,7 @@ export default function TabSelector({ category }: Props) {
 				replace
 				scroll={false}
 				href={`${MAIN_URL}?category=중고`}
+				prefetch
 			>
 				중고 농기계
 			</Link>
@@ -35,6 +38,7 @@ export default function TabSelector({ category }: Props) {
 				replace
 				scroll={false}
 				href={`${MAIN_URL}?category=구인/구직`}
+				prefetch
 			>
 				구인/구직
 			</Link>
@@ -43,6 +47,7 @@ export default function TabSelector({ category }: Props) {
 				replace
 				scroll={false}
 				href={`${MAIN_URL}?category=질문하기`}
+				prefetch
 			>
 				질문하기
 			</Link>

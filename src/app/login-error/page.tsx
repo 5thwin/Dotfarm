@@ -23,6 +23,7 @@ const LoginErrorPage: React.FC = () => {
 				<Link
 					href={'/main'}
 					className="mt-4 text-mainGreen hover:text-green-600 font-bold px-4  transition duration-150 ease-in-out"
+					replace
 				>
 					메인으로 돌아가기
 				</Link>

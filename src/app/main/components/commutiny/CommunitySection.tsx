@@ -4,6 +4,7 @@ import TabSelector from './TabSelector';
 import CommunityList from './CommunityList';
 import Link from 'next/link';
 import GoToWriteInput from '@/app/components/link/GoToWriteInput';
+import { Suspense } from 'react';
 
 type Props = { category?: string };
 export default function CommunitySection({ category }: Props) {
@@ -15,15 +16,19 @@ export default function CommunitySection({ category }: Props) {
 			)}
 		>
 			<div className="flex justify-between">
-				<p className="font-bold text-2xl">영농 커뮤니티</p>
-				<Link href={'/posts'} className={moreButton}>
+				<p className="font-bold text-xl lg:text-2xl">영농 커뮤니티</p>
+				<Link
+					href={`/posts${category ? `?category=${category}` : ''}`}
+					className={moreButton}
+				>
 					더보기+
 				</Link>
 			</div>
 			<TabSelector category={category} />
-
-			<CommunityList category={category} />
-			<GoToWriteInput />
+			<Suspense key={category}>
+				<CommunityList category={category} />
+			</Suspense>
+			{/* <GoToWriteInput category={category} /> */}
 		</section>
 	);
 }

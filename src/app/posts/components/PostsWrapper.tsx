@@ -6,6 +6,7 @@ import MobileBackButton from '@/app/components/common/MobileBackButton';
 import GoToWriteInput from '@/app/components/link/GoToWriteInput';
 import { getPostsWithAuthor } from '@/api/post/get';
 import Fallback from './Fallback';
+import { getCategoryTitle } from '@/constants/category';
 
 type Props = {
 	page?: number;
@@ -21,21 +22,28 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 		category,
 		keyword,
 	});
-	if (!response) return <div className={responsiveWrapper}><Fallback /></div>;
+	if (!response)
+		return (
+			<div className={responsiveWrapper}>
+				<Fallback />
+			</div>
+		);
 
 	const posts = response.data;
 	const totalPage = response.total && Math.ceil(response.total / PAGE_TAKE);
 	return (
 		<div className={responsiveWrapper}>
 			<div className={responsiveHeader}>
-				<div className="lg:hidden">
-					<MobileBackButton />
-				</div>
-				<h1 className="font-bold text-2xl">영농 커뮤니티</h1>
+				<h1 className="font-bold text-xl lg:text-2xl">
+					{getCategoryTitle(category)}
+				</h1>
 			</div>
 			<div className={'px-2.5 order-last lg:p-0 lg:order-none'}>
-				<GoToWriteInput />
+				<GoToWriteInput category={category} />
 			</div>
+			{keyword && (
+				<p className="font-bold text-xl px-2.5">{`'${keyword}'로 검색한 결과입니다.`}</p>
+			)}
 			<PostsList posts={posts} />
 			<div className="flexCenter">
 				<PostsPagination totalPage={totalPage} />
@@ -51,11 +59,11 @@ const responsiveWrapper = clsx(
 	'w-screen flex-1 2xl:w-[1150px]',
 	'shadow-none lg:shadow-main',
 	'flex flex-col gap-y-2.5',
-	'lg:h-auto h-screen'
+	'lg:h-auto'
 );
 
 const responsiveHeader = clsx(
-	'flex gap-x-2.5 items-center',
-	'lg:border-none border-b',
-	'py-2.5'
+	'lg:flex gap-x-2.5 items-center',
+	'py-2.5',
+	'hidden'
 );

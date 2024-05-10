@@ -20,14 +20,18 @@ export async function getMyInterests(payload?: payload) {
 	const queryString = params.toString(); // 유효한 값들로만 구성된 queryString
 	const userId = getUserIdByAccessToken();
 	if (!userId) return null;
-	const res = await customFetch<PaginateResponse & { data: Interest[] }>(
-		`/users/${userId}/interest?${queryString}`,
-		{
-			method: 'GET',
-			next: { revalidate: 10, tags: [`interest`] },
-		}
-	);
-	return res;
+	try {
+		const res = await customFetch<PaginateResponse & { data: Interest[] }>(
+			`/users/${userId}/interest?${queryString}`,
+			{
+				method: 'GET',
+				next: { revalidate: 10, tags: [`interest`] },
+			}
+		);
+		return res;
+	} catch (error) {
+		return null;
+	}
 }
 
 export async function getInterestCheck(supportId: number) {

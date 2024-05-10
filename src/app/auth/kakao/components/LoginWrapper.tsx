@@ -26,7 +26,6 @@ export default function LoginWrapper() {
 			try {
 				const res = await login(authCode);
 				// access token에서 user id 가져옴
-
 				const user = await getUserMe();
 				if (!user) {
 					return;

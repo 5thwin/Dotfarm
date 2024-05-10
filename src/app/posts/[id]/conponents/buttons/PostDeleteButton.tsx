@@ -2,7 +2,9 @@
 
 import { deletePost } from '@/api/post/delete';
 import Toast from '@/app/components/common/Toast';
+import { colorWarnRed } from '@/constants/color';
 import useHandleError from '@/hooks/useHandleError';
+import { isErrorObject } from '@/utils/error/httpError';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
@@ -18,7 +20,7 @@ export default function PostDeleteButton({ postId }: Props) {
 			confirmButtonText: '네 삭제합니다.',
 			showCancelButton: true,
 			cancelButtonText: '아니요',
-			confirmButtonColor: 'rgb(248 113 113)',
+			confirmButtonColor: colorWarnRed,
 			focusCancel: true,
 			customClass: {
 				title: clsx('text-xl lg:text-2xl text-center break-keep'),
@@ -29,6 +31,9 @@ export default function PostDeleteButton({ postId }: Props) {
 			if (result.isConfirmed) {
 				try {
 					const res = await deletePost({ postId });
+					if (isErrorObject(res)) {
+						throw Error(JSON.stringify(res));
+					}
 					router.push('/main');
 				} catch (error) {
 					if (error instanceof Error) {
@@ -40,10 +45,10 @@ export default function PostDeleteButton({ postId }: Props) {
 	};
 	return (
 		<button
-			className="text-sm text-subText hover:text-red-500"
+			className="flex-1 hover:bg-gray-100 text-left px-4 py-2 text-sm font-medium text-gray-700"
 			onClick={handleClick}
 		>
-			삭제하기
+			삭제
 		</button>
 	);
 }

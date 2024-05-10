@@ -5,6 +5,7 @@ import {
 	getUserIdByAccessToken,
 } from '@/api/auth/token/utils';
 import customFetch from '@/api/customFetch';
+import { handleApiError } from '@/api/handleApiError';
 import { revalidateTag } from 'next/cache';
 
 type Payload = {
@@ -18,14 +19,18 @@ export async function deleteMyInterest(payload: Payload) {
 	revalidateTag(`interest${supportId}`);
 	const accessToken = getAccessTokenFromCookie();
 
-	const res = await customFetch<boolean>(
-		`/users/${userId}/interest/${supportId}`,
-		{
-			method: 'DELETE',
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-		}
-	);
-	return res;
+	try {
+		const res = await customFetch<boolean>(
+			`/users/${userId}/interest/${supportId}`,
+			{
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		return res;
+	} catch (error) {
+		return handleApiError(error);
+	}
 }

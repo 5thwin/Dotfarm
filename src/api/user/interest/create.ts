@@ -5,6 +5,7 @@ import {
 	getUserIdByAccessToken,
 } from '@/api/auth/token/utils';
 import customFetch from '@/api/customFetch';
+import { handleApiError } from '@/api/handleApiError';
 import HttpError, { ErrorResponse } from '@/utils/error/httpError';
 import { revalidateTag } from 'next/cache';
 
@@ -32,21 +33,25 @@ export async function createMyInterest(payload: Payload) {
 			statusCode: 401,
 			error: 'Unauthorized',
 		};
-		throw new Error(JSON.stringify(unauthorizedError));
+		return unauthorizedError;
 	}
 	revalidateTag('interest');
 	revalidateTag(`interest${supportId}`);
 
 	const accessToken = getAccessTokenFromCookie();
 
-	const res = await customFetch<Response>(
-		`/users/${userId}/interest/${supportId}`,
-		{
-			method: 'POST',
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-		}
-	);
-	return res;
+	try {
+		const res = await customFetch<Response>(
+			`/users/${userId}/interest/${supportId}`,
+			{
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		return res;
+	} catch (error) {
+		return handleApiError(error);
+	}
 }

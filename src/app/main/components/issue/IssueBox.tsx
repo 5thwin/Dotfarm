@@ -11,7 +11,7 @@ export default function IssueBox() {
 			className={clsx('flex flex-col gap-y-15px ', blockStyle)}
 		>
 			<div className="flex flex-col gap-5">
-				<p className="text-lg font-bold">주간 영농 이슈</p>
+				<p className="text-xl lg:text-2xl font-bold">주간 영농 이슈</p>
 				<IssueTypeSelector />
 			</div>
 			<div className="overflow-x-hidden">

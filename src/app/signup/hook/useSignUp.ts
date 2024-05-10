@@ -2,7 +2,7 @@ import Toast from '@/app/components/common/Toast';
 import useSignupFromStore from '../store/signupFromStore';
 import { updateUserMe } from '@/api/user/update';
 import { FarmExperience, UserPartial } from '@/type/user';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { setMe } from '@/utils/localstorage';
 import useHandleError from '@/hooks/useHandleError';
@@ -26,6 +26,7 @@ export default function useSignUp(me?: UserPartial) {
 	}, []);
 	const router = useRouter();
 	const { handleError } = useHandleError();
+	const [isPending, setIsPending] = useState<boolean>(false);
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (nicknameValidation.status !== 'valid') {
@@ -57,6 +58,7 @@ export default function useSignUp(me?: UserPartial) {
 			return;
 		}
 		try {
+			setIsPending(true);
 			const res = await updateUserMe({
 				nickname,
 				region,
@@ -65,13 +67,17 @@ export default function useSignUp(me?: UserPartial) {
 				majorCrops,
 				status: 'ACTIVE',
 			});
+			setIsPending(false);
+			if (isErrorObject(res)) {
+				throw new Error(JSON.stringify(res));
+			}
 			if (res) {
 				setMe(res); //로컬스토리지에 변경된 나의 정보 저장
 				router.push('/main');
 			}
 		} catch (error) {
+			setIsPending(false);
 			if (error instanceof Error) {
-				console.log(error);
 				const errorObject = JSON.parse(error.message);
 				if (isErrorObject(errorObject)) {
 					if (errorObject.message === DUPLICATE_ERROR_MESSAGE) {
@@ -85,5 +91,5 @@ export default function useSignUp(me?: UserPartial) {
 			}
 		}
 	};
-	return { handleSubmit };
+	return { handleSubmit, isPending };
 }

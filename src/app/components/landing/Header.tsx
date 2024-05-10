@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
-import { KaKaoLoginButton } from './KaKaoLoginButton';
 import Link from 'next/link';
 export default function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +34,7 @@ export default function Header() {
 				height={24}
 				priority
 			/>
-			<Link href={'/main'} className={LandingHeaderButtonStyle}>
+			<Link href={'/main'} className={LandingHeaderButtonStyle} prefetch>
 				<span>{'농업정보 무료보기'}</span>
 			</Link>
 		</nav>

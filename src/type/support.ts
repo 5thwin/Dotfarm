@@ -10,6 +10,7 @@ export type SupportProgram = {
 	category: string;
 	link: string;
 	content: string;
+	isInterested?: boolean; //클라이언트에서 추가되는 항목
 };
 
 export type PaginatedSupportPrograms = {

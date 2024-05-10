@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import Form from './components/Form';
 import ImagesWrapper from './components/ImagesWrapper';
 import { getPost } from '@/api/post/get';
+import Fallback from '../components/Fallback';
 
 type Params = {
 	searchParams: {
@@ -15,8 +16,14 @@ type Params = {
 async function Page({ searchParams }: Params) {
 	const postId =
 		typeof searchParams.id === 'string' ? Number(searchParams.id) : null;
+
+	const defaultCategory =
+		typeof searchParams.category === 'string'
+			? searchParams.category
+			: undefined;
 	const pageTitle = postId ? '글 수정하기' : '글 작성하기'; // id 존재 여부에 따라 페이지 제목 결정
 	const post = postId ? await getPost(postId) : undefined;
+	if (postId && !post) return <Fallback />;
 	return (
 		<div className="flex flex-col items-center w-screen h-screen">
 			<section className={pageContainer}>
@@ -28,7 +35,7 @@ async function Page({ searchParams }: Params) {
 					<p className="font-bold text-lg">이미지 첨부</p>
 					<ImagesWrapper />
 				</div>
-				<Form post={post} />
+				<Form post={post} defaultCategory={defaultCategory} />
 			</section>
 		</div>
 	);

@@ -31,7 +31,7 @@ export default function WeekSupport() {
 					</span>
 				</Link>
 			</div>
-			{/* <WeekDaySupportPrograms /> */}
+			<WeekDaySupportPrograms />
 		</div>
 	);
 }

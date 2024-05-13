@@ -4,17 +4,22 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { SupportProgram } from '@/type/support';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
-import { getMe } from '@/utils/localstorage';
 import { format } from 'date-fns';
 import InterestButton from './InterestButton';
-import { getMyInterests } from '@/api/user/interest/get';
+import { getMe } from '@/utils/localstorage';
+import { useEffect, useState } from 'react';
+import { UserPartial } from '@/type/user';
 
 export default function SupportProgramItem({
 	program,
 }: {
 	program: SupportProgram;
 }) {
-	const me = getMe();
+	const [me, setMe] = useState<UserPartial | null>(null);
+	useEffect(() => {
+		const me = getMe();
+		me && setMe(me);
+	}, []);
 
 	// const interestResponse = await getMyInterests();
 	// const interestedSupportIds = interestResponse

@@ -1,7 +1,5 @@
-import PostsList from '@/app/posts/components/PostsList';
 import PostsPagination from '@/app/posts/components/PostsPagination';
 import SupportProgramItem from '@/app/support-projects/components/SupportProgramItem';
-import { Post, PostPartial } from '@/type/post';
 import { SupportProgram } from '@/type/support';
 import { sortPrograms } from '@/utils/supportPrograms';
 import clsx from 'clsx';

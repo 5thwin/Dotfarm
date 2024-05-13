@@ -1,6 +1,6 @@
 import { getDatesFromToday } from '@/utils/date/week';
 import { getSupportsInRange } from '@/api/support/get';
-import { compareDates } from '@/utils/date/compare';
+import { compareDates, stripTimeFromDate } from '@/utils/date/compare';
 import { SupportProgram } from '@/type/support';
 import WeeksDisplay from './WeekDisplay-desktop';
 import { Desktop, Mobile } from '@/app/components/responsive/ResponsiveUI';
@@ -29,17 +29,17 @@ export default async function WeekDaySupportPrograms() {
 	const supportProgramsByWeekDay = new Map<number, SupportProgram[]>(
 		weekdays.map((weekDate) => [weekDate.getDay(), []])
 	);
-
 	// 지원 프로그램 데이터를 한 번만 순회하며 각 요일에 맞는 프로그램 분류
 	supportProgramsWithInterest.forEach((program) => {
 		weekdays.forEach((weekDate) => {
-			const programDeadline = new Date(program.startDate);
+			const programStartDate = stripTimeFromDate(new Date(program.startDate));
+
 			const weekDateWithoutTime = new Date(
 				weekDate.getFullYear(),
 				weekDate.getMonth(),
 				weekDate.getDate()
 			);
-			if (compareDates(programDeadline, weekDateWithoutTime) === 0) {
+			if (compareDates(programStartDate, weekDateWithoutTime) === 0) {
 				supportProgramsByWeekDay.get(weekDate.getDay())?.push(program);
 			}
 		});

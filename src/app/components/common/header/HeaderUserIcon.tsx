@@ -9,7 +9,7 @@ type Props = {
 export default function HeaderUserIcon({ me }: Props) {
 	const { profileImage, nickname } = me;
 	return (
-		<Link className="px-15px gap-x-2.5 flex items-center" href={'/profile'}>
+		<Link className="lg:px-15px gap-x-2.5 flex items-center" href={'/profile'}>
 			<div className="rounded-full relative size-8 overflow-hidden">
 				{profileImage && profileImage.path ? (
 					<Image
@@ -26,7 +26,7 @@ export default function HeaderUserIcon({ me }: Props) {
 					/>
 				)}
 			</div>
-			<span className="font-bold">{nickname}</span>
+			<span className="font-bold lg:inline-block hidden">{nickname}</span>
 		</Link>
 	);
 }

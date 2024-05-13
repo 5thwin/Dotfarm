@@ -37,7 +37,7 @@ export default function ProfileEditForm({ userMe, krRegions, crops }: Props) {
 				onSubmit={(e) => e.preventDefault()}
 				className="flex flex-col gap-y-5 lg:h-auto h-full justify-between lg:justify-normal"
 			>
-				<div className="flex flex-col gap-y-5px">
+				<div className="flex flex-col gap-y-5">
 					<div className="flex flex-col gap-y-5px">
 						<p className="font-bold">지역선택</p>
 						<RegionsContainer krRegions={krRegions} />

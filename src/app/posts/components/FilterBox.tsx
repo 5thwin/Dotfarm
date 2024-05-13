@@ -6,7 +6,10 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useState } from 'react';
 
-export default function FilterBox() {
+type Props = {
+	destination?: string;
+};
+export default function FilterBox({ destination = '/posts' }: Props) {
 	const searchParams = useSearchParams();
 
 	const createQueryString = useCallback(
@@ -41,7 +44,7 @@ export default function FilterBox() {
 					</div>
 				</div>
 				<Link
-					href={`posts?${createQueryString('keyword', keyword)}`}
+					href={`${destination}?${createQueryString('keyword', keyword)}`}
 					type="submit"
 					className={submitButton}
 				>

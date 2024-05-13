@@ -1,3 +1,9 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: '개인정보 처리방침',
+};
+
 export default function Page() {
 	return (
 		<div className="container mx-auto px-4 py-8">
@@ -131,7 +137,7 @@ export default function Page() {
 					<li>
 						회원 탈퇴: 사이트의 ‘프로필’에서 탈퇴를 요청할 수 있고, 닉네임,
 						이메일(가입 시 기재한 카카오 이메일) 등의 정보를 탈퇴 의사와 함께
-						info@vandalsoft.com로 이메일을 보내면 탈퇴하실 수 있습니다.
+						dotfarm@vandalsoft.com로 이메일을 보내면 탈퇴하실 수 있습니다.
 					</li>
 					<li>
 						이 외에도 회사의 개인정보 보호책임자에게 서면, 전화 또는 이메일로
@@ -150,7 +156,7 @@ export default function Page() {
 				<h2 className="text-2xl font-semibold my-2">9. 개인정보 보호책임자</h2>
 				<p>이름: 김경섭</p>
 				<p>연락처: 010-2319-9530</p>
-				<p>이메일: info@vandalsoft.com</p>
+				<p>이메일: dotfarm@vandalsoft.com</p>
 				<p className="my-2">
 					개인정보가 침해되어 이에 대한 신고나 상담이 필요하신 경우에는 아래
 					기관에 문의하셔서 도움을 받으실 수 있습니다.

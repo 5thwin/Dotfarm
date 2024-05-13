@@ -1,6 +1,10 @@
+import { Metadata } from 'next';
 import withLayout from '../hoc/withLayout';
 import MyPageBox from './components/MyPageBox';
 
+export const metadata: Metadata = {
+	title: '프로필',
+};
 function ProfilePage() {
 	return (
 		<div>

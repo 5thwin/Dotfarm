@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function SignUpForm({ me, krRegions, crops }: Props) {
-	const { handleSubmit } = useSignUp(me);
+	const { handleSubmit, isPending } = useSignUp(me);
 	return (
 		<form
 			id="signup-form-body"
@@ -43,13 +43,18 @@ export default function SignUpForm({ me, krRegions, crops }: Props) {
 					<MajorCropsSelect crops={crops} />
 				</div>
 			</div>
-			<button type="submit" className={submitStyle}>
-				가입하기
+			<button
+				type="submit"
+				className={getSubmitStyle(isPending)}
+				disabled={isPending}
+			>
+				{isPending ? '가입 처리 중...' : '가입하기'}
 			</button>
 		</form>
 	);
 }
-const submitStyle = clsx(
-	'w-full py-2.5 px-10 h-[45px] bg-mainGreen',
-	'font-bold text-white rounded-10'
-);
+const getSubmitStyle = (disable: boolean) =>
+	clsx('w-full py-2.5 px-10 h-[45px]', 'font-bold rounded-10', {
+		'text-subText bg-subGray': disable,
+		'text-white bg-mainGreen': !disable,
+	});

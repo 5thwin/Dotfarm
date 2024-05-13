@@ -16,7 +16,7 @@ const Fallback: React.FC = () => {
 			<h1 className="text-2xl font-bold text-mainGreen mt-2">
 				어휴, 뭔가 잘못됐어요!
 			</h1>
-			<p className="text-lg mt-2 text-center">
+			<p className="text-lg mt-2 text-center text-subText">
 				요청하신 페이지를 불러오는 데 문제가 생겼습니다.
 				<br /> 잠시 후 다시 시도해주세요.
 			</p>

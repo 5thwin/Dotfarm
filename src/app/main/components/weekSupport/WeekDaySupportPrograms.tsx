@@ -33,13 +33,16 @@ export default async function WeekDaySupportPrograms() {
 	supportProgramsWithInterest.forEach((program) => {
 		weekdays.forEach((weekDate) => {
 			const programStartDate = stripTimeFromDate(new Date(program.startDate));
-
+			const programDeadline = stripTimeFromDate(new Date(program.deadline));
 			const weekDateWithoutTime = new Date(
 				weekDate.getFullYear(),
 				weekDate.getMonth(),
 				weekDate.getDate()
 			);
-			if (compareDates(programStartDate, weekDateWithoutTime) === 0) {
+			if (
+				compareDates(programStartDate, weekDateWithoutTime) === 0 ||
+				compareDates(programDeadline, weekDateWithoutTime) === 0
+			) {
 				supportProgramsByWeekDay.get(weekDate.getDay())?.push(program);
 			}
 		});

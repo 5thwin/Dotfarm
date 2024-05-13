@@ -5,21 +5,21 @@ import clsx from 'clsx';
 import Link from 'next/link';
 
 type Props = { letters: News[] };
-export default function LetterList({ letters }: Props) {
+export default function VedioLetterList({ letters }: Props) {
 	return (
-		<ul className="flex flex-col gap-y-5 flex-1">
+		<ul className="grid grid-cols-2 gap-5 max-h-[540px] overflow-scroll w-1/2">
 			{letters &&
 				letters.map((letter) => (
-					<LetterBox key={`letter_${letter.id}`} letter={letter} />
+					<VidioLetterBox key={`letter_${letter.id}`} letter={letter} />
 				))}
 		</ul>
 	);
 }
-const LetterBox = ({ letter }: { letter: News }) => (
+const VidioLetterBox = ({ letter }: { letter: News }) => (
 	<li>
 		<Link href={letter.link} target="_blank">
-			<div className="flex gap-x-2.5 items-center">
-				<div className="min-w-[100px] h-[54px] md:min-w-[130px] md:h-[72px] relative rounded-10 overflow-hidden shadow-main">
+			<div className="flex flex-col gap-y-5px md:gap-y-2.5 ">
+				<div className="min-w-[100px] h-[54px] md:min-w-[155px] md:h-[86px] relative rounded-10 overflow-hidden shadow-main">
 					<CustomImage
 						className="object-cover"
 						fill
@@ -28,9 +28,7 @@ const LetterBox = ({ letter }: { letter: News }) => (
 						errorImagePath="/error/letter-error.jpg"
 					/>
 				</div>
-				<p className="line-clamp-3">
-					{letter.title} - {letter.publisher}
-				</p>
+				<p className="line-clamp-2 text-sm">{letter.title}</p>
 			</div>
 		</Link>
 	</li>

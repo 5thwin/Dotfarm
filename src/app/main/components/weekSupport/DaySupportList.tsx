@@ -1,7 +1,10 @@
+import TooltipWrapper from '@/app/components/common/TooltipWrapper';
 import DdayBadge from '@/app/support-projects/components/DdayBadge';
 import { SupportProgram } from '@/type/support';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
 import Link from 'next/link';
+import { Tooltip } from 'react-tooltip';
+import { to } from '../../../../../.next/server/vendor-chunks/next';
 
 export default function DaySupportList({
 	supportPrograms,
@@ -20,9 +23,11 @@ export default function DaySupportList({
 						{getRecruitmentStatus(program) === 'IS_RECRUITING' && (
 							<DdayBadge deadline={program.deadline} />
 						)}
-						<span className="line-clamp-2 hover:underline hover:line-clamp-none">
-							{program.programName}
-						</span>
+						<TooltipWrapper
+							id={`tooltip-${program.id}`}
+							className="line-clamp-2 hover:underline"
+							contents={program.programName}
+						/>
 					</Link>
 				</li>
 			))}

@@ -67,7 +67,7 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 					disabled={!isLogined || isLoading}
 				/>
 				<button type="submit" className={buttonStyle}>
-					{isLoading ? <LoadingSpinner size={14} color="white" /> : '입력하기'}
+					{isLoading ? <LoadingSpinner size={16} color="white" /> : '입력하기'}
 				</button>
 			</form>
 		</div>

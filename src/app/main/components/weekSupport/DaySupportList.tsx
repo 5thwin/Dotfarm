@@ -21,6 +21,11 @@ export default function DaySupportList({
 						{getRecruitmentStatus(program) === 'IS_RECRUITING' && (
 							<DdayBadge deadline={program.deadline} />
 						)}
+						{getRecruitmentStatus(program) === 'IS_ALWAYS' && (
+							<span className="text-subText font-bold text-sm whitespace-nowrap">
+								상시 모집
+							</span>
+						)}
 						<TooltipWrapper
 							id={`tooltip-${program.id}`}
 							className="line-clamp-2 hover:underline"

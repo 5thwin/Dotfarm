@@ -3,8 +3,6 @@ import DdayBadge from '@/app/support-projects/components/DdayBadge';
 import { SupportProgram } from '@/type/support';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
 import Link from 'next/link';
-import { Tooltip } from 'react-tooltip';
-import { to } from '../../../../../.next/server/vendor-chunks/next';
 
 export default function DaySupportList({
 	supportPrograms,

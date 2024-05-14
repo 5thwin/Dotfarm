@@ -40,7 +40,7 @@ export default function HeroSection() {
 								지원사업 정보를 알려드립니다{' '}
 							</p>
 						</div>
-						<Link href={'/main'} className={LandingButtonStyle}>
+						<Link href={'/'} className={LandingButtonStyle}>
 							<span>{'농업정보 무료보기 >'}</span>
 						</Link>
 					</div>

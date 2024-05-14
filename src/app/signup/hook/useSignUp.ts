@@ -73,7 +73,7 @@ export default function useSignUp(me?: UserPartial) {
 			}
 			if (res) {
 				setMe(res); //로컬스토리지에 변경된 나의 정보 저장
-				router.push('/main');
+				router.push('/');
 			}
 		} catch (error) {
 			setIsPending(false);

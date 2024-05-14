@@ -34,7 +34,7 @@ export default function Error({
 				<br /> 잠시 후 다시 시도해주세요.
 			</p>
 			<Link
-				href={'/main'}
+				href={'/'}
 				replace
 				className={clsx(mainGreenRoundedButtonStyle, 'my-2')}
 			>

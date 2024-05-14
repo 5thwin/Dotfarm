@@ -35,7 +35,7 @@ export default function LoginWrapper() {
 					router.replace('/signup');
 					return;
 				}
-				router.replace('/main');
+				router.replace('/');
 			} catch (error) {
 				console.error(error);
 				if (error instanceof Error) {

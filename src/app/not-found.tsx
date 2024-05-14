@@ -22,7 +22,7 @@ export default function NotFound() {
 					페이지 주소가 삭제 또는 수정되어 찾을 수 없습니다.
 				</p>
 			</div>
-			<Link href={'/main'} className={goToMainStyle}>
+			<Link href={'/'} className={goToMainStyle}>
 				<IcReturn />
 				<span>돌아가기</span>
 			</Link>

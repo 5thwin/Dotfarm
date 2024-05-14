@@ -11,7 +11,7 @@ export default function LogoutButton({ children, className }: Props) {
 	const handleLogout = () => {
 		logout();
 		removeMe();
-		router.push('/main');
+		router.push('/');
 	};
 	return (
 		<button className={className || 'text-subText'} onClick={handleLogout}>

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 
 type Props = { category?: string };
-const MAIN_URL = '/main';
+const MAIN_URL = '/';
 export default function TabSelector({ category }: Props) {
 	return (
 		<ul className="flex gap-x-2.5 lg:gap-x-10 flex-wrap">

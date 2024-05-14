@@ -21,7 +21,7 @@ const Fallback: React.FC = () => {
 				<br /> 잠시 후 다시 시도해주세요.
 			</p>
 			<Link
-				href={'/main'}
+				href={'/'}
 				replace
 				className={clsx(mainGreenRoundedButtonStyle, 'mt-2')}
 			>

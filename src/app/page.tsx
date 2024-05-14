@@ -1,42 +1,57 @@
-import CardSection from './components/landing/CardSection';
-import Header from './components/landing/Header';
-import HeroSection from './components/landing/HeroSection';
-import ProblemSection from './components/landing/ProblemSection';
-import UserNeedsSection from './components/landing/UserNeedsSection';
-import FeatureSection from './components/landing/FeatureSection';
-import LastSection from './components/landing/LastSection';
+import WeekSupport from './main/components/weekSupport/WeekSupport';
+import MainSideArea from './main/components/MainSideArea';
+import OpenChatBanner from './main/components/OpenChatBanner';
+import CommunitySection from './main/components/commutiny/CommunitySection';
+import withLayout from './hoc/withLayout';
+import PcBanner from './main/components/banner/PcBanner';
+import clsx from 'clsx';
+import MobileBanner from './main/components/banner/MobileBanner';
+import WatchListBox from './main/components/banner/WatchListBox';
 import { Metadata } from 'next';
 
-// export const metadata: Metadata = {
-// 	title: '농업 정보 플랫폼 닷팜',
-// 	description:
-// 		'한 곳에서 모든 농업 관련 지원 사업 및 정보를 쉽게 찾아보세요. 농부에게 필요한 최신 농업 정보와 지원 사업을 알려드립니다.',
-// 	keywords: '',
-// 	openGraph: {
-// 		title: '농업 정보 플랫폼 닷팜',
-// 		description:
-// 			'한 곳에서 모든 농업 관련 지원 사업 및 정보를 쉽게 찾아보세요. 농부에게 필요한 최신 농업 정보와 지원 사업을 알려드립니다.',
-// 	},
-// 	icons: {
-// 		icon: '/favicon.ico',
-// 	},
-// 	verification: {
-// 		other: {
-// 			'naver-site-verification': `${process.env.NEXT_PUBLIC_NAVER_VERIFICATION}`,
-// 		},
-// 	},
-// };
-
-export default function Home() {
+export const metadata: Metadata = {
+	title: {
+		absolute: '닷팜',
+	},
+};
+type Params = {
+	searchParams: {
+		[key: string]: string | string[] | undefined;
+	};
+};
+function Page({ searchParams }: Params) {
+	const category =
+		typeof searchParams.category === 'string'
+			? searchParams.category
+			: undefined;
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between">
-			<Header />
-			<HeroSection />
-			<ProblemSection />
-			<UserNeedsSection />
-			<FeatureSection />
-			<CardSection />
-			<LastSection />
-		</main>
+		<div className="p-15px pt-24 lg:pt-36 pb-14 lg:pb-20 lg:px-5 xl:px-[72px]">
+			<div className="hidden lg:flex gap-x-30px">
+				<PcBanner />
+				<WatchListBox />
+			</div>
+			<div className="lg:hidden inline-block pb-4">
+				<MobileBanner />
+			</div>
+			<main>
+				<div className={responsiveMainPage}>
+					<MainSideArea />
+					<section
+						id="main-section"
+						className="flex flex-col gap-y-5 lg:gap-y-30px flex-1 lg:order-none order-1"
+					>
+						<WeekSupport />
+						<OpenChatBanner />
+						<CommunitySection category={category} />
+					</section>
+				</div>
+			</main>
+		</div>
 	);
 }
+export default withLayout(Page, true, true, true);
+// style
+const responsiveMainPage = clsx(
+	'mx-auto lg:mt-[30px] flex gap-x-30px',
+	'lg:flex-row lg:items-start flex-col gap-y-5 '
+);

@@ -9,7 +9,7 @@ export default function LogoutButtonInProfile() {
 	const handleLogout = () => {
 		logout();
 		removeMe();
-		router.push('/main');
+		router.push('/');
 	};
 	return (
 		<button

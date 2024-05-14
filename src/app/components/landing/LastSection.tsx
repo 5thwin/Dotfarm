@@ -28,7 +28,7 @@ export default function LastSection() {
 							형식으로 공유드리겠습니다
 						</p>
 					</div>
-					<Link href={'/main'} className={LandingButtonStyle}>
+					<Link href={'/'} className={LandingButtonStyle}>
 						<span className="font-bold lg:text-lg">{'농업정보 무료보기>'}</span>
 					</Link>
 				</div>

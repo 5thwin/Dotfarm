@@ -7,6 +7,7 @@ import CalendarDatePrograms from './CalendarDatePrograms';
 import { Desktop } from '@/app/components/responsive/ResponsiveUI';
 import { compareDates } from '@/utils/date/compare';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
+import TodayMark from '@/app/components/badge/TodayMark';
 
 type CalendarDateProps = {
 	currentMonth: number;
@@ -43,7 +44,10 @@ export default function CalendarDate({
 				setSelectedDate(day), setSupportPrograms(programs);
 			}}
 		>
-			<span className={getDateStyle(day.getDay())}>{day.getDate()}</span>
+			<div className="flex justify-between items-center">
+				<span className={getDateStyle(day.getDay())}>{day.getDate()}</span>
+				{day.getDate() === new Date().getDate() && <TodayMark />}
+			</div>
 			<div className="hidden lg:block">
 				<CalendarDatePrograms programs={todayStartList} />
 			</div>

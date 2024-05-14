@@ -10,7 +10,7 @@ export default function HeaderContainer({
 	showOnMobile = false,
 }: Props) {
 	const headerContainer = clsx(
-		'fixed top-0 left-0 w-full h-20',
+		'absolute top-0 left-0 right-0 w-full h-20',
 		'px-2.5 lg:px-10 py-5',
 		'flex justify-between items-center',
 		'z-30',

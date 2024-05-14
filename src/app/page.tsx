@@ -41,7 +41,7 @@ function Page({ searchParams }: Params) {
 						className="flex flex-col gap-y-5 lg:gap-y-30px flex-1 lg:order-none order-1"
 					>
 						<WeekSupport />
-						<OpenChatBanner />
+						{/* <OpenChatBanner /> */}
 						<CommunitySection category={category} />
 					</section>
 				</div>

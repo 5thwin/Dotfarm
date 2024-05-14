@@ -7,6 +7,7 @@ import { Desktop, Mobile } from '@/app/components/responsive/ResponsiveUI';
 import WeekDisplayMobile from './WeekDisplay-mobile';
 import { format } from 'date-fns';
 import { getMyInterests } from '@/api/user/interest/get';
+import { getRecruitmentStatus } from '@/utils/supportPrograms';
 
 export default async function WeekDaySupportPrograms() {
 	const weekdays = getDatesFromToday(4);
@@ -40,8 +41,9 @@ export default async function WeekDaySupportPrograms() {
 				weekDate.getDate()
 			);
 			if (
-				compareDates(programStartDate, weekDateWithoutTime) === 0 ||
-				compareDates(programDeadline, weekDateWithoutTime) === 0
+				compareDates(programStartDate, weekDateWithoutTime) <= 0 &&
+				compareDates(programDeadline, weekDateWithoutTime) >= 0 &&
+				getRecruitmentStatus(program) !== 'IS_CLOSED'
 			) {
 				supportProgramsByWeekDay.get(weekDate.getDay())?.push(program);
 			}

@@ -5,6 +5,7 @@ import { getLikesCheck } from '@/api/user/likes/get';
 import { padStart } from 'lodash';
 import { format } from 'date-fns';
 import { ableToEdit } from '@/utils/post/edit';
+import { getAccessTokenFromCookie } from '@/api/auth/token/utils';
 
 type Props = {
 	post: Post;
@@ -12,6 +13,7 @@ type Props = {
 export default async function PostHeader({ post }: Props) {
 	const { category, title, createdAt } = post;
 	const isAbleToEdit = await ableToEdit(post);
+	const isLogined = !!getAccessTokenFromCookie();
 	const createDate = new Date(createdAt);
 	const dateString = format(createDate, 'yyyy.MM.dd');
 	const { isLiked } = await getLikesCheck(post.id);
@@ -24,6 +26,7 @@ export default async function PostHeader({ post }: Props) {
 						post={post}
 						likeCheck={isLiked}
 						isAbleToEdit={isAbleToEdit}
+						isLogin={isLogined}
 					/>
 				</div>
 				<h1 className="text-lg lg:text-xl font-bold">{title}</h1>

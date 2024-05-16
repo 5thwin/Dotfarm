@@ -80,4 +80,6 @@ const defaultSupportTag = clsx(
 );
 
 const programNameStyle = clsx('lg:text-xl font-bold hover:underline');
-const contentStyle = clsx('text-wrap text-sm lg:text-base');
+const contentStyle = clsx(
+	'text-wrap text-sm lg:text-base line-clamp-1 lg:line-clamp-2'
+);

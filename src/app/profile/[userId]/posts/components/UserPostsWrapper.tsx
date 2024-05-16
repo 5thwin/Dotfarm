@@ -28,7 +28,7 @@ export default async function UserPostsWrapper({ page, authorId }: Props) {
 	const totalPage = response.total && Math.ceil(response.total / PAGE_TAKE);
 
 	return (
-		<div className="flex flex-col gap-y-2.5 items-center">
+		<div className="flex flex-col gap-y-2.5 w-full">
 			<PostsList posts={response.data} />
 			<PostsPagination totalPage={totalPage} />
 		</div>

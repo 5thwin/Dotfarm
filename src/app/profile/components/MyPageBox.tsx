@@ -9,7 +9,11 @@ import Link from 'next/link';
 import IcPost from '@/../public/icon/post.svg';
 import IcBookmark from '@/../public/icon/bookmark.svg';
 import IcLike from '@/../public/icon/unfilledHeart.svg';
+import IcLogout from '@/../public/icon/logout.svg';
+
 import MobileBackButton from '@/app/components/common/MobileBackButton';
+import LogoutButton from '@/app/components/button/LogoutButton';
+import { colorWarnRed } from '@/constants/color';
 export default async function MyPageBox() {
 	const me = await getUserMe();
 	return (
@@ -39,34 +43,41 @@ export default async function MyPageBox() {
 					</Link>
 				</div>
 				<ul className="flex flex-col items-stretch">
-					<div className={myPageListStyle}>
+					<Link
+						href={`/profile/${me?.id}/posts`}
+						prefetch
+						className={myPageListStyle}
+					>
 						<div className="flex gap-x-2.5 items-center">
 							<IcPost width="15" height="15" stroke="#282828" />
 							<span className="font-bold">작성글</span>
 						</div>
-						<Link href={`/profile/${me?.id}/posts`} className="text-subText">
-							<RightBracket />
-						</Link>
-					</div>
+						<RightBracket />
+					</Link>
 
-					<div className={myPageListStyle}>
+					<Link href={'/bookmark'} prefetch className={myPageListStyle}>
 						<div className="flex gap-x-2.5 items-center">
 							<IcBookmark width="15" height="15" stroke="#282828" />
 							<span className="font-bold">관심목록</span>
 						</div>
-						<Link href={'/bookmark'} className="text-subText">
-							<RightBracket />
-						</Link>
-					</div>
 
-					<div className={myPageListStyle}>
+						<RightBracket />
+					</Link>
+
+					<Link href={'/profile/like'} prefetch className={myPageListStyle}>
 						<div className="flex gap-x-2.5 items-center">
 							<IcLike width="15" height="16" stroke="#282828" fill="none" />
 							<span className="font-bold">좋아요</span>
 						</div>
-						<Link href={'/profile/like'} className="text-subText">
-							<RightBracket />
-						</Link>
+						<RightBracket />
+					</Link>
+					<div className={myPageListStyle}>
+						<LogoutButton>
+							<div className="flex gap-x-2.5 items-center">
+								<IcLogout width="15" height="15" stroke={colorWarnRed} />
+								<span className="font-bold text-warnRed">로그아웃</span>
+							</div>
+						</LogoutButton>
 					</div>
 				</ul>
 			</div>

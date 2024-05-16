@@ -2,11 +2,12 @@
 import { createComment } from '@/api/post/comments/create';
 import Toast from '@/app/components/common/Toast';
 import clsx from 'clsx';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import useHandleError from '@/hooks/useHandleError';
 import useParentCommentStore from '../../store/parentCommentStore';
 import { isErrorObject } from '@/utils/error/httpError';
+import LoadingSpinner from '@/app/components/LoadingSpinner';
 
 type Props = {
 	postId: number;
@@ -17,18 +18,19 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 	useEffect(() => {
 		setParentComment();
 	}, []);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const parentId = parentComment?.id; //부모댓글의 아이디
 	const inputRef = useRef<HTMLInputElement>(null);
 	const { handleError } = useHandleError();
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		console.error(e);
 		const contents = inputRef.current?.value;
 		if (!contents) {
 			Toast.fire({ title: '내용이 입력되지 않았습니다.', icon: 'warning' });
 			return;
 		}
 		try {
+			setIsLoading(true);
 			const res = await createComment(postId, contents, parentId);
 			if (isErrorObject(res)) {
 				throw new Error(JSON.stringify(res));
@@ -37,8 +39,10 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 			if (error instanceof Error) {
 				handleError({ error });
 			}
+		} finally {
+			setIsLoading(false);
+			inputRef.current.value = '';
 		}
-		inputRef.current.value = '';
 	};
 	const handleEraseReply = () => setParentComment();
 	return (
@@ -60,10 +64,10 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 					placeholder={
 						isLogined ? '한마디 작성해주세요' : '로그인이 필요합니다.'
 					}
-					disabled={!isLogined}
+					disabled={!isLogined || isLoading}
 				/>
 				<button type="submit" className={buttonStyle}>
-					입력하기
+					{isLoading ? <LoadingSpinner size={16} color="white" /> : '입력하기'}
 				</button>
 			</form>
 		</div>

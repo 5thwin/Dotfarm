@@ -50,7 +50,7 @@ export default function SupportProgramItem({
 					>
 						{recruitmentStatusString}
 					</span>
-					<span className={clsx(defaultSupportTag)}>{program.category}</span>
+					{/* <span className={clsx(defaultSupportTag)}>{program.category}</span> */}
 					{recruitmentStatus === 'IS_RECRUITING' && (
 						<span className={clsx(defaultSupportTag)}>
 							D-{calculateDday(program.deadline)}

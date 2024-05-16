@@ -7,11 +7,9 @@ export const metadata: Metadata = {
 };
 function Page() {
 	return (
-		<div>
-			<section className="w-screen h-screen flexCenter">
-				<BookmarkBox />
-			</section>
-		</div>
+		<section className="w-screen lg:py-[120px] flex justify-center">
+			<BookmarkBox />
+		</section>
 	);
 }
 export default withLayout(Page, true, false, false);

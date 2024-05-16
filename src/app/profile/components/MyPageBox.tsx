@@ -39,15 +39,15 @@ export default async function MyPageBox() {
 					</Link>
 				</div>
 				<ul className="flex flex-col items-stretch">
-					{/* <div className={myPageListStyle}>
+					<div className={myPageListStyle}>
 						<div className="flex gap-x-2.5 items-center">
 							<IcPost width="15" height="15" stroke="#282828" />
 							<span className="font-bold">작성글</span>
 						</div>
-						<Link href={'/profile/myPosts'} className="text-subText">
+						<Link href={`/profile/${me?.id}/posts`} className="text-subText">
 							<RightBracket />
 						</Link>
-					</div> */}
+					</div>
 
 					<div className={myPageListStyle}>
 						<div className="flex gap-x-2.5 items-center">
@@ -64,7 +64,7 @@ export default async function MyPageBox() {
 							<IcLike width="15" height="16" stroke="#282828" fill="none" />
 							<span className="font-bold">좋아요</span>
 						</div>
-						<Link href={'/myposts'} className="text-subText">
+						<Link href={'/profile/like'} className="text-subText">
 							<RightBracket />
 						</Link>
 					</div>

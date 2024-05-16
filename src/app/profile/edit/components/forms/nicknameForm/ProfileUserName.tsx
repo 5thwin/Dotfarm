@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import React from 'react';
 import useValidationStore from '../../../store/validationStore';
 import NicknameChangeButton from './NicknameChangeButton';
-import useNicknameFormStore from '@/app/profile/store/nicknameFormStore';
+import useNicknameFormStore from '@/app/profile/edit/store/nicknameFormStore';
 
 export default function ProfileUserName() {
 	const { nickname, setNickname, originNickname, nicknameValidation } =

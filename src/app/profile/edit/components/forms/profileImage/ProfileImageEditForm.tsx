@@ -1,6 +1,6 @@
 'use client';
 
-import useProfileImage from '@/app/profile/hook/useProfileImage';
+import useProfileImage from '@/app/profile/edit/hook/useProfileImage';
 import { mainGreenRoundedButtonStyle } from '@/app/styles/common/buttonStyle';
 import { getFullImagePath } from '@/utils/image';
 import clsx from 'clsx';

@@ -25,7 +25,7 @@ export async function getMyLikes(payload?: payload) {
 			`/users/${userId}/likes?${queryString}`,
 			{
 				method: 'GET',
-				next: { revalidate: 10, tags: [`post_like`] },
+				next: { revalidate: 10, tags: [`post_like`, `page_${payload?.page}`] },
 			}
 		);
 		return res;

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import withLayout from '../hoc/withLayout';
-import ProfileEditBox from './components/ProfileEditBox';
+import MyPageBox from './components/MyPageBox';
 
 export const metadata: Metadata = {
 	title: '프로필',
@@ -9,7 +9,7 @@ function ProfilePage() {
 	return (
 		<div>
 			<section className="w-screen h-screen flexCenter">
-				<ProfileEditBox />
+				<MyPageBox />
 			</section>
 		</div>
 	);

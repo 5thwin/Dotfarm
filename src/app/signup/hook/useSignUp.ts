@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { setMe } from '@/utils/localstorage';
 import useHandleError from '@/hooks/useHandleError';
 import { isErrorObject } from '@/utils/error/httpError';
-import { DUPLICATE_ERROR_MESSAGE } from '@/app/profile/components/forms/nicknameForm/NicknameForm';
+import { DUPLICATE_ERROR_MESSAGE } from '@/app/profile/edit/components/forms/nicknameForm/NicknameForm';
 
 export default function useSignUp(me?: UserPartial) {
 	const {

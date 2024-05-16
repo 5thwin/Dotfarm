@@ -4,7 +4,7 @@ import { writePost } from '@/api/post/create';
 import { useRouter } from 'next/navigation';
 import { getPost } from '@/api/post/get';
 import { patchPost } from '@/api/post/update';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useCreateImageStore from '../store/createImageStore';
 import useHandleError from '@/hooks/useHandleError';
 import { Post } from '@/type/post';
@@ -28,6 +28,7 @@ export default function useCreatePost(post?: Post) {
 	} = useCreateImageStore();
 	const { handleError } = useHandleError();
 	const isModifyMode = !!post; //수정모드 판별,
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	useEffect(() => {
 		if (isModifyMode) {
 			setTitle(post.title);
@@ -56,6 +57,8 @@ export default function useCreatePost(post?: Post) {
 		if (isModifyMode) {
 			//patch 로직
 			try {
+				setIsLoading(true);
+
 				const res = await patchPost(
 					post.id,
 					title,
@@ -76,11 +79,14 @@ export default function useCreatePost(post?: Post) {
 				if (error instanceof Error) {
 					handleError({ error });
 				}
+			} finally {
+				setIsLoading(false);
 			}
 
 			return;
 		}
 		try {
+			setIsLoading(true);
 			const res = await writePost(title, contents, category, serverImagePaths);
 			if (isErrorObject(res)) {
 				throw Error(JSON.stringify(res));
@@ -95,6 +101,8 @@ export default function useCreatePost(post?: Post) {
 			if (error instanceof Error) {
 				handleError({ error });
 			}
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -106,5 +114,6 @@ export default function useCreatePost(post?: Post) {
 		category,
 		reset,
 		handleSubmit,
+		isLoading,
 	};
 }

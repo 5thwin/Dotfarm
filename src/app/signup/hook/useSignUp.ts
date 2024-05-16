@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { setMe } from '@/utils/localstorage';
 import useHandleError from '@/hooks/useHandleError';
 import { isErrorObject } from '@/utils/error/httpError';
-import { DUPLICATE_ERROR_MESSAGE } from '@/app/profile/components/forms/nicknameForm/NicknameForm';
+import { DUPLICATE_ERROR_MESSAGE } from '@/app/profile/edit/components/forms/nicknameForm/NicknameForm';
 
 export default function useSignUp(me?: UserPartial) {
 	const {
@@ -73,7 +73,7 @@ export default function useSignUp(me?: UserPartial) {
 			}
 			if (res) {
 				setMe(res); //로컬스토리지에 변경된 나의 정보 저장
-				router.push('/main');
+				router.push('/');
 			}
 		} catch (error) {
 			setIsPending(false);

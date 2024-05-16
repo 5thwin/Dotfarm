@@ -1,6 +1,6 @@
 import Toast from '@/app/components/common/Toast';
 import ProfileUserName from './ProfileUserName';
-import useNicknameFormStore from '@/app/profile/store/nicknameFormStore';
+import useNicknameFormStore from '@/app/profile/edit/store/nicknameFormStore';
 import { updateUserMe } from '@/api/user/update';
 import useHandleError from '@/hooks/useHandleError';
 import { ErrorResponse, isErrorObject } from '@/utils/error/httpError';

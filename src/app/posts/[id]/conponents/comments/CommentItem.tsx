@@ -2,6 +2,7 @@ import { Comment } from '@/type/comment';
 import clsx from 'clsx';
 import CommentWriter from './CommentWriter';
 import ReplyButton from './ReplyButton';
+import { linkify } from '../../../../../utils/string/index';
 
 type Props = { comment: Comment; replys?: Comment[]; postId: number };
 
@@ -11,10 +12,12 @@ export default function CommentItem({ comment, replys, postId }: Props) {
 	const isParent = !parentId || parentId === 0;
 	return (
 		<div className={container}>
-			<div className="flex sm:justify-between flex-col sm:flex-row items-start sm:items-center gap-5px group hover:bg-subGray rounded-10 px-2.5 lg:px-15px py-2.5 ">
-				<div className="flex flex-col gap-y-5px items-start">
+			<div className="flex w-full sm:justify-between flex-col sm:flex-row items-start sm:items-center gap-5px group hover:bg-subGray rounded-10 px-2.5 lg:px-15px py-2.5">
+				<div className="flex flex-col gap-y-5px items-start w-full sm:w-[85%]">
 					<CommentWriter postId={postId} comment={comment} />
-					<p>{comment.comment}</p>
+					<p className="whitespace-pre-wrap break-words w-full">
+						{linkify(comment.comment)}
+					</p>
 				</div>
 				{isParent && <ReplyButton comment={comment} />}
 			</div>
@@ -38,7 +41,7 @@ export default function CommentItem({ comment, replys, postId }: Props) {
 	);
 }
 
-const container = clsx('flex flex-col gap-y-5px');
+const container = clsx('flex flex-col gap-y-5px w-full');
 const replysWrapper = clsx('flex flex-col gap-y-5px w-full');
 
 const ReplyIcon = () => (

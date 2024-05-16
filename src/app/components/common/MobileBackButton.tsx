@@ -1,14 +1,17 @@
 'use client';
+import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 
-const MobileBackButton: FC = () => {
+type Props = { className?: string };
+
+const MobileBackButton: FC<Props> = ({ className }) => {
 	const router = useRouter();
 
 	return (
 		<button
 			onClick={() => router.back()}
-			className="w-[34px] h-[34px] flexCenter"
+			className={clsx('w-[34px] h-[34px] flexCenter', className)}
 		>
 			<svg
 				width="12"

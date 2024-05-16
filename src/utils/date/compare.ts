@@ -44,3 +44,12 @@ export const calculateDday = (
 
 	return dDay;
 };
+
+/**
+ * Date 객체에서 시간을 제거하고 날짜만 남기는 함수
+ * @param date Date 객체
+ * @returns 시간이 제거된 Date 객체
+ */
+export function stripTimeFromDate(date: Date) {
+	return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}

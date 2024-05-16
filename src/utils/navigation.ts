@@ -1,4 +1,4 @@
-export const PATH_MAIN = '/main';
+export const PATH_MAIN = '/';
 
 export const PATH_SUPPROT_PROJECTS = '/support-projects';
 export const PATH_POSTS = '/posts';

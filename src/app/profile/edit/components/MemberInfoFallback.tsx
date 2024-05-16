@@ -20,7 +20,7 @@ const MemberInfoFallback: React.FC = () => {
 				<br /> 로그인을 다시 해도 문제가 지속된다면 <br />
 				고객 지원팀에 연락 부탁드립니다.
 			</p>
-			<Link href={'/main'} className={mainGreenRoundedButtonStyle} replace>
+			<Link href={'/'} className={mainGreenRoundedButtonStyle} replace>
 				<span>메인으로</span>
 			</Link>
 		</div>

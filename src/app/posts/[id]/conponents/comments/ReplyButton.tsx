@@ -28,5 +28,6 @@ export default function ReplyButton({ comment }: Props) {
 // style
 const buttonStyle = clsx(
 	'flexCenter py-5px rounded-[5px] text-subText font-bold text-sm bg-white px-2.5',
-	'lg:group-hover:visible lg:invisible'
+	'lg:group-hover:visible lg:invisible',
+	'whitespace-nowrap'
 );

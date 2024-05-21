@@ -33,7 +33,7 @@ export default function ComunityPostItem({ post }: Props) {
 					{author && <CommunityPostItemAuthor author={author} />}
 				</div>
 			</div>
-			{/* {images && images[0] && (
+			{images && images[0] && (
 				<div className={imgWrapper}>
 					<Image
 						objectFit="cover"
@@ -43,7 +43,7 @@ export default function ComunityPostItem({ post }: Props) {
 						alt={post.title}
 					/>
 				</div>
-			)} */}
+			)}
 		</Link>
 	);
 }
@@ -59,5 +59,5 @@ const catagoryTagStyle = clsx('text-subText text-xs sm:text-sm');
 const titleStyle = clsx('sm:text-lg font-bold line-clamp-1');
 
 const imgWrapper = clsx(
-	'w-[75px] h-[75px] lg:w-[260px] lg:h-[154px] relative rounded-10 overflow-hidden'
+	'min-w-[75px] w-[75px] h-[75px] lg:min-w-[260px] lg:w-[260px] lg:h-[154px] relative rounded-10 overflow-hidden'
 );

@@ -12,6 +12,7 @@ type Props = {
 };
 export default function ComunityPostItem({ post }: Props) {
 	const { author, commentCount, images } = post;
+
 	return (
 		<Link className={postContainer} href={`/posts/${post.id}`}>
 			<div className={contentsWrapper}>
@@ -28,11 +29,9 @@ export default function ComunityPostItem({ post }: Props) {
 						<span className="font-bold text-sm">댓글 {commentCount}개</span>
 					</div>
 				)}
-				<div className="hidden lg:flex">
-					{author && <CommunityPostItemAuthor author={author} />}
-				</div>
+				{author && <CommunityPostItemAuthor author={author} />}
 			</div>
-			{images[0] && (
+			{images && images[0] && (
 				<div className={imgWrapper}>
 					<Image
 						objectFit="cover"
@@ -51,7 +50,7 @@ export default function ComunityPostItem({ post }: Props) {
 const postContainer = clsx(
 	'flex gap-x-5 p-2.5 sm:px-5 sm:py-15px rounded-10 justify-between cursor-pointer',
 	'hover:bg-subGray',
-	'items-start gap-y-2.5'
+	'flex-col-reverse lg:flex-row items-start gap-y-2.5'
 );
 const contentsWrapper = clsx('flex flex-col gap-y-5px sm:gap-y-2.5 ');
 const catagoryTagStyle = clsx('text-subText text-xs sm:text-sm');

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import { getWeekdayText } from '@/utils/date/week';
 import SupportList from '@/app/support-projects/components/SupportList';
+import WeekSupportSlider from './WeekSupportSlider-mobile';
 
 type WeekDisplayProps = {
 	weekdays: Date[];
@@ -25,7 +26,7 @@ export default function WeekDisplayMobile({
 			{supportProgramsOnSelectedDate &&
 			supportProgramsOnSelectedDate?.length > 0 ? (
 				<div>
-					<SupportList supportPrograms={supportProgramsOnSelectedDate} />
+					<WeekSupportSlider supportPrograms={supportProgramsOnSelectedDate} />
 				</div>
 			) : (
 				<div className="flexCenter text-subText h-[20px]">

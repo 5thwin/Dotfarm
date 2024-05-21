@@ -12,8 +12,10 @@ import { UserPartial } from '@/type/user';
 
 export default function SupportProgramItem({
 	program,
+	interestButton = true,
 }: {
 	program: SupportProgram;
+	interestButton?: boolean;
 }) {
 	const [me, setMe] = useState<UserPartial | null>(null);
 	useEffect(() => {
@@ -67,7 +69,7 @@ export default function SupportProgramItem({
 				</Link>
 				<p className={contentStyle}>{program.content}</p>
 			</div>
-			{me && <InterestButton program={program} />}
+			{me && interestButton && <InterestButton program={program} />}
 		</li>
 	);
 }

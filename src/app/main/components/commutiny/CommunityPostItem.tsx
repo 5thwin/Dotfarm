@@ -33,7 +33,7 @@ export default function ComunityPostItem({ post }: Props) {
 					{author && <CommunityPostItemAuthor author={author} />}
 				</div>
 			</div>
-			{images && images[0] && (
+			{/* {images && images[0] && (
 				<div className={imgWrapper}>
 					<Image
 						objectFit="cover"
@@ -43,7 +43,7 @@ export default function ComunityPostItem({ post }: Props) {
 						alt={post.title}
 					/>
 				</div>
-			)}
+			)} */}
 		</Link>
 	);
 }

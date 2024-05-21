@@ -17,9 +17,11 @@ export default function ComunityPostItem({ post }: Props) {
 			<div className={contentsWrapper}>
 				<p className={catagoryTagStyle}># {post.category}</p>
 				<p className={titleStyle}>{post.title}</p>
-				<p className="line-clamp-1 sm:text-base text-sm overflow-clip break-all lg:flex hidden">
-					{post.content}
-				</p>
+				<div className="lg:flex hidden">
+					<p className="line-clamp-1 sm:text-base text-sm overflow-clip break-all">
+						{post.content}
+					</p>
+				</div>
 				{commentCount > 0 && (
 					<div className="flex py-5px gap-x-2.5 text-mainGreen items-center">
 						<IcChat width="13" height="13" fill={colorMainGreen} />

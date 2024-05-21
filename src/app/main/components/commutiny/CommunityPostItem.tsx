@@ -36,7 +36,7 @@ export default function ComunityPostItem({ post }: Props) {
 				<div className={imgWrapper}>
 					<Image
 						objectFit="cover"
-						src={getFullImagePath(post.images[0].path)}
+						src={getFullImagePath(images[0].path)}
 						fill={true}
 						className="rounded-10 bg-subGray"
 						alt={post.title}
@@ -57,4 +57,6 @@ const contentsWrapper = clsx('flex flex-col gap-y-5px sm:gap-y-2.5 ');
 const catagoryTagStyle = clsx('text-subText text-xs sm:text-sm');
 const titleStyle = clsx('sm:text-lg font-bold line-clamp-1');
 
-const imgWrapper = clsx('w-[75px] h-[75px] lg:w-[260px] lg:h-[154px] relative');
+const imgWrapper = clsx(
+	'w-[75px] h-[75px] lg:w-[260px] lg:h-[154px] relative rounded-10 overflow-hidden'
+);

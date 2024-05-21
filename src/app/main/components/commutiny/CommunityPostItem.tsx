@@ -6,11 +6,12 @@ import Link from 'next/link';
 import CommunityPostItemAuthor from './CommunityPostItemAuthor';
 import IcChat from '@/../public/icon/chat.svg';
 import { colorMainGreen } from '@/constants/color';
+import { getFullImagePath } from '@/utils/image';
 type Props = {
 	post: PostPartial & { author?: UserPartial };
 };
 export default function ComunityPostItem({ post }: Props) {
-	const { author, commentCount } = post;
+	const { author, commentCount, images } = post;
 
 	return (
 		<Link className={postContainer} href={`/posts/${post.id}`}>
@@ -28,18 +29,21 @@ export default function ComunityPostItem({ post }: Props) {
 						<span className="font-bold text-sm">댓글 {commentCount}개</span>
 					</div>
 				)}
-				{author && <CommunityPostItemAuthor author={author} />}
+				<div className="lg:inline-block hidden">
+					{author && <CommunityPostItemAuthor author={author} />}
+				</div>
 			</div>
-			{/* {post.contentImageURL && (
+			{images && images[0] && (
 				<div className={imgWrapper}>
 					<Image
-						src={post.contentImageURL}
+						objectFit="cover"
+						src={getFullImagePath(images[0].path)}
 						fill={true}
 						className="rounded-10 bg-subGray"
 						alt={post.title}
 					/>
 				</div>
-			)} */}
+			)}
 		</Link>
 	);
 }
@@ -48,10 +52,12 @@ export default function ComunityPostItem({ post }: Props) {
 const postContainer = clsx(
 	'flex gap-x-5 p-2.5 sm:px-5 sm:py-15px rounded-10 justify-between cursor-pointer',
 	'hover:bg-subGray',
-	'flex-col-reverse lg:flex-row items-start gap-y-2.5'
+	'items-center gap-y-2.5'
 );
 const contentsWrapper = clsx('flex flex-col gap-y-5px sm:gap-y-2.5 ');
 const catagoryTagStyle = clsx('text-subText text-xs sm:text-sm');
 const titleStyle = clsx('sm:text-lg font-bold line-clamp-1');
 
-const imgWrapper = clsx('w-full h-[256px] lg:w-[260px] lg:h-[154px] relative');
+const imgWrapper = clsx(
+	'w-[75px] h-[75px] lg:w-[260px] lg:h-[154px] relative rounded-10 overflow-hidden'
+);

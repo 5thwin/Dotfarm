@@ -35,6 +35,6 @@ export default function WeekSupport() {
 		</div>
 	);
 }
-// stule
+// style
 const responsiveTitle = clsx('flex flex-col lg:flex-row gap-x-2');
 const supportTextStyle = clsx('font-bold text-xl lg:text-2xl');

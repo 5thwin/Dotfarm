@@ -22,37 +22,6 @@ export default function WeekDisplayMobile({
 	);
 	return (
 		<div className="flex flex-col gap-y-5">
-			<div className="flex w-full justify-around">
-				{weekdays.map((weekDate) => {
-					// 각 요일별로 분류된 지원 프로그램 사용
-					const filteredSupportPrograms = supportProgramsByWeekDay.get(
-						weekDate.getDay()
-					);
-					return (
-						<div
-							className={getBoxStyle(isSelected(weekDate))}
-							key={`week-${weekDate.getDay()}`}
-							onClick={() => setSelectedDate(weekDate)}
-						>
-							<span>{getWeekdayText(weekDate)}</span>
-							<div className="flex flex-col gap-y-5px items-center">
-								<span className="font-bold">{weekDate.getDate()}</span>
-								<i
-									className={clsx(
-										'rounded-full w-[14px] h-[14px] bg-mainGreen',
-										{
-											invisible:
-												!filteredSupportPrograms ||
-												filteredSupportPrograms.length === 0,
-										}
-									)}
-								/>
-							</div>
-						</div>
-					);
-				})}
-			</div>
-
 			{supportProgramsOnSelectedDate &&
 			supportProgramsOnSelectedDate?.length > 0 ? (
 				<div>

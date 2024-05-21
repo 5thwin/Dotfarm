@@ -67,7 +67,7 @@ export default function SupportProgramItem({
 				<Link href={program.link} className={programNameStyle} target="_blank">
 					{program.programName}
 				</Link>
-				<p className={contentStyle}>{program.content}</p>
+				{/* <p className={contentStyle}>{program.content}</p> */}
 			</div>
 			{me && interestButton && <InterestButton program={program} />}
 		</li>

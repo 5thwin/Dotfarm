@@ -24,4 +24,5 @@ export type PostPartial = Pick<
 	| 'likeCount'
 	| 'commentCount'
 	| 'category'
+	| 'images'
 >;

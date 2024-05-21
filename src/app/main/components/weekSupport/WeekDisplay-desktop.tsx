@@ -1,5 +1,6 @@
 import { SupportProgram } from '@/type/support';
 import WeekdaySupportBox from './WeekdaySupportBox';
+import { sortPrograms } from '@/utils/supportPrograms';
 
 type WeekDisplayProps = {
 	weekdays: Date[];
@@ -20,7 +21,7 @@ export default function WeekDisplay({
 					<WeekdaySupportBox
 						key={`week-${weekDate.getDay()}`}
 						date={weekDate}
-						supportPrograms={filteredSupportPrograms || []}
+						supportPrograms={sortPrograms(filteredSupportPrograms || [])}
 					/>
 				);
 			})}

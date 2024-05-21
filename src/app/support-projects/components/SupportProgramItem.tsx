@@ -64,7 +64,7 @@ export default function SupportProgramItem({
 						</span>
 					)}
 				</div>
-				<Link href={program.link} className={programNameStyle}>
+				<Link href={program.link} className={programNameStyle} target="_blank">
 					{program.programName}
 				</Link>
 				<p className={contentStyle}>{program.content}</p>

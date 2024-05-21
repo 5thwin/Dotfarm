@@ -28,7 +28,10 @@ export default function WeekDisplayMobile({
 			supportProgramsOnSelectedDate?.length > 0 ? (
 				<div>
 					<WeekSupportSlider
-						supportPrograms={sortPrograms(supportProgramsOnSelectedDate)}
+						supportPrograms={sortPrograms(supportProgramsOnSelectedDate).slice(
+							0,
+							8
+						)}
 					/>
 				</div>
 			) : (

@@ -7,18 +7,16 @@ import { login } from '@/api/auth/login';
 import { getUserMe } from '@/api/user/get';
 
 import useHandleError from '@/hooks/useHandleError';
+import { PATH_MAIN } from '@/utils/navigation';
 
 export default function LoginWrapper() {
 	const searchParams = useSearchParams();
-	// const [userInfo, setUserInfo] = useState();
-	// const [loginStatus, setLoginStatus] = useState<LoginState>('pending');
 	const router = useRouter();
 	const { handleError } = useHandleError();
 	useEffect(() => {
 		// 카카오 로그인 이후, 이 회원이 dotfarm의 유저인지 회원 여부와, dotfarm에서  발급한 토큰 부여
 		const getAuth = async () => {
 			const authCode = searchParams.get('code');
-
 			if (!authCode) {
 				// setLoginStatus('failure');
 				return;
@@ -35,7 +33,13 @@ export default function LoginWrapper() {
 					router.replace('/signup');
 					return;
 				}
-				router.replace('/');
+				const returnUrl = sessionStorage.getItem('returnUrl');
+				if (returnUrl) {
+					sessionStorage.removeItem('returnUrl');
+					router.replace(returnUrl);
+					return;
+				}
+				router.replace(PATH_MAIN);
 			} catch (error) {
 				console.error(error);
 				if (error instanceof Error) {
@@ -47,18 +51,7 @@ export default function LoginWrapper() {
 			}
 		};
 		getAuth();
-	}, []);
-
-	// // 인증 결과에 따른 분기
-	// useEffect(() => {
-	// 	if (loginStatus === 'success') {
-	// 		router.push('/successPage');
-	// 	} else if (loginStatus === 'failure') {
-	// 		router.push('/failurePage');
-	// 	} else if (loginStatus === 'nonMember') {
-	// 		router.push('/signup');
-	// 	}
-	// }, [loginStatus]);
+	}, [handleError, router, searchParams]);
 
 	return (
 		<div className="flex justify-center items-center h-screen bg-gray-100">

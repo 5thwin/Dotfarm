@@ -1,4 +1,4 @@
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import useCreateImageStore from '../store/createImageStore';
 import { useState } from 'react';
 import { saveTempImage } from '@/api/common/create';
@@ -9,6 +9,7 @@ import useHandleError from '@/hooks/useHandleError';
 
 export default function useImageAdd() {
 	const router = useRouter();
+	const pathname = usePathname();
 	const { handleError } = useHandleError();
 	const { addImage, addServerImagePath, deleteImage, updateImageState } =
 		useCreateImageStore();
@@ -58,7 +59,7 @@ export default function useImageAdd() {
 				});
 
 			if (error instanceof Error && error.message.includes('401')) {
-				router.push('/401');
+				router.push(`/401?from=${pathname}`);
 			}
 		}
 	};

@@ -4,7 +4,16 @@ import { KaKaoLoginButton } from '../components/landing/KaKaoLoginButton';
 import { KakaoBubble } from '../components/icons/KakaoBubble';
 import withLayout from '../hoc/withLayout';
 
-function Page401() {
+type Params = {
+	searchParams: {
+		[key: string]: string | string[] | undefined;
+	};
+};
+
+function Page401({ searchParams }: Params) {
+	const from =
+		typeof searchParams.from === 'string' ? searchParams.from : undefined;
+
 	return (
 		<section className="flexCenter w-screen h-screen flex-col gap-y-5">
 			<div className="flex flex-col gap-y-15px items-center">
@@ -21,7 +30,10 @@ function Page401() {
 					다시 로그인이 필요합니다.
 				</p>
 			</div>
-			<KaKaoLoginButton className="bg-kakaoYellow rounded-xl text-black font-bold flexCenter py-3 px-6">
+			<KaKaoLoginButton
+				className="bg-kakaoYellow rounded-xl text-black font-bold flexCenter py-3 px-6"
+				returnUrl={from}
+			>
 				<div className="flex gap-x-1">
 					<KakaoBubble />
 					<span className="text-opacity-85">카카오 로그인</span>

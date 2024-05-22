@@ -1,5 +1,5 @@
 //이벤트 핸들러 혹은 비동기 요청에서 에러가 발생했을 경우
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Toast from '@/app/components/common/Toast';
 import { ErrorResponse, isErrorObject } from '@/utils/error/httpError';
 import safeJsonParse from '@/utils/safeJsonParse';
@@ -10,10 +10,11 @@ interface ErrorHandlerProps {
 }
 const useHandleError = () => {
 	const router = useRouter();
+	const pathname = usePathname();
 	const handleError = ({ error, defaultHandler }: ErrorHandlerProps) => {
 		const { data: errorObject } = safeJsonParse<ErrorResponse>(error.message);
 		if (error.message.includes('401')) {
-			router.push('/401');
+			router.push(`/401?from=${pathname}`);
 			return;
 		}
 		if (error.message.includes('ACTIVE 권한')) {

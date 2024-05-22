@@ -8,6 +8,8 @@ import useHandleError from '@/hooks/useHandleError';
 import useParentCommentStore from '../../store/parentCommentStore';
 import { isErrorObject } from '@/utils/error/httpError';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
+import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 type Props = {
 	postId: number;
@@ -15,9 +17,12 @@ type Props = {
 };
 export default function CommentWrite({ postId, isLogined = true }: Props) {
 	const { parentComment, setParentComment } = useParentCommentStore();
+	const pathname = usePathname();
+
 	useEffect(() => {
 		setParentComment();
-	}, []);
+	}, [setParentComment]);
+
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const parentId = parentComment?.id; //부모댓글의 아이디
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -25,6 +30,7 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const contents = inputRef.current?.value;
+
 		if (!contents) {
 			Toast.fire({ title: '내용이 입력되지 않았습니다.', icon: 'warning' });
 			return;
@@ -44,6 +50,25 @@ export default function CommentWrite({ postId, isLogined = true }: Props) {
 			inputRef.current.value = '';
 		}
 	};
+	if (!isLogined)
+		return (
+			<Link href={`/login-required?from=${pathname}`}>
+				<form className={CommentWrapper}>
+					<label htmlFor="comment-input" className="sr-only" />
+					<p className={clsx(InputStyle, 'text-gray-400')}>
+						로그인이 필요합니다.
+					</p>
+					<button className={buttonStyle}>
+						{isLoading ? (
+							<LoadingSpinner size={16} color="white" />
+						) : (
+							'입력하기'
+						)}
+					</button>
+				</form>
+			</Link>
+		);
+
 	const handleEraseReply = () => setParentComment();
 	return (
 		<div className="flex flex-col gap-y-5px">

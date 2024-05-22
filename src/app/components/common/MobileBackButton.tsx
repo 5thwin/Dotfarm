@@ -10,7 +10,13 @@ const MobileBackButton: FC<Props> = ({ className }) => {
 
 	return (
 		<button
-			onClick={() => router.back()}
+			onClick={() => {
+				if (window && window.history.length > 1) {
+					router.back();
+				} else {
+					router.push('/'); // 메인 페이지로 리다이렉트
+				}
+			}}
 			className={clsx('w-[34px] h-[34px] flexCenter', className)}
 		>
 			<svg

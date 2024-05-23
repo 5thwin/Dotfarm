@@ -46,7 +46,7 @@ export default function CalendarDate({
 		>
 			<div className="flex justify-between items-center">
 				<span className={getDateStyle(day.getDay())}>{day.getDate()}</span>
-				{day.getDate() === new Date().getDate() && <TodayMark />}
+				{isToday && <TodayMark />}
 			</div>
 			<div className="hidden lg:block">
 				<CalendarDatePrograms programs={todayStartList} />

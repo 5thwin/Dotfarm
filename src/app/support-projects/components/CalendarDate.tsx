@@ -46,7 +46,11 @@ export default function CalendarDate({
 		>
 			<div className="flex justify-between items-center">
 				<span className={getDateStyle(day.getDay())}>{day.getDate()}</span>
-				{isToday && <TodayMark />}
+				{isToday && (
+					<div className="hidden lg:inline-block">
+						<TodayMark />
+					</div>
+				)}
 			</div>
 			<div className="hidden lg:block">
 				<CalendarDatePrograms programs={todayStartList} />

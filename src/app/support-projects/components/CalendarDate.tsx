@@ -25,9 +25,10 @@ export default function CalendarDate({
 	const isSelected = selectedDate
 		? compareDates(day, selectedDate) === 0
 		: isToday;
-	const todayStartList = programs.filter(
+	const todayStartorEndList = programs.filter(
 		(program) =>
-			new Date(program.startDate).toDateString() == day.toDateString()
+			new Date(program.startDate).toDateString() == day.toDateString() ||
+			new Date(program.deadline).toDateString() == day.toDateString()
 	);
 	// 오늘 날짜의 지원사업 중에서 마감되지 않은 공고가 하나라도 있는지 판별
 	const isExistRecruitingProgram = programs
@@ -53,7 +54,7 @@ export default function CalendarDate({
 				)}
 			</div>
 			<div className="hidden lg:block">
-				<CalendarDatePrograms programs={todayStartList} />
+				<CalendarDatePrograms programs={todayStartorEndList} />
 			</div>
 			{programs.length > 0 && (
 				// 모바일에서는 점(.)d으로 표시

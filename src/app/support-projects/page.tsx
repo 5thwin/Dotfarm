@@ -8,7 +8,21 @@ export const metadata: Metadata = {
 	title: '지원사업 및 교육',
 };
 
-function SupportPage() {
+type Params = {
+	searchParams: {
+		[key: string]: string | string[] | undefined;
+	};
+};
+function SupportPage({ searchParams }: Params) {
+	const year =
+		typeof searchParams.year === 'string'
+			? Number(searchParams.year)
+			: new Date().getFullYear;
+	const month =
+		typeof searchParams.month === 'string'
+			? Number(searchParams.month)
+			: new Date().getMonth() + 1;
+
 	return (
 		<div className={responsivePageContainer}>
 			<div className="flex items-center">

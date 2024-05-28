@@ -14,6 +14,7 @@ import IcLogout from '@/../public/icon/logout.svg';
 import MobileBackButton from '@/app/components/common/MobileBackButton';
 import LogoutButton from '@/app/components/button/LogoutButton';
 import { colorWarnRed } from '@/constants/color';
+import { getFullImagePath } from '@/utils/image';
 export default async function MyPageBox() {
 	const me = await getUserMe();
 	return (
@@ -28,8 +29,9 @@ export default async function MyPageBox() {
 						<div className="w-[35px] h-[35px] relative rounded-full overflow-hidden">
 							<Image
 								src={
-									me?.profileImage?.path ||
-									'/profile/defaultProfileImg_32x32.svg'
+									me?.profileImage?.path
+										? getFullImagePath(me.profileImage.path)
+										: '/profile/defaultProfileImg_32x32.svg'
 								}
 								alt="profile"
 								layout="fill"

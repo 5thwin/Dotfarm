@@ -24,6 +24,11 @@ export const metadata: Metadata = {
 				width: 800,
 				height: 400,
 			},
+			{
+				url: 'https://www.dotfarm.kr/opengraph-image-1800x1600.jpg',
+				width: 1800,
+				height: 1600,
+			},
 		],
 	},
 	icons: {

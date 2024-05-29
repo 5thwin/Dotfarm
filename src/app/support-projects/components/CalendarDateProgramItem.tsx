@@ -12,17 +12,17 @@ export default function CalendarDateProgramItem({ program }: Props) {
 		<li className={listStyle}>
 			<div>
 				{recruitmentStatus === 'IS_RECRUITING' && (
-					<span className="text-mainGreen font-bold text-xs whitespace-nowrap">
+					<span className="text-mainGreen font-bold text-sm whitespace-nowrap">
 						{`D-${calculateDday(program.deadline)}`}
 					</span>
 				)}
 				{recruitmentStatus === 'IS_CLOSED' && (
-					<span className="text-warnRed font-bold text-xs whitespace-nowrap">
+					<span className="text-warnRed font-bold text-sm whitespace-nowrap">
 						마감
 					</span>
 				)}
 				{recruitmentStatus === 'IS_ALWAYS' && (
-					<span className="text-subText font-bold text-xs whitespace-nowrap">
+					<span className="text-subText font-bold text-sm whitespace-nowrap">
 						상시
 					</span>
 				)}

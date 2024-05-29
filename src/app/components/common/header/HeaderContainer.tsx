@@ -1,5 +1,5 @@
 'use client';
-import useMobileSearchStore from '@/app/store/mobileSearchStore';
+import useMobileSearchStore from '@/app/support-projects/store/mobileSearchStore';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import HeaderSearchArea from './HeaderSearchArea-mobile';

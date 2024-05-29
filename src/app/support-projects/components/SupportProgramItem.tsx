@@ -60,14 +60,13 @@ export default function SupportProgramItem({
 					)}
 					{recruitmentStatus !== 'IS_ALWAYS' && (
 						<span className={clsx(defaultSupportTag)}>
-							~{format(deadLineDate, 'yyyy.MM.dd')}
+							~{format(deadLineDate, 'yy.MM.dd')}
 						</span>
 					)}
 				</div>
 				<Link href={program.link} className={programNameStyle} target="_blank">
 					{program.programName}
 				</Link>
-				{/* <p className={contentStyle}>{program.content}</p> */}
 			</div>
 			{me && interestButton && <InterestButton program={program} />}
 		</li>
@@ -81,7 +80,5 @@ const defaultSupportTag = clsx(
 	'bg-subGray'
 );
 
-const programNameStyle = clsx('lg:text-xl font-bold hover:underline');
-const contentStyle = clsx(
-	'text-wrap text-sm lg:text-base line-clamp-1 lg:line-clamp-2'
-);
+const programNameStyle = clsx('font-bold hover:underline');
+const contentStyle = clsx('text-wrap text-sm lg:text-base line-clamp-2');

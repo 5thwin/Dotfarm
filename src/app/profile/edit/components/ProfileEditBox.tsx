@@ -21,9 +21,7 @@ export default async function ProfileEditBox() {
 			<div className="flex flex-col gap-y-5 h-full">
 				<div className="flex items-center w-full justify-between pt-0">
 					<div className="flex items-center gap-x-2.5">
-						<div className="lg:hidden">
-							<MobileBackButton />
-						</div>
+						<MobileBackButton />
 						<h1 className="text-23 font-bold">프로필 편집</h1>
 					</div>
 					<LogoutButtonInProfile />

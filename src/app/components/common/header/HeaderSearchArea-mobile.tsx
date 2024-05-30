@@ -1,4 +1,4 @@
-import useMobileSearchStore from '@/app/support-projects/store/mobileSearchStore';
+import useMobileSearchStore from '@/store/mobileSearchStore';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 

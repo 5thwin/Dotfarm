@@ -1,6 +1,6 @@
 'use client';
 import IcSearch from '@/../public/icon/search.svg';
-import useMobileSearchStore from '@/app/support-projects/store/mobileSearchStore';
+import useMobileSearchStore from '@/store/mobileSearchStore';
 
 export default function HeaderSearchButton() {
 	const { isShow, setIsShow } = useMobileSearchStore();

@@ -1,5 +1,6 @@
 import { SupportProgram } from '@/type/support';
 import { calculateDday, compareDates } from './date/compare';
+import { format } from 'date-fns';
 
 /**
  * 특정 날짜에 표시되어야 하는 지원사업 프로그램 목록을 필터링합니다.
@@ -92,3 +93,22 @@ export function sortPrograms(programs: SupportProgram[]): SupportProgram[] {
 		return statusComparison;
 	});
 }
+/**
+ * 특정 날짜에 시작 또는 종료되는 지원사업 프로그램 목록을 필터링합니다.
+ *
+ * @param programs - 지원사업 프로그램 목록
+ * @param targetDate - 대상 날짜
+ * @returns 해당 날짜에 시작 또는 종료되는 지원사업 프로그램 목록
+ */
+export const getStartOrEndOnDate = (
+	programs: SupportProgram[],
+	targetDate: Date
+) =>
+	programs.filter((program) => {
+		const deadlineDate = new Date(program.deadline);
+		const startDate = new Date(program.startDate);
+		return (
+			format(startDate, 'yyyy-MM-dd') === format(targetDate, 'yyyy-MM-dd') ||
+			format(deadlineDate, 'yyyy-MM-dd') === format(targetDate, 'yyyy-MM-dd')
+		);
+	});

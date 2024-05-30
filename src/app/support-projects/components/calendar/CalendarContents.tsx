@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 import CalendarDate from './CalendarDate';
 import { SupportProgram } from '@/type/support';
-import { format } from 'date-fns';
-import { filterProgramsByDate } from '@/utils/supportPrograms';
+import { getStartOrEndOnDate } from '@/utils/supportPrograms';
 
 type Props = {
 	year: number;
@@ -58,7 +57,7 @@ export default function CalendarContents({
 						key={`support-date-${index}`}
 						date={day}
 						index={index}
-						supports={filterProgramsByDate(supports, day)}
+						supports={getStartOrEndOnDate(supports, day)}
 					/>
 				))}
 			</div>

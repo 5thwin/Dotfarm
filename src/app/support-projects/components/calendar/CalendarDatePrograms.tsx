@@ -6,12 +6,12 @@ type Props = { programs: SupportProgram[] };
 export default function CalendarDatePrograms({ programs }: Props) {
 	return (
 		<div className="flex flex-col gap-y-2.5">
-			<ul className={clsx('flex flex-col gap-y-2.5')}>
-				{programs.slice(0, 2).map((program, index) => (
+			<ul className={clsx('flex flex-col gap-y-1')}>
+				{programs.slice(0, 3).map((program, index) => (
 					<CalendarDateProgramItem key={`program_${index}`} program={program} />
 				))}
 			</ul>
-			{programs.length > 2 && (
+			{programs.length > 3 && (
 				<span className="text-mainGreen text-sm font-bold text-center">
 					외 {programs.length - 2}건 +
 				</span>

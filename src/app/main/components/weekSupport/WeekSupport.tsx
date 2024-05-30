@@ -24,10 +24,7 @@ export default function WeekSupport() {
 				</p>
 				<Link
 					className="px-2.5 sm:py-5px flex rounded-full items-center bg-mainGreen font-bold gap-x-1"
-					href={`${PATH_SUPPROT_PROJECTS}?year=${format(
-						new Date(),
-						'yyyy'
-					)}&month=${format(new Date(), 'MM')}`}
+					href={PATH_SUPPROT_PROJECTS}
 				>
 					<IcCalendar width="24" height="25" fill="white" />
 					<span className="text-white  text-xs lg:text-sm  font-bold">

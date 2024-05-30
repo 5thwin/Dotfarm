@@ -1,10 +1,6 @@
-import { format } from 'date-fns';
-
 export const PATH_MAIN = '/';
 
-export const PATH_SUPPROT_PROJECTS = `/support-projects?year=${new Date().getFullYear()}&month=${
-	new Date().getMonth() + 1
-}&date=${format(new Date(), 'yyyy-MM-dd')}`;
+export const PATH_SUPPROT_PROJECTS = '/support-projects';
 export const PATH_POSTS = '/posts';
 export const navLinks = [
 	{ name: '홈', path: PATH_MAIN },

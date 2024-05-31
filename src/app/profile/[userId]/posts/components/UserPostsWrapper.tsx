@@ -1,5 +1,5 @@
 import { getPostsWithAuthor } from '@/api/post/get';
-import ComunityPostItem from '@/app/main/components/commutiny/CommunityPostItem';
+import NotResultFallback from '@/app/components/fallback/NotResultFallback';
 import PostsList from '@/app/posts/components/PostsList';
 import PostsPagination from '@/app/posts/components/PostsPagination';
 import clsx from 'clsx';
@@ -19,12 +19,13 @@ export default async function UserPostsWrapper({ page, authorId }: Props) {
 	});
 	if (!response || !response.data.length)
 		return (
-			<div className="flex items-center justify-center py-5">
-				<p className="text-gray-600 font-medium text-center">
+			<NotResultFallback className="flexCenter flex-col gap-y-2.5 h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+				<p className="text-lg font-bold text-center">
 					아직 작성한 게시물이 없습니다.
 				</p>
-			</div>
+			</NotResultFallback>
 		);
+
 	const totalPage = response.total && Math.ceil(response.total / PAGE_TAKE);
 
 	return (

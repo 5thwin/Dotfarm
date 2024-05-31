@@ -23,11 +23,6 @@ export default function SupportProgramItem({
 		me && setMe(me);
 	}, []);
 
-	// const interestResponse = await getMyInterests();
-	// const interestedSupportIds = interestResponse
-	// 	? interestResponse.data.map((interest) => interest.support.id)
-	// 	: null;
-	// program.isInterested = interestedSupportIds?.includes(program.id);
 	const recruitmentStatus = getRecruitmentStatus(program);
 	const recruitmentStatusString = (() => {
 		if (recruitmentStatus === 'IS_ALWAYS') return '상시 모집';

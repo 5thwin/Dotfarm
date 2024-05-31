@@ -21,12 +21,13 @@ export default async function BookmarkList() {
 	}
 	return (
 		<ul className="flex flex-col gap-y-[18px] overflow-auto">
-			{myInterests.map((interest, index) => (
-				<SupportProgramItem
-					key={`bookmark${index}`}
-					program={interest.support}
-				/>
-			))}
+			{myInterests.map((interest, index) => {
+				const support = interest.support;
+				support.isInterested = true;
+				return (
+					<SupportProgramItem key={`bookmark${index}`} program={support} />
+				);
+			})}
 		</ul>
 	);
 }

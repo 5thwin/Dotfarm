@@ -28,10 +28,12 @@ export default async function SupportListBlock({
 	}));
 	return (
 		<div className={clsx(blockStyle, 'lg:w-[400px]', 'lg:sticky lg:top-10')}>
-			<SupportsDatePage
-				date={date}
-				supports={filterProgramsByDate(supports, date)}
-			/>
+			<div className="lg:h-[745px] lg:overflow-scroll">
+				<SupportsDatePage
+					date={date}
+					supports={filterProgramsByDate(supports, date)}
+				/>
+			</div>
 		</div>
 	);
 }

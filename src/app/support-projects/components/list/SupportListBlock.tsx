@@ -28,20 +28,10 @@ export default async function SupportListBlock({
 	}));
 	return (
 		<div className={clsx(blockStyle, 'lg:w-[400px]', 'lg:sticky lg:top-10')}>
-			<div className="hidden lg:inline-block">
-				<SupportListInDays
-					year={year}
-					month={month}
-					date={date}
-					supports={supportsWithInterest}
-				/>
-			</div>
-			<div className="lg:hidden">
-				<SupportsDatePage
-					date={date}
-					supports={filterProgramsByDate(supports, date)}
-				/>
-			</div>
+			<SupportsDatePage
+				date={date}
+				supports={filterProgramsByDate(supports, date)}
+			/>
 		</div>
 	);
 }

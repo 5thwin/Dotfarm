@@ -31,7 +31,7 @@ export default async function SupportListBlock({
 			<div className="lg:h-[745px] lg:overflow-scroll">
 				<SupportsDatePage
 					date={date}
-					supports={filterProgramsByDate(supports, date)}
+					supports={filterProgramsByDate(supportsWithInterest, date)}
 				/>
 			</div>
 		</div>

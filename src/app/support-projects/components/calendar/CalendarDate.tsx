@@ -7,6 +7,8 @@ import { useSearchParams } from 'next/navigation';
 import { format } from 'date-fns';
 import TodayMark from '@/app/components/badge/TodayMark';
 import { getValidMonth, getValidYear } from '@/utils/date/validate';
+import useSupportFilterStore from '../../store/supportFilterStore';
+import { getRecruitmentStatus } from '@/utils/supportPrograms';
 
 type CalendarDateProps = {
 	date: Date;
@@ -27,6 +29,13 @@ export default function CalendarDate({
 	const isToday =
 		format(date, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd');
 	const isSelected = paramDate === format(date, 'yyyy-MM-dd');
+	const { exceptClosedProjects } = useSupportFilterStore();
+	// 마감 제외 필터 적용
+	const showSupports = exceptClosedProjects
+		? supports.filter(
+				(support) => getRecruitmentStatus(support) !== 'IS_CLOSED'
+		  )
+		: supports;
 
 	return (
 		<Link
@@ -65,7 +74,7 @@ export default function CalendarDate({
 					)}
 				</div>
 				<div className="hidden lg:block mt-1">
-					<CalendarDatePrograms programs={supports} />
+					<CalendarDatePrograms programs={showSupports} />
 				</div>
 			</div>
 		</Link>

@@ -41,18 +41,20 @@ export default function ButtonGroups({
 	};
 	return (
 		<div className="flex gap-x-2.5">
-			<button
-				className={getButtonStyle(isChecked)}
-				onClick={handleLike}
-				disabled={!isLogin}
-			>
-				<IcLike
-					width="15"
-					height="13"
-					stroke={isChecked ? 'white' : '#7D7B7B'}
-					fill={isChecked ? 'white' : 'none'}
-				/>
-			</button>
+			{isLogin && (
+				<button
+					className={getButtonStyle(isChecked)}
+					onClick={handleLike}
+					disabled={!isLogin}
+				>
+					<IcLike
+						width="15"
+						height="13"
+						stroke={isChecked ? 'white' : '#7D7B7B'}
+						fill={isChecked ? 'white' : 'none'}
+					/>
+				</button>
+			)}
 			<CopyUrlButton />
 			{isAbleToEdit && <PostMeatballButton postId={post.id} />}
 		</div>

@@ -23,13 +23,11 @@ export default function WeekSupport() {
 					<span className={supportTextStyle}>이번 주 지원사업</span>
 				</p>
 				<Link
-					className="px-2.5 sm:py-5px flex rounded-full items-center bg-mainGreen font-bold gap-x-1"
+					className="h-10 px-2.5 sm:py-5px flexCenter rounded-full items-center bg-mainGreen font-bold gap-x-1"
 					href={PATH_SUPPROT_PROJECTS}
 				>
 					<IcCalendar width="24" height="25" fill="white" />
-					<span className="text-white  text-xs lg:text-sm  font-bold">
-						달력보기
-					</span>
+					<span className="text-white  font-bold">달력보기</span>
 				</Link>
 			</div>
 			<WeekDaySupportPrograms />

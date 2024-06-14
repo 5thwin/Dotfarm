@@ -50,7 +50,7 @@ export default function ComunityPostItem({ post }: Props) {
 
 // style
 const postContainer = clsx(
-	'flex gap-x-5 p-2.5 sm:px-5 sm:py-15px rounded-10 justify-between cursor-pointer',
+	'flex gap-x-5 py-2.5 px-5 sm:py-15px rounded-10 justify-between cursor-pointer',
 	'hover:bg-subGray',
 	'items-center gap-y-2.5'
 );

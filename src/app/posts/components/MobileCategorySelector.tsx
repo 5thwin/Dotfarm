@@ -12,15 +12,20 @@ export default function MobileCategorySelector({
 }: Props) {
 	const categorys = ['전체', ...postCategorys];
 	return (
-		<div className="flex gap-x-2.5 px-5 items-center overflow-scroll">
+		<div
+			className={clsx(
+				'flex gap-x-2.5 px-5 items-center overflow-x-scroll sticky top-0 z-10 bg-white ',
+				'after:contents-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-subGray'
+			)}
+		>
 			{categorys.map((category) => (
 				<Link
 					key={category}
 					href={category === '전체' ? '/posts' : `/posts?category=${category}`}
 					className={clsx(
-						'font-bold px-5 py-2.5 flexCenter whitespace-nowrap relative',
+						'font-bold px-2.5 py-2.5 flexCenter whitespace-nowrap relative',
 						{
-							'after:contents-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-mainGreen':
+							'after:contents-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-mainGreen after:z-10 ':
 								category === currentCategory ||
 								(category === '전체' && !currentCategory),
 						}

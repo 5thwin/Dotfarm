@@ -13,11 +13,12 @@ export default function MobileGoToWriteButton({ category }: Props) {
 		<Link
 			href={path}
 			className={clsx(
-				' w-[55px] h-[55px] bg-mainGreen flexCenter shadow-main rounded-10',
+				'w-[93px] py-15px bg-mainGreen flexCenter shadow-main rounded-full gap-x-5px',
 				'text-white'
 			)}
 		>
-			<IcEdit width="21" height="21" />
+			<IcEdit width="16" height="16" />
+			<span className="font-bold text-white">글쓰기</span>
 		</Link>
 	);
 }

@@ -39,11 +39,7 @@ async function Page({ searchParams }: Params) {
 
 const CommunityMobileHeader = ({ category }: { category?: string }) => {
 	return (
-		<header
-			className={clsx(
-				'lg:hidden flex items-center p-15px gap-x-2.5 border-b-2 border-lineColor'
-			)}
-		>
+		<header className={clsx('lg:hidden flex items-center p-15px gap-x-2.5 ')}>
 			<MobileBackButton />
 			<h1 className="font-bold text-xl">{getCategoryTitle(category)}</h1>
 		</header>

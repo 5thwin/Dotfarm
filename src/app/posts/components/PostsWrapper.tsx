@@ -7,6 +7,7 @@ import GoToWriteInput from '@/app/components/link/GoToWriteInput';
 import { getPostsWithAuthor } from '@/api/post/get';
 import Fallback from './Fallback';
 import { getCategoryTitle } from '@/constants/category';
+import MobileGoToWriteButton from './MobileGoToWriteButton';
 
 type Props = {
 	page?: number;
@@ -38,7 +39,7 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 					{getCategoryTitle(category)}
 				</h1>
 			</div>
-			<div className={'px-2.5 order-last lg:p-0 lg:order-none'}>
+			<div className={'px-2.5 hidden lg:p-0 lg:inline-block'}>
 				<GoToWriteInput category={category} />
 			</div>
 			{keyword && (
@@ -47,6 +48,9 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 			<PostsList posts={posts} />
 			<div className="flexCenter">
 				<PostsPagination totalPage={totalPage} />
+			</div>
+			<div className="fixed bottom-5 right-5 lg:hidden inline-block">
+				<MobileGoToWriteButton category={category} />
 			</div>
 		</div>
 	);

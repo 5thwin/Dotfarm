@@ -8,7 +8,9 @@ export default async function HeaderUserArea() {
 	return me ? (
 		<HeaderUserIcon me={me} />
 	) : (
-		<KaKaoLoginButton className={loginButtonStyle}>로그인</KaKaoLoginButton>
+		<KaKaoLoginButton className={loginButtonStyle}>
+			간편 로그인
+		</KaKaoLoginButton>
 	);
 }
 

@@ -1,13 +1,10 @@
-import { blockStyle } from '@/app/styles/common/blockStyle';
 import PostsList from './PostsList';
 import PostsPagination from './PostsPagination';
 import clsx from 'clsx';
-import MobileBackButton from '@/app/components/common/MobileBackButton';
 import GoToWriteInput from '@/app/components/link/GoToWriteInput';
 import { getPostsWithAuthor } from '@/api/post/get';
 import Fallback from './Fallback';
 import { getCategoryTitle } from '@/constants/category';
-import MobileGoToWriteButton from './MobileGoToWriteButton';
 
 type Props = {
 	page?: number;
@@ -48,9 +45,6 @@ export default async function PostsWrapper({ page, category, keyword }: Props) {
 			<PostsList posts={posts} />
 			<div className="flexCenter">
 				<PostsPagination totalPage={totalPage} />
-			</div>
-			<div className="fixed bottom-5 right-5 lg:hidden inline-block">
-				<MobileGoToWriteButton category={category} />
 			</div>
 		</div>
 	);

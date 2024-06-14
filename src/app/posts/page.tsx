@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import MobileBackButton from '../components/common/MobileBackButton';
 import { getCategoryTitle } from '@/constants/category';
 import MobileCategorySelector from './components/MobileCategorySelector';
+import GoToWriteButton from '../components/button/GoToWriteButton';
 
 type Params = {
 	searchParams: {
@@ -32,6 +33,9 @@ async function Page({ searchParams }: Params) {
 					</div>
 					<PostsWrapper page={page} category={category} keyword={keyword} />
 				</section>
+			</div>
+			<div className="fixed bottom-5 right-5 lg:bottom-[60px] lg:right-[60px]">
+				<GoToWriteButton category={category} />
 			</div>
 		</div>
 	);

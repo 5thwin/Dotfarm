@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import TabSelector from './TabSelector';
 import CommunityList from './CommunityList';
 import Link from 'next/link';
-import GoToWriteInput from '@/app/components/link/GoToWriteInput';
 import { Suspense } from 'react';
 
 type Props = { category?: string };
@@ -28,7 +27,6 @@ export default function CommunitySection({ category }: Props) {
 			<Suspense key={category}>
 				<CommunityList category={category} />
 			</Suspense>
-			<GoToWriteInput category={category} />
 		</section>
 	);
 }

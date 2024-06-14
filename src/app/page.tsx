@@ -1,6 +1,5 @@
 import WeekSupport from './main/components/weekSupport/WeekSupport';
 import MainSideArea from './main/components/MainSideArea';
-import OpenChatBanner from './main/components/OpenChatBanner';
 import CommunitySection from './main/components/commutiny/CommunitySection';
 import withLayout from './hoc/withLayout';
 import PcBanner from './main/components/banner/PcBanner';
@@ -8,6 +7,7 @@ import clsx from 'clsx';
 import MobileBanner from './main/components/banner/MobileBanner';
 import WatchListBox from './main/components/banner/WatchListBox';
 import { Metadata } from 'next';
+import GoToWriteButton from './components/button/GoToWriteButton';
 
 export const metadata: Metadata = {
 	title: {
@@ -44,6 +44,9 @@ function Page({ searchParams }: Params) {
 						{/* <OpenChatBanner /> */}
 						<CommunitySection category={category} />
 					</section>
+				</div>
+				<div className="fixed lg:bottom-[60px] lg:right-[60px]  bottom-5 right-5 ">
+					<GoToWriteButton />
 				</div>
 			</main>
 		</div>

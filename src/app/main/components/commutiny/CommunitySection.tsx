@@ -35,6 +35,6 @@ export default function CommunitySection({ category }: Props) {
 
 // style
 const moreButton = clsx(
-	'px-15px py-5px bg-subGray rounded-full',
-	'font-bold text-sm'
+	'px-15px py-5px bg-subGray rounded-full h-10 flexCenter',
+	'font-bold'
 );

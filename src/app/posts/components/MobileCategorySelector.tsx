@@ -21,6 +21,7 @@ export default function MobileCategorySelector({
 			{categorys.map((category) => (
 				<Link
 					key={category}
+					replace
 					href={category === '전체' ? '/posts' : `/posts?category=${category}`}
 					className={clsx(
 						'font-bold px-2.5 py-2.5 flexCenter whitespace-nowrap relative',

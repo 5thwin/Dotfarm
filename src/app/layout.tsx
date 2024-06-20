@@ -35,6 +35,7 @@ export const metadata: Metadata = {
 		icon: '/favicon.ico',
 	},
 	verification: {
+		google: `${process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION}`,
 		other: {
 			'naver-site-verification': `${process.env.NEXT_PUBLIC_NAVER_VERIFICATION}`,
 		},

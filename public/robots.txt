@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /login-required
+
+# Host
+Host: https://dotfarm.kr
+
+# Sitemaps
+Sitemap: https://dotfarm.kr/sitemap.xml

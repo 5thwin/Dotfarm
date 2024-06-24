@@ -14,7 +14,7 @@ async function Page({ params }: Props) {
 	const id = Number(params.id);
 	const post = await getPost(id);
 	return (
-		<section className="w-screen size-full flex flex-col items-center lg:py-[100px]">
+		<section className="w-screen size-full flex flex-col items-center lg:py-[124px]">
 			{post ? <PostBox post={post} /> : <Fallback />}
 		</section>
 	);

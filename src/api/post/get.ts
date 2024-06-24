@@ -10,6 +10,8 @@ type payload = {
 	take?: number;
 	keyword?: string;
 	authorId?: number;
+	where__id__less_than?: number;
+	where__id__more_than?: number;
 };
 export async function getPostsWithAuthor(payload?: payload) {
 	const params = new URLSearchParams();
@@ -21,6 +23,8 @@ export async function getPostsWithAuthor(payload?: payload) {
 			page,
 			keyword,
 			authorId,
+			where__id__less_than,
+			where__id__more_than,
 		} = payload;
 		// 값이 유효한 경우에만 파라미터를 추가
 		params.append('order__createdAt', orderCreatedAt);
@@ -29,6 +33,16 @@ export async function getPostsWithAuthor(payload?: payload) {
 		if (page) params.append('page', page.toString());
 		if (keyword) params.append('where__content__i_like', keyword);
 		if (authorId) params.append('where__author__id', authorId.toString());
+		if (payload.where__id__less_than)
+			params.append(
+				'where__id__less_than',
+				payload.where__id__less_than.toString()
+			);
+		if (payload.where__id__more_than)
+			params.append(
+				'where__id__more_than',
+				payload.where__id__more_than.toString()
+			);
 	}
 	const queryString = params.toString(); // 유효한 값들로만 구성된 queryString
 

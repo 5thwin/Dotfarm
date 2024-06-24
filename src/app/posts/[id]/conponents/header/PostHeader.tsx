@@ -6,6 +6,7 @@ import { padStart } from 'lodash';
 import { format } from 'date-fns';
 import { ableToEdit } from '@/utils/post/edit';
 import { getAccessTokenFromCookie } from '@/api/auth/token/utils';
+import MobileBackButton from '@/app/components/common/MobileBackButton';
 
 type Props = {
 	post: Post;
@@ -29,7 +30,10 @@ export default async function PostHeader({ post }: Props) {
 						isLogin={isLogined}
 					/>
 				</div>
-				<h1 className="text-lg lg:text-xl font-bold">{title}</h1>
+				<div className="flex gap-x-5px items-center">
+					<MobileBackButton className="lg:hidden" />
+					<h1 className="text-lg lg:text-xl font-bold">{title}</h1>
+				</div>
 				{/* <span className="text-sm text-subText">{dateString}</span> */}
 			</div>
 		</div>

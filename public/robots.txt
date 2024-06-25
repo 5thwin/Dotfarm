@@ -1,7 +1,13 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /auth
 Disallow: /login-required
+Disallow: /login-error
+Disallow: /bookmark
+Disallow: /posts/create
+Disallow: /profile
+Disallow: /401
 
 # Host
 Host: https://dotfarm.kr

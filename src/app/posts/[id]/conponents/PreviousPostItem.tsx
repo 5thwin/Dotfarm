@@ -41,6 +41,7 @@ export default function PreviousPostItem({ post }: Props) {
 					className="flex-shrink-0 w-[75px] h-[75px] lg:w-[150px] lg:h-[88px] rounded-10 overflow-hidden relative"
 				>
 					<CustomImage
+						className="object-cover"
 						src={getFullImagePath(imageUrl)}
 						fill
 						alt={post.title}

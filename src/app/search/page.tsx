@@ -31,7 +31,7 @@ function Page({ searchParams }: Params) {
 					<div className="hidden lg:inline-block">
 						<FilterBox destination="/search" />
 					</div>
-					<div className="flex flex-col gap-y-25px">
+					<div className="flex flex-col gap-y-25px flex-1">
 						{keyword && (
 							<div className="flex gap-x-2.5">
 								<div className="lg:hidden">

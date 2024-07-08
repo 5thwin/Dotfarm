@@ -2,7 +2,6 @@ import useCreatePostStore from '../store/createPostStore';
 import Toast from '@/app/components/common/Toast';
 import { writePost } from '@/api/post/create';
 import { useRouter } from 'next/navigation';
-import { getPost } from '@/api/post/get';
 import { patchPost } from '@/api/post/update';
 import { useEffect, useState } from 'react';
 import useCreateImageStore from '../store/createImageStore';

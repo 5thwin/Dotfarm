@@ -3,6 +3,7 @@ import { PostPartial } from '@/type/post';
 import { getFullImagePath } from '../../../../utils/image';
 import IcChat from '@/../public/icon/chat.svg';
 import { colorMainGreen } from '@/constants/color';
+import Link from 'next/link';
 
 type Props = {
 	post: PostPartial;
@@ -12,7 +13,10 @@ export default function PreviousPostItem({ post }: Props) {
 	const imageUrl = post.images.length > 0 ? post.images[0].path : undefined;
 	const commentCount = post.commentCount;
 	return (
-		<div className="flex px-5 py-15px gap-x-5 justify-between w-full">
+		<Link
+			href={`/posts/${post.id}`}
+			className="flex px-5 py-15px gap-x-5 justify-between w-full"
+		>
 			<div className="flex-grow flex flex-col gap-y-5px lg:gap-y-2.5 lg:max-w-[calc(100%-170px)]">
 				<span
 					id={`post${post.id}_category`}
@@ -49,6 +53,6 @@ export default function PreviousPostItem({ post }: Props) {
 					/>
 				</div>
 			)}
-		</div>
+		</Link>
 	);
 }

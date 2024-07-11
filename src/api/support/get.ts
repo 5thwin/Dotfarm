@@ -83,3 +83,14 @@ export async function getSearchSupport(payload: searchPayload) {
 		return undefined;
 	}
 }
+
+export async function getSupportbyId(id: number) {
+	try {
+		const res = await customFetch<SupportProgram>(`/supports/${id}`, {
+			next: { revalidate: 10 },
+		});
+		return res;
+	} catch (e) {
+		return undefined;
+	}
+}

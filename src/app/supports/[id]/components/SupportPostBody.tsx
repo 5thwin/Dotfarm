@@ -7,7 +7,7 @@ type Props = {
 export default function SupportPostBody({ support }: Props) {
 	return (
 		<article className="whitespace-pre-wrap break-words">
-			{linkify(support.content)}
+			{linkify(support.content ?? '')}
 		</article>
 	);
 }

@@ -17,7 +17,7 @@ export default function RecentSupportItem({ support }: Props) {
 			href={`/supports/${support.id}`}
 			className="flex gap-x-15px items-center py-2.5"
 		>
-			<div className="relative w-[110px] h-[110px] overflow-hidden rounded-10">
+			<div className="relative w-[110px] h-[110px] overflow-hidden rounded-10 flex-shrink-0">
 				{image ? (
 					<Image
 						src={getFullImagePath(image.path)}

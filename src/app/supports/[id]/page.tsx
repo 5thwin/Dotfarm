@@ -12,7 +12,7 @@ export default function Page({ params }: Props) {
 	const id = Number(params.id);
 	return (
 		<div className="flex flex-col items-center">
-			<div className="max-w-[768px] min-w-[390px] flex flex-col gap-y-15px w-full ">
+			<div className="max-w-[768px] min-w-[390px] flex flex-col gap-y-15px w-full mb-24">
 				<SupportPost id={id} />
 				<RecentSupports />
 			</div>

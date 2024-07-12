@@ -1,3 +1,4 @@
+import MobileBackButton from '@/app/components/common/MobileBackButton';
 import { SupportProgram } from '@/type/support';
 import { calculateDday } from '@/utils/date/compare';
 import { getRecruitmentStatus } from '@/utils/supportPrograms';
@@ -7,9 +8,14 @@ import { format } from 'date-fns';
 type Props = {
 	support: SupportProgram;
 	titleClassName?: string;
+	backbutton?: boolean;
 };
 
-export default function SupportPostHead({ support, titleClassName }: Props) {
+export default function SupportPostHead({
+	support,
+	titleClassName,
+	backbutton = false,
+}: Props) {
 	const recruitmentStatus = getRecruitmentStatus(support);
 	const recruitmentStatusString = (() => {
 		if (recruitmentStatus === 'IS_ALWAYS') return '상시 모집';
@@ -44,9 +50,12 @@ export default function SupportPostHead({ support, titleClassName }: Props) {
 					)}
 				</div>
 			</div>
-			<h1 className={titleClassName ?? 'font-bold text-xl'}>
-				{support.programName}
-			</h1>
+			<div className={'flex items-center gap-x-5px'}>
+				{backbutton && <MobileBackButton />}
+				<h1 className={titleClassName ?? 'font-bold text-xl'}>
+					{support.programName}
+				</h1>
+			</div>
 		</div>
 	);
 }

@@ -11,7 +11,7 @@ type Props = {
 
 export default function RecentSupportItem({ support }: Props) {
 	const { images } = support;
-	const image = images[0] ? images[0] : undefined;
+	const image = images && images.length > 0 ? images[0] : undefined;
 	return (
 		<Link
 			href={`/supports/${support.id}`}

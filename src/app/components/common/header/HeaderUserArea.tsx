@@ -8,13 +8,11 @@ export default async function HeaderUserArea() {
 	return me ? (
 		<HeaderUserIcon me={me} />
 	) : (
-		<KaKaoLoginButton className={loginButtonStyle}>
-			간편 로그인
-		</KaKaoLoginButton>
+		<KaKaoLoginButton className={loginButtonStyle}>로그인</KaKaoLoginButton>
 	);
 }
 
 const loginButtonStyle = clsx(
-	'rounded-full px-15px py-2.5 whitespace-nowrap',
-	'text-bold text-white bg-mainGreen hover:bg-darkGreen'
+	'rounded-full px-15px py-2 whitespace-nowrap',
+	'text-bold text-mainGreen border border-mainGreen text-sm font-bold'
 );

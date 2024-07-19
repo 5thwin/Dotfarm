@@ -9,3 +9,11 @@ export type PaginateResponse = {
 	next: null;
 	total?: number; // 요청 필드에 page가 들어가는 경우에 생기는 필드
 };
+
+export type PaginatePayload = {
+	page?: number;
+	where__id__less_than?: number;
+	where__id__more_than?: number;
+	order__createdAt: 'ASC' | 'DESC';
+	take: number;
+};

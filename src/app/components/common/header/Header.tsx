@@ -31,7 +31,7 @@ const Header: React.FC<Props> = ({ showOnMobile = false }) => {
 				<div className="hidden lg:inline-block">
 					<HeaderSearchBar />
 				</div>
-				<div className="lg:hidden">
+				<div className="lg:hidden flexCenter">
 					<HeaderSearchButton />
 				</div>
 				<HeaderUserArea />

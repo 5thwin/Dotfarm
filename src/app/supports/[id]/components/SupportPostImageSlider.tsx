@@ -26,34 +26,35 @@ export default function SupportPostImageSlider({ images, alt }: Props) {
 		));
 	}, [images, alt]);
 	return (
-		<Slider
-			className="w-full"
-			dots
-			arrows={false}
-			speed={500}
-			infinite
-			slidesToShow={1}
-			slidesToScroll={1}
-			dotsClass={'dots_custom'}
-			appendDots={(dots: React.ReactNode) => (
-				<div
-					style={{
-						width: '100%',
-						height: '7px',
-						position: 'absolute',
-						bottom: '-10px',
-						left: '50%',
-						transform: 'translateX(-50%)',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-					}}
-				>
-					<ul className="mx-auto flex gap-x-1 transition-all">{dots}</ul>
-				</div>
-			)}
-		>
-			{Slides}
-		</Slider>
+		// <Slider
+		// 	className="w-full"
+		// 	dots
+		// 	arrows={false}
+		// 	speed={500}
+		// 	infinite
+		// 	slidesToShow={1}
+		// 	slidesToScroll={1}
+		// 	dotsClass={'dots_custom'}
+		// 	appendDots={(dots: React.ReactNode) => (
+		// 		<div
+		// 			style={{
+		// 				width: '100%',
+		// 				height: '7px',
+		// 				position: 'absolute',
+		// 				bottom: '-10px',
+		// 				left: '50%',
+		// 				transform: 'translateX(-50%)',
+		// 				display: 'flex',
+		// 				alignItems: 'center',
+		// 				justifyContent: 'center',
+		// 			}}
+		// 		>
+		// 			<ul className="mx-auto flex gap-x-1 transition-all">{dots}</ul>
+		// 		</div>
+		// 	)}
+		// >
+		// 	{Slides}
+		// </Slider>
+		<div className="flex flex-col">{Slides}</div>
 	);
 }

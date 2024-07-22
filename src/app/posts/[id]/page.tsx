@@ -2,6 +2,7 @@ import { getPost } from '@/api/post/get';
 import withLayout from '@/app/hoc/withLayout';
 import PostBox from './conponents/PostBox';
 import Fallback from '../components/Fallback';
+import { Metadata } from 'next';
 
 type Params = {
 	id: string;
@@ -10,6 +11,16 @@ type Params = {
 type Props = {
 	params: Params;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const id = Number(params.id);
+	const post = await getPost(id);
+	return {
+		title: post?.title,
+		description: post?.content,
+	};
+}
+
 async function Page({ params }: Props) {
 	const id = Number(params.id);
 	const post = await getPost(id);

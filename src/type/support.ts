@@ -25,3 +25,10 @@ export type PaginatedSupportPrograms = {
 	totalItems: number;
 	items: SupportProgram[];
 };
+
+export type Pick = {
+	id: number;
+	updatedAt: string;
+	createdAt: string;
+	support: SupportProgram;
+};

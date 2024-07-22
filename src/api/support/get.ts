@@ -1,6 +1,5 @@
 import { SupportProgram } from '@/type/support';
 import customFetch from '../customFetch';
-import { handleApiError } from '../handleApiError';
 import { PaginateResponse } from '..';
 
 export async function getSupportPrograms() {
@@ -50,6 +49,12 @@ type searchPayload = {
 	take: number;
 	rangeStartDate?: string;
 	rangeEndDate?: string;
+	startDate__gte?: string;
+	startDate__lte?: string;
+	deadline__gte?: string;
+	deadline__lte?: string;
+	order__startDate?: 'ASC' | 'DESC';
+	order__deadline?: 'ASC' | 'DESC';
 };
 export async function getSearchSupport(payload: searchPayload) {
 	const params = new URLSearchParams();
@@ -60,6 +65,12 @@ export async function getSearchSupport(payload: searchPayload) {
 		take,
 		rangeStartDate,
 		rangeEndDate,
+		startDate__gte,
+		startDate__lte,
+		deadline__gte,
+		deadline__lte,
+		order__startDate,
+		order__deadline,
 	} = payload;
 	params.append('order__createdAt', 'DESC');
 	if (take) params.append('take', take.toString());
@@ -69,6 +80,13 @@ export async function getSearchSupport(payload: searchPayload) {
 
 	if (rangeStartDate) params.append('rangeStartDate', rangeStartDate);
 	if (rangeEndDate) params.append('rangeEndDate', rangeEndDate);
+	if (startDate__gte) params.append('startDate__gte', startDate__gte);
+	if (startDate__lte) params.append('startDate__lte', startDate__lte);
+	if (deadline__gte) params.append('deadline__gte', deadline__gte);
+	if (deadline__lte) params.append('deadline__lte', deadline__lte);
+
+	if (order__startDate) params.append('order__startDate', order__startDate);
+	if (order__deadline) params.append('order__deadline', order__deadline);
 
 	const url = `/supports/search?${params.toString()}`;
 	try {

@@ -1,5 +1,7 @@
+import { Metadata } from 'next';
 import RecentSupports from './components/RecentSupports';
 import SupportPost from './components/SupportPost';
+import { getSupportbyId } from '@/api/support/get';
 
 type Params = {
 	id: string;
@@ -8,6 +10,16 @@ type Params = {
 type Props = {
 	params: Params;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const support = await getSupportbyId(Number(params.id));
+
+	return {
+		title: support?.programName,
+		description: support?.content,
+	};
+}
+
 export default function Page({ params }: Props) {
 	const id = Number(params.id);
 	return (

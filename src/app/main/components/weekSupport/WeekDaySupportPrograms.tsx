@@ -18,7 +18,12 @@ export default async function WeekDaySupportPrograms() {
 	if (isEmpty) {
 		return <NoneWeeklySupportFallback />;
 	}
-	return <WeekSupportSlider supportPrograms={supportPrograms} />;
+	//지원사업 목록 중 deadline이 빠른 것 순으로 정렬하여 20개만 보여줌
+	supportPrograms.sort(
+		(a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime()
+	);
+
+	return <WeekSupportSlider supportPrograms={supportPrograms.slice(0, 20)} />;
 }
 
 function NoneWeeklySupportFallback() {

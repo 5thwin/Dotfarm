@@ -22,14 +22,17 @@ export default function SupportPostImage({ support }: Props) {
 	const image = images.find((image) => image.order === 0) || images[0];
 	return (
 		<Link href={getFullImagePath(image.path)} target="_blank">
-			<div className="rounded-10 h-[50vw] max-h-[340px] min-h-[187px] min-w-[360px] relative border border-lineColor overflow-hidden">
+			<div className="rounded-10  max-w-[560px] mx-auto relative border border-lineColor overflow-hidden">
 				<Image
 					src={getFullImagePath(image.path)}
-					fill
+					width={330}
+					height={187}
 					alt={support.programName}
-					className="object-cover object-top w-full h-full"
+					className="object-contain object-top w-full h-full"
 				/>
 			</div>
 		</Link>
 	);
 }
+
+//h-[50vw] max-h-[450px] min-h-[187px] min-w-[360px]

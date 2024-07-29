@@ -1,13 +1,8 @@
 import WeekSupport from './main/components/weekSupport/WeekSupport';
-import MainSideArea from './main/components/MainSideArea';
-import CommunitySection from './main/components/commutiny/CommunitySection';
 import withLayout from './hoc/withLayout';
 import PcBanner from './main/components/banner/PcBanner';
-import clsx from 'clsx';
 import MobileBanner from './main/components/banner/MobileBanner';
-import WatchListBox from './main/components/banner/WatchListBox';
 import { Metadata } from 'next';
-import GoToWriteButton from './components/button/GoToWriteButton';
 import EditorPick from './main/components/picks/EditorPick';
 import NearDeadline from './main/components/nearDeadline/NearDeadline';
 

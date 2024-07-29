@@ -26,10 +26,12 @@ export default function RecentSupportItem({ support }: Props) {
 						className="object-cover"
 					/>
 				) : (
-					<div className="w-full h-full flexCenter bg-mainGreen">
-						<p className="font-bold text-lg text-subGreen text-center whitespace-nowrap">
-							{support.programName}
-						</p>
+					<div className="w-full h-full flexCenter bg-mainGreen py-2 px-4">
+						<div className="bg-white h-full w-full flexCenter overflow-hidden">
+							<p className="font-extrabold text-[10px] text-center break-keep">
+								{support.programName}
+							</p>
+						</div>
 					</div>
 				)}
 			</div>

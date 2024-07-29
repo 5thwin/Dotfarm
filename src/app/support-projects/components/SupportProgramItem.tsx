@@ -31,7 +31,10 @@ export default function SupportProgramItem({
 	})();
 	const deadLineDate = new Date(program.deadline);
 	return (
-		<li className="flex justify-between items-center gap-x-2.5 lg:gap-x-10">
+		<Link
+			href={`/supports/${program.id}`}
+			className="flex justify-between items-center gap-x-2.5 lg:gap-x-10"
+		>
 			<div
 				className={clsx('flex flex-col gap-y-2.5 whitespace-pre-wrap', {
 					'opacity-30': recruitmentStatus === 'IS_CLOSED',
@@ -59,12 +62,10 @@ export default function SupportProgramItem({
 						</span>
 					)}
 				</div>
-				<Link href={program.link} className={programNameStyle} target="_blank">
-					{program.programName}
-				</Link>
+				<p className={programNameStyle}>{program.programName}</p>
 			</div>
 			{me && interestButton && <InterestButton program={program} />}
-		</li>
+		</Link>
 	);
 }
 
@@ -76,4 +77,4 @@ const defaultSupportTag = clsx(
 );
 
 const programNameStyle = clsx('font-bold hover:underline');
-const contentStyle = clsx('text-wrap text-sm lg:text-base line-clamp-2');
+// const contentStyle = clsx('text-wrap text-sm lg:text-base line-clamp-2');

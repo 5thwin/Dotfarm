@@ -5,8 +5,8 @@ import { useMemo } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import SupportProgramItem from '@/app/support-projects/components/SupportProgramItem';
-import clsx from 'clsx';
+
+import RecentSupportItem from '@/app/supports/[id]/components/RecentSupportItem';
 
 type Props = {
 	supportPrograms: SupportProgram[];
@@ -22,9 +22,17 @@ const settings = {
 
 export default function WeekSupportSlider({ supportPrograms }: Props) {
 	const Slides = useMemo(() => {
-		return supportPrograms.map((program, index) => (
-			<div key={`mobile-slider-${index}`} className="w-full px-2.5 pb-2.5">
-				<SupportProgramItem program={program} interestButton={false} />
+		//supportPrograms 배열을 4개씩 나누어서 배열로 만들어줌
+		const slides = supportPrograms.reduce((acc, cur, i) => {
+			if (i % 4 === 0) acc.push([]);
+			acc[acc.length - 1].push(cur);
+			return acc;
+		}, [] as SupportProgram[][]);
+		return slides.map((supports, i) => (
+			<div key={`slide-${i}`} className="flex flex-col divide-y">
+				{supports.map((support) => (
+					<RecentSupportItem key={support.id} support={support} />
+				))}
 			</div>
 		));
 	}, [supportPrograms]);
@@ -48,7 +56,7 @@ export default function WeekSupportSlider({ supportPrograms }: Props) {
 						justifyContent: 'center',
 					}}
 				>
-					<ul className="mx-auto flex gap-x-[4px] transition-all">{dots}</ul>
+					<ul className="mx-auto flex gap-x-1 transition-all">{dots}</ul>
 				</div>
 			)}
 		>

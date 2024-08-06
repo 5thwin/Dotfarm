@@ -4,7 +4,7 @@ export default function MobileBanner() {
 	return (
 		<Image
 			priority
-			className="rounded-20 flexCenter text-center max-h-[280px]"
+			className="flexCenter text-center "
 			src={'/main/mobileBanner.svg'}
 			alt="농부에게 필요한 농업정보, 지원사업 정보를 알려드립니다."
 			sizes="100vw"

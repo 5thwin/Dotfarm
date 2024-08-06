@@ -17,8 +17,8 @@ export default async function CommunityList({ category }: Props) {
 			) : (
 				<div className="flex items-center justify-center py-5">
 					<p className="text-gray-600 font-medium text-center">
-						아직 공유된 게시물이 없어요.<br/> 첫 게시글을 작성하고 커뮤니티를
-						시작해보세요!
+						아직 공유된 게시물이 없어요.
+						<br /> 첫 게시글을 작성하고 커뮤니티를 시작해보세요!
 					</p>
 				</div>
 			)}

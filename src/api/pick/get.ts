@@ -14,7 +14,6 @@ export async function getPicks({ page = 1, take = 4 }) {
 		if (value) params.append(key, value.toString());
 	});
 	const queryString = params.toString();
-	console.log(queryString);
 	try {
 		const res = await customFetch<PaginateResponse & { data: Pick[] }>(
 			`/picks?${queryString}`,

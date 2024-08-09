@@ -35,3 +35,15 @@ export function linkify(text: string): React.ReactNode {
 
 	return parts;
 }
+
+// 지원사업 섬네일 이미지에 들어가는 텍스트에서 단어를 제거하는 함수
+export function truncateText(text: string): string {
+	//텍스트 내에 "지원사업" 단어 제거
+
+	const textWithoutSupport = text.replace(/지원사업/g, '').replace(/공고/g, '');
+
+	//대괄호 [] 기호를 제거하고 안에있는 단어만 남긴 후, 해당 단어 뒤에 줄바꿈을 추가
+	const textWithoutBracket = textWithoutSupport.replace(/\[.*\]/g, '');
+
+	return textWithoutBracket;
+}

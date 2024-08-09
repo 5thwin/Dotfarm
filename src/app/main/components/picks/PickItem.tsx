@@ -1,9 +1,9 @@
 import { SupportProgram } from '@/type/support';
 import { getFullImagePath } from '@/utils/image';
+import { truncateText } from '@/utils/string';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
-
 type Props = {
 	support: SupportProgram;
 };
@@ -27,8 +27,18 @@ export default function PickItem({ support }: Props) {
 						className="object-cover"
 					/>
 				) : (
-					<div className="w-full h-full bg-mainGreen  flexCenter">
-						<p className="text-white font-bold text-center">{programName}</p>
+					<div className="w-full h-full flexCenter relative">
+						<Image
+							src="support-thumbnail-background.svg"
+							alt="thumbnail"
+							fill
+							className="object-cover"
+						/>
+						<p
+							className={`font-extrabold text-center z-10 break-keep text-[#1E4A0A] text-sm`}
+						>
+							{truncateText(programName)}
+						</p>
 					</div>
 				)}
 			</div>

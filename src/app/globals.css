@@ -70,3 +70,15 @@ body {
 	background-color: #42c67e;
 	width: 14px;
 }
+
+@font-face {
+	font-family: 'SebangGothic';
+	font-weight: 400;
+	src: url('/fonts/SebangGothic.ttf') format('ttf');
+}
+
+@font-face {
+	font-family: 'SebangGothic';
+	font-weight: 700;
+	src: url('/fonts/SebangGothicBold.ttf') format('ttf');
+}

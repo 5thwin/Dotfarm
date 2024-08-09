@@ -1,9 +1,10 @@
 import { SupportProgram } from '@/type/support';
 import { getFullImagePath } from '@/utils/image';
-import Image from 'next/image';
 import Link from 'next/link';
 import SupportPostHead from './SupportPostHead';
 import clsx from 'clsx';
+import { truncateText } from '@/utils/string';
+import Image from 'next/image';
 
 type Props = {
 	support: SupportProgram;
@@ -26,10 +27,18 @@ export default function RecentSupportItem({ support }: Props) {
 						className="object-cover"
 					/>
 				) : (
-					<div className="w-full h-full flexCenter bg-mainGreen py-2 px-4">
-						<div className="bg-white h-full w-full flexCenter overflow-hidden">
-							<p className="font-extrabold text-[10px] text-center break-keep">
-								{support.programName}
+					<div className="w-full h-full relative flex">
+						<Image
+							src="/support-thumbnail-background.svg"
+							alt={support.programName}
+							fill
+							className="object-cover object-bottom"
+						/>
+						<div className="w-full h-full flexCenter">
+							<p
+								className={`font-extrabold text-center z-10 break-keep text-[#1E4A0A] text-[8px] line-clamp-4`}
+							>
+								{truncateText(support.programName)}
 							</p>
 						</div>
 					</div>

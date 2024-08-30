@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import RecentSupports from './components/RecentSupports';
 import SupportPost from './components/SupportPost';
 import { getSupportbyId } from '@/api/support/get';
+import { extractKeywords } from '@/utils/string/keyword';
 
 type Params = {
 	id: string;
@@ -14,9 +15,17 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const support = await getSupportbyId(Number(params.id));
 
+	const keywords = extractKeywords(
+		support?.programName || '',
+		support?.content || '',
+		10,
+		[support?.category || '지원사업']
+	);
+
 	return {
 		title: support?.programName,
 		description: support?.content,
+		keywords: keywords,
 	};
 }
 

@@ -6,12 +6,14 @@ import SupportPostBottom from './SupportPostBottom';
 import clsx from 'clsx';
 import { getInterestCheck } from '@/api/user/interest/get';
 import { getUserIdByAccessToken } from '@/api/auth/token/utils';
+import { extractKeywords } from '@/utils/string/keyword';
 
 type Props = {
 	id: number;
 };
 export default async function SupportPost({ id }: Props) {
 	const support = await getSupportbyId(id);
+
 	const userId = getUserIdByAccessToken();
 	const res = await getInterestCheck(id);
 	if (!support) return null;

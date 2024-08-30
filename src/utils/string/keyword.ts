@@ -110,3 +110,43 @@ export function extractKeywords(
 
 	return sortedKeywords;
 }
+
+// description 추출 함수
+export function extractDescription(
+	content: string,
+	maxLength: number = 160
+): string {
+	// 텍스트에서 HTML 태그 제거
+	const plainText = content.replace(/<\/?[^>]+(>|$)/g, '').trim();
+
+	// 이모지 제거
+	const textWithoutEmoji = plainText
+		.replace(
+			/([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD800-\uDFFF]|[\u2600-\u26FF]|[\uFE0F]|[\u2934-\u2935]|[\u2190-\u21FF])/g,
+			''
+		)
+		.trim();
+
+	// 문장을 공백 기준으로 분할
+	const sentences = textWithoutEmoji
+		.split('.')
+		.filter((sentence) => sentence.trim().length > 0);
+
+	// 첫 번째 문장부터 추가하여 최대 길이를 맞추기
+	let description = '';
+	for (const sentence of sentences) {
+		if ((description + sentence).length > maxLength) {
+			break;
+		}
+		description += sentence + '.';
+	}
+	//줄바꿈 제거
+	description = description.replace(/(\r\n|\n|\r)/gm, ' ');
+
+	// 최종 description이 maxLength를 넘으면 자르기
+	if (description.length > maxLength) {
+		description = description.substring(0, maxLength).trim();
+	}
+
+	return description;
+}

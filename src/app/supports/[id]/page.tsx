@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import RecentSupports from './components/RecentSupports';
 import SupportPost from './components/SupportPost';
 import { getSupportbyId } from '@/api/support/get';
-import { extractKeywords } from '@/utils/string/keyword';
+import { extractDescription, extractKeywords } from '@/utils/string/keyword';
 
 type Params = {
 	id: string;
@@ -22,9 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		[support?.category || '지원사업']
 	);
 
+	const description = extractDescription(support?.content || '');
+
 	return {
 		title: support?.programName,
-		description: support?.content,
+		description: description,
 		keywords: keywords.join(', '),
 	};
 }

@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	return {
 		title: support?.programName,
 		description: support?.content,
-		keywords: keywords,
+		keywords: keywords.join(', '),
 	};
 }
 

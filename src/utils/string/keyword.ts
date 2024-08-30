@@ -81,10 +81,11 @@ export function extractKeywords(
 	// 제목과 내용을 하나의 텍스트로 결합
 	const text: string = `${title} ${content}`;
 
-	// 텍스트를 공백을 기준으로 분할하고, 불용어 제거
+	// 텍스트를 공백을 기준으로 분할하고, 불용어 제거 및 2글자 이하 단어 제거
 	const words: string[] = text
 		.split(/\s+/)
-		.filter((word) => !stopWords.includes(word));
+		.filter((word) => !stopWords.includes(word))
+		.filter((word) => word.length > 2);
 
 	// 단어 빈도 계산
 	const wordFrequencies: Record<string, number> = {};

@@ -5,6 +5,7 @@ import MobileBanner from './main/components/banner/MobileBanner';
 import { Metadata } from 'next';
 import EditorPick from './main/components/picks/EditorPick';
 import NearDeadline from './main/components/nearDeadline/NearDeadline';
+import ServiceEndPopup from './main/components/service-end/ServiceEndPopup';
 
 export const metadata: Metadata = {
 	title: {
@@ -26,6 +27,7 @@ function Page() {
 				<WeekSupport />
 				<NearDeadline />
 			</main>
+			<ServiceEndPopup />
 		</div>
 	);
 }

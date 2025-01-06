@@ -43,15 +43,15 @@ const ServiceEndPopup = () => {
 				>
 					✕
 				</button>
-				<h2 className="text-2xl font-bold text-gray-800 mb-4">
+				<h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
 					서비스 종료 안내
 				</h2>
-				<p className="text-gray-600 mb-6">
-					Dotfarm은 <strong>2025년 1월 22일</strong>자로 서비스를 종료합니다.
+				<p className="text-gray-600 mb-4 mt-6">
+					닷팜은 <strong>2025년 1월 22일</strong>자로 서비스를 종료합니다.
 					<br />
 					그동안 이용해주셔서 감사합니다.
 				</p>
-				<div className="flex items-center mb-6">
+				<div className="flex items-center mb-6 justify-end">
 					<input
 						type="checkbox"
 						id="doNotShowAgain"

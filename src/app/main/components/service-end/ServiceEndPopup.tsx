@@ -21,7 +21,7 @@ const ServiceEndPopup = () => {
 	}, []);
 
 	const handleClose = () => {
-		setIsOpen(false); // 팝업 닫기
+		setIsOpen(false);
 
 		if (doNotShowAgain) {
 			// 3일 동안 팝업 다시 표시하지 않음

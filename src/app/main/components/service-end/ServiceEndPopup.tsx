@@ -1,6 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
 
+/**
+ *  서비스 종료 팝업
+ * @returns
+ */
 const ServiceEndPopup = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [doNotShowAgain, setDoNotShowAgain] = useState(false);

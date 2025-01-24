@@ -52,7 +52,7 @@ const ServiceEndPopup = () => {
 				</h2>
 				<p className="text-gray-600 mb-4 mt-6">
 					닷팜은 <strong className="font-semibold">2025년 1월 22일</strong>
-					자로 서비스를 종료합니다.
+					자로 서비스가 종료되었습니다.
 					<br />
 					그동안 이용해주셔서 감사합니다.
 				</p>
